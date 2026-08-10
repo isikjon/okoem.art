@@ -45,3 +45,14 @@ add_action(
 	},
 	20
 );
+
+add_action(
+	'wp_head',
+	function () {
+		printf(
+			'<link rel="icon" href="%s" type="image/png">' . "\n",
+			esc_url( OKOYOM_ASSETS_URI . '/img/icon.png' )
+		);
+	},
+	2
+);
