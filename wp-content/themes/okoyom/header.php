@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 <header>
     <div class="container">
         <div class="flexHeader">
-            <a class="logo" href="index.html">
+            <a class="logo" href="/">
                 <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/logoHeader.svg" alt="Окоём" width="122" height="24" fetchpriority="high">
             </a>
             <?php okoyom_nav( 'primary', 'listHeader' ); ?>
@@ -45,7 +45,7 @@ defined( 'ABSPATH' ) || exit;
                             <li class="content-burger">
                                 <ul class="listBurgerUl">
                                     <li class="listBurgerUlContentLi">
-                                        <a class="logo" href="index.html">
+                                        <a class="logo" href="/">
                                             <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/logoHeader.svg" alt="Окоём" width="122" height="24" loading="lazy" decoding="async">
                                         </a>
                                         <?php okoyom_nav( 'primary', 'linksBurger' ); ?>
@@ -65,10 +65,10 @@ defined( 'ABSPATH' ) || exit;
                                             </div>
                                         </div>
                                         <div class="flexBtnBurger">
-                                            <a href="like-2.html" class="btnWhiteTextBtn btnWhiteTextBtnV3">
+                                            <a href="/favorites/" class="btnWhiteTextBtn btnWhiteTextBtnV3">
                                                 Избранное (2)
                                             </a>
-                                            <a href="bag-2.html" class="btnWhiteTextBtn btnWhiteTextBtnV2">
+                                            <a href="/cart/" class="btnWhiteTextBtn btnWhiteTextBtnV2">
                                                 Корзина
                                             </a>
                                         </div>

@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
             <p>
                 Заявка отправлена. Менеджер свяжется с вами в течение рабочего дня.
             </p>
-            <a style="width: fit-content" href="catalog.html" class="material-link">
+            <a style="width: fit-content" href="/catalog/" class="material-link">
                 Вернуться в каталог
             </a>
         </div>

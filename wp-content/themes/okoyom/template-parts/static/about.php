@@ -246,7 +246,7 @@ defined( 'ABSPATH' ) || exit;
                         <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV3">
                             Узнать об открытии
                         </a>
-                        <a href="contact.html" class="btnWhiteTextBtn btnWhiteTextBtnV2">
+                        <a href="/contacts/" class="btnWhiteTextBtn btnWhiteTextBtnV2">
                             Контакты
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                 <path d="M2.9165 7H11.0832" stroke="#161412" stroke-opacity="0.9" stroke-width="0.729167" stroke-linecap="round" stroke-linejoin="round"/>

@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
             <p>
                 Добавляйте понравившиеся муралы и панно в избранное, нажимая на иконку сердца
             </p>
-            <a style="width: fit-content" href="catalog.html" class="material-link openModal">
+            <a style="width: fit-content" href="/catalog/" class="material-link openModal">
                 Перейти в каталог  →
             </a>
         </div>

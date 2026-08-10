@@ -106,7 +106,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 	<a href="<?php echo esc_url( get_permalink( $product ) ); ?>" class="blockCardCatalog__card" data-product-id="<?php echo esc_attr( (string) $product->ID ); ?>">
 		<div class="hover-slider">
 			<div class="likeCardCatalog" data-favorite="<?php echo esc_attr( (string) $product->ID ); ?>">
-				<img src="<?php echo esc_url( OKOYOM_ASSETS_URI . '/img/like.svg' ); ?>" alt="В избранное" width="24" height="24" loading="lazy" decoding="async">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="В избранное"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 			</div>
 			<div class="hover-slider__slides">
 				<?php foreach ( $slides as $i => $url ) : ?>

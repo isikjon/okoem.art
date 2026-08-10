@@ -88,6 +88,30 @@ SUBS_RE = (
     ("32K", "subs_dzen"),
 )
 
+HTML_TO_WP = {
+    "index.html": "/",
+    "catalog.html": "/catalog/",
+    "card.html": "/catalog/",
+    "inspiration.html": "/inspiration/",
+    "designers.html": "/designers/",
+    "buyers.html": "/buyers/",
+    "about.html": "/about/",
+    "contact.html": "/contacts/",
+    "polite.html": "/policy/",
+    "like-1.html": "/favorites/",
+    "like-2.html": "/favorites/",
+    "bag-1.html": "/cart/",
+    "bag-2.html": "/cart/",
+    "thanks.html": "/thanks/",
+    "search.html": "/search/",
+    "404.html": "/",
+}
+
+def rewrite_page_links(html: str) -> str:
+    for name, path in HTML_TO_WP.items():
+        html = html.replace('href="%s"' % name, 'href="%s"' % path)
+    return html
+
 def rewrite_editable(html: str) -> str:
 
     for needle, replacement in EDITABLE_TEXT:
@@ -138,6 +162,7 @@ def rewrite_assets(html: str) -> str:
 
     html = rewrite_social(html)
     html = rewrite_editable(html)
+    html = rewrite_page_links(html)
 
     html = RE_ASSET.sub(r"\1<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/", html)
 

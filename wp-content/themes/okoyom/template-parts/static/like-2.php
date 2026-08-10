@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="likeContentWrapperFlex likeContentWrapperFlex-2">
             <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">
-                <a href="card.html" class="blockCardCatalog__card">
+                <a href="/catalog/" class="blockCardCatalog__card">
                     <div class="hover-slider">
                         <div style="opacity: 1!important;" class="likeCardCatalog">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -58,7 +58,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </a>
-                <a href="card.html" class="blockCardCatalog__card">
+                <a href="/catalog/" class="blockCardCatalog__card">
                     <div class="hover-slider">
                         <div style="opacity: 1!important;" class="likeCardCatalog">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -101,7 +101,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </a>
-                <a href="card.html" class="blockCardCatalog__card">
+                <a href="/catalog/" class="blockCardCatalog__card">
                     <div class="hover-slider">
                         <div style="opacity: 1!important;" class="likeCardCatalog">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -144,7 +144,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </a>
-                <a href="card.html" class="blockCardCatalog__card">
+                <a href="/catalog/" class="blockCardCatalog__card">
                     <div class="hover-slider">
                         <div style="opacity: 1!important;" class="likeCardCatalog">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -187,7 +187,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </a>
-                <a href="card.html" class="blockCardCatalog__card">
+                <a href="/catalog/" class="blockCardCatalog__card">
                     <div class="hover-slider">
                         <div style="opacity: 1!important;" class="likeCardCatalog">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -230,7 +230,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </a>
-                <a href="card.html" class="blockCardCatalog__card">
+                <a href="/catalog/" class="blockCardCatalog__card">
                     <div class="hover-slider">
                         <div style="opacity: 1!important;" class="likeCardCatalog">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

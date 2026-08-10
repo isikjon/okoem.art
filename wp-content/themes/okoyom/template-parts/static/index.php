@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
                                 в которых хочется задержаться
                             </p>
                             <div class="btnContentBottom mural-hero__fade-up">
-                                <a href="catalog.html" class="btnWhiteTextBtn">
+                                <a href="/catalog/" class="btnWhiteTextBtn">
                                     Смотреть каталог
                                 </a>
                                 <a href="#!" class="btnWhiteTextBtn openModal">
@@ -48,7 +48,7 @@ defined( 'ABSPATH' ) || exit;
                                 под размер и характер вашей стены
                             </p>
                             <div class="btnContentBottom mural-hero__fade-up">
-                                <a href="catalog.html" class="btnWhiteTextBtn">
+                                <a href="/catalog/" class="btnWhiteTextBtn">
                                     Смотреть каталог
                                 </a>
                                 <a href="#!" class="btnWhiteTextBtn openModal">
@@ -76,7 +76,7 @@ defined( 'ABSPATH' ) || exit;
                                 мурал в вашем интерьере
                             </p>
                             <div class="btnContentBottom mural-hero__fade-up">
-                                <a href="catalog.html" class="btnWhiteTextBtn">
+                                <a href="/catalog/" class="btnWhiteTextBtn">
                                     Смотреть каталог
                                 </a>
                                 <a href="#!" class="btnWhiteTextBtn openModal">
@@ -104,7 +104,7 @@ defined( 'ABSPATH' ) || exit;
                                 настроением и характером
                             </p>
                             <div class="btnContentBottom mural-hero__fade-up">
-                                <a href="catalog.html" class="btnWhiteTextBtn">
+                                <a href="/catalog/" class="btnWhiteTextBtn">
                                     Смотреть каталог
                                 </a>
                                 <a href="#!" class="btnWhiteTextBtn openModal">
@@ -133,7 +133,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="flexSectionInfoMain01">
             <div data-aos="fade-up" data-aos-offset="200" class="block-flexSectionInfoMain01">
-                <a href="catalog.html" class="photoContainer-photoBig-block-flexSectionInfoMain01">
+                <a href="/catalog/" class="photoContainer-photoBig-block-flexSectionInfoMain01">
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoBig-block-flexSectionInfoMain01-1.webp" alt="" class="photoBig-block-flexSectionInfoMain01" width="2672" height="3340" loading="lazy" decoding="async">
                     <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
                         СМОТРЕТЬ
@@ -141,7 +141,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </a>
                 <div class="flexRow-block-flexSectionInfoMain01">
-                    <a href="catalog.html" class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
+                    <a href="/catalog/" class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexRow-block-flexSectionInfoMain01-1.webp" alt="" class="flexRow-block-flexSectionInfoMain01" width="468" height="624" loading="lazy" decoding="async">
                         <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
                             СМОТРЕТЬ
@@ -163,7 +163,7 @@ defined( 'ABSPATH' ) || exit;
             </div>
             <div data-aos="fade-up" data-aos-offset="200" class="block-flexSectionInfoMain01">
                 <div class="flexRow-block-flexSectionInfoMain01">
-                    <a href="catalog.html" class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
+                    <a href="/catalog/" class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexRow-block-flexSectionInfoMain01-1.webp" alt="" class="flexRow-block-flexSectionInfoMain01" width="468" height="624" loading="lazy" decoding="async">
                         <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
                             СМОТРЕТЬ
@@ -183,14 +183,14 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
                 <div class="flexRow-block-flexSectionInfoMain02">
-                    <a href="catalog.html" class="photoContainer-photoBig-block-flexSectionInfoMain01">
+                    <a href="/catalog/" class="photoContainer-photoBig-block-flexSectionInfoMain01">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoBig-block-flexSectionInfoMain01-1.webp" alt="" class="photoBig-block-flexSectionInfoMain01" width="2672" height="3340" loading="lazy" decoding="async">
                         <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
                             СМОТРЕТЬ
                             <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
                         </div>
                     </a>
-                    <a href="catalog.html" class="a-flexRow-block-flexSectionInfoMain02">
+                    <a href="/catalog/" class="a-flexRow-block-flexSectionInfoMain02">
                         Перейти в каталог
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowGrey.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
                     </a>
@@ -361,14 +361,14 @@ defined( 'ABSPATH' ) || exit;
                 <h2 class="titleSectionTitle">
                     Избранные работы
                 </h2>
-                <a href="catalog.html" class="link-flex-titleSection">
+                <a href="/catalog/" class="link-flex-titleSection">
                     Все работы
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowGrey.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
                 </a>
             </div>
         </div>
         <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">
-            <a href="card.html" class="blockCardCatalog__card">
+            <a href="/catalog/" class="blockCardCatalog__card">
                 <div class="hover-slider">
                     <div class="likeCardCatalog">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -409,7 +409,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
             </a>
-            <a href="card.html" class="blockCardCatalog__card">
+            <a href="/catalog/" class="blockCardCatalog__card">
                 <div class="hover-slider">
                     <div class="likeCardCatalog">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -450,7 +450,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
             </a>
-            <a href="card.html" class="blockCardCatalog__card">
+            <a href="/catalog/" class="blockCardCatalog__card">
                 <div class="hover-slider">
                     <div class="likeCardCatalog">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -491,7 +491,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
             </a>
-            <a href="card.html" class="blockCardCatalog__card">
+            <a href="/catalog/" class="blockCardCatalog__card">
                 <div class="hover-slider">
                     <div class="likeCardCatalog">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -532,7 +532,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
             </a>
-            <a href="card.html" class="blockCardCatalog__card">
+            <a href="/catalog/" class="blockCardCatalog__card">
                 <div class="hover-slider">
                     <div class="likeCardCatalog">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -573,7 +573,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
             </a>
-            <a href="card.html" class="blockCardCatalog__card">
+            <a href="/catalog/" class="blockCardCatalog__card">
                 <div class="hover-slider">
                     <div class="likeCardCatalog">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -774,7 +774,7 @@ defined( 'ABSPATH' ) || exit;
             </p>
         </div>
         <div data-aos="fade-up" data-aos-offset="200" class="btnsFlexCenter">
-            <a href="catalog.html" class="btnWhiteTextBtn btnWhiteTextBtnV3">
+            <a href="/catalog/" class="btnWhiteTextBtn btnWhiteTextBtnV3">
                 Смотреть каталог
             </a>
             <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">

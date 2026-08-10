@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="flexFooter">
             <div class="col-1__footer">
-                <a class="logo" href="index.html">
+                <a class="logo" href="/">
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/logoFooter.svg" alt="Окоём" width="122" height="24" loading="lazy" decoding="async">
                 </a>
                 <p>

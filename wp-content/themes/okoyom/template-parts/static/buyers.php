@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/messageIcon.svg" alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true">
                     Получить консультацию
                 </a>
-                <a href="catalog.html" class="btnWhiteTextBtn openModal">
+                <a href="/catalog/" class="btnWhiteTextBtn openModal">
                     Подобрать мурал
                 </a>
             </div>

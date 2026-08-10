@@ -2,17 +2,18 @@
     margin-top: 0;
 }
 
-[data-favorite].is-favorite svg path {
-    fill: #161412;
-    stroke: #161412;
+.likeCardCatalog.is-favorite svg path {
+    fill: #fff;
+    stroke: #fff;
 }
 
 .likeCardCatalog.is-favorite {
     opacity: 1;
 }
 
-.likeCardCatalog.is-favorite img {
-    filter: invert(1) brightness(0.2);
+.flexBtnsCards__links.is-favorite svg path {
+    fill: #161412;
+    stroke: #161412;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -31,4 +32,10 @@
     html {
         scroll-behavior: auto !important;
     }
+}
+
+.card-left-flexBagPageContainer img.left-card-left-flexBagPageContainer__img {
+    width: 118px;
+    height: 128px;
+    object-fit: cover;
 }

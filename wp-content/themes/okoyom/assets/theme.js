@@ -437,12 +437,36 @@
         if (query) window.location.href = '/search/?q=' + encodeURIComponent(query);
     });
 
+    function hideDeadMoreButtons() {
+        document.querySelectorAll('a, button').forEach(function (el) {
+            var t = el.textContent.trim().toLowerCase();
+            if (t === 'смотреть ещё' || t === 'смотреть еще') {
+                el.style.display = 'none';
+            }
+        });
+    }
+
+    document.addEventListener('click', function (event) {
+        var lens = event.target.closest('.filterModalOpen, [class*="searchIcon"]');
+        if (!lens) return;
+        var panel = lens.closest('.mfilter');
+        var input = (panel || document).querySelector('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]');
+        if (input) {
+            var query = input.value.trim();
+            if (query) {
+                event.preventDefault();
+                window.location.href = '/search/?q=' + encodeURIComponent(query);
+            }
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         captureAttribution();
         updateHeaderCounters();
         markFavorites();
         renderCart();
         renderFavorites();
+        hideDeadMoreButtons();
 
         
         var params = new URLSearchParams(location.search);

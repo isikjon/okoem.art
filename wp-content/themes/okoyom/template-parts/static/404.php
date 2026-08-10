@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
             <p>
                 Страница не найдена
             </p>
-            <a style="width: fit-content" href="index.html" class="material-link openModal">
+            <a style="width: fit-content" href="/" class="material-link openModal">
                 Перейти на главную
             </a>
         </div>

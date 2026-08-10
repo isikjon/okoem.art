@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<a href="card.html" class="blockCardCatalog__card">
+<a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -42,7 +42,7 @@ defined( 'ABSPATH' ) || exit;
                                 </div>
                             </div>
                         </a>
-                        <a href="card.html" class="blockCardCatalog__card">
+                        <a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -83,7 +83,7 @@ defined( 'ABSPATH' ) || exit;
                                 </div>
                             </div>
                         </a>
-                        <a href="card.html" class="blockCardCatalog__card">
+                        <a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -124,7 +124,7 @@ defined( 'ABSPATH' ) || exit;
                                 </div>
                             </div>
                         </a>
-                        <a href="card.html" class="blockCardCatalog__card">
+                        <a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -165,7 +165,7 @@ defined( 'ABSPATH' ) || exit;
                                 </div>
                             </div>
                         </a>
-                        <a href="card.html" class="blockCardCatalog__card">
+                        <a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -206,7 +206,7 @@ defined( 'ABSPATH' ) || exit;
                                 </div>
                             </div>
                         </a>
-                        <a href="card.html" class="blockCardCatalog__card">
+                        <a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -247,7 +247,7 @@ defined( 'ABSPATH' ) || exit;
                                 </div>
                             </div>
                         </a>
-                        <a href="card.html" class="blockCardCatalog__card">
+                        <a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -288,7 +288,7 @@ defined( 'ABSPATH' ) || exit;
                                 </div>
                             </div>
                         </a>
-                        <a href="card.html" class="blockCardCatalog__card">
+                        <a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
@@ -329,7 +329,7 @@ defined( 'ABSPATH' ) || exit;
                                 </div>
                             </div>
                         </a>
-                        <a href="card.html" class="blockCardCatalog__card">
+                        <a href="/catalog/" class="blockCardCatalog__card">
                             <div class="hover-slider">
                                 <div class="likeCardCatalog">
                                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
