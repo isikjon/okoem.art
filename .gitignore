@@ -1,0 +1,20 @@
+.env
+.DS_Store
+.idea/
+node_modules/
+
+# Ядро WordPress ставится скриптом, в репозитории только наш код
+wp/
+
+# Загрузки контент-менеджера не версионируются
+uploads/
+
+# Библиотеки складываются скриптом, см. README
+wp-content/themes/okoyom/assets/vendor/
+assets-inbox/*
+!assets-inbox/README.md
+
+# Деплой-пакеты не версионируются
+dist/
+__pycache__/
+*.pyc

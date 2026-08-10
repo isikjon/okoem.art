@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОКОЁМ — Авторские настенные муралы</title>
+    <meta name="description" content="Индивидуальное производство настенных муралов для современных интерьеров. Авторский дизайн, премиальные материалы.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="adapt.css">
+    <link rel="icon" href="img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="flexHeader">
+            <a class="logo" href="index.html">
+                <img src="/img/logoHeader.svg" alt="Окоём" width="122" height="24" fetchpriority="high">
+            </a>
+            <div class="listHeader">
+                <a href="catalog.html">
+                    Каталог
+                </a>
+                <a href="inspiration.html">
+                    Вдохновение
+                </a>
+                <a href="designers.html">
+                    Дизайнерам
+                </a>
+                <a href="buyers.html">
+                    Покупателям
+                </a>
+                <a href="about.html">
+                    О студии
+                </a>
+                <a href="contact.html">
+                    контакты
+                </a>
+            </div>
+            <div class="rightHeader">
+                <div class="telHeaderFlex">
+                    <a href="tel:+7 (495) 123-45-67">
+                        +7 (495) 123-45-67
+                    </a>
+                    <img src="/img/messageIcon-2.svg" alt="WhatsApp" width="26" height="26" fetchpriority="high">
+                    <div class="line-telHeaderFlex"></div>
+                </div>
+                <div class="rightIconHeader">
+                    <a href="tel:+7 (495) 123-45-67" class="telIconHeader">
+                        <img src="/img/telIconHeader.svg" alt="Позвонить" width="32" height="32" loading="lazy" decoding="async">
+                    </a>
+                    <a href="#!" class="likeHeader">
+                        <img src="/img/likeHeader.svg" alt="Избранное" width="32" height="32" loading="lazy" decoding="async">
+                    </a>
+                    <a href="#!" class="bagHeader">
+                        <img src="/img/bagHeader.svg" alt="Корзина" width="32" height="32" loading="lazy" decoding="async">
+                    </a>
+                    <div class="hamburger-menu">
+                        <input id="menu__toggle" type="checkbox" />
+                        <label class="menu__btn" for="menu__toggle">
+                            <img src="/img/burger.svg" alt="Открыть меню" class="burgerSvg" width="32" height="32" loading="lazy" decoding="async">
+                            <img class="closeBurger" src="/img/closeBurger.svg" alt="Закрыть меню" width="32" height="32" loading="lazy" decoding="async">
+                        </label>
+                        <ul class="menu__box">
+                            <li class="content-burger">
+                                <ul class="listBurgerUl">
+                                    <li class="listBurgerUlContentLi">
+                                        <a class="logo" href="index.html">
+                                            <img src="/img/logoHeader.svg" alt="Окоём" width="122" height="24" loading="lazy" decoding="async">
+                                        </a>
+                                        <div class="linksBurger">
+                                            <a href="catalog.html">
+                                                Каталог
+                                            </a>
+                                            <a href="inspiration.html">
+                                                Вдохновение
+                                            </a>
+                                            <a href="designers.html">
+                                                Дизайнерам
+                                            </a>
+                                            <a href="buyers.html">
+                                                Покупателям
+                                            </a>
+                                            <a href="about.html">
+                                                О студии
+                                            </a>
+                                            <a href="contact.html">
+                                                контакты
+                                            </a>
+                                        </div>
+                                        <div class="lineBurger"></div>
+                                        <div class="flexContactBurger">
+                                            <div class="flexContactBurger__a">
+                                                <img src="/img/telBurger.svg" alt="Позвонить" width="26" height="26" loading="lazy" decoding="async">
+                                                <a href="tel:+7 (495) 123-45-67">
+                                                    +7 (495) 123-45-67
+                                                </a>
+                                            </div>
+                                            <div class="flexContactBurger__a">
+                                                <img src="/img/messageIcon-2.svg" alt="WhatsApp" width="26" height="26" loading="lazy" decoding="async">
+                                                <a href="tel:+7 (495) 123-45-67">
+                                                    WhatsApp
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flexBtnBurger">
+                                            <a href="like-2.html" class="btnWhiteTextBtn btnWhiteTextBtnV3">
+                                                Избранное (2)
+                                            </a>
+                                            <a href="bag-2.html" class="btnWhiteTextBtn btnWhiteTextBtnV2">
+                                                Корзина
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="mural-hero mural-hero--intro" id="muralHero">
+    <div class="swiper mural-hero__slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide mural-hero__slide">
+                <div class="mural-hero__bg js-hero-parallax">
+                    <img src="/img/slide-1.webp" alt="" width="5760" height="3684" loading="lazy" decoding="async">
+                </div>
+                <div class="mural-hero__container">
+                    <div class="container">
+                        <div class="mural-hero__content mural-hero__contentPaddingTopLeft">
+                            <h2 class="titleAllForSection mural-hero__fade-up">
+                                Стена как пространство <br>
+                                для взгляда
+                            </h2>
+                            <p class="textTitleBelow mural-hero__fade-up">
+                                Авторские муралы для интерьеров,  <br>
+                                в которых хочется задержаться
+                            </p>
+                            <div class="btnContentBottom mural-hero__fade-up">
+                                <a href="catalog.html" class="btnWhiteTextBtn">
+                                    Смотреть каталог
+                                </a>
+                                <a href="#!" class="btnWhiteTextBtn openModal">
+                                    <img src="/img/messageIcon.svg" alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true">
+                                    Получить консультацию
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide mural-hero__slide">
+                <div class="mural-hero__bg js-hero-parallax">
+                    <img src="/img/slide-1.webp" alt="" width="5760" height="3684" loading="lazy" decoding="async">
+                </div>
+                <div class="mural-hero__container">
+                    <div class="container">
+                        <div class="mural-hero__content mural-hero__contentPaddingTopLeft">
+                            <h2 class="titleAllForSection mural-hero__fade-up">
+                                Крупный формат. <br>
+                                Высокая детализация.
+                            </h2>
+                            <p class="textTitleBelow mural-hero__fade-up">
+                                Каждое изображение адаптируется <br>
+                                под размер и характер вашей стены
+                            </p>
+                            <div class="btnContentBottom mural-hero__fade-up">
+                                <a href="catalog.html" class="btnWhiteTextBtn">
+                                    Смотреть каталог
+                                </a>
+                                <a href="#!" class="btnWhiteTextBtn openModal">
+                                    <img src="/img/messageIcon.svg" alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true">
+                                    Получить консультацию
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide mural-hero__slide">
+                <div class="mural-hero__bg js-hero-parallax">
+                    <img src="/img/slide-1.webp" alt="" width="5760" height="3684" loading="lazy" decoding="async">
+                </div>
+                <div class="mural-hero__container">
+                    <div class="container">
+                        <div class="mural-hero__content mural-hero__contentPaddingTopLeft">
+                            <h2 class="titleAllForSection mural-hero__fade-up">
+                                Видите результат  <br>
+                                до заказа
+                            </h2>
+                            <p class="textTitleBelow mural-hero__fade-up">
+                                Бесплатная визуализация — <br>
+                                мурал в вашем интерьере
+                            </p>
+                            <div class="btnContentBottom mural-hero__fade-up">
+                                <a href="catalog.html" class="btnWhiteTextBtn">
+                                    Смотреть каталог
+                                </a>
+                                <a href="#!" class="btnWhiteTextBtn openModal">
+                                    <img src="/img/messageIcon.svg" alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true">
+                                    Получить консультацию
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide mural-hero__slide">
+                <div class="mural-hero__bg js-hero-parallax">
+                    <img src="/img/slide-1.webp" alt="" width="5760" height="3684" loading="lazy" decoding="async">
+                </div>
+                <div class="mural-hero__container">
+                    <div class="container">
+                        <div class="mural-hero__content mural-hero__contentPaddingTopLeft">
+                            <h2 class="titleAllForSection mural-hero__fade-up">
+                                Коллекция «Тихие миры» — <br>
+                                уже в каталоге
+                            </h2>
+                            <p class="textTitleBelow mural-hero__fade-up">
+                                Восемь серий с разным <br>
+                                настроением и характером
+                            </p>
+                            <div class="btnContentBottom mural-hero__fade-up">
+                                <a href="catalog.html" class="btnWhiteTextBtn">
+                                    Смотреть каталог
+                                </a>
+                                <a href="#!" class="btnWhiteTextBtn openModal">
+                                    <img src="/img/messageIcon.svg" alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true">
+                                    Получить консультацию
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination mural-hero__pagination"></div>
+    </div>
+</section>
+<section class="sectionMain">
+    <div class="container">
+        <div class="titleSection">
+            <span class="titleSectionSpan">
+                Первая коллекция
+            </span>
+            <h2 class="titleSectionTitle">
+                Тихие миры — восемь серий <br>
+                с разным настроением и характером
+            </h2>
+        </div>
+        <div class="flexSectionInfoMain01">
+            <div data-aos="fade-up" data-aos-offset="200" class="block-flexSectionInfoMain01">
+                <a href="catalog.html" class="photoContainer-photoBig-block-flexSectionInfoMain01">
+                    <img src="/img/photoBig-block-flexSectionInfoMain01-1.webp" alt="" class="photoBig-block-flexSectionInfoMain01" width="2672" height="3340" loading="lazy" decoding="async">
+                    <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
+                        СМОТРЕТЬ
+                        <img src="/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                </a>
+                <div class="flexRow-block-flexSectionInfoMain01">
+                    <a href="catalog.html" class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
+                        <img src="/img/flexRow-block-flexSectionInfoMain01-1.webp" alt="" class="flexRow-block-flexSectionInfoMain01" width="468" height="624" loading="lazy" decoding="async">
+                        <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
+                            СМОТРЕТЬ
+                            <img src="/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                        </div>
+                    </a>
+                    <div class="text-flexRow-block-flexSectionInfoMain01">
+                        <span>
+                            Атмосферная абстракция
+                        </span>
+                        <h3>
+                            Бархатная дымка
+                        </h3>
+                        <p>
+                            Мягкие цветовые градиенты и бархатистые текстуры формируют ощущение туманного горизонта. Для спален, гостиных и лаунж-зон, где стена должна дышать. в ритме города.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-offset="200" class="block-flexSectionInfoMain01">
+                <div class="flexRow-block-flexSectionInfoMain01">
+                    <a href="catalog.html" class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
+                        <img src="/img/flexRow-block-flexSectionInfoMain01-1.webp" alt="" class="flexRow-block-flexSectionInfoMain01" width="468" height="624" loading="lazy" decoding="async">
+                        <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
+                            СМОТРЕТЬ
+                            <img src="/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                        </div>
+                    </a>
+                    <div class="text-flexRow-block-flexSectionInfoMain01">
+                        <span>
+                            Атмосферная абстракция
+                        </span>
+                        <h3>
+                            Бархатная дымка
+                        </h3>
+                        <p>
+                            Мягкие цветовые градиенты и бархатистые текстуры формируют ощущение туманного горизонта. Для спален, гостиных и лаунж-зон, где стена должна дышать. в ритме города.
+                        </p>
+                    </div>
+                </div>
+                <div class="flexRow-block-flexSectionInfoMain02">
+                    <a href="catalog.html" class="photoContainer-photoBig-block-flexSectionInfoMain01">
+                        <img src="/img/photoBig-block-flexSectionInfoMain01-1.webp" alt="" class="photoBig-block-flexSectionInfoMain01" width="2672" height="3340" loading="lazy" decoding="async">
+                        <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
+                            СМОТРЕТЬ
+                            <img src="/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                        </div>
+                    </a>
+                    <a href="catalog.html" class="a-flexRow-block-flexSectionInfoMain02">
+                        Перейти в каталог
+                        <img src="/img/arrowGrey.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="sectionMain sectionMainV2">
+    <div class="container">
+        <div class="titleSection titleSection-123124">
+            <span class="titleSectionSpan">
+               Подход
+            </span>
+            <h2 class="titleSectionTitle">
+                Почему мурал Окоём — это не фотообои
+            </h2>
+        </div>
+        <div class="flexGreyInfoBlockRow">
+            <div data-aos="fade-up" data-aos-offset="200" class="flexGreyInfoBlockRow__block flexGreyInfoBlockRow__block-1">
+                <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+                <div class="right-flexGreyInfoBlockRow__block">
+                    <div class="title-right-flexGreyInfoBlockRow__block">
+                        <span>
+                            01
+                        </span>
+                        <h3>
+                            Детализация
+                        </h3>
+                        <p>
+                            Два масштаба восприятия в одном изображении
+                        </p>
+                    </div>
+                    <p class="text-right-flexGreyInfoBlockRow__block">
+                        Издалека мурал собирает интерьер — задаёт глубину, ритм и общее настроение. Подходя ближе, вы обнаруживаете новое: тонкие переходы, фактурные слои, микродетали, которые невозможно увидеть с расстояния.
+                    </p>
+                    <div class="flexDotes-right-flexGreyInfoBlockRow__block">
+                        <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
+                            <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
+                            Многослойная проработка изображения
+                        </div>
+                        <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
+                            <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
+                            Чистота деталей в крупном формате
+                        </div>
+                        <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
+                            <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
+                            Эффект раскрытия при приближении
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-offset="200" class="flexGreyInfoBlockRow__block flexGreyInfoBlockRow__block-2">
+                <div class="right-flexGreyInfoBlockRow__block">
+                    <div class="title-right-flexGreyInfoBlockRow__block">
+                        <span>
+                            02
+                        </span>
+                        <h3>
+                            Адаптация
+                        </h3>
+                    </div>
+                    <p class="text-right-flexGreyInfoBlockRow__block">
+                        Каждый мурал настраивается под конкретную стену: кадрирование, цветокоррекция, учёт особенностей помещения. Перед запуском в печать вы видите готовый результат на визуализации — бесплатно.
+                    </p>
+                    <div class="flexBorderTextInfoSection">
+                        <div class="block-flexBorderTextInfoSection">
+                            <p>
+                                Цветокоррекция
+                            </p>
+                        </div>
+                        <div class="block-flexBorderTextInfoSection">
+                            <p>
+                                Кадрирование
+                            </p>
+                        </div>
+                        <div class="block-flexBorderTextInfoSection">
+                            <p>
+                                Визуализация
+                            </p>
+                        </div>
+                        <div class="block-flexBorderTextInfoSection">
+                            <p>
+                                Подбор материала
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+            </div>
+            <div data-aos="fade-up" data-aos-offset="200" class="flexGreyInfoBlockRow__block flexGreyInfoBlockRow__block-1">
+                <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+                <div class="right-flexGreyInfoBlockRow__block">
+                    <div class="title-right-flexGreyInfoBlockRow__block">
+                        <span>
+                            03
+                        </span>
+                        <h3>
+                            Масштаб
+                        </h3>
+                        <p>
+                            До 24 метров без повторений и стыков
+                        </p>
+                    </div>
+                    <p class="text-right-flexGreyInfoBlockRow__block">
+                        Муралы рассчитаны на большие стены. Изображение печатается как цельная панорама — без раппорта, без швов, без потери качества при увеличении.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="sectionMain">
+    <div class="container">
+        <div class="titleSection">
+            <span class="titleSectionSpan">
+                Продукт
+            </span>
+            <h2 class="titleSectionTitle">
+                Мурал и фоновые обои — два решения для одного интерьера
+            </h2>
+        </div>
+        <div class="flexTwoTypeInfoMain">
+            <a data-aos="fade-left" data-aos-offset="200" href="#!" class="block-flexTwoTypeInfoMain">
+                <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
+                    <img src="/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
+                    <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
+                        СМОТРЕТЬ
+                        <img src="/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                </div>
+                <div class="text-block-flexTwoTypeInfoMain">
+                    <p>
+                        Муралы
+                    </p>
+                    <span>
+                        Цельная авторская композиция — главная стена в интерьере. Без швов, без повторений, с высокой детализацией.
+                    </span>
+                </div>
+            </a>
+            <a data-aos="fade-left" data-aos-offset="300" href="#!" class="block-flexTwoTypeInfoMain">
+                <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
+                    <img src="/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
+                    <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
+                        СМОТРЕТЬ
+                        <img src="/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                </div>
+                <div class="text-block-flexTwoTypeInfoMain">
+                    <p>
+                        Фоновые обои
+                    </p>
+                    <span>
+                        Текстуры и паттерны для соседних стен. Оттенки подбираются из палитры мурала — цвета всегда совпадают.
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="sectionMain">
+    <div class="container">
+        <div class="titleSection">
+            <span class="titleSectionSpan">
+               Каталог
+            </span>
+            <div class="flex-titleSection">
+                <h2 class="titleSectionTitle">
+                    Избранные работы
+                </h2>
+                <a href="catalog.html" class="link-flex-titleSection">
+                    Все работы
+                    <img src="/img/arrowGrey.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                </a>
+            </div>
+        </div>
+        <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">
+            <a href="card.html" class="blockCardCatalog__card">
+                <div class="hover-slider">
+                    <div class="likeCardCatalog">
+                        <img src="/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                    <div class="hover-slider__slides">
+                        <div class="hover-slider__slide active">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="hover-slider__zones">
+                        <div data-index="0"></div>
+                        <div data-index="1"></div>
+                        <div data-index="2"></div>
+                    </div>
+                    <div class="hover-slider__pagination">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="text-block-flexTwoTypeInfoMain">
+                    <p>
+                        Муралы
+                    </p>
+                    <div class="flex-text-block-flexTwoTypeInfoMain">
+                        <span>
+                            пейзажи
+                        </span>
+                        <span>
+                            от 4 500 ₽/м²
+                        </span>
+                    </div>
+                </div>
+            </a>
+            <a href="card.html" class="blockCardCatalog__card">
+                <div class="hover-slider">
+                    <div class="likeCardCatalog">
+                        <img src="/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                    <div class="hover-slider__slides">
+                        <div class="hover-slider__slide active">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="hover-slider__zones">
+                        <div data-index="0"></div>
+                        <div data-index="1"></div>
+                        <div data-index="2"></div>
+                    </div>
+                    <div class="hover-slider__pagination">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="text-block-flexTwoTypeInfoMain">
+                    <p>
+                        Муралы
+                    </p>
+                    <div class="flex-text-block-flexTwoTypeInfoMain">
+                        <span>
+                            пейзажи
+                        </span>
+                        <span>
+                            от 4 500 ₽/м²
+                        </span>
+                    </div>
+                </div>
+            </a>
+            <a href="card.html" class="blockCardCatalog__card">
+                <div class="hover-slider">
+                    <div class="likeCardCatalog">
+                        <img src="/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                    <div class="hover-slider__slides">
+                        <div class="hover-slider__slide active">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="hover-slider__zones">
+                        <div data-index="0"></div>
+                        <div data-index="1"></div>
+                        <div data-index="2"></div>
+                    </div>
+                    <div class="hover-slider__pagination">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="text-block-flexTwoTypeInfoMain">
+                    <p>
+                        Муралы
+                    </p>
+                    <div class="flex-text-block-flexTwoTypeInfoMain">
+                        <span>
+                            пейзажи
+                        </span>
+                        <span>
+                            от 4 500 ₽/м²
+                        </span>
+                    </div>
+                </div>
+            </a>
+            <a href="card.html" class="blockCardCatalog__card">
+                <div class="hover-slider">
+                    <div class="likeCardCatalog">
+                        <img src="/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                    <div class="hover-slider__slides">
+                        <div class="hover-slider__slide active">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="hover-slider__zones">
+                        <div data-index="0"></div>
+                        <div data-index="1"></div>
+                        <div data-index="2"></div>
+                    </div>
+                    <div class="hover-slider__pagination">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="text-block-flexTwoTypeInfoMain">
+                    <p>
+                        Муралы
+                    </p>
+                    <div class="flex-text-block-flexTwoTypeInfoMain">
+                        <span>
+                            пейзажи
+                        </span>
+                        <span>
+                            от 4 500 ₽/м²
+                        </span>
+                    </div>
+                </div>
+            </a>
+            <a href="card.html" class="blockCardCatalog__card">
+                <div class="hover-slider">
+                    <div class="likeCardCatalog">
+                        <img src="/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                    <div class="hover-slider__slides">
+                        <div class="hover-slider__slide active">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="hover-slider__zones">
+                        <div data-index="0"></div>
+                        <div data-index="1"></div>
+                        <div data-index="2"></div>
+                    </div>
+                    <div class="hover-slider__pagination">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="text-block-flexTwoTypeInfoMain">
+                    <p>
+                        Муралы
+                    </p>
+                    <div class="flex-text-block-flexTwoTypeInfoMain">
+                        <span>
+                            пейзажи
+                        </span>
+                        <span>
+                            от 4 500 ₽/м²
+                        </span>
+                    </div>
+                </div>
+            </a>
+            <a href="card.html" class="blockCardCatalog__card">
+                <div class="hover-slider">
+                    <div class="likeCardCatalog">
+                        <img src="/img/like.svg" alt="" width="24" height="24" loading="lazy" decoding="async" aria-hidden="true">
+                    </div>
+                    <div class="hover-slider__slides">
+                        <div class="hover-slider__slide active">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hover-slider__slide">
+                            <img src="/img/flexGreyInfoBlockRow__big-1.webp" alt="" width="552" height="690" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="hover-slider__zones">
+                        <div data-index="0"></div>
+                        <div data-index="1"></div>
+                        <div data-index="2"></div>
+                    </div>
+                    <div class="hover-slider__pagination">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="text-block-flexTwoTypeInfoMain">
+                    <p>
+                        Муралы
+                    </p>
+                    <div class="flex-text-block-flexTwoTypeInfoMain">
+                        <span>
+                            пейзажи
+                        </span>
+                        <span>
+                            от 4 500 ₽/м²
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="sectionMain">
+    <div class="container">
+        <div class="titleSection">
+            <span class="titleSectionSpan">
+               Процесс
+            </span>
+            <h2 class="titleSectionTitle">
+                Как устроена работа
+            </h2>
+        </div>
+        <div class="flexPlusesMainCards">
+            <div data-aos="fade-left" data-aos-offset="200" class="block-flexPlusesMainCards">
+                <span>
+                    01
+                </span>
+                <h4>
+                    Выбор
+                </h4>
+                <p>
+                    Выбираете изображение из коллекции или описываете задачу — поможем определиться с серией и форматом. определиться.
+                </p>
+            </div>
+            <div data-aos="fade-left" data-aos-offset="200" class="block-flexPlusesMainCards">
+                <span>
+                    02
+                </span>
+                <h4>
+                    Визуализация
+                </h4>
+                <p>
+                    Присылаете размеры и фото интерьера — готовим бесплатную визуализацию, прежде чем принимать решение. интерьере.
+                </p>
+            </div>
+            <div data-aos="fade-left" data-aos-offset="200" class="block-flexPlusesMainCards">
+                <span>
+                    03
+                </span>
+                <h4>
+                    Адаптация
+                </h4>
+                <p>
+                    Корректируем кадрирование, цвет и пропорции. Макет утверждается до запуска в печать.
+                </p>
+            </div>
+            <div data-aos="fade-left" data-aos-offset="200" class="block-flexPlusesMainCards">
+                <span>
+                    04
+                </span>
+                <h4>
+                    Производство и доставка
+                </h4>
+                <p>
+                    Производство 5–7 рабочих дней. Доставка по всей России. В комплекте — инструкция по монтажу.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="sectionMain sectionMainV2">
+    <div class="container">
+        <div data-aos="fade-up" data-aos-offset="200" class="flexSectionInfoBottomMain">
+            <div class="left-flexSectionInfoBottomMain">
+                <div class="titleSection">
+                    <span class="titleSectionSpan">
+                       Дизайнерам и архитекторам
+                    </span>
+                    <h2 class="titleSectionTitle">
+                        Работаем с профессионалами
+                    </h2>
+                </div>
+                <div class="flex-left-flexSectionInfoBottomMain flex-left-flexSectionInfoBottomMain__243">
+<!--                    <div class="text-block-flexTwoTypeInfoMain">-->
+<!--                        <p>-->
+<!--                            Адаптация цвета-->
+<!--                        </p>-->
+<!--                        <span>-->
+<!--                            Коррекция палитры под конкретный проект и освещение-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                    <div class="text-block-flexTwoTypeInfoMain">-->
+<!--                        <p>-->
+<!--                            Масштабирование-->
+<!--                        </p>-->
+<!--                        <span>-->
+<!--                            Работа с нестандартными размерами и сложными формами стен-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                    <div class="text-block-flexTwoTypeInfoMain">-->
+<!--                        <p>-->
+<!--                            Капсульные подборки-->
+<!--                        </p>-->
+<!--                        <span>-->
+<!--                            Персональная селекция работ под концепцию проекта-->
+<!--                        </span>-->
+<!--                    </div>-->
+                    <div class="flexV2IndexDesignersAndArchitects">
+                        <span class="number-flexV2IndexDesignersAndArchitects">
+                            01
+                        </span>
+                        <div class="right-flexV2IndexDesignersAndArchitects">
+                            <h3>
+                                Защита проекта
+                            </h3>
+                            <p>
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="line-flexV2IndexDesignersAndArchitects"></div>
+                    <div class="flexV2IndexDesignersAndArchitects">
+                        <span class="number-flexV2IndexDesignersAndArchitects">
+                            02
+                        </span>
+                        <div class="right-flexV2IndexDesignersAndArchitects">
+                            <h3>
+                                Подборка и визуализация
+                            </h3>
+                            <p>
+                                Капсульная подборка под концепцию и визуализация для презентации клиенту
+                            </p>
+                        </div>
+                    </div>
+                    <div class="line-flexV2IndexDesignersAndArchitects"></div>
+                    <div class="flexV2IndexDesignersAndArchitects">
+                        <span class="number-flexV2IndexDesignersAndArchitects">
+                            03
+                        </span>
+                        <div class="right-flexV2IndexDesignersAndArchitects">
+                            <h3>
+                                Партнёрские условия
+                            </h3>
+                            <p>
+                                Дизайнерская скидка, быстрый расчёт и личный менеджер
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">
+                    Условия для дизайнеров
+                </a>
+            </div>
+            <img src="/img/flexSectionInfoBottomMain-1.webp" alt="" class="flexSectionInfoBottomMain__photo" width="2176" height="2720" loading="lazy" decoding="async">
+        </div>
+    </div>
+</section>
+<section class="sectionMain">
+    <div class="container">
+        <div data-aos="fade-up" data-aos-offset="200" class="titleSection titleSection-2">
+            <h2 class="titleSectionTitle">
+                Примерьте мурал в своём интерьере
+            </h2>
+            <p class="textTitleSection">
+                Пришлите фото комнаты и размеры стены — сделаем бесплатную визуализацию, до любого решения о заказе
+            </p>
+        </div>
+        <div data-aos="fade-up" data-aos-offset="200" class="btnsFlexCenter">
+            <a href="catalog.html" class="btnWhiteTextBtn btnWhiteTextBtnV3">
+                Смотреть каталог
+            </a>
+            <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">
+                Запросить визуализацию
+            </a>
+        </div>
+    </div>
+</section>
+<section class="sectionMain">
+    <div class="container">
+        <div data-aos="fade-up" data-aos-offset="200" class="titleSection titleSection-2">
+            <span class="titleSectionSpan">
+               Социальные сети
+            </span>
+            <h2 class="titleSectionTitle">
+                Следите за нами
+            </h2>
+            <p class="textTitleSection">
+                Вдохновляйтесь нашими проектами, смотрите закулисье производства и
+                будьте в курсе новинок
+            </p>
+        </div>
+        <div class="flexSocialsMain">
+            <a data-aos="fade-left" data-aos-offset="200" href="#!" class="link-flexSocialsMain">
+                <div style="background: url(/img/blockSocialsMain-1.png) center center no-repeat; background-size: cover" class="blockSocialsMain">
+                    <div class="topInfo-blockSocialsMain">
+                        <div class="icon-topInfo-blockSocialsMain">
+                            IG
+                        </div>
+                        <div class="right-topInfo-blockSocialsMain">
+                            <p>
+                                Instagram
+                            </p>
+                            <span>
+                                @okoem.art
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bottom-blockSocialsMain">
+                        <h3>
+                            125K
+                        </h3>
+                        <span>
+                        подписчиков
+                    </span>
+                    </div>
+                </div>
+            </a>
+            <a data-aos="fade-left" data-aos-offset="300" href="#!" class="link-flexSocialsMain">
+                <div style="background: url(/img/blockSocialsMain-2.png) center center no-repeat; background-size: cover" class="blockSocialsMain">
+                    <div class="topInfo-blockSocialsMain">
+                        <div class="icon-topInfo-blockSocialsMain">
+                            P
+                        </div>
+                        <div class="right-topInfo-blockSocialsMain">
+                            <p>
+                                Pinterest
+                            </p>
+                            <span>
+                                okoemart
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bottom-blockSocialsMain">
+                        <h3>
+                            45K
+                        </h3>
+                        <span>
+                        подписчиков
+                    </span>
+                    </div>
+                </div>
+            </a>
+            <a data-aos="fade-left" data-aos-offset="400" href="#!" class="link-flexSocialsMain">
+                <div style="background: url(/img/blockSocialsMain-3.png) center center no-repeat; background-size: cover" class="blockSocialsMain">
+                    <div class="topInfo-blockSocialsMain">
+                        <div class="icon-topInfo-blockSocialsMain">
+                            VK
+                        </div>
+                        <div class="right-topInfo-blockSocialsMain">
+                            <p>
+                                ВКонтакте
+                            </p>
+                            <span>
+                                okoem_art
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bottom-blockSocialsMain">
+                        <h3>
+                            89K
+                        </h3>
+                        <span>
+                        подписчиков
+                    </span>
+                    </div>
+                </div>
+            </a>
+            <a data-aos="fade-left" data-aos-offset="500" href="#!" class="link-flexSocialsMain">
+                <div style="background: url(/img/blockSocialsMain-4.png) center center no-repeat; background-size: cover" class="blockSocialsMain">
+                    <div class="topInfo-blockSocialsMain">
+                        <div class="icon-topInfo-blockSocialsMain">
+                            Я
+                        </div>
+                        <div class="right-topInfo-blockSocialsMain">
+                            <p>
+                                Яндекс Дзен
+                            </p>
+                            <span>
+                                ОКОЁМ
+                            </span>
+                        </div>
+                    </div>
+                    <div class="bottom-blockSocialsMain">
+                        <h3>
+                            32K
+                        </h3>
+                        <span>
+                        подписчиков
+                    </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+<footer class="sectionMain">
+    <div class="container">
+        <div class="flexFooter">
+            <div class="col-1__footer">
+                <a class="logo" href="index.html">
+                    <img src="/img/logoFooter.svg" alt="Окоём" width="122" height="24" loading="lazy" decoding="async">
+                </a>
+                <p>
+                    Студия авторских настенных муралов
+                </p>
+            </div>
+            <div class="col-2__footer">
+                <a href="catalog.html">
+                    Каталог
+                </a>
+                <a href="inspiration.html">
+                    Вдохновение
+                </a>
+                <a href="designers.html">
+                    Дизайнерам
+                </a>
+                <a href="buyers.html">
+                    Покупателям
+                </a>
+                <a href="about.html">
+                    О студии
+                </a>
+                <a href="contact.html">
+                    Контакты
+                </a>
+            </div>
+            <div class="col-3__footer">
+                <a href="tel:+7 (900) 123-45-67">
+                    +7 (900) 123-45-67
+                </a>
+                <a href="mailto:hello@okoyom.studio">
+                    hello@okoyom.studio
+                </a>
+                <form action="" method="post">
+                    <span>
+                        Новые коллекции и вдохновение
+                    </span>
+                    <div class="flex-col-3__footer">
+                        <input type="email" required placeholder="Ваш e-mail">
+                        <button type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                <path d="M3.75 9H14.25" stroke="#63615F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 3.75L14.25 9L9 14.25" stroke="#63615F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-4__footer">
+                <p>
+                    Соцсети
+                </p>
+                <div class="flex-col-4__footer">
+                    <a href="#!">
+                        <img src="/img/flex-col-4__footer-1.svg" alt="Instagram" width="40" height="40" loading="lazy" decoding="async">
+                    </a>
+                    <a href="#!">
+                        <img src="/img/flex-col-4__footer-2.svg" alt="Pinterest" width="40" height="40" loading="lazy" decoding="async">
+                    </a>
+                    <a href="#!">
+                        <img src="/img/flex-col-4__footer-3.svg" alt="ВКонтакте" width="40" height="40" loading="lazy" decoding="async">
+                    </a>
+                    <a href="#!">
+                        <img src="/img/flex-col-4__footer-4.svg" alt="Яндекс Дзен" width="40" height="40" loading="lazy" decoding="async">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="line-footer"></div>
+        <p class="lastTextFooter">
+            © 2026 ОКОЁМ
+        </p>
+    </div>
+</footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script src="app.js" defer></script>
+<script>
+    const heroSection = document.getElementById('muralHero');
+    const sliderEl = heroSection.querySelector('.mural-hero__slider');
+    const parallaxLayers = heroSection.querySelectorAll('.js-hero-parallax');
+
+    const muralHeroSlider = new Swiper('.mural-hero__slider', {
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        loop: true,
+        speed: 1400,
+        allowTouchMove: true,
+        autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
+        pagination: {
+            el: '.mural-hero__pagination',
+            clickable: true
+        }
+    });
+
+    /* Клик по половинам экрана */
+    sliderEl.addEventListener('click', function (event) {
+        const interactive = event.target.closest('a, button, .swiper-pagination-bullet');
+        if (interactive) return;
+
+        const rect = sliderEl.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
+        const isLeftHalf = clickX < rect.width / 2;
+
+        if (isLeftHalf) {
+            muralHeroSlider.slidePrev();
+        } else {
+            muralHeroSlider.slideNext();
+        }
+    });
+
+    /* Убираем intro-класс после первой анимации */
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            heroSection.classList.remove('mural-hero--intro');
+        }, 1700);
+    });
+
+    /* Параллакс фона при скролле */
+    let ticking = false;
+
+    function updateHeroParallax() {
+        const rect = heroSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        if (rect.bottom < 0 || rect.top > viewportHeight) {
+            ticking = false;
+            return;
+        }
+
+        const progress = Math.max(-1, Math.min(1, rect.top / viewportHeight));
+        const translateY = progress * -60;
+
+        parallaxLayers.forEach((layer) => {
+            layer.style.transform = `translate3d(0, ${translateY}px, 0) scale(1.04)`;
+        });
+
+        ticking = false;
+    }
+
+    function requestParallaxUpdate() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeroParallax);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    window.addEventListener('resize', requestParallaxUpdate);
+    window.addEventListener('load', requestParallaxUpdate);
+
+    requestParallaxUpdate();
+</script>
+<div id="modal__project1" class="modal modal-1">
+    <div class="modal-content modal-content-1">
+        <span class="close close1">
+            <img src="img/close.svg" alt="" width="40" height="40" loading="lazy" decoding="async" aria-hidden="true">
+        </span>
+        <div class="modalContent">
+            <p class="titleSectionTitle">
+                Заполните форму
+            </p>
+            <p class="textTitleSection">
+                Оставьте заявку, и мы свяжемся с вами в ближайшее время
+            </p>
+            <form action="mail-2.php" method="post" class="formAllProject">
+                <label>
+                    <input name="name" type="text" placeholder="Имя" required>
+                </label>
+                <label>
+                    <input name="tel" type="text" placeholder="Телефон" required>
+                </label>
+                <label>
+                    <textarea name="text" placeholder="Сообщение"></textarea>
+                </label>
+                <button type="submit" class="btnWhiteTextBtn btnWhiteTextBtnV3" style="width: 100%">
+                    Отправить
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let modal1 = document.getElementById("modal__project1");
+        // Get the button that opens the modal
+        let btn1 = document.getElementsByClassName("openModal");
+        console.log()
+        // Get the <span> element that closes the modal
+        let span1 = document.getElementsByClassName("close1")[0];
+        // When the user clicks the button, open the modal
+        for(let i = 0;i < btn1.length; i++)
+        {
+            let v = btn1[i]
+            v.onclick = function() {
+                modal1.style.display = "block";
+            }
+        }
+        // When the user clicks on <span> (x), close the modal
+        span1.onclick = function() {
+            modal1.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

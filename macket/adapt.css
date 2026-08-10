@@ -1,0 +1,1337 @@
+@media screen and (max-width: 1440px){
+    .left-flex-cardSectionContent{
+        max-width: 610px;
+        max-height: 690px;
+    }
+}
+@media screen and (max-width: 1230px){
+    .listHeader{
+        gap: 30px;
+    }
+    .listHeader a {
+        font-size: 8px;
+    }
+        .flexFiltersCatalog-3{
+        margin-top: 80px;
+    }
+    .title-inspirationTop__title{
+        font-size: 64px;
+        line-height: 100%;
+    }
+    .title-inspirationTop__text{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .flexFooter{
+        flex-wrap: wrap;
+    }
+    .right-flexGreyInfoBlockRow__block{
+        width: 100%;
+        min-width: 400px;
+    }
+    .photoContainer-photoBig-block-flexSectionInfoMain01, .photoBig-block-flexSectionInfoMain01{
+        width: 100%;
+    }
+    .flexGreyInfoBlockRow__big{
+        width: 40%;
+    }
+    .sectionMain{
+        margin-top: 100px;
+    }
+    .sectionMainV2{
+        padding: 80px 0;
+    }
+    .flexSectionInfoMain01{
+        gap: 100px;
+    }
+    .flexGreyInfoBlockRow{
+        gap: 100px;
+    }
+    .container{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .mural-hero__contentPaddingTopLeft{
+        padding-left: 0;
+    }
+    .mural-hero__container{
+        width: auto;
+    }
+    .mural-hero__content .titleAllForSection{
+        font-size: 64px;
+        line-height: 80px;
+    }
+    .flexGreyInfoBlockRow__block-1{
+        padding-right: 0;
+    }
+    .flexGreyInfoBlockRow__block-2{
+        padding-left: 0;
+    }
+}
+@media screen and (max-width: 1080px){
+    .listHeader{
+        display: none;
+    }
+    .flexBagPageContainer{
+        gap: 30px;
+    }
+    .title-right-flexBagPageContainer{
+        font-size: 28px;
+        line-height: 34px;
+    }
+    .card-left-flexBagPageContainer{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .title-titleCardSection {
+        font-size: 32px;
+        line-height: 45px;
+    }
+    .titleCardSectionContent{
+        padding-left: 0;
+    }
+    .titleCardSectionContent-22{
+        padding-left: 50px;
+    }
+    .flexSectionInfoBuyersSection-22{
+        gap: 0px;
+    }
+    .left-flexTopContact{
+        max-width: 400px;
+        min-width: 400px;
+    }
+    .left-flexSectionAboutFreeSections{
+        /*height: 50vh;*/
+        width: 300px;
+    }
+    .flexSectionInfoBuyersSection{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .flexSectionInfoBuyersSection__photo{
+        width: 100%;
+    }
+    .block-flexBuyersFirstSection img{
+        width: 300px;
+    }
+    .block-flexBuyersFirstSection{
+        padding: 50px 0;
+    }
+    .title-blockFlex-flexInfoSectionDesigners h3{
+        font-size: 16px;
+    }
+    .title-blockFlex-flexInfoSectionDesigners p{
+        font-size: 14px;
+    }
+    .title-blockFlex-flexInfoSectionDesigners{
+        max-width: 250px;
+        min-width: 250px;
+    }
+    .title-blockSectionDesignersTopPluses__block h2{
+        font-size: 32px;
+    }
+    .title-blockSectionDesignersTopPluses__block{
+        gap: 10px;
+    }
+    .blockSectionDesignersTopPluses{
+        flex-wrap: wrap;
+    }
+    .blockSectionDesignersTopPluses__block{
+        width: 50%;
+    }
+    .material-preview img{
+        width: 300px;
+    }
+    .flex-cardSectionContent{
+        margin-top: 30px;
+        gap: 30px;
+    }
+    .left-flex-cardSectionContent{
+        max-width: 400px;
+    }
+    .cardSectionContent{
+        margin-top: 70px;
+    }
+    .flexFiltersCatalog-3{
+        margin-top: 50px;
+    }
+    .title-inspirationTop__title{
+        font-size: 42px;
+        line-height: 100%;
+    }
+    .inspirationTop{
+        padding-top: 140px;
+    }
+    .titleCatalog__title{
+        font-size: 60px;
+        line-height: 120%;
+    }
+    .titleCatalog__text{
+        font-size: 16px;
+    }
+    .sectionCatalogMain{
+        padding-top: 150px;
+        padding-bottom: 50px;
+    }
+    .left-flexFiltersCatalog{
+        gap: 15px;
+    }
+    .filterModalOpen{
+        display: flex;
+    }
+    .tab-content .ui-filter-1{
+        display: none;
+    }
+    .left-flexFiltersCatalog .ui-filter-1{
+        display: none;
+    }
+    .left-flexFiltersCatalog .ui-filter-2{
+        display: none;
+    }
+    .left-flexFiltersCatalog .ui-filter-3{
+        display: none;
+    }
+    .tab-content .ui-filter-2{
+        display: none;
+    }
+    .tab-content .ui-filter-3{
+        display: none;
+    }
+    .tab-content .ui-filter-4{
+        display: none;
+    }
+    /*.tab-content .ui-filter-5{*/
+    /*    display: none;*/
+    /*}*/
+    .flexFiltersCatalog{
+        margin-bottom: 30px;
+    }
+    .flexSectionInfoBottomMain__photo{
+        width: 50%;
+    }
+    .block-flexSectionInfoMain01{
+        flex-direction: column;
+    }
+    .photoBig-block-flexSectionInfoMain01{
+        width: 100%;
+    }
+    .flexRow-block-flexSectionInfoMain01{
+        width: 100%;
+    }
+    .photoContainer-photoBig-block-flexSectionInfoMain01-2{
+        width: 100%;
+    }
+    .text-flexRow-block-flexSectionInfoMain01{
+        max-width: none;
+    }
+    .photoContainer-photoBig-block-flexSectionInfoMain01{
+        margin-top: 0;
+    }
+    .block-flexSectionInfoMain01{
+        gap: 40px;
+    }
+    .titleSectionTitle{
+        font-size: 32px;
+        line-height: 100%;
+    }
+    .titleSectionSpan{
+        font-size: 10px;
+    }
+    .titleSection{
+        margin-bottom: 40px;
+    }
+    body{
+        padding-top: 0px;
+    }
+    .mural-hero {
+        height: calc(100vh - 0px);
+    }
+    .mural-hero__slider,
+    .mural-hero .swiper-wrapper,
+    .mural-hero .swiper-slide {
+        height: calc(100vh - 0px);
+    }
+    header{
+        padding: 20px 0;
+    }
+    .closeBurger{
+        display: none;
+    }
+    #menu__toggle:checked ~ .menu__btn {
+        .closeBurger{
+            display: flex;
+        }
+    }
+    #menu__toggle:checked ~ .menu__btn {
+        .burgerSvg{
+            display: none;
+        }
+    }
+    #menu__toggle:checked ~ .menu__box {
+        visibility: visible;
+        overflow-y: scroll;
+        right: 0;
+    }
+    .menu__btn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        z-index: 1000;
+        width: 32px;
+        height: 32px;
+        position: relative;
+    }
+    .menu__box {
+        position: fixed;
+        visibility: hidden;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        list-style: none;
+        background: #F2F0ED;
+        transition-duration: .25s;
+        z-index: 999;
+        padding: 25px 30px;
+    }
+    .hamburger-menu{
+        display: block;
+    }
+    #menu__toggle {
+        opacity: 0;
+        display: none;
+    }
+    .burgerTitle{
+        color: #161412;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 133.333% */
+        letter-spacing: 4.2px;
+        text-transform: uppercase;
+    }
+    .linksBurger{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .linksBurger a{
+        color: rgba(22, 20, 18, 0.50);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 166.667% */
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .lineBurger{
+        width: 100%;
+        height: 1px;
+        background: rgba(22, 20, 18, 0.1);
+    }
+    .flexContactBurger__a{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #514C48;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 200;
+        line-height: 18.7px; /* 170% */
+        letter-spacing: 1.1px;
+    }
+    .flexBtnBurger a{
+        width: 100%;
+        height: 40px;
+    }
+    .listBurgerUlContentLi{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        height: 100%;
+        justify-content: space-between;
+    }
+    .listBurgerUl{
+        height: 100%;
+    }
+    .content-burger{
+        height: 100%;
+    }
+    .flexContactBurger{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .flexBtnBurger{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .line-flexCardLastInfoBlock{
+        display: none;
+    }
+    .flexCardLastInfoBlock{
+        flex-direction: column;
+    }
+    .photo-left-flexCardLastInfoBlock{
+        gap: 30px;
+    }
+    .contentText-photo-left-flexCardLastInfoBlock{
+        width: 100%;
+        max-width: none;
+    }
+    .right-flexCardLastInfoBlock{
+        width: 100%;
+        max-width: none;
+    }
+    .flexAlignV2Address{
+        flex-direction: column;
+    }
+    .left-flexAlignV2Address{
+        max-width: none;
+        width: 100%;
+    }
+    .right-flexAlignV2Address{
+        max-width: none;
+        width: 100%;
+    }
+    .flexAlignV2Address{
+        gap: 30px;
+    }
+    .left-flexFiltersCatalog-1234{
+        flex-direction: row-reverse;
+    }
+    .left-flexFiltersCatalog-1234 .flex-col-3__footer button{
+        padding-right: 0;
+    }
+    .left-flexFiltersCatalog-1234 .ui-filter-5{
+        display: none;
+    }
+    .left-flexFiltersCatalog-1234234{
+        gap: 25px !important;;
+    }
+    .left-flexFiltersCatalog-1234 form{
+        display: none;
+    }
+    .left-flexFiltersCatalog-1234 .textSpanQuantityCatalog{
+        display: block;
+    }
+    .flexAlignV2Address__23 .left-flexAlignV2Address__btn{
+        margin-top: 0;
+    }
+    .flexAlignV2Address__23 .titleSection{
+        margin-bottom: 0;
+    }
+}
+@media screen and (max-width: 768px){
+    .container{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .flexBagPageContainer{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .left-flexBagPageContainer{
+        gap: 20px;
+    }
+    .right-flexBagPageContainer{
+        width: 100%;
+        max-width: none;
+    }
+    .left-flex-cardSectionContent{
+        max-height: none;
+    }
+    .photo-left-flexCardLastInfoBlock{
+        flex-direction: column;
+    }
+    .contentText-photo-left-flexCardLastInfoBlock{
+        gap: 25px;
+    }
+    .flexCardLastInfoBlock{
+        gap: 40px;
+    }
+    .flexTop-right-flexCardLastInfoBlock{
+        gap: 15px;
+    }
+    .photo-left-flexCardLastInfoBlock__photoBlock{
+        width: 100%;
+        max-width: none;
+        min-width: auto;
+    }
+    .left-flex-cardSectionContent{
+        position: relative;
+        top: 0;
+    }
+    .flexTopContact{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+    .left-flexTopContact{
+        max-width: none;
+        min-width: auto;
+    }
+    .flexSectionAboutFreeSections{
+        flex-direction: column;
+        gap: 0;
+    }
+    .left-flexSectionAboutFreeSections{
+        height: 350px;
+        width: 100%;
+        position: relative;
+        top: 0;
+    }
+    .block-flexBuyersFirstSection{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 0;
+        gap: 20px;
+    }
+    .block-flexBuyersFirstSection-2{
+        flex-direction: column-reverse;
+    }
+    .right-block-flexBuyersFirstSection{
+        max-width: none;
+    }
+    .block-flexBuyersFirstSection h2{
+        font-size: 64px;
+        line-height: 64px;
+    }
+    .block-flexBuyersFirstSection img{
+        width: 100%;
+    }
+    .blockFlex-flexInfoSectionDesigners{
+        padding: 25px 0;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .title-blockFlex-flexInfoSectionDesigners{
+        max-width: none;
+        min-width: auto;
+    }
+    .favWorks__top{
+        flex-direction: column;
+        gap: 30px;
+        align-items: flex-start;
+    }
+    .flexSectionCardFreeSections{
+        flex-direction: column;
+        gap: 30px;
+    }
+    .left-flexSectionCardFreeSections .title-right-flexGreyInfoBlockRow__block{
+        max-width: none;
+        min-width: auto;
+    }
+    .left-flexSectionCardFreeSections .titleSectionTitle br{
+        display: none;
+    }
+    .block-right-flexSectionCardFreeSections h3{
+        font-size: 14px;
+    }
+    .dtabs__nav{
+        margin-bottom: 25px;
+    }
+    .dtabs__btn{
+        padding-bottom: 10px;
+    }
+    .material-tabs{
+        margin-bottom: 20px;
+    }
+    .material-layout{
+        gap: 30px;
+    }
+    .material-desc{
+        font-size: 12px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+    .print-text{
+        font-size: 12px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+    .print-stat-number{
+        font-size: 32px;
+        line-height: 32px;
+    }
+    .print-right-title{
+        font-size: 13px;
+    }
+    .print-layout{
+        gap: 0px;
+        flex-direction: column;
+    }
+    .material-tags{
+        gap: 10px;
+        margin-bottom: 0px;
+    }
+    .material-desc{
+        /*display: none;*/
+    }
+    .material-layout{
+        flex-direction: column-reverse;
+    }
+    .material-preview{
+        display: flex;
+        gap: 20px;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .material-preview img{
+        width: 100%;
+    }
+    .flex-cardSectionContent{
+        flex-direction: column;
+    }
+    .left-flex-cardSectionContent{
+        max-width: none;
+        width: 100%;
+    }
+    .title-right-flex-cardSectionContent h1{
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .title-right-flex-cardSectionContent{
+        gap: 10px;
+    }
+    .right-flex-cardSectionContent{
+        position: relative;
+        top: 0;
+        gap: 15px;
+    }
+    .cardSection{
+        padding-bottom: 100px;
+    }
+    .cardSectionContent{
+        margin-top: 50px;
+    }
+    .downArrowCard{
+        bottom: -70px;
+    }
+    .title-titleCardSection{
+        font-size: 32px;
+        line-height: 45px;
+    }
+    .downArrowCard{
+        left: 43%;
+    }
+    .title-inspirationTop__title{
+        font-size: 32px;
+        line-height: 100%;
+    }
+    .btnsFlexCenter-22{
+        margin-top: 50px;
+    }
+    .link-flexSocialsMain{
+        width: calc(50% - 10px);
+    }
+    .flexSocialsMain{
+        flex-wrap: wrap;
+    }
+    .btnWhiteTextBtn{
+        padding: 15px 25px;
+    }
+    .flex-left-flexSectionInfoBottomMain{
+        gap: 15px;
+    }
+    .left-flexSectionInfoBottomMain{
+        gap: 25px;
+    }
+    .blockCardCatalog__card{
+        width: calc(50% - 10px);
+    }
+    .title-right-flexGreyInfoBlockRow__block h3{
+        font-size: 28px;
+    }
+    .right-flexGreyInfoBlockRow__block{
+        gap: 20px;
+    }
+    .flexGreyInfoBlockRow__block-2{
+        flex-direction: column-reverse!important;
+    }
+    .flexPlusesMainCards{
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .block-flexPlusesMainCards{
+        width: calc(50% - 10px);
+    }
+    .flexGreyInfoBlockRow__block{
+        flex-direction: column;
+    }
+    .flexGreyInfoBlockRow__big{
+        width: 100%;
+        gap: 20px;
+    }
+    .mural-hero__content .titleAllForSection{
+        font-size: 44px;
+        line-height: 60px;
+    }
+    .sectionMain{
+        margin-top: 70px;
+    }
+    .flexSectionInfoMain01{
+        gap: 70px;
+    }
+    .flexGreyInfoBlockRow{
+        gap: 70px;
+    }
+    .sectionMainV2{
+        padding: 50px 0;
+    }
+    .material-tabs{
+        display:none;
+    }
+    .material-mobile-select{
+        display:block;
+    }
+}
+@media screen and (max-width: 600px){
+    .telHeaderFlex{
+        display: none;
+    }
+    .block-flexTwoTypeInfoMain .text-block-flexTwoTypeInfoMain p{
+        font-size: 20px!important;
+        line-height: 20px!important;
+    }
+    .flexPlusesMainCards .block-flexPlusesMainCards h4{
+        font-size: 20px!important;
+        line-height: 20px!important;
+    }
+    .right-flexV2IndexDesignersAndArchitects h3{
+        font-size: 20px;
+    }
+    .right-flexV2IndexDesignersAndArchitects p{
+        font-size: 14px;
+    }
+    .flex-left-flexSectionInfoBottomMain__243{
+        gap: 15px !important;
+    }
+    .ui-filter__arrow{
+        width: 10px;
+        height: 10px;
+        margin-top: -3px;
+        margin-left: -5px;
+    }
+    .flexFiltersCatalog{
+        margin-bottom: 40px;
+    }
+    .containerPoliteText h3{
+        line-height: 130%;
+    }
+    .page404Content h2{
+        font-size: 128px;
+    }
+    .containerPoliteText{
+        padding-top: 20px;
+        gap: 15px;
+    }
+    .card-left-flexBagPageContainer{
+        padding: 15px;
+    }
+    .left-card-left-flexBagPageContainer{
+        gap: 15px;
+    }
+    .right-flexBagPageContainer{
+        padding: 15px;
+        gap: 20px;
+    }
+    .pinterest-gallery{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .photo-left-flexCardLastInfoBlock{
+        gap: 20px;
+    }
+    .text-contentText-photo-left-flexCardLastInfoBlock{
+        font-size: 12px;
+        line-height: 24px;
+    }
+    .contentText-photo-left-flexCardLastInfoBlock{
+        gap: 35px;
+    }
+    .flex-contentText-photo-left-flexCardLastInfoBlock{
+        padding-top: 20px;
+        gap: 40px;
+    }
+    .flex-textContactCard{
+        gap: 15px;
+    }
+    .textContactCard{
+        gap: 25px;
+    }
+    .left-flexFiltersCatalog .flex-col-3__footer{
+        width: 150px;
+    }
+    /*.left-flexFiltersCatalog form{*/
+    /*    width: 100%;*/
+    /*}*/
+    .left-flexFiltersCatalog .flex-col-3__footer input{
+        color: rgba(22, 20, 18, 0.4);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+    .left-flexFiltersCatalog .flex-col-3__footer input::placeholder{
+        color: rgba(22, 20, 18, 0.40);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+    .titleSection-123124{
+        display: flex!important;
+    }
+    .sectionMainV2 .btnsFlexCenter{
+        margin-bottom: 40px;
+    }
+    .ui-filter-5{
+        width: 85px;
+        margin-right: 10px;
+    }
+    .tab-content .flex-col-3__footer svg{
+        height: 15px;
+    }
+    .left-flexFiltersCatalog .flex-col-3__footer{
+        gap: 0px;
+    }
+    .left-flexFiltersCatalog{
+        gap: 10px;
+    }
+    .left-flexFiltersCatalog{
+        flex-wrap: wrap;
+        width: fit-content;
+    }
+    .downArrowCard{
+        left: 35.35%;
+    }
+    .material-row span:last-child{
+        font-size: 15px;
+    }
+    .titleSection__mobCard{
+        display: flex;
+        margin-bottom: 25px!important;
+    }
+    .titleSectionMaxWidth__buersMob{
+        display: none;
+    }
+    .flexTwoTypeInfoMain .photoContainer-photoBig-block-flexSectionInfoMain01 img{
+        max-height: none;
+    }
+    .photoContainer-photoBig-block-flexSectionInfoMain01 .btn-photoContainer-photoBig-block-flexSectionInfoMain01{
+        opacity: 1;
+    }
+    .photoContainer-photoBig-block-flexSectionInfoMain01::after{
+        opacity: 1;
+    }
+    .map{
+        height: 350px;
+    }
+    .block-right-flexSectionAboutFreeSections{
+        padding: 40px 20px;
+    }
+    .aboutTextTop{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        margin-bottom: 40px;
+    }
+    .aboutTextTop h3{
+        font-size: 18px;
+        line-height: 30px;
+    }
+    .aboutTextBottom{
+        font-size: 14px;
+        line-height: 26px;
+    }
+    .right-block-flexBuyersFirstSection p{
+        font-size: 14px;
+        line-height: 26px;
+    }
+    .right-block-flexBuyersFirstSection{
+        gap: 20px;
+    }
+    .right-block-flexBuyersFirstSection h3{
+        font-size: 18px;
+    }
+    .block-flexBuyersFirstSection h2{
+        font-size: 48px;
+    }
+    .flex-textWorkSlider{
+        flex-direction: column-reverse;
+        gap: 35px;
+    }
+    .block-flex-textWorkSlider{
+        width: 100%;
+        gap: 20px;
+    }
+    .block-flex-textWorkSlider span{
+        line-height: 26px;
+    }
+    .material-preview-text{
+        margin-top: 8px;
+        line-height: 25px;
+    }
+    .material-specs{
+        gap: 20px;
+    }
+    .material-tags{
+        gap: 20px;
+    }
+    .flexBuyersSectionNumbers-22{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .block-left-flexSectionInfoBuyersSection{
+        gap: 25px;
+    }
+    .left-flexSectionInfoBuyersSection{
+        gap: 40px;
+    }
+    .flexBuyersSectionNumbers-22 .block-flexBuyersSectionNumbers{
+        width: calc(50% - 10px);
+    }
+    .flexBuyersSectionNumbers{
+        gap: 15px;
+    }
+    .block-flexBuyersSectionNumbers h2{
+        font-size: 20px;
+    }
+    .block-flexBuyersSectionNumbers p{
+        font-size: 10px;
+    }
+    .textTitleSection{
+        margin-top: 15px;
+        font-size: 14px;
+        line-height: 26px;
+    }
+    .favWorks__top{
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    .blockSectionDesignersTopPluses__block{
+        width: 100%;
+        padding: 40px 20px;
+    }
+    .title-blockSectionDesignersTopPluses__block h2{
+        font-size: 28px;
+        line-height: 32px;
+    }
+    .flex-blockSectionDesignersTopPluses__block{
+        padding-top: 10px;
+        gap: 20px;
+    }
+    .textSpan-inspirationTop{
+        margin-top: 25px;
+        line-height: 24px;
+    }
+    .title-blockSectionDesignersTopPluses__block{
+        padding-top: 0;
+    }
+    .sectionMainPaddingMobile{
+        padding-top: 70px;
+    }
+    .titleCardSectionContent{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .titleCardSectionContent-22{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .right-flexSectionCardFreeSections{
+        flex-direction: column;
+        gap: 15px;
+    }
+    .title-right-flex-cardSectionContent p{
+        font-size: 12px;
+    }
+    .right-flexGreyInfoBlockRow__block{
+        min-width: auto;
+    }
+    .titleCardInspiration{
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .textCardInspiration{
+        font-size: 8px;
+        line-height: 14px;
+    }
+    .flex-textCardInspiration{
+        bottom: 10px;
+    }
+    .flexBtnsCards__links{
+        padding: 8px 12px;
+    }
+    .flexColorsCards{
+        gap: 10px;
+    }
+    .text-title3-right-flex-cardSectionContent{
+        line-height: 18px;
+    }
+    .column-flexContentInspiration{
+        gap: 5px;
+    }
+    .cardSectionContent{
+        margin-top: 40px;
+    }
+    .flex-cardSectionContent{
+        margin-top: 25px;
+    }
+    .flexContentInspiration{
+        gap: 5px;
+    }
+    .flexFiltersCatalog-3{
+        margin-top: 30px;
+    }
+    .title-inspirationTop__title{
+        font-size: 28px;
+        line-height: 120%;
+        margin-bottom: 25px;
+    }
+    .title-inspirationTop__text{
+        line-height: 26px;
+    }
+    .title-blockSectionDesignersTopPluses__block{
+        gap: 15px;
+    }
+    .blockSectionDesignersTopPluses__block{
+        gap: 15px;
+    }
+    .inspirationTop{
+        padding-top: 100px;
+    }
+    .textSecond-titleCardSection{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .tab-header .flex-col-3__footer{
+        width: 100%;
+    }
+    .tab-header form{
+        width: 100%;
+    }
+    .btnsFlexCenter-22{
+        margin-top: 30px;
+    }
+    .sectionCatalogMain{
+        display: none;
+    }
+    footer{
+        padding: 30px 0;
+    }
+    .line-footer{
+        margin: 20px 0;
+    }
+    .col-1__footer, .col-2__footer, .col-3__footer, .col-4__footer{
+        max-width: none;
+        width: 100%;
+    }
+    .logo img{
+        height: 20px;
+    }
+    .modal-content{
+        width: 80%;
+        min-width: auto;
+        padding: 25px;
+    }
+    header .logo{
+        margin-top: 0px;
+    }
+    .bottom-blockSocialsMain h3{
+        font-size: 24px;
+    }
+    .bottom-blockSocialsMain span{
+        font-size: 8px;
+    }
+    .blockSocialsMain{
+        padding: 15px;
+        gap: 100px;
+    }
+    .flexSectionInfoBottomMain{
+        flex-direction: column;
+    }
+    .left-flexSectionInfoBottomMain{
+        width: 100%;
+    }
+    .left-flexSectionInfoBottomMain .titleSection{
+        max-width: none;
+    }
+    .btnWhiteTextBtn{
+        font-size: 8px;
+        line-height: 10px;
+        padding: 10px 15px;
+    }
+    .flexSectionInfoBottomMain__photo{
+        width: 100%;
+    }
+    .block-flexPlusesMainCards p{
+        font-size: 12px;
+        line-height: 24px;
+    }
+    .block-flexPlusesMainCards h4{
+        font-size: 14px;
+    }
+    .block-flexPlusesMainCards span{
+        font-size: 10px;
+    }
+    .block-flexPlusesMainCards{
+        gap: 10px;
+    }
+    .flexPlusesMainCards{
+        gap: 20px;
+    }
+    .block-flexPlusesMainCards{
+        width: 100%;
+    }
+    .block-flexBorderTextInfoSection{
+        padding: 10px 12px;
+    }
+    .flexGreyInfoBlockRow__block{
+        gap: 20px;
+    }
+    .flexGreyInfoBlockRow__block-2{
+        flex-direction: column-reverse;
+    }
+    .flexTwoTypeInfoMain{
+        gap: 20px;
+    }
+    .text-block-flexTwoTypeInfoMain span{
+        font-size: 12px;
+        line-height: 24px;
+    }
+    .text-block-flexTwoTypeInfoMain p{
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .text-block-flexTwoTypeInfoMain{
+        gap: 15px;
+    }
+    .flex-left-flexSectionInfoBottomMain{
+        gap: 30px;
+    }
+    .left-flexSectionInfoBottomMain{
+        gap: 35px;
+    }
+    .left-flexSectionInfoBottomMain .text-block-flexTwoTypeInfoMain p{
+        font-weight: 400;
+    }
+    .titleSection-2 .titleSectionSpan{
+        margin-bottom: 0;
+    }
+    .flex-titleSection{
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
+    .title-right-flexGreyInfoBlockRow__block h3{
+        font-size: 24px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        line-height: 120%;
+    }
+    .text-right-flexGreyInfoBlockRow__block{
+        font-size: 14px;
+        line-height: 26px;
+    }
+    .line-flexDotes-right-flexGreyInfoBlockRow__block{
+        font-size: 12px;
+        gap: 10px;
+    }
+    .right-flexGreyInfoBlockRow__block{
+        gap: 25px;
+    }
+    .title-right-flexGreyInfoBlockRow__block p{
+        font-size: 14px;
+        line-height: 120%;
+    }
+    .title-right-flexGreyInfoBlockRow__block span{
+        font-size: 10px;
+        color: rgba(22, 20, 18, 0.5);
+    }
+    .sectionMainV2{
+        padding: 30px 0;
+    }
+    .text-flexRow-block-flexSectionInfoMain01 span{
+        font-size: 10px;
+    }
+    .text-flexRow-block-flexSectionInfoMain01 h3{
+        font-size: 24px;
+        line-height: 100%;
+    }
+    .text-flexRow-block-flexSectionInfoMain01 p{
+        font-size: 14px;
+    }
+    .text-flexRow-block-flexSectionInfoMain01{
+        gap: 10px;
+    }
+    .flexRow-block-flexSectionInfoMain01{
+        gap: 25px;
+    }
+    .titleSectionTitle{
+        font-size: 26px;
+        line-height: 120%;
+    }
+    .titleSectionSpan{
+        font-size: 11px;
+    }
+    .titleSection{
+        margin-bottom: 40px;
+        gap: 15px;
+    }
+    .sectionMain{
+        margin-top: 60px;
+    }
+    .flexSectionInfoMain01{
+        gap: 40px;
+    }
+    .flexGreyInfoBlockRow{
+        gap: 40px;
+    }
+    .container{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    header{
+        padding: 15px 0;
+    }
+    .mural-hero__content .textTitleBelow{
+        font-size: 16px;
+    }
+    .mural-hero__container .btnContentBottom{
+        flex-direction: column;
+    }
+    .mural-hero__container .btnContentBottom a{
+        width: 100%;
+    }
+    body{
+        padding-top: 0px;
+    }
+    .mural-hero {
+        height: calc(100vh - 40px);
+    }
+    .telIconHeader{
+        display: flex !important;
+    }
+    .mural-hero__slider,
+    .mural-hero .swiper-wrapper,
+    .mural-hero .swiper-slide {
+        height: calc(100vh - 40px);
+    }
+    footer{
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+    .cardSection{
+        height: 95vh;
+    }
+    .mural-hero__contentPaddingTopLeft{
+        padding-bottom: 40px;
+        padding-top: 0;
+    }
+    .mural-hero__pagination{
+        bottom: 10px!important;
+        right: 10px!important;
+    }
+    .mural-hero__content .titleAllForSection{
+        font-size: 36px;
+        line-height: 50px;
+        text-shadow: rgba(0, 0, 0, 0.4) 0px 4px 60px;
+        letter-spacing: -.03em;
+        font-weight: 300;
+    }
+    .blockFlex-flexInfoSectionDesigners{
+        gap: 30px;
+        padding: 40px 0;
+    }
+    .title-right-flexGreyInfoBlockRow__block h4{
+        line-height: 120%;
+        margin-bottom: 15px;
+        padding-top: 10px;
+    }
+    .flexDotes-right-flexGreyInfoBlockRow__block{
+        gap: 25px;
+    }
+    .flex-block-blockFlex-flexInfoSectionDesigners{
+        gap: 30px;
+    }
+    .title-blockFlex-flexInfoSectionDesigners{
+        gap: 20px;
+    }
+    .mural-hero__container .btnContentBottom{
+        margin-top: 50px;
+    }
+    .mural-hero__content .textTitleBelow{
+        font-size: 14px;
+    }
+    .mural-hero__container .btnContentBottom a{
+        height: 40px;
+    }
+    .flexBuyersSectionNumbers-2{
+        grid-gap: 15px 0px;
+    }
+    .flexTwoTypeInfoMain__about2{
+        flex-direction: column;
+    }
+    .flexAlignV2Address .flex-contentText-photo-left-flexCardLastInfoBlock{
+        gap: 25px;
+    }
+    .left-flexAlignV2Address{
+        gap: 50px;
+    }
+    .likeContentWrapperFlex-1 h3{
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .likeContentWrapperFlex-1 p{
+        font-size: 14px;
+        line-height: 25px;
+    }
+    .likeContentWrapperFlex-1{
+        gap: 25px;
+    }
+    .likeContentWrapperFlex{
+        padding: 30px 0;
+    }
+    header{
+        padding-left: 9px;
+    }
+    .likeContentWrapperFlex-3{
+        padding-bottom: 0;
+    }
+    .block-flexBuyersFirstSection{
+        gap: 30px;
+        padding: 30px 0;
+    }
+    .muralFaqContent{
+        line-height: 26px;
+    }
+    .muralFaq{
+        gap: 20px;
+    }
+    .containerPoliteText p{
+        font-size: 14px;
+        line-height: 25px;
+    }
+}
+@media screen and (max-width: 410px){
+    .link-flexSocialsMain{
+        width: 100%;
+    }
+    .mfilter__panel{
+        width: 370px;
+    }
+}
+@media screen and (max-width: 370px){
+    .mfilter__panel{
+        width: 310px;
+    }
+}

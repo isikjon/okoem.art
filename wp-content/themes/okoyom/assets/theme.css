@@ -1,0 +1,34 @@
+.has-flush-footer footer.sectionMain {
+    margin-top: 0;
+}
+
+[data-favorite].is-favorite svg path {
+    fill: #161412;
+    stroke: #161412;
+}
+
+.likeCardCatalog.is-favorite {
+    opacity: 1;
+}
+
+.likeCardCatalog.is-favorite img {
+    filter: invert(1) brightness(0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-aos],
+    [data-aos].aos-animate {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .swiper-wrapper {
+        transition-duration: 1ms !important;
+    }
+
+    html {
+        scroll-behavior: auto !important;
+    }
+}
