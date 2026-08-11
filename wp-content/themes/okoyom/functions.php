@@ -11,6 +11,7 @@ require_once OKOYOM_DIR . '/inc/setup.php';
 require_once OKOYOM_DIR . '/inc/assets.php';
 require_once OKOYOM_DIR . '/inc/nav.php';
 require_once OKOYOM_DIR . '/inc/templating.php';
+require_once OKOYOM_DIR . '/inc/filters.php';
 require_once OKOYOM_DIR . '/inc/catalog.php';
 require_once OKOYOM_DIR . '/inc/product-page.php';
 require_once OKOYOM_DIR . '/inc/cart-page.php';

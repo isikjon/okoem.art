@@ -71,115 +71,13 @@ defined( 'ABSPATH' ) || exit;
                                             </div>
                                         </div>
                                         <!-- коллекция -->
-                                        <div class="mfilter-group">
-                                            <div class="mfilter-label">
-                                                КОЛЛЕКЦИЯ
-                                            </div>
-                                            <div class="mfilter-scroll-1">
-                                                <div class="mfilter-scroll">
-                                                    <button class="active">
-                                                        Все коллекции
-                                                    </button>
-                                                    <button>Silentia</button>
-                                                    <button>Botanica</button>
-                                                    <button>Forma</button>
-                                                    <button>Materia</button>
-                                                    <button>Linea</button>
-                                                    <button>Classic</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php okoyom_render_filter_group( 'collection' ); ?>
                                         <!-- серия -->
-                                        <div class="mfilter-group">
-                                            <div class="mfilter-label">
-                                                СЕРИЯ
-                                            </div>
-                                            <div class="mfilter-scroll-1">
-                                                <div class="mfilter-scroll">
-                                                    <button class="active">
-                                                        Все коллекции
-                                                    </button>
-                                                    <button>Silentia</button>
-                                                    <button>Botanica</button>
-                                                    <button>Forma</button>
-                                                    <button>Materia</button>
-                                                    <button>Linea</button>
-                                                    <button>Classic</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php okoyom_render_filter_group( 'series' ); ?>
                                         <!-- сюжет -->
-                                        <div class="mfilter-group">
-                                            <div class="mfilter-label">
-                                                СЮЖЕТ
-                                            </div>
-                                            <div class="mfilter-scroll-1">
-                                                <div class="mfilter-scroll">
-                                                    <button class="active">
-                                                        Все коллекции
-                                                    </button>
-                                                    <button>Silentia</button>
-                                                    <button>Botanica</button>
-                                                    <button>Forma</button>
-                                                    <button>Materia</button>
-                                                    <button>Linea</button>
-                                                    <button>Classic</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php okoyom_render_filter_group( 'subject' ); ?>
                                         <!-- цвета -->
-                                        <div class="mfilter-group">
-                                            <div class="mfilter-label">
-                                                ЦВЕТ
-                                            </div>
-                                            <div class="mfilter-colors">
-                                                <button class="ui-filter__item" data-value="Зелёный">
-                                                    <span class="circleFilter circleFilter-1"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-2"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-3"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-4"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-5"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Зелёный">
-                                                    <span class="circleFilter circleFilter-6"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Зелёный">
-                                                    <span class="circleFilter circleFilter-7"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-8"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-9"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-10"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-11"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-12"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-13"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-14"></span>
-                                                </button>
-                                                <button class="ui-filter__item" data-value="Silentia">
-                                                    <span class="circleFilter circleFilter-15"></span>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <?php okoyom_render_filter_group( 'color' ); ?>
                                     </div>
                                     <div class="mfilter-bottom">
                                         <button class="mfilter-reset">

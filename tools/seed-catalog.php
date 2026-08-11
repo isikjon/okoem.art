@@ -45,6 +45,11 @@ function okoyom_term( string $taxonomy, string $name, string $slug ): int {
 $cat_murals    = okoyom_term( 'product_cat', 'Муралы', 'murals' );
 $cat_companion = okoyom_term( 'product_cat', 'Фоновые обои', 'companion' );
 $subj_landsc   = okoyom_term( 'oko_subject', 'Пейзажи', 'landscapes' );
+$subj_abstract2 = okoyom_term( 'oko_subject', 'Абстракция', 'abstract' );
+$ser_mount    = okoyom_term( 'oko_series', 'Горная', 'gornaya' );
+$ser_abstr    = okoyom_term( 'oko_series', 'Абстрактная', 'abstraktnaya' );
+$col_grey     = okoyom_term( 'oko_color', 'Серый', 'seryy' );
+$col_terra    = okoyom_term( 'oko_color', 'Терракота', 'terrakota' );
 $subj_abstract = okoyom_term( 'oko_subject', 'Абстракция', 'abstract' );
 $coll_silentia = okoyom_term( 'oko_collection', 'Silentia', 'silentia' );
 okoyom_say( 'Термины готовы.' );
@@ -121,6 +126,8 @@ function okoyom_media( string $path, string $title ): int {
 $products = array(
 	array(
 		'slug'       => 'dalnie-hrebty',
+		'series'     => 'gornaya',
+		'color'      => 'seryy',
 		'title'      => 'Дальние хребты',
 		'sku'        => 'OKM-001',
 		'excerpt'    => 'Туманные горы на рассвете. Многослойная композиция с плавными переходами тонов создаёт ощущение бесконечной глубины.',
@@ -137,6 +144,8 @@ $products = array(
 	),
 	array(
 		'slug'       => 'terrakotovye-volny',
+		'series'     => 'abstraktnaya',
+		'color'      => 'terrakota',
 		'title'      => 'Терракотовые волны',
 		'sku'        => 'OKM-002',
 		'excerpt'    => 'Тёплая абстракция в терракотовой гамме. Мягкие волны и песочные формы для спокойных интерьеров.',
@@ -152,6 +161,8 @@ $products = array(
 	),
 	array(
 		'slug'       => 'tihie-vershiny',
+		'series'     => 'gornaya',
+		'color'      => 'seryy',
 		'title'      => 'Тихие вершины',
 		'sku'        => 'OKM-003',
 		'excerpt'    => 'Серый мрамор с глубокими прожилками. Строгая текстура для выразительных стен.',
@@ -187,6 +198,13 @@ foreach ( $products as $data ) {
 	wp_set_object_terms( $id, array( $data['category'] ), 'product_cat' );
 	wp_set_object_terms( $id, array( $data['subject'] ), 'oko_subject' );
 	wp_set_object_terms( $id, array( $data['collection'] ), 'oko_collection' );
+	if ( ! empty( $data['series'] ) ) {
+		wp_set_object_terms( $id, array( okoyom_term( 'oko_series', ucfirst( $data['series'] ), $data['series'] ) ), 'oko_series' );
+	}
+	if ( ! empty( $data['color'] ) ) {
+		$cmap = array( 'seryy' => 'Серый', 'terrakota' => 'Терракота' );
+		wp_set_object_terms( $id, array( okoyom_term( 'oko_color', $cmap[ $data['color'] ] ?? $data['color'], $data['color'] ) ), 'oko_color' );
+	}
 
 	// ТЗ п. 5.4: один основной материал обязателен, дополнительные — список.
 	update_post_meta( $id, '_okoyom_main_material', $data['main'] );

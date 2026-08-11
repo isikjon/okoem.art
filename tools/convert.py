@@ -232,6 +232,37 @@ def extract_gallery(html: str) -> tuple[str, str | None]:
 
     return RE_COUNTER.sub(COUNTER_CALL, without), html[inner_start:inner_end]
 
+FILTER_GROUPS = (
+    ("КОЛЛЕКЦИЯ", "collection"),
+    ("СЕРИЯ", "series"),
+    ("СЮЖЕТ", "subject"),
+    ("ЦВЕТ", "color"),
+)
+
+def replace_filter_groups(html: str) -> str:
+    for label, param in FILTER_GROUPS:
+        pattern = re.compile(
+            r'<div class="mfilter-group">\s*<div class="mfilter-label">\s*'
+            + label + r'\b'
+        )
+        m = pattern.search(html)
+        if not m:
+            continue
+        start = m.start()
+        depth = 0
+        i = start
+        end = None
+        for tok in re.finditer(r"<div\b|</div>", html[start:]):
+            depth += 1 if tok.group(0) == "<div" else -1
+            if depth == 0:
+                end = start + tok.end()
+                break
+        if end is None:
+            continue
+        call = "<?php okoyom_render_filter_group( '%s' ); ?>" % param
+        html = html[:start] + call + html[end:]
+    return html
+
 CATALOG_GRID_OPENING = '<div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">'
 CATALOG_TABS = ("all", "murals", "companion")
 RE_CATALOG_COUNTER = re.compile(
@@ -379,6 +410,7 @@ def main() -> int:
         catalog_cards = None
         if page.stem in ("catalog", "search"):
             content, catalog_cards = extract_catalog(content)
+            content = replace_filter_groups(content)
 
         if not args.dry_run:
             out.write_text(

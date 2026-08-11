@@ -145,19 +145,26 @@ function okoyom_catalog_card( WP_Post $product ): void {
 
 function okoyom_catalog_grid( string $scope = 'all' ): void {
 
-	$search   = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
-	$products = okoyom_catalog_products( $scope, $search );
+	$search  = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
+	$filters = function_exists( 'okoyom_active_filters' ) ? okoyom_active_filters() : array();
+
+	if ( $filters && 'all' !== okoyom_current_scope() && okoyom_current_scope() !== $scope ) {
+		$filters = array();
+	}
+
+	$products = $filters
+		? okoyom_filtered_products( $scope, $filters, $search )
+		: okoyom_catalog_products( $scope, $search );
 
 	if ( ! $products ) {
-
 		echo '<p class="textTitleSection">' . ( $search
 			? 'По запросу «' . esc_html( $search ) . '» ничего не найдено.'
-			: 'Товары не найдены. Попробуйте сбросить фильтры.' ) . '</p>';
+			: 'Ничего не найдено. Попробуйте сбросить фильтры.' ) . '</p>';
 
 		return;
 	}
 
 	foreach ( $products as $product ) {
-		okoyom_catalog_card( $product );
+		okoyom_catalog_card( is_int( $product ) ? get_post( $product ) : $product );
 	}
 }

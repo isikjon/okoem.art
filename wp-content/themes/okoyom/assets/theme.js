@@ -460,6 +460,56 @@
         }
     });
 
+    function currentFilters() {
+        var params = new URLSearchParams(location.search);
+        var state = {};
+        ['collection', 'series', 'subject', 'color'].forEach(function (p) {
+            var v = params.get(p);
+            if (v) state[p] = v.split(',').filter(Boolean);
+        });
+        return state;
+    }
+
+    function applyFilters(state) {
+        var params = new URLSearchParams();
+        Object.keys(state).forEach(function (p) {
+            if (state[p] && state[p].length) params.set(p, state[p].join(','));
+        });
+        var qs = params.toString();
+        window.location.href = '/catalog/' + (qs ? '?' + qs : '');
+    }
+
+    document.addEventListener('click', function (event) {
+        var btn = event.target.closest('[data-filter-value]');
+        if (!btn) return;
+        var group = btn.closest('[data-filter-group]');
+        if (!group) return;
+        event.preventDefault();
+
+        var param = group.getAttribute('data-filter-group');
+        var value = btn.getAttribute('data-filter-value');
+        var state = currentFilters();
+
+        if (value === '') {
+            delete state[param];
+        } else {
+            var list = state[param] || [];
+            var idx = list.indexOf(value);
+            if (idx === -1) list.push(value); else list.splice(idx, 1);
+            state[param] = list;
+        }
+        applyFilters(state);
+    });
+
+    document.addEventListener('click', function (event) {
+        var reset = event.target.closest('.mfilter__reset, [class*="mfilter-reset"]');
+        if (!reset) return;
+        var t = reset.textContent.trim().toLowerCase();
+        if (t.indexOf('сброс') === -1) return;
+        event.preventDefault();
+        window.location.href = '/catalog/';
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         captureAttribution();
         updateHeaderCounters();
