@@ -84,8 +84,15 @@ function okoyom_inspiration_gallery(): void {
 		}
 
 		$subtitle = get_post_meta( $item->ID, '_okoyom_subtitle', true );
+
+		$data_attr = '';
+		foreach ( array( 'collection' => 'oko_collection', 'color' => 'oko_color', 'subject' => 'oko_subject' ) as $key => $taxonomy ) {
+			$terms = get_the_terms( $item->ID, $taxonomy );
+			$slugs = ( $terms && ! is_wp_error( $terms ) ) ? wp_list_pluck( $terms, 'slug' ) : array();
+			$data_attr .= sprintf( ' data-%s="%s"', $key, esc_attr( implode( ' ', $slugs ) ) );
+		}
 		?>
-		<div class="pinterest-item">
+		<div class="pinterest-item"<?php echo $data_attr; ?>>
 			<?php echo $image; ?>
 			<div class="pinterest-overlay"></div>
 			<div class="pinterest-content">

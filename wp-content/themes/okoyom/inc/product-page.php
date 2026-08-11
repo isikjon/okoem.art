@@ -175,6 +175,33 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		);
 	}
 
+	$versions = function_exists( 'okoyom_color_versions' ) ? okoyom_color_versions( $product->ID ) : array();
+	if ( $versions ) {
+		$dots = '';
+		foreach ( $versions as $i => $v ) {
+			$dots .= sprintf(
+				'<div class="block-flexColorsCards%s" style="background: %s;" data-color-version="%d" data-color-image="%s" data-color-title="%s"></div>',
+				0 === $i ? ' block-flexColorsCards__active' : '',
+				esc_attr( $v['hex'] ),
+				$i,
+				esc_url( $v['image'] ),
+				esc_attr( $v['title'] )
+			);
+		}
+		$html = preg_replace(
+			'/(<div class="flex-flexColorsCards">).*?(<\/div>)(\s*<p>)/su',
+			'$1' . $dots . '$2$3',
+			$html,
+			1
+		);
+		$html = preg_replace(
+			'/(<div class="flexColorsCards">.*?<\/div>\s*<p>)\s*[^<]*(<\/p>)/su',
+			'$1' . esc_html( $versions[0]['title'] ) . '$2',
+			$html,
+			1
+		);
+	}
+
 	return $html;
 }
 

@@ -27,9 +27,13 @@ function okoyom_register_taxonomies(): void {
 	foreach ( okoyom_filter_taxonomies() as $slug => $config ) {
 		list( $singular, $plural ) = $config['labels'];
 
+		$object_types = 'oko_series' === $slug
+			? array( 'product' )
+			: array( 'product', 'oko_inspiration' );
+
 		register_taxonomy(
 			$slug,
-			array( 'product' ),
+			$object_types,
 			array(
 				'labels'            => array(
 					'name'          => $plural,

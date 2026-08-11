@@ -201,6 +201,25 @@
         if (opener) leadContext = opener.getAttribute('data-lead-type');
     }, true);
 
+    document.addEventListener('click', function (event) {
+        var dot = event.target.closest('[data-color-version]');
+        if (!dot) return;
+
+        document.querySelectorAll('[data-color-version]').forEach(function (d) {
+            d.classList.toggle('block-flexColorsCards__active', d === dot);
+        });
+
+        var title = dot.getAttribute('data-color-title');
+        var titleEl = dot.closest('.flexColorsCards').querySelector('p');
+        if (titleEl && title) titleEl.textContent = title;
+
+        var image = dot.getAttribute('data-color-image');
+        if (image) {
+            var mainImg = document.querySelector('.swiper-slide img');
+            if (mainImg) mainImg.src = image;
+        }
+    });
+
     
 
     document.addEventListener('click', function (event) {
@@ -510,6 +529,79 @@
         window.location.href = '/catalog/';
     });
 
+    var inspState = { collection: '', color: '', subject: '' };
+
+    function inspApply() {
+        var tiles = document.querySelectorAll('.pinterest-item');
+        var shown = 0;
+        tiles.forEach(function (tile) {
+            var ok = ['collection', 'color', 'subject'].every(function (k) {
+                if (!inspState[k]) return true;
+                var vals = (tile.getAttribute('data-' + k) || '').split(' ');
+                return vals.indexOf(inspState[k]) !== -1;
+            });
+            tile.style.display = ok ? '' : 'none';
+            if (ok) shown++;
+        });
+        var counter = document.querySelector('.textSpanQuantityCatalog');
+        if (counter) {
+            var w = shown % 10, w2 = shown % 100, word;
+            if (w2 >= 11 && w2 <= 14) word = 'объектов';
+            else if (w === 1) word = 'объект';
+            else if (w >= 2 && w <= 4) word = 'объекта';
+            else word = 'объектов';
+            counter.textContent = shown + ' ' + word;
+        }
+    }
+
+    function inspBuildPanels() {
+        var maps = window.okoyomInspFilters;
+        if (!maps) return;
+        var keyByLabel = { 'коллекция': 'collection', 'цвет': 'color', 'сюжет': 'subject' };
+
+        document.querySelectorAll('.ui-filter').forEach(function (panel) {
+            var labelEl = panel.querySelector('.ui-filter__label');
+            if (!labelEl) return;
+            var label = labelEl.textContent.trim().toLowerCase().replace(':', '');
+            var key = keyByLabel[label];
+            if (!key || !maps[key]) return;
+
+            var list = panel.querySelector('.ui-filter__list');
+            var valueEl = panel.querySelector('.ui-filter__value');
+            if (!list) return;
+
+            var html = '<button class="ui-filter__item is-active" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
+            Object.keys(maps[key]).forEach(function (slug) {
+                html += '<button class="ui-filter__item" data-value="' + slug + '"><span>' + maps[key][slug] + '</span><span class="ui-filter__check"></span></button>';
+            });
+            list.innerHTML = html;
+
+            list.querySelectorAll('.ui-filter__item').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    inspState[key] = item.getAttribute('data-value');
+                    list.querySelectorAll('.ui-filter__item').forEach(function (i) { i.classList.toggle('is-active', i === item); });
+                    if (valueEl) valueEl.textContent = item.textContent.trim();
+                    panel.classList.remove('is-open');
+                    inspApply();
+                });
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            var trigger = e.target.closest('.ui-filter__trigger');
+            if (trigger) {
+                var panel = trigger.closest('.ui-filter');
+                var open = panel.classList.contains('is-open');
+                document.querySelectorAll('.ui-filter').forEach(function (p) { p.classList.remove('is-open'); });
+                if (!open) panel.classList.add('is-open');
+                return;
+            }
+            if (!e.target.closest('.ui-filter__dropdown')) {
+                document.querySelectorAll('.ui-filter').forEach(function (p) { p.classList.remove('is-open'); });
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         captureAttribution();
         updateHeaderCounters();
@@ -517,6 +609,7 @@
         renderCart();
         renderFavorites();
         hideDeadMoreButtons();
+        inspBuildPanels();
 
         
         var params = new URLSearchParams(location.search);

@@ -146,3 +146,32 @@ function okoyom_current_scope(): string {
 	$tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'all';
 	return in_array( $tab, array( 'all', 'murals', 'companion' ), true ) ? $tab : 'all';
 }
+
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		if ( ! is_page( 'inspiration' ) ) {
+			return;
+		}
+
+		$maps = array();
+		foreach ( array( 'collection' => 'oko_collection', 'color' => 'oko_color', 'subject' => 'oko_subject' ) as $key => $taxonomy ) {
+			$terms = get_terms(
+				array(
+					'taxonomy'   => $taxonomy,
+					'hide_empty' => true,
+				)
+			);
+			$map = array();
+			if ( ! is_wp_error( $terms ) ) {
+				foreach ( $terms as $term ) {
+					$map[ $term->slug ] = $term->name;
+				}
+			}
+			$maps[ $key ] = $map;
+		}
+
+		wp_localize_script( 'okoyom-theme', 'okoyomInspFilters', $maps );
+	},
+	20
+);
