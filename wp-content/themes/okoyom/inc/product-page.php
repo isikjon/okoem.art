@@ -150,7 +150,7 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	}
 
 	$html = str_replace(
-		'<a href="like-2.html" class="flexBtnsCards__links">',
+		'<a href="/favorites/" class="flexBtnsCards__links">',
 		'<a href="' . esc_url( okoyom_favorites_url() ) . '" class="flexBtnsCards__links" data-favorite="' . esc_attr( (string) $product->ID ) . '">',
 		$html
 	);
