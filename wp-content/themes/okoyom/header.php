@@ -60,16 +60,16 @@ defined( 'ABSPATH' ) || exit;
                                             <div class="flexContactBurger__a">
                                                 <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/messageIcon-2.svg" alt="WhatsApp" width="26" height="26" loading="lazy" decoding="async">
                                                 <a href="<?php echo esc_attr( okoyom_phone_href() ); ?>">
-                                                    WhatsApp
+                                                    <?php echo okoyom_t( '8b777ebcc503', 'WhatsApp' ); ?>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="flexBtnBurger">
                                             <a href="/favorites/" class="btnWhiteTextBtn btnWhiteTextBtnV3">
-                                                Избранное (2)
+                                                <?php echo okoyom_t( 'c968bdd54318', 'Избранное (2)' ); ?>
                                             </a>
                                             <a href="/cart/" class="btnWhiteTextBtn btnWhiteTextBtnV2">
-                                                Корзина
+                                                <?php echo okoyom_t( 'b7697b9693d2', 'Корзина' ); ?>
                                             </a>
                                         </div>
                                     </li>

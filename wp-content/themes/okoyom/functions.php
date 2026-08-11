@@ -10,6 +10,7 @@ define( 'OKOYOM_ASSETS_URI', OKOYOM_URI . '/assets' );
 require_once OKOYOM_DIR . '/inc/setup.php';
 require_once OKOYOM_DIR . '/inc/assets.php';
 require_once OKOYOM_DIR . '/inc/nav.php';
+require_once OKOYOM_DIR . '/inc/texts.php';
 require_once OKOYOM_DIR . '/inc/templating.php';
 require_once OKOYOM_DIR . '/inc/filters.php';
 require_once OKOYOM_DIR . '/inc/catalog.php';

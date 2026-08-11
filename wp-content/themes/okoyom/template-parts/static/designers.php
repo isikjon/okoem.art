@@ -5,28 +5,28 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="titleCardSection titleCardSectionContent">
             <p class="text-titleCardSection">
-                Дизайнерам и архитекторам
+                <?php echo okoyom_t( 'a977c435b22e', 'Дизайнерам и архитекторам' ); ?>
             </p>
             <h1 class="title-titleCardSection">
-                Мурал как инструмент дизайнера
+                <?php echo okoyom_t( '06a41bb6c01c', 'Мурал как инструмент дизайнера' ); ?>
             </h1>
             <p class="textSecond-titleCardSection">
-                Подбираем муралы под концепцию, делаем визуализации, адаптируем под размер стены и сопровождаем проект от согласования до монтажа.
+                <?php echo okoyom_t( '1a1a4ec7a316', 'Подбираем муралы под концепцию, делаем визуализации, адаптируем под размер стены и сопровождаем проект от согласования до монтажа.' ); ?>
             </p>
             <div class="btnContentBottom mural-hero__fade-up">
                 <a href="#!" class="btnWhiteTextBtn openModal">
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/messageIcon.svg" alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true">
-                    Запросить условия
+                    <?php echo okoyom_t( '5f4ad0cef939', 'Запросить условия' ); ?>
                 </a>
                 <a href="#!" class="btnWhiteTextBtn">
-                    Получить каталог
+                    <?php echo okoyom_t( 'd2c9f5737c80', 'Получить каталог' ); ?>
                 </a>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="downArrowCard">
-            Листайте вниз
+            <?php echo okoyom_t( '6e86b009f08d', 'Листайте вниз' ); ?>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="white" stroke-opacity="0.4" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -37,27 +37,27 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="titleSection">
             <span class="titleSectionSpan">
-               Партнёрство
+               <?php echo okoyom_t( 'e029be42b4d3', 'Партнёрство' ); ?>
             </span>
             <h2 class="titleSectionTitle">
-                Партнёрство <br>
-                без лишней сложности
+                <?php echo okoyom_t( 'e029be42b4d3', 'Партнёрство' ); ?> <br>
+                <?php echo okoyom_t( 'b804bb2ca9df', 'без лишней сложности' ); ?>
             </h2>
             <p style="margin-top: 15px;" class="title-inspirationTop__text">
-                Мы понимаем, как устроена проектная работа: клиенту нужно показать решение, дизайнеру — защитить идею, а поставщику — не подвести на реализации. Поэтому мы выстроили процесс так, чтобы с Окоём было удобно работать.
+                <?php echo okoyom_t( 'f1a847a319a9', 'Мы понимаем, как устроена проектная работа: клиенту нужно показать решение, дизайнеру — защитить идею, а поставщику — не подвести на реализации. Поэтому мы выстроили процесс так, чтобы с Окоём было удобно работать.' ); ?>
             </p>
         </div>
         <div class="blockSectionDesignersTopPluses">
             <div data-aos="fade" data-aos-offset="200" class="blockSectionDesignersTopPluses__block">
                 <span>
-                    Уровень
+                    <?php echo okoyom_t( '27f10a857dd4', 'Уровень' ); ?>
                 </span>
                 <div class="title-blockSectionDesignersTopPluses__block">
                     <h2>
-                        Start
+                        <?php echo okoyom_t( 'a6122a65eaa6', 'Start' ); ?>
                     </h2>
                     <p>
-                        Для первого знакомства с брендом
+                        <?php echo okoyom_t( 'c9d441a3dbd7', 'Для первого знакомства с брендом' ); ?>
                     </p>
                 </div>
                 <div class="flex-blockSectionDesignersTopPluses__block">
@@ -66,7 +66,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Доступ к каталогу
+                            <?php echo okoyom_t( 'b6337d06a6b4', 'Доступ к каталогу' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -74,7 +74,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Быстрый расчёт
+                            <?php echo okoyom_t( 'e105c00ddeae', 'Быстрый расчёт' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -82,7 +82,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Консультация по подбору
+                            <?php echo okoyom_t( 'a3a9c2173b7f', 'Консультация по подбору' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -90,7 +90,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Визуализация для проекта
+                            <?php echo okoyom_t( '77e79f445c9c', 'Визуализация для проекта' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -98,21 +98,21 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Регистрация клиента за дизайнером
+                            <?php echo okoyom_t( '2868923e8733', 'Регистрация клиента за дизайнером' ); ?>
                         </p>
                     </div>
                 </div>
             </div>
             <div data-aos="fade" data-aos-offset="200" class="blockSectionDesignersTopPluses__block blockSectionDesignersTopPluses__blockActive">
                 <span style="color: rgba(242, 240, 237, 0.60);">
-                    Уровень
+                    <?php echo okoyom_t( '27f10a857dd4', 'Уровень' ); ?>
                 </span>
                 <div class="title-blockSectionDesignersTopPluses__block">
                     <h2 style="color: #F2F0ED;">
-                        Partner
+                        <?php echo okoyom_t( '6f041af43be8', 'Partner' ); ?>
                     </h2>
                     <p style="color: rgba(242, 240, 237, 0.70);">
-                        Для дизайнеров, которые включают муралы в проекты
+                        <?php echo okoyom_t( 'e59d37c6bf27', 'Для дизайнеров, которые включают муралы в проекты' ); ?>
                     </p>
                 </div>
                 <div class="flex-blockSectionDesignersTopPluses__block">
@@ -121,7 +121,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p style="color: rgba(242, 240, 237, 0.90);">
-                            Партнёрское вознаграждение
+                            <?php echo okoyom_t( '398b0975eddc', 'Партнёрское вознаграждение' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -129,7 +129,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p style="color: rgba(242, 240, 237, 0.90);">
-                            Приоритетные расчёты
+                            <?php echo okoyom_t( '9254e3ddc40a', 'Приоритетные расчёты' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -137,7 +137,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p style="color: rgba(242, 240, 237, 0.90);">
-                            Образцы для согласования
+                            <?php echo okoyom_t( '992ea44bc0d1', 'Образцы для согласования' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -145,7 +145,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p style="color: rgba(242, 240, 237, 0.90);">
-                            Помощь в защите решения
+                            <?php echo okoyom_t( 'ee3d013f3ab8', 'Помощь в защите решения' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -153,21 +153,21 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p style="color: rgba(242, 240, 237, 0.90);">
-                            Персональный менеджер
+                            <?php echo okoyom_t( 'b566462f3526', 'Персональный менеджер' ); ?>
                         </p>
                     </div>
                 </div>
             </div>
             <div data-aos="fade" data-aos-offset="200" class="blockSectionDesignersTopPluses__block">
                 <span>
-                    Уровень
+                    <?php echo okoyom_t( '27f10a857dd4', 'Уровень' ); ?>
                 </span>
                 <div class="title-blockSectionDesignersTopPluses__block">
                     <h2>
-                        Studio
+                        <?php echo okoyom_t( '8bc227feedf4', 'Studio' ); ?>
                     </h2>
                     <p>
-                        Для интерьерных студий и бюро
+                        <?php echo okoyom_t( '2c74e991ee84', 'Для интерьерных студий и бюро' ); ?>
                     </p>
                 </div>
                 <div class="flex-blockSectionDesignersTopPluses__block">
@@ -176,7 +176,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Индивидуальные условия
+                            <?php echo okoyom_t( '1cd8925d78a5', 'Индивидуальные условия' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -184,7 +184,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Проектное сопровождение
+                            <?php echo okoyom_t( 'e449fdf7ac89', 'Проектное сопровождение' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -192,7 +192,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Технические материалы
+                            <?php echo okoyom_t( 'b7e06ae2125c', 'Технические материалы' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -200,7 +200,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Файлы для визуализаций
+                            <?php echo okoyom_t( '0a1d242564cf', 'Файлы для визуализаций' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -208,21 +208,21 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Помощь со спецификациями
+                            <?php echo okoyom_t( '85b16a7148e4', 'Помощь со спецификациями' ); ?>
                         </p>
                     </div>
                 </div>
             </div>
             <div data-aos="fade" data-aos-offset="200" class="blockSectionDesignersTopPluses__block">
                 <span>
-                    Уровень
+                    <?php echo okoyom_t( '27f10a857dd4', 'Уровень' ); ?>
                 </span>
                 <div class="title-blockSectionDesignersTopPluses__block">
                     <h2>
-                        Project
+                        <?php echo okoyom_t( '9e727fdd3aec', 'Project' ); ?>
                     </h2>
                     <p>
-                        Для крупных объектов и коммерческих пространств
+                        <?php echo okoyom_t( '4cbd390dd429', 'Для крупных объектов и коммерческих пространств' ); ?>
                     </p>
                 </div>
                 <div class="flex-blockSectionDesignersTopPluses__block">
@@ -231,7 +231,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Подбор под концепцию объекта
+                            <?php echo okoyom_t( 'f961e0860cb1', 'Подбор под концепцию объекта' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -239,7 +239,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Адаптация под большие площади
+                            <?php echo okoyom_t( '3cdf92035910', 'Адаптация под большие площади' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -247,7 +247,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Материалы для HoReCa
+                            <?php echo okoyom_t( 'f7347561ced1', 'Материалы для HoReCa' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -255,7 +255,7 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Расчёт сроков и логистики
+                            <?php echo okoyom_t( '477ca5b52230', 'Расчёт сроков и логистики' ); ?>
                         </p>
                     </div>
                     <div class="row-flex-blockSectionDesignersTopPluses__block">
@@ -263,14 +263,14 @@ defined( 'ABSPATH' ) || exit;
 
                         </div>
                         <p>
-                            Сопровождение производства
+                            <?php echo okoyom_t( '68e57e6dc8c9', 'Сопровождение производства' ); ?>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         <p class="textSpan-inspirationTop">
-            Если вы первым заложили мурал в проект или привели клиента — мы закрепляем его за вами на весь срок работы.
+            <?php echo okoyom_t( '16f9667003c5', 'Если вы первым заложили мурал в проект или привели клиента — мы закрепляем его за вами на весь срок работы.' ); ?>
         </p>
     </div>
 </section>
@@ -278,10 +278,10 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="titleSection">
             <span class="titleSectionSpan">
-               Инструменты
+               <?php echo okoyom_t( '5da932c117e3', 'Инструменты' ); ?>
             </span>
             <h2 class="titleSectionTitle">
-                Всё для работы с клиентом и реализации проекта
+                <?php echo okoyom_t( 'ec4a653428a8', 'Всё для работы с клиентом и реализации проекта' ); ?>
 
             </h2>
         </div>
@@ -289,37 +289,23 @@ defined( 'ABSPATH' ) || exit;
             <div data-aos="fade" data-aos-offset="200" class="blockFlex-flexInfoSectionDesigners">
                 <div class="title-blockFlex-flexInfoSectionDesigners">
                     <h3>
-                        Для презентации клиенту
+                        <?php echo okoyom_t( '639137334686', 'Для презентации клиенту' ); ?>
                     </h3>
                     <p>
-                        Готовим материалы, чтобы показать идею не как картинку, а как готовое решение на конкретной стене.
+                        <?php echo okoyom_t( '863d30260aea', 'Готовим материалы, чтобы показать идею не как картинку, а как готовое решение на конкретной стене.' ); ?>
                     </p>
                 </div>
                 <div class="flex-block-blockFlex-flexInfoSectionDesigners">
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            PDF-каталог
+                            <?php echo okoyom_t( '2e80a72ba071', 'PDF-каталог' ); ?>
                         </p>
                     </div>
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Фрагменты для мудбордов
-                        </p>
-                    </div>
-                </div>
-                <div class="flex-block-blockFlex-flexInfoSectionDesigners">
-                    <div class="block-blockFlex-flexInfoSectionDesigners">
-                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
-                        <p>
-                            Подборки по стилям и помещениям
-                        </p>
-                    </div>
-                    <div class="block-blockFlex-flexInfoSectionDesigners">
-                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
-                        <p>
-                            Аргументы для клиента
+                            <?php echo okoyom_t( '997ff5573b7f', 'Фрагменты для мудбордов' ); ?>
                         </p>
                     </div>
                 </div>
@@ -327,7 +313,21 @@ defined( 'ABSPATH' ) || exit;
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Визуализация мурала в проекте
+                            <?php echo okoyom_t( '415640fcb8ec', 'Подборки по стилям и помещениям' ); ?>
+                        </p>
+                    </div>
+                    <div class="block-blockFlex-flexInfoSectionDesigners">
+                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
+                        <p>
+                            <?php echo okoyom_t( '16d32535a031', 'Аргументы для клиента' ); ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex-block-blockFlex-flexInfoSectionDesigners">
+                    <div class="block-blockFlex-flexInfoSectionDesigners">
+                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
+                        <p>
+                            <?php echo okoyom_t( '40aa8baf677d', 'Визуализация мурала в проекте' ); ?>
                         </p>
                     </div>
                 </div>
@@ -335,37 +335,23 @@ defined( 'ABSPATH' ) || exit;
             <div data-aos="fade" data-aos-offset="300" class="blockFlex-flexInfoSectionDesigners">
                 <div class="title-blockFlex-flexInfoSectionDesigners">
                     <h3>
-                        Для работы над проектом
+                        <?php echo okoyom_t( '364bcb199805', 'Для работы над проектом' ); ?>
                     </h3>
                     <p>
-                        Файлы и данные, которые удобно использовать в процессе проектирования.
+                        <?php echo okoyom_t( '9926fcbc39d3', 'Файлы и данные, которые удобно использовать в процессе проектирования.' ); ?>
                     </p>
                 </div>
                 <div class="flex-block-blockFlex-flexInfoSectionDesigners">
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Изображения для коллажей
+                            <?php echo okoyom_t( '360d8f7b0261', 'Изображения для коллажей' ); ?>
                         </p>
                     </div>
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Варианты материалов
-                        </p>
-                    </div>
-                </div>
-                <div class="flex-block-blockFlex-flexInfoSectionDesigners">
-                    <div class="block-blockFlex-flexInfoSectionDesigners">
-                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
-                        <p>
-                            Фрагменты для рендеров
-                        </p>
-                    </div>
-                    <div class="block-blockFlex-flexInfoSectionDesigners">
-                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
-                        <p>
-                            Расчёт под размер
+                            <?php echo okoyom_t( '24d756037352', 'Варианты материалов' ); ?>
                         </p>
                     </div>
                 </div>
@@ -373,13 +359,27 @@ defined( 'ABSPATH' ) || exit;
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Технические параметры
+                            <?php echo okoyom_t( 'a31e173f5333', 'Фрагменты для рендеров' ); ?>
                         </p>
                     </div>
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Рекомендации по подготовке стены
+                            <?php echo okoyom_t( '0a3160915a3b', 'Расчёт под размер' ); ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex-block-blockFlex-flexInfoSectionDesigners">
+                    <div class="block-blockFlex-flexInfoSectionDesigners">
+                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
+                        <p>
+                            <?php echo okoyom_t( '153f7f4d72ac', 'Технические параметры' ); ?>
+                        </p>
+                    </div>
+                    <div class="block-blockFlex-flexInfoSectionDesigners">
+                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
+                        <p>
+                            <?php echo okoyom_t( '1a6d5b978633', 'Рекомендации по подготовке стены' ); ?>
                         </p>
                     </div>
                 </div>
@@ -387,37 +387,23 @@ defined( 'ABSPATH' ) || exit;
             <div data-aos="fade" data-aos-offset="400" class="blockFlex-flexInfoSectionDesigners">
                 <div class="title-blockFlex-flexInfoSectionDesigners">
                     <h3>
-                        Для реализации
+                        <?php echo okoyom_t( '8eaffec822c9', 'Для реализации' ); ?>
                     </h3>
                     <p>
-                        Сопровождаем от утверждённого макета до готового мурала на стене.
+                        <?php echo okoyom_t( 'fae71b992bf5', 'Сопровождаем от утверждённого макета до готового мурала на стене.' ); ?>
                     </p>
                 </div>
                 <div class="flex-block-blockFlex-flexInfoSectionDesigners">
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Кадрирование
+                            <?php echo okoyom_t( '3387d4ce9983', 'Кадрирование' ); ?>
                         </p>
                     </div>
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Подготовка файла к печати
-                        </p>
-                    </div>
-                </div>
-                <div class="flex-block-blockFlex-flexInfoSectionDesigners">
-                    <div class="block-blockFlex-flexInfoSectionDesigners">
-                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
-                        <p>
-                            Цветокоррекция
-                        </p>
-                    </div>
-                    <div class="block-blockFlex-flexInfoSectionDesigners">
-                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
-                        <p>
-                            Контроль производства
+                            <?php echo okoyom_t( '909be6c4c154', 'Подготовка файла к печати' ); ?>
                         </p>
                     </div>
                 </div>
@@ -425,13 +411,27 @@ defined( 'ABSPATH' ) || exit;
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Цветопробы
+                            <?php echo okoyom_t( '56ebe9436cfc', 'Цветокоррекция' ); ?>
                         </p>
                     </div>
                     <div class="block-blockFlex-flexInfoSectionDesigners">
                         <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
                         <p>
-                            Рекомендации по монтажу
+                            <?php echo okoyom_t( '8c4293b9d30d', 'Контроль производства' ); ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex-block-blockFlex-flexInfoSectionDesigners">
+                    <div class="block-blockFlex-flexInfoSectionDesigners">
+                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
+                        <p>
+                            <?php echo okoyom_t( '9346f84846bb', 'Цветопробы' ); ?>
+                        </p>
+                    </div>
+                    <div class="block-blockFlex-flexInfoSectionDesigners">
+                        <div class="line-block-blockFlex-flexInfoSectionDesigners"></div>
+                        <p>
+                            <?php echo okoyom_t( '8f83d2ec57b4', 'Рекомендации по монтажу' ); ?>
                         </p>
                     </div>
                 </div>
@@ -443,10 +443,10 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="titleSection">
             <span class="titleSectionSpan">
-               Сервис
+               <?php echo okoyom_t( '627d92836320', 'Сервис' ); ?>
             </span>
             <h2 class="titleSectionTitle">
-                Как мы работаем с проектом
+                <?php echo okoyom_t( '25e4e52dfa0b', 'Как мы работаем с проектом' ); ?>
             </h2>
         </div>
         <div class="flexGreyInfoBlockRow">
@@ -458,27 +458,27 @@ defined( 'ABSPATH' ) || exit;
                             01
                         </span>
                         <h4>
-                            Подбор под концепцию
+                            <?php echo okoyom_t( '857b53cf7a2e', 'Подбор под концепцию' ); ?>
                         </h4>
                         <span style="letter-spacing: 1.32px; text-transform: uppercase;">
-                            Решение под мудборд и план
+                            <?php echo okoyom_t( '18503f125ffa', 'Решение под мудборд и план' ); ?>
                         </span>
                     </div>
                     <p class="text-right-flexGreyInfoBlockRow__block">
-                        Присылаете план, рендер, мудборд или описание задачи — подбираем муралы из каталога, которые подходят по настроению, масштабу и цвету. При необходимости поможем с примеркой и цветовой корректировкой.
+                        <?php echo okoyom_t( 'd985888bb133', 'Присылаете план, рендер, мудборд или описание задачи — подбираем муралы из каталога, которые подходят по настроению, масштабу и цвету. При необходимости поможем с примеркой и цветовой корректировкой.' ); ?>
                     </p>
                     <div class="flexDotes-right-flexGreyInfoBlockRow__block">
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Подбор из каталога под концепцию
+                            <?php echo okoyom_t( 'e022f9ca4ce7', 'Подбор из каталога под концепцию' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Учёт стиля и палитры проекта
+                            <?php echo okoyom_t( '8141cf89302a', 'Учёт стиля и палитры проекта' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Несколько вариантов на выбор
+                            <?php echo okoyom_t( '0ca618106cb5', 'Несколько вариантов на выбор' ); ?>
                         </div>
                     </div>
                 </div>
@@ -490,27 +490,27 @@ defined( 'ABSPATH' ) || exit;
                             02
                         </span>
                         <h4>
-                            Визуализация для клиента
+                            <?php echo okoyom_t( '9255edc547c9', 'Визуализация для клиента' ); ?>
                         </h4>
                         <span style="letter-spacing: 1.32px; text-transform: uppercase;">
-                            Решение на конкретной стене
+                            <?php echo okoyom_t( 'cd159b0fe137', 'Решение на конкретной стене' ); ?>
                         </span>
                     </div>
                     <p class="text-right-flexGreyInfoBlockRow__block">
-                        Делаем визуализацию на основе фото интерьера, рендера или схемы — клиент видит решение на своей стене. Упрощает согласование и снижает риск отказа.
+                        <?php echo okoyom_t( 'baf287b0a242', 'Делаем визуализацию на основе фото интерьера, рендера или схемы — клиент видит решение на своей стене. Упрощает согласование и снижает риск отказа.' ); ?>
                     </p>
                     <div class="flexDotes-right-flexGreyInfoBlockRow__block">
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            На основе фото, рендера или схемы
+                            <?php echo okoyom_t( '4df3783bee61', 'На основе фото, рендера или схемы' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Учёт стиля и референсов
+                            <?php echo okoyom_t( '41cf650cd5dc', 'Учёт стиля и референсов' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Быстрая подготовка
+                            <?php echo okoyom_t( 'dda78b3cfd04', 'Быстрая подготовка' ); ?>
                         </div>
                     </div>
                 </div>
@@ -524,27 +524,27 @@ defined( 'ABSPATH' ) || exit;
                             03
                         </span>
                         <h4>
-                            Адаптация изображения
+                            <?php echo okoyom_t( 'e73c2c1108ee', 'Адаптация изображения' ); ?>
                         </h4>
                         <span style="letter-spacing: 1.32px; text-transform: uppercase;">
-                            Под особенности помещения
+                            <?php echo okoyom_t( 'aeb2002a6243', 'Под особенности помещения' ); ?>
                         </span>
                     </div>
                     <p class="text-right-flexGreyInfoBlockRow__block">
-                        Учитываем особенности помещения и кадрируем изображение под конкретную стену. Если нужно — корректируем тон, яркость или насыщенность.
+                        <?php echo okoyom_t( '5fbc4565b717', 'Учитываем особенности помещения и кадрируем изображение под конкретную стену. Если нужно — корректируем тон, яркость или насыщенность.' ); ?>
                     </p>
                     <div class="flexDotes-right-flexGreyInfoBlockRow__block">
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Кадрирование под архитектуру стены
+                            <?php echo okoyom_t( 'a54eae753f97', 'Кадрирование под архитектуру стены' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Сохранение важных зон композиции
+                            <?php echo okoyom_t( '2b5148349f07', 'Сохранение важных зон композиции' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Цветокоррекция при необходимости
+                            <?php echo okoyom_t( '25ba9f8b1c66', 'Цветокоррекция при необходимости' ); ?>
                         </div>
                     </div>
                 </div>
@@ -556,27 +556,27 @@ defined( 'ABSPATH' ) || exit;
                             04
                         </span>
                         <h4>
-                            Техническая поддержка
+                            <?php echo okoyom_t( '315695fd8854', 'Техническая поддержка' ); ?>
                         </h4>
                         <span style="letter-spacing: 1.32px; text-transform: uppercase;">
-                            Образцы и цветопробы
+                            <?php echo okoyom_t( '5abc1a18fd74', 'Образцы и цветопробы' ); ?>
                         </span>
                     </div>
                     <p class="text-right-flexGreyInfoBlockRow__block">
-                        Отправляем образцы материалов и цветопробы, чтобы цвет можно было проверить до заказа. Также предоставляем технические параметры и данные для спецификаций.
+                        <?php echo okoyom_t( 'a0dbe9bcd84a', 'Отправляем образцы материалов и цветопробы, чтобы цвет можно было проверить до заказа. Также предоставляем технические параметры и данные для спецификаций.' ); ?>
                     </p>
                     <div class="flexDotes-right-flexGreyInfoBlockRow__block">
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Образцы материалов
+                            <?php echo okoyom_t( '1174a5fe49ea', 'Образцы материалов' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Цветопробы до заказа
+                            <?php echo okoyom_t( 'f3f8e968a701', 'Цветопробы до заказа' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            Технические параметры и спецификации
+                            <?php echo okoyom_t( '2e46f9290049', 'Технические параметры и спецификации' ); ?>
                         </div>
                     </div>
                 </div>
@@ -594,13 +594,13 @@ defined( 'ABSPATH' ) || exit;
             <div class="left-flexAlignV2Address">
                 <div class="titleSection">
                     <span class="titleSectionSpan">
-                       Для бизнеса
+                       <?php echo okoyom_t( 'b6aa01476f0c', 'Для бизнеса' ); ?>
                     </span>
                     <h2 class="titleSectionTitle">
-                        Работаем с жилыми и коммерческими объектами
+                        <?php echo okoyom_t( '7d583121b700', 'Работаем с жилыми и коммерческими объектами' ); ?>
                     </h2>
                     <p class="textTitleSection " style="margin-top: 10px !important;">
-                        Муралы подходят для частных интерьеров и коммерческих пространств: спален, гостиных, холлов, ресторанов, отелей, салонов и офисов. Помогаем создать атмосферу, которую запоминают.
+                        <?php echo okoyom_t( '3b034ed452be', 'Муралы подходят для частных интерьеров и коммерческих пространств: спален, гостиных, холлов, ресторанов, отелей, салонов и офисов. Помогаем создать атмосферу, которую запоминают.' ); ?>
                     </p>
                 </div>
             </div>
@@ -727,64 +727,64 @@ defined( 'ABSPATH' ) || exit;
         <div class="formSectionWrapperDesigners">
             <div class="titleSection">
                 <span class="titleSectionSpan">
-                   Заявка
+                   <?php echo okoyom_t( 'e1149adf8095', 'Заявка' ); ?>
                 </span>
                 <h2 class="titleSectionTitle">
-                    Стать партнёром Окоём
+                    <?php echo okoyom_t( '2eec539cca79', 'Стать партнёром Окоём' ); ?>
                 </h2>
                 <p class="textTitleSection" style="margin-top: 10px !important;">
-                    Оставьте контакты — пришлём каталог, условия и примеры материалов для проектной работы.
+                    <?php echo okoyom_t( '0b55b55d4c7c', 'Оставьте контакты — пришлём каталог, условия и примеры материалов для проектной работы.' ); ?>
                 </p>
             </div>
             <form action="#!" method="post" class="form-formSectionWrapperDesigners">
                 <div class="flex-form-formSectionWrapperDesigners">
                     <label>
                         <span>
-                            Имя
+                            <?php echo okoyom_t( 'd38d6d925c80', 'Имя' ); ?>
                         </span>
                         <input type="text" placeholder="Ваше имя" required>
                     </label>
                     <label>
                         <span>
-                            Город
+                            <?php echo okoyom_t( '069c9cb17c0a', 'Город' ); ?>
                         </span>
                         <input type="text" placeholder="Город" required>
                     </label>
                 </div>
                 <label>
                     <span>
-                        Студия / профессия
+                        <?php echo okoyom_t( '5e98696b3eeb', 'Студия / профессия' ); ?>
                     </span>
                     <input type="text" placeholder="Название студии или профессия" required>
                 </label>
                 <div class="flex-form-formSectionWrapperDesigners">
                     <label>
                         <span>
-                            Телефон
+                            <?php echo okoyom_t( '2928e19c7054', 'Телефон' ); ?>
                         </span>
                         <input type="text" placeholder="+7 (___) ___-__-__" required>
                     </label>
                     <label>
                         <span>
-                            Email
+                            <?php echo okoyom_t( 'ce8ae9da5b7c', 'Email' ); ?>
                         </span>
                         <input type="email" placeholder="email@example.com" required>
                     </label>
                 </div>
                 <label>
                     <span>
-                        Портфолио или соцсети
+                        <?php echo okoyom_t( '5190215f4a00', 'Портфолио или соцсети' ); ?>
                     </span>
                     <input type="text" placeholder="Ссылка на сайт, behance, instagram" required>
                 </label>
                 <label>
                     <span>
-                        Комментарий по проекту
+                        <?php echo okoyom_t( '7a00798a56b4', 'Комментарий по проекту' ); ?>
                     </span>
                     <textarea placeholder="Расскажите о проекте, задаче или интересующем формате" style="resize: none;" required></textarea>
                 </label>
                 <button type="submit" class="btnWhiteTextBtn btnWhiteTextBtnV3">
-                    Отправить заявку
+                    <?php echo okoyom_t( '7094b4a52292', 'Отправить заявку' ); ?>
                 </button>
             </form>
         </div>

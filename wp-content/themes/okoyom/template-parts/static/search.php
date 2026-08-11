@@ -5,10 +5,10 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="titleCatalog">
             <h1 class="titleCatalog__title">
-                Результаты поиска
+                <?php echo okoyom_t( 'b2cf43cfbe06', 'Результаты поиска' ); ?>
             </h1>
             <p class="titleCatalog__text">
-                Поиск по названию и артикулу
+                <?php echo okoyom_t( '9e0ba861eeb1', 'Поиск по названию и артикулу' ); ?>
             </p>
         </div>
     </div>
@@ -17,9 +17,9 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="tabs">
 <!--            <ul class="tab-header">-->
-<!--                <li class="tab-header__item js-tab-trigger active" data-tab="1">Все</li>-->
-<!--                <li class="tab-header__item js-tab-trigger" data-tab="2">Муралы</li>-->
-<!--                <li class="tab-header__item js-tab-trigger" data-tab="3">Фоновые обои</li>-->
+<!--                <li class="tab-header__item js-tab-trigger active" data-tab="1"><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></li>-->
+<!--                <li class="tab-header__item js-tab-trigger" data-tab="2"><?php echo okoyom_t( '64a36b22322f', 'Муралы' ); ?></li>-->
+<!--                <li class="tab-header__item js-tab-trigger" data-tab="3"><?php echo okoyom_t( 'ce5756ad27ef', 'Фоновые обои' ); ?></li>-->
 <!--            </ul>-->
             <ul class="tab-content">
                 <li class="tab-content__item js-tab-content active" data-tab="1">
@@ -27,14 +27,14 @@ defined( 'ABSPATH' ) || exit;
                         <div class="left-flexFiltersCatalog left-flexFiltersCatalog-1234234">
                             <a href="#!" class="filterModalOpen mfilter-open">
                                 <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/filters.svg" alt="Фильтры" width="24" height="24" loading="lazy" decoding="async">
-                                Фильтры
+                                <?php echo okoyom_t( 'f7ac6fc5c5a4', 'Фильтры' ); ?>
                             </a>
                             <div class="mfilter">
                                 <div class="mfilter__overlay"></div>
                                 <div class="mfilter__panel">
                                     <div class="mfilter__head">
                                         <div class="mfilter__title">
-                                            ФИЛЬТРЫ
+                                            <?php echo okoyom_t( '24c79ca27c8f', 'ФИЛЬТРЫ' ); ?>
                                         </div>
                                         <button class="mfilter__close">
                                             <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/close.svg" alt="" width="40" height="40" loading="lazy" decoding="async" aria-hidden="true">
@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || exit;
                                         <!-- поиск -->
                                         <div class="mfilter-group">
                                             <div class="mfilter-label">
-                                                ПОИСК
+                                                <?php echo okoyom_t( '9b568d0761b0', 'ПОИСК' ); ?>
                                             </div>
                                             <form action="" method="post">
                                                 <div class="flex-col-3__footer">
@@ -61,13 +61,13 @@ defined( 'ABSPATH' ) || exit;
                                         <!-- сортировка -->
                                         <div class="mfilter-group">
                                             <div class="mfilter-label">
-                                                СОРТИРОВКА
+                                                <?php echo okoyom_t( '60466381ada9', 'СОРТИРОВКА' ); ?>
                                             </div>
                                             <div class="mfilter-list">
                                                 <button class="active">
-                                                    По умолчанию
+                                                    <?php echo okoyom_t( 'd3b9e440144a', 'По умолчанию' ); ?>
                                                 </button>
-                                                <button>Новинки</button>
+                                                <button><?php echo okoyom_t( '6df99700f6f7', 'Новинки' ); ?></button>
                                             </div>
                                         </div>
                                         <!-- коллекция -->
@@ -81,10 +81,10 @@ defined( 'ABSPATH' ) || exit;
                                     </div>
                                     <div class="mfilter-bottom">
                                         <button class="mfilter-reset">
-                                            СБРОСИТЬ
+                                            <?php echo okoyom_t( '3cd072605046', 'СБРОСИТЬ' ); ?>
                                         </button>
                                         <button class="mfilter-show">
-                                            ПОКАЗАТЬ (17)
+                                            <?php echo okoyom_t( '1c985e94eee8', 'ПОКАЗАТЬ (17)' ); ?>
                                         </button>
                                     </div>
                                 </div>
@@ -92,33 +92,33 @@ defined( 'ABSPATH' ) || exit;
                             <div class="ui-filter ui-filter-1">
                                 <button class="ui-filter__trigger" type="button">
                                     <span class="ui-filter__label">
-                                        Коллекция:
+                                        <?php echo okoyom_t( '21c2f67d078f', 'Коллекция:' ); ?>
                                     </span>
                                     <span class="ui-filter__value">
-                                        Все
+                                        <?php echo okoyom_t( '984bf1497dea', 'Все' ); ?>
                                     </span>
                                     <span class="ui-filter__arrow"></span>
                                 </button>
                                 <div class="ui-filter__dropdown">
                                     <div class="ui-filter__list">
                                         <button class="ui-filter__item" data-value="Все">
-                                            <span>Все</span>
+                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Silentia">
-                                            <span>Silentia</span>
+                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Botanica">
-                                            <span>Botanica</span>
+                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Forma">
-                                            <span>Forma</span>
+                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Materia">
-                                            <span>Materia</span>
+                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                     </div>
@@ -128,33 +128,33 @@ defined( 'ABSPATH' ) || exit;
                             <div class="ui-filter ui-filter-4">
                                 <button class="ui-filter__trigger" type="button">
                                     <span class="ui-filter__label">
-                                        Cерия:
+                                        <?php echo okoyom_t( '921794a550e4', 'Cерия:' ); ?>
                                     </span>
                                     <span class="ui-filter__value">
-                                        Все
+                                        <?php echo okoyom_t( '984bf1497dea', 'Все' ); ?>
                                     </span>
                                     <span class="ui-filter__arrow"></span>
                                 </button>
                                 <div class="ui-filter__dropdown">
                                     <div class="ui-filter__list">
                                         <button class="ui-filter__item" data-value="Все">
-                                            <span>Все</span>
+                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Silentia">
-                                            <span>Silentia</span>
+                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Botanica">
-                                            <span>Botanica</span>
+                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Forma">
-                                            <span>Forma</span>
+                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Materia">
-                                            <span>Materia</span>
+                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                     </div>
@@ -164,33 +164,33 @@ defined( 'ABSPATH' ) || exit;
                             <div class="ui-filter ui-filter-3">
                                 <button class="ui-filter__trigger" type="button">
                                     <span class="ui-filter__label">
-                                        Сюжет:
+                                        <?php echo okoyom_t( '012eb7cec999', 'Сюжет:' ); ?>
                                     </span>
                                     <span class="ui-filter__value">
-                                        Все
+                                        <?php echo okoyom_t( '984bf1497dea', 'Все' ); ?>
                                     </span>
                                     <span class="ui-filter__arrow"></span>
                                 </button>
                                 <div class="ui-filter__dropdown">
                                     <div class="ui-filter__list">
                                         <button class="ui-filter__item" data-value="Все">
-                                            <span>Все</span>
+                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Silentia">
-                                            <span>Silentia</span>
+                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Botanica">
-                                            <span>Botanica</span>
+                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Forma">
-                                            <span>Forma</span>
+                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                         <button class="ui-filter__item" data-value="Materia">
-                                            <span>Materia</span>
+                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>
                                             <span class="ui-filter__check"></span>
                                         </button>
                                     </div>
@@ -200,10 +200,10 @@ defined( 'ABSPATH' ) || exit;
                             <div class="ui-filter ui-filter-2">
                                 <button class="ui-filter__trigger" type="button">
                                     <span class="ui-filter__label">
-                                        Цвет:
+                                        <?php echo okoyom_t( 'bab112ed5e4f', 'Цвет:' ); ?>
                                     </span>
                                     <span class="ui-filter__value">
-                                        Все
+                                        <?php echo okoyom_t( '984bf1497dea', 'Все' ); ?>
                                     </span>
                                     <span class="ui-filter__arrow"></span>
                                 </button>
@@ -298,23 +298,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Популярные</span>-->
+<!--                                            <span><?php echo okoyom_t( '0e7c93838124', 'Популярные' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -329,7 +329,7 @@ defined( 'ABSPATH' ) || exit;
     </div>
                     <div class="btnsFlexCenter btnsFlexCenter-22">
                         <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">
-                            Смотреть ещё
+                            <?php echo okoyom_t( '332eb1443782', 'Смотреть ещё' ); ?>
                         </a>
                     </div>
                 </li>
@@ -349,23 +349,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Все</span>-->
+<!--                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -460,23 +460,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Все</span>-->
+<!--                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -496,23 +496,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Все</span>-->
+<!--                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -534,23 +534,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Популярные</span>-->
+<!--                                            <span><?php echo okoyom_t( '0e7c93838124', 'Популярные' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -588,23 +588,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Все</span>-->
+<!--                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -699,23 +699,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Все</span>-->
+<!--                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -735,23 +735,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Все</span>-->
+<!--                                            <span><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->
@@ -773,23 +773,23 @@ defined( 'ABSPATH' ) || exit;
 <!--                                <div class="ui-filter__dropdown">-->
 <!--                                    <div class="ui-filter__list">-->
 <!--                                        <button class="ui-filter__item" data-value="Все">-->
-<!--                                            <span>Популярные</span>-->
+<!--                                            <span><?php echo okoyom_t( '0e7c93838124', 'Популярные' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Silentia">-->
-<!--                                            <span>Silentia</span>-->
+<!--                                            <span><?php echo okoyom_t( 'c2ba5792aafc', 'Silentia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Botanica">-->
-<!--                                            <span>Botanica</span>-->
+<!--                                            <span><?php echo okoyom_t( '313b01456340', 'Botanica' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Forma">-->
-<!--                                            <span>Forma</span>-->
+<!--                                            <span><?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                        <button class="ui-filter__item" data-value="Materia">-->
-<!--                                            <span>Materia</span>-->
+<!--                                            <span><?php echo okoyom_t( '73eb7809b96d', 'Materia' ); ?></span>-->
 <!--                                            <span class="ui-filter__check"></span>-->
 <!--                                        </button>-->
 <!--                                    </div>-->

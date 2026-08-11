@@ -7,14 +7,13 @@ defined( 'ABSPATH' ) || exit;
             <div class="left-flexTopContact">
                 <div class="title-inspirationTop">
             <span class="titleSectionSpan">
-               Контакты
+               <?php echo okoyom_t( '75768c49c246', 'Контакты' ); ?>
             </span>
                     <h1 class="title-inspirationTop__title">
-                        Посмотрите
-                        вживую
+                        <?php echo okoyom_t( 'a78259166902', 'Посмотрите вживую' ); ?>
                     </h1>
                     <p class="title-inspirationTop__text">
-                        Приходите в наши шоурумы, чтобы увидеть масштаб, оценить текстуры и получить консультацию специалиста.
+                        <?php echo okoyom_t( '361da14fa114', 'Приходите в наши шоурумы, чтобы увидеть масштаб, оценить текстуры и получить консультацию специалиста.' ); ?>
                     </p>
                 </div>
                 <div class="links-left-flexTopContact">
@@ -36,7 +35,7 @@ defined( 'ABSPATH' ) || exit;
                             <path d="M13.333 2.66669H2.66634C1.92996 2.66669 1.33301 3.26364 1.33301 4.00002V12C1.33301 12.7364 1.92996 13.3334 2.66634 13.3334H13.333C14.0694 13.3334 14.6663 12.7364 14.6663 12V4.00002C14.6663 3.26364 14.0694 2.66669 13.333 2.66669Z" stroke="#161412" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14.6663 4.66669L8.68634 8.46669C8.48052 8.59564 8.24255 8.66403 7.99967 8.66403C7.7568 8.66403 7.51883 8.59564 7.31301 8.46669L1.33301 4.66669" stroke="#161412" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        hello@calme.studio
+                        <?php echo okoyom_t( '35d58a9a5996', 'hello@calme.studio' ); ?>
                     </a>
                 </div>
             </div>
@@ -44,7 +43,7 @@ defined( 'ABSPATH' ) || exit;
                 <div class="top-right-flexTopContact">
                     <div class="title-top-right-flexTopContact">
                         <p>
-                            Мессенджеры
+                            <?php echo okoyom_t( '68c83fa9d212', 'Мессенджеры' ); ?>
                         </p>
                     </div>
                 </div>
@@ -53,28 +52,28 @@ defined( 'ABSPATH' ) || exit;
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M5.26634 13.3333C6.53873 13.986 8.0024 14.1628 9.3936 13.8318C10.7848 13.5009 12.012 12.6839 12.8542 11.5281C13.6963 10.3723 14.098 8.9538 13.9867 7.5281C13.8755 6.1024 13.2587 4.7633 12.2475 3.75212C11.2364 2.74093 9.89727 2.12416 8.47157 2.01293C7.04587 1.90171 5.62732 2.30335 4.47155 3.14549C3.31579 3.98762 2.4988 5.21486 2.16782 6.60607C1.83684 7.99727 2.01364 9.46094 2.66634 10.7333L1.33301 14.6667L5.26634 13.3333Z" stroke="#161412" stroke-opacity="0.3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        WhatsApp
+                        <?php echo okoyom_t( '8b777ebcc503', 'WhatsApp' ); ?>
                     </a>
                     <a href="#!" class="socials-right-flexTopContact__a">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M5.26634 13.3333C6.53873 13.986 8.0024 14.1628 9.3936 13.8318C10.7848 13.5009 12.012 12.6839 12.8542 11.5281C13.6963 10.3723 14.098 8.9538 13.9867 7.5281C13.8755 6.1024 13.2587 4.7633 12.2475 3.75212C11.2364 2.74093 9.89727 2.12416 8.47157 2.01293C7.04587 1.90171 5.62732 2.30335 4.47155 3.14549C3.31579 3.98762 2.4988 5.21486 2.16782 6.60607C1.83684 7.99727 2.01364 9.46094 2.66634 10.7333L1.33301 14.6667L5.26634 13.3333Z" stroke="#161412" stroke-opacity="0.3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        Telegram
+                        <?php echo okoyom_t( 'c915683f3ec8', 'Telegram' ); ?>
                     </a>
                 </div>
                 <div class="socials-right-flexTopContact-2">
                     <p>
-                        Социальные сети
+                        <?php echo okoyom_t( '0e87f94474f2', 'Социальные сети' ); ?>
                     </p>
                     <div class="wrapper-socials-right-flexTopContact-2">
                         <a href="#!">
-                            Instagram
+                            <?php echo okoyom_t( '55f015a0c560', 'Instagram' ); ?>
                         </a>
                         <a href="#!">
-                            Pinterest
+                            <?php echo okoyom_t( '86709a608bd9', 'Pinterest' ); ?>
                         </a>
                         <a href="#!">
-                            VK
+                            <?php echo okoyom_t( 'dd6408c912ed', 'VK' ); ?>
                         </a>
                     </div>
                 </div>
@@ -86,10 +85,10 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="titleSection titleSectionMaxWidth">
             <span class="titleSectionSpan">
-               Шоурумы
+               <?php echo okoyom_t( 'dc37e69930b7', 'Шоурумы' ); ?>
             </span>
             <h2 class="titleSectionTitle">
-                Где нас найти
+                <?php echo okoyom_t( '356165aa08b2', 'Где нас найти' ); ?>
             </h2>
         </div>
         <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain__about2">
@@ -99,7 +98,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
                 <div class="textContactCard">
                     <h5 class="title-textContactCard">
-                        Москва
+                        <?php echo okoyom_t( 'e6eb3a7361bf', 'Москва' ); ?>
                     </h5>
                     <div class="flex-textContactCard">
                         <div class="line-flex-textContactCard">
@@ -108,8 +107,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M7 7.58337C7.9665 7.58337 8.75 6.79987 8.75 5.83337C8.75 4.86688 7.9665 4.08337 7 4.08337C6.0335 4.08337 5.25 4.86688 5.25 5.83337C5.25 6.79987 6.0335 7.58337 7 7.58337Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                ул. Большая Никитская, 24/1, стр. 5
-                                м. Арбатская
+                                <?php echo okoyom_t( '5ac7bec488e6', 'ул. Большая Никитская, 24/1, стр. 5 м. Арбатская' ); ?>
                             </p>
                         </div>
                         <div class="line-flex-textContactCard">
@@ -118,7 +116,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M7 3.5V7L9.33333 8.16667" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                Пн–Сб: 10:00–20:00
+                                <?php echo okoyom_t( 'da10e9fc9460', 'Пн–Сб: 10:00–20:00' ); ?>
                             </p>
                         </div>
                         <div class="line-flex-textContactCard">
@@ -131,7 +129,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                     <a style="width: fit-content" href="#!" class="material-link openModal">
-                        Построить маршрут →
+                        <?php echo okoyom_t( 'c7555b419429', 'Построить маршрут →' ); ?>
                     </a>
                 </div>
             </div>
@@ -141,7 +139,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
                 <div class="textContactCard">
                     <h5 class="title-textContactCard">
-                        Санкт-Петербург
+                        <?php echo okoyom_t( '58f29773d778', 'Санкт-Петербург' ); ?>
                     </h5>
                     <div class="flex-textContactCard">
                         <div class="line-flex-textContactCard">
@@ -150,7 +148,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M7 7.58337C7.9665 7.58337 8.75 6.79987 8.75 5.83337C8.75 4.86688 7.9665 4.08337 7 4.08337C6.0335 4.08337 5.25 4.86688 5.25 5.83337C5.25 6.79987 6.0335 7.58337 7 7.58337Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                ТК «Интерио», ул. Полевая Сабировская, 54А 4 этаж, секция 454
+                                <?php echo okoyom_t( '3b2d14b1eb94', 'ТК «Интерио», ул. Полевая Сабировская, 54А 4 этаж, секция 454' ); ?>
                             </p>
                         </div>
                         <div class="line-flex-textContactCard">
@@ -159,7 +157,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M7 3.5V7L9.33333 8.16667" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                Пн–Сб: 11:00–20:00
+                                <?php echo okoyom_t( '984829dc7123', 'Пн–Сб: 11:00–20:00' ); ?>
                             </p>
                         </div>
                         <div class="line-flex-textContactCard">
@@ -172,7 +170,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                     <a style="width: fit-content" href="https://yandex.ru/maps/?text=Санкт-Петербург%2C%20ул.%20Полевая%20Сабировская%2C%2054А%2C%20ТК%20Интерио" target="_blank" rel="noopener" class="material-link">
-                        Построить маршрут →
+                        <?php echo okoyom_t( 'c7555b419429', 'Построить маршрут →' ); ?>
                     </a>
                 </div>
             </div>
@@ -182,7 +180,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
                 <div class="textContactCard">
                     <h5 class="title-textContactCard">
-                        Казань
+                        <?php echo okoyom_t( 'a95ef8c4f2cb', 'Казань' ); ?>
                     </h5>
                     <div class="flex-textContactCard">
                         <div class="line-flex-textContactCard">
@@ -191,7 +189,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M7 7.58337C7.9665 7.58337 8.75 6.79987 8.75 5.83337C8.75 4.86688 7.9665 4.08337 7 4.08337C6.0335 4.08337 5.25 4.86688 5.25 5.83337C5.25 6.79987 6.0335 7.58337 7 7.58337Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                ул. Баумана, 68 м. Площадь Тукая
+                                <?php echo okoyom_t( '6e88702b6ea0', 'ул. Баумана, 68 м. Площадь Тукая' ); ?>
                             </p>
                         </div>
                         <div class="line-flex-textContactCard">
@@ -200,7 +198,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M7 3.5V7L9.33333 8.16667" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                Пн–Пт: 10:00–19:00
+                                <?php echo okoyom_t( '771d04cf612d', 'Пн–Пт: 10:00–19:00' ); ?>
                             </p>
                         </div>
                         <div class="line-flex-textContactCard">
@@ -213,7 +211,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                     <a style="width: fit-content" href="#!" class="material-link openModal">
-                        Построить маршрут →
+                        <?php echo okoyom_t( 'c7555b419429', 'Построить маршрут →' ); ?>
                     </a>
                 </div>
             </div>
@@ -230,33 +228,32 @@ defined( 'ABSPATH' ) || exit;
         <div class="flexSectionInfoBuyersSection flexSectionInfoBuyersSection-22">
             <div data-aos="fade" data-aos-offset="200" class="titleSection titleSectionMaxWidth">
                 <span class="titleSectionSpan">
-                   Почему стоит приехать
+                   <?php echo okoyom_t( '1d4e835c61e5', 'Почему стоит приехать' ); ?>
                 </span>
                 <h2 class="titleSectionTitle">
-                    Масштаб и текстуру
-                    не передать на экране
+                    <?php echo okoyom_t( '27dd6e73b177', 'Масштаб и текстуру не передать на экране' ); ?>
                 </h2>
                 <p class="textTitleSection " style="margin-top: 10px !important;">
-                    Фотография не покажет, как свет играет на рельефе флизелина в 5 метрах от вас. Не передаст ощущение от текстильного полотна под пальцами. Не даст понять, насколько детализированы наши принты при печати 2400 DPI.
+                    <?php echo okoyom_t( 'b78271a3d701', 'Фотография не покажет, как свет играет на рельефе флизелина в 5 метрах от вас. Не передаст ощущение от текстильного полотна под пальцами. Не даст понять, насколько детализированы наши принты при печати 2400 DPI.' ); ?>
                     <br><br>
-                    В шоуруме вы увидите муралы в реальном масштабе, оцените качество материалов и получите экспертную консультацию по вашему проекту.
+                    <?php echo okoyom_t( '58081b738ae1', 'В шоуруме вы увидите муралы в реальном масштабе, оцените качество материалов и получите экспертную консультацию по вашему проекту.' ); ?>
                 </p>
             </div>
             <div class="flexBuyersSectionNumbers flexBuyersSectionNumbers-2">
                 <div data-aos="fade" data-aos-offset="200" class="block-flexBuyersSectionNumbers">
                     <h2>
-                        до 24 м
+                        <?php echo okoyom_t( 'c9e54a5cd177', 'до 24 м' ); ?>
                     </h2>
                     <p>
-                        в длину
+                        <?php echo okoyom_t( '4d0140b07fed', 'в длину' ); ?>
                     </p>
                 </div>
                 <div data-aos="fade" data-aos-offset="200" class="block-flexBuyersSectionNumbers">
                     <h2>
-                        до 6 м
+                        <?php echo okoyom_t( '32b7b8c0209e', 'до 6 м' ); ?>
                     </h2>
                     <p>
-                        в высоту
+                        <?php echo okoyom_t( 'ffda4eab81e4', 'в высоту' ); ?>
                     </p>
                 </div>
                 <div data-aos="fade" data-aos-offset="200" class="block-flexBuyersSectionNumbers">
@@ -264,15 +261,15 @@ defined( 'ABSPATH' ) || exit;
                         1:1
                     </h2>
                     <p>
-                        проверка фрагмента
+                        <?php echo okoyom_t( '880d83f5061e', 'проверка фрагмента' ); ?>
                     </p>
                 </div>
                 <div data-aos="fade" data-aos-offset="200" class="block-flexBuyersSectionNumbers">
                     <h2>
-                        под размер
+                        <?php echo okoyom_t( 'b13b36a76fa2', 'под размер' ); ?>
                     </h2>
                     <p>
-                        кадрирование
+                        <?php echo okoyom_t( '60693f9cb6e4', 'кадрирование' ); ?>
                     </p>
                 </div>
             </div>
@@ -283,18 +280,18 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div data-aos="fade-up" data-aos-offset="200" class="titleSection titleSection-2">
             <h2 class="titleSectionTitle">
-                Запишитесь на консультацию
+                <?php echo okoyom_t( '5c34f5e355c9', 'Запишитесь на консультацию' ); ?>
             </h2>
             <p class="textTitleSection">
-                Подберём принты под ваш интерьер, рассчитаем стоимость и подготовим визуализацию — бесплатно.
+                <?php echo okoyom_t( '8c9129f32757', 'Подберём принты под ваш интерьер, рассчитаем стоимость и подготовим визуализацию — бесплатно.' ); ?>
             </p>
         </div>
         <div data-aos="fade-up" data-aos-offset="200" class="btnsFlexCenter">
             <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV3">
-                Позвонить
+                <?php echo okoyom_t( 'ccfa0757c1a2', 'Позвонить' ); ?>
             </a>
             <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2 openModal">
-                Получить каталог
+                <?php echo okoyom_t( 'd2c9f5737c80', 'Получить каталог' ); ?>
             </a>
         </div>
     </div>

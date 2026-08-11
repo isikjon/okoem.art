@@ -5,13 +5,13 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="page404Content">
             <h2>
-                Спасибо
+                <?php echo okoyom_t( 'd7fecc954dcf', 'Спасибо' ); ?>
             </h2>
             <p>
-                Заявка отправлена. Менеджер свяжется с вами в течение рабочего дня.
+                <?php echo okoyom_t( 'f6507b80c24b', 'Заявка отправлена. Менеджер свяжется с вами в течение рабочего дня.' ); ?>
             </p>
             <a style="width: fit-content" href="/catalog/" class="material-link">
-                Вернуться в каталог
+                <?php echo okoyom_t( 'bad998a7ff72', 'Вернуться в каталог' ); ?>
             </a>
         </div>
     </div>

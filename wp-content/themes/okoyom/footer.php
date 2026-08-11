@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/logoFooter.svg" alt="Окоём" width="122" height="24" loading="lazy" decoding="async">
                 </a>
                 <p>
-                    Студия авторских настенных муралов
+                    <?php echo okoyom_t( 'c4b4f38ff5a8', 'Студия авторских настенных муралов' ); ?>
                 </p>
             </div>
             <?php okoyom_nav( 'footer', 'col-2__footer' ); ?>
@@ -18,11 +18,11 @@ defined( 'ABSPATH' ) || exit;
                     <?php echo esc_html( okoyom_option( 'phone' ) ); ?>
                 </a>
                 <a href="mailto:hello@okoyom.studio">
-                    hello@okoyom.studio
+                    <?php echo okoyom_t( 'e063e42015eb', 'hello@okoyom.studio' ); ?>
                 </a>
                 <form action="" method="post">
                     <span>
-                        Новые коллекции и вдохновение
+                        <?php echo okoyom_t( '93418d156c5f', 'Новые коллекции и вдохновение' ); ?>
                     </span>
                     <div class="flex-col-3__footer">
                         <input type="email" required placeholder="Ваш e-mail">
@@ -37,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
             </div>
             <div class="col-4__footer">
                 <p>
-                    Соцсети
+                    <?php echo okoyom_t( 'df27ea2e7e22', 'Соцсети' ); ?>
                 </p>
                 <div class="flex-col-4__footer">
                     <a href="https://www.instagram.com/okoem.art" target="_blank" rel="noopener">
@@ -57,7 +57,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="line-footer"></div>
         <p class="lastTextFooter">
-            © 2026 ОКОЁМ
+            <?php echo okoyom_t( '38c83ced84bd', '© 2026 ОКОЁМ' ); ?>
         </p>
     </div>
 </footer>

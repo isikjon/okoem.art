@@ -8,10 +8,10 @@ defined( 'ABSPATH' ) || exit;
                 404
             </h2>
             <p>
-                Страница не найдена
+                <?php echo okoyom_t( 'bcec89a1f5cb', 'Страница не найдена' ); ?>
             </p>
             <a style="width: fit-content" href="/" class="material-link openModal">
-                Перейти на главную
+                <?php echo okoyom_t( '5ddc85f339b9', 'Перейти на главную' ); ?>
             </a>
         </div>
     </div>

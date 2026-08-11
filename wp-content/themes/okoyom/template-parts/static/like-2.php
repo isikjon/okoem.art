@@ -5,10 +5,10 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="title-inspirationTop">
             <h1 class="title-inspirationTop__title">
-                Избранное
+                <?php echo okoyom_t( '2fc413929104', 'Избранное' ); ?>
             </h1>
             <p class="title-inspirationTop__text">
-                Ваш список избранного
+                <?php echo okoyom_t( 'a3d276ef861f', 'Ваш список избранного' ); ?>
             </p>
         </div>
     </div>
@@ -46,14 +46,14 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                     <div class="text-block-flexTwoTypeInfoMain">
                         <p>
-                            Муралы
+                            <?php echo okoyom_t( '64a36b22322f', 'Муралы' ); ?>
                         </p>
                         <div class="flex-text-block-flexTwoTypeInfoMain">
                         <span>
-                            пейзажи
+                            <?php echo okoyom_t( '6a986857cf56', 'пейзажи' ); ?>
                         </span>
                             <span>
-                            от 4 500 ₽/м²
+                            <?php echo okoyom_t( '3f41c521bf4f', 'от 4 500 ₽/м²' ); ?>
                         </span>
                         </div>
                     </div>
@@ -89,14 +89,14 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                     <div class="text-block-flexTwoTypeInfoMain">
                         <p>
-                            Муралы
+                            <?php echo okoyom_t( '64a36b22322f', 'Муралы' ); ?>
                         </p>
                         <div class="flex-text-block-flexTwoTypeInfoMain">
                         <span>
-                            пейзажи
+                            <?php echo okoyom_t( '6a986857cf56', 'пейзажи' ); ?>
                         </span>
                             <span>
-                            от 4 500 ₽/м²
+                            <?php echo okoyom_t( '3f41c521bf4f', 'от 4 500 ₽/м²' ); ?>
                         </span>
                         </div>
                     </div>
@@ -132,14 +132,14 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                     <div class="text-block-flexTwoTypeInfoMain">
                         <p>
-                            Муралы
+                            <?php echo okoyom_t( '64a36b22322f', 'Муралы' ); ?>
                         </p>
                         <div class="flex-text-block-flexTwoTypeInfoMain">
                         <span>
-                            пейзажи
+                            <?php echo okoyom_t( '6a986857cf56', 'пейзажи' ); ?>
                         </span>
                             <span>
-                            от 4 500 ₽/м²
+                            <?php echo okoyom_t( '3f41c521bf4f', 'от 4 500 ₽/м²' ); ?>
                         </span>
                         </div>
                     </div>
@@ -175,14 +175,14 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                     <div class="text-block-flexTwoTypeInfoMain">
                         <p>
-                            Муралы
+                            <?php echo okoyom_t( '64a36b22322f', 'Муралы' ); ?>
                         </p>
                         <div class="flex-text-block-flexTwoTypeInfoMain">
                         <span>
-                            пейзажи
+                            <?php echo okoyom_t( '6a986857cf56', 'пейзажи' ); ?>
                         </span>
                             <span>
-                            от 4 500 ₽/м²
+                            <?php echo okoyom_t( '3f41c521bf4f', 'от 4 500 ₽/м²' ); ?>
                         </span>
                         </div>
                     </div>
@@ -218,14 +218,14 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                     <div class="text-block-flexTwoTypeInfoMain">
                         <p>
-                            Муралы
+                            <?php echo okoyom_t( '64a36b22322f', 'Муралы' ); ?>
                         </p>
                         <div class="flex-text-block-flexTwoTypeInfoMain">
                         <span>
-                            пейзажи
+                            <?php echo okoyom_t( '6a986857cf56', 'пейзажи' ); ?>
                         </span>
                             <span>
-                            от 4 500 ₽/м²
+                            <?php echo okoyom_t( '3f41c521bf4f', 'от 4 500 ₽/м²' ); ?>
                         </span>
                         </div>
                     </div>
@@ -261,14 +261,14 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                     <div class="text-block-flexTwoTypeInfoMain">
                         <p>
-                            Муралы
+                            <?php echo okoyom_t( '64a36b22322f', 'Муралы' ); ?>
                         </p>
                         <div class="flex-text-block-flexTwoTypeInfoMain">
                         <span>
-                            пейзажи
+                            <?php echo okoyom_t( '6a986857cf56', 'пейзажи' ); ?>
                         </span>
                             <span>
-                            от 4 500 ₽/м²
+                            <?php echo okoyom_t( '3f41c521bf4f', 'от 4 500 ₽/м²' ); ?>
                         </span>
                         </div>
                     </div>

@@ -18,6 +18,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import re
 import shutil
 import sys
@@ -27,6 +28,38 @@ ROOT = Path(__file__).resolve().parent.parent
 THEME = ROOT / "wp-content" / "themes" / "okoyom"
 ASSETS = THEME / "assets"
 STATIC = THEME / "template-parts" / "static"
+
+TEXT_REGISTRY: dict[str, str] = {}
+
+RE_TEXT_NODE = re.compile(r"(>)([^<>]+)(<)")
+RE_HAS_LETTER = re.compile(r"[A-Za-zА-Яа-яЁё]")
+
+
+def wrap_texts(html: str) -> str:
+    def replace(match: re.Match) -> str:
+        head, text, tail = match.group(1), match.group(2), match.group(3)
+        stripped = text.strip()
+        if not stripped or not RE_HAS_LETTER.search(stripped):
+            return match.group(0)
+
+        normalized = re.sub(r"\s+", " ", stripped)
+        key = hashlib.md5(normalized.encode("utf-8")).hexdigest()[:12]
+        TEXT_REGISTRY[key] = normalized
+
+        lead = text[: len(text) - len(text.lstrip())]
+        trail = text[len(text.rstrip()) :]
+        php_default = normalized.replace("\\", "\\\\").replace("'", "\\'")
+
+        return "%s%s<?php echo okoyom_t( '%s', '%s' ); ?>%s%s" % (
+            head,
+            lead,
+            key,
+            php_default,
+            trail,
+            tail,
+        )
+
+    return RE_TEXT_NODE.sub(replace, html)
 
 BASE_PAGE = "index.html"
 
@@ -158,15 +191,19 @@ def rewrite_social(html: str) -> str:
 
     return html
 
-def rewrite_assets(html: str) -> str:
+def rewrite_assets(html: str, wrap: bool = True) -> str:
 
     html = rewrite_social(html)
     html = rewrite_editable(html)
     html = rewrite_page_links(html)
 
     html = RE_ASSET.sub(r"\1<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/", html)
+    html = RE_ASSET_CSS.sub("url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/", html)
 
-    return RE_ASSET_CSS.sub("url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/", html)
+    if wrap:
+        html = wrap_texts(html)
+
+    return html
 
 def rewrite_chrome(html: str, nav_blocks: tuple[str, ...]) -> str:
     """Разводка навигации и логотипа в шапке/подвале."""
@@ -421,7 +458,7 @@ def main() -> int:
             gallery_file = STATIC / f"{page.stem}.gallery.php"
             if gallery:
                 gallery_file.write_text(
-                    GENERATED + rewrite_assets(gallery).strip() + "\n",
+                    GENERATED + rewrite_assets(gallery, wrap=False).strip() + "\n",
                     encoding="utf-8",
                 )
             elif gallery_file.exists():
@@ -430,7 +467,7 @@ def main() -> int:
             cards_file = STATIC / f"{page.stem}.cards.php"
             if catalog_cards:
                 cards_file.write_text(
-                    GENERATED + rewrite_assets(catalog_cards).strip() + "\n",
+                    GENERATED + rewrite_assets(catalog_cards, wrap=False).strip() + "\n",
                     encoding="utf-8",
                 )
             elif cards_file.exists():
@@ -439,7 +476,7 @@ def main() -> int:
             script_file = STATIC / f"{page.stem}.scripts.php"
             if scripts:
                 script_file.write_text(
-                    GENERATED + rewrite_assets(scripts).strip() + "\n",
+                    GENERATED + rewrite_assets(scripts, wrap=False).strip() + "\n",
                     encoding="utf-8",
                 )
             elif script_file.exists():
@@ -449,6 +486,15 @@ def main() -> int:
         if gallery:
             note += f", галерея вынесена ({gallery.count('pinterest-item')} плиток)"
         print(f"  {page.name:20} → template-parts/static/{out.name} ({len(content)} б{note})")
+
+    if not args.dry_run:
+        registry_lines = ["<?php", "defined( 'ABSPATH' ) || exit;", "", "return array("]
+        for key in sorted(TEXT_REGISTRY):
+            val = TEXT_REGISTRY[key].replace("\\", "\\\\").replace("'", "\\'")
+            registry_lines.append("\t'%s' => '%s'," % (key, val))
+        registry_lines.append(");")
+        (THEME / "inc" / "texts-registry.php").write_text("\n".join(registry_lines) + "\n", encoding="utf-8")
+        print(f"Реестр текстов: {len(TEXT_REGISTRY)} уникальных строк")
 
     return 0
 
