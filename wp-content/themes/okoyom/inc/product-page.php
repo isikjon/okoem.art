@@ -46,7 +46,7 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	$collection = $collection && ! is_wp_error( $collection ) ? $collection[0]->name : '';
 	$materials  = okoyom_product_materials( $product->ID );
 	$main       = $materials ? $materials[0] : null;
-	$slides     = okoyom_product_slides( $product->ID );
+	$slides     = okoyom_product_slides( $product->ID, 0 );
 
 	$html = str_replace( 'Дальние хребты', esc_html( $title ), $html );
 	if ( $collection ) {
@@ -75,6 +75,12 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		$calc = okoyom_initial_calc( $main['price'] );
 		$html = preg_replace( '/<p>\s*7\.80 м²\s*<\/p>/u', '<p data-calc="area">' . esc_html( $calc['area'] ) . ' м²</p>', $html, 1 );
 		$html = preg_replace( $price_re, '<h2 data-calc="price">' . esc_html( $calc['total'] ) . ' ₽</h2>', $html, 1 );
+	} else {
+		// Материал не выбран — не показываем фейковую цену из вёрстки.
+		$html = preg_replace( '/<p>\s*7\.80 м²\s*<\/p>/u', '<p>—</p>', $html, 1 );
+		$html = preg_replace( $price_re, '<h2>По запросу</h2>', $html, 1 );
+		$html = preg_replace( '/(<span style="color: rgba\(22, 20, 18, 0\.65\);">)\s*7\.80 м²\s*(<\/span>)/u', '$1—$2', $html, 1 );
+		$html = preg_replace( $price_re, '<h2>По запросу</h2>', $html, 1 );
 	}
 
 	if ( $main ) {
@@ -162,21 +168,62 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		1
 	);
 
+	// Галерея карточки: генерируем слайды по числу реальных изображений
+	// (в макете их было три фиксированных). Оба swiper — миниатюры и
+	// основной — получают одинаковый набор.
 	if ( $slides ) {
-		$index = 0;
-		$html  = preg_replace_callback(
-			'/(<div class="swiper-slide[^"]*">\s*<img[^>]*src=")[^"]+("[^>]*>)/u',
-			function ( array $m ) use ( $slides, &$index ) {
-				$url = $slides[ $index % count( $slides ) ];
-				++$index;
-				return $m[1] . esc_url( $url ) . $m[2];
-			},
-			$html
-		);
+		$make_slides = static function () use ( $slides, $product ): string {
+			$out = '';
+			foreach ( $slides as $url ) {
+				$out .= sprintf(
+					'<div class="swiper-slide"><img src="%s" alt="%s" loading="lazy" decoding="async"></div>',
+					esc_url( $url ),
+					esc_attr( get_the_title( $product ) )
+				);
+			}
+			return $out;
+		};
+
+		foreach ( array( 'muralGalleryThumbs', 'muralGalleryMain' ) as $gallery_class ) {
+			$anchor = '<div class="swiper ' . $gallery_class;
+			$start  = strpos( $html, $anchor );
+			if ( false === $start ) {
+				continue;
+			}
+			$wrap_open = strpos( $html, '<div class="swiper-wrapper">', $start );
+			if ( false === $wrap_open ) {
+				continue;
+			}
+			$inner_start = $wrap_open + strlen( '<div class="swiper-wrapper">' );
+			$depth       = 1;
+			$pos         = $inner_start;
+			$len         = strlen( $html );
+			while ( $pos < $len && $depth > 0 ) {
+				$open  = strpos( $html, '<div', $pos );
+				$close = strpos( $html, '</div>', $pos );
+				if ( false === $close ) {
+					break;
+				}
+				if ( false !== $open && $open < $close ) {
+					++$depth;
+					$pos = $open + 4;
+				} else {
+					--$depth;
+					if ( 0 === $depth ) {
+						$html = substr( $html, 0, $inner_start ) . $make_slides() . substr( $html, $close );
+						break;
+					}
+					$pos = $close + 6;
+				}
+			}
+		}
 	}
 
+	// Блок «Цветовое решение» показываем только когда у товара заданы
+	// альтернативные версии. Нет версий — вырезаем весь блок целиком
+	// (решение заказчика 15.08.2026: без дефолтов, отступы не трогать).
 	$versions = function_exists( 'okoyom_color_versions' ) ? okoyom_color_versions( $product->ID ) : array();
-	if ( $versions ) {
+	if ( count( $versions ) > 1 ) {
 		$dots = '';
 		foreach ( $versions as $i => $v ) {
 			$dots .= sprintf(
@@ -200,8 +247,38 @@ function okoyom_render_product_page( WP_Post $product ): string {
 			$html,
 			1
 		);
+	} else {
+		$html = okoyom_remove_block( $html, '<div class="flexColorsCards">' );
 	}
 
+	return $html;
+}
+
+function okoyom_remove_block( string $html, string $opening ): string {
+	$start = strpos( $html, $opening );
+	if ( false === $start ) {
+		return $html;
+	}
+	$depth = 0;
+	$pos   = $start;
+	$len   = strlen( $html );
+	while ( $pos < $len ) {
+		$open  = strpos( $html, '<div', $pos );
+		$close = strpos( $html, '</div>', $pos );
+		if ( false === $close ) {
+			break;
+		}
+		if ( false !== $open && $open < $close ) {
+			++$depth;
+			$pos = $open + 4;
+		} else {
+			--$depth;
+			$pos = $close + 6;
+			if ( 0 === $depth ) {
+				return substr( $html, 0, $start ) . substr( $html, $pos );
+			}
+		}
+	}
 	return $html;
 }
 

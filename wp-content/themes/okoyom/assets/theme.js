@@ -529,16 +529,16 @@
         window.location.href = '/catalog/';
     });
 
-    var inspState = { collection: '', color: '', subject: '' };
+    var inspState = { collection: [], color: [], subject: [] };
 
     function inspApply() {
         var tiles = document.querySelectorAll('.pinterest-item');
         var shown = 0;
         tiles.forEach(function (tile) {
             var ok = ['collection', 'color', 'subject'].every(function (k) {
-                if (!inspState[k]) return true;
+                if (!inspState[k].length) return true;
                 var vals = (tile.getAttribute('data-' + k) || '').split(' ');
-                return vals.indexOf(inspState[k]) !== -1;
+                return inspState[k].some(function (v) { return vals.indexOf(v) !== -1; });
             });
             tile.style.display = ok ? '' : 'none';
             if (ok) shown++;
@@ -577,11 +577,24 @@
             list.innerHTML = html;
 
             list.querySelectorAll('.ui-filter__item').forEach(function (item) {
-                item.addEventListener('click', function () {
-                    inspState[key] = item.getAttribute('data-value');
-                    list.querySelectorAll('.ui-filter__item').forEach(function (i) { i.classList.toggle('is-active', i === item); });
-                    if (valueEl) valueEl.textContent = item.textContent.trim();
-                    panel.classList.remove('is-open');
+                item.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var value = item.getAttribute('data-value');
+                    if (value === '') {
+                        inspState[key] = [];
+                    } else {
+                        var i = inspState[key].indexOf(value);
+                        if (i === -1) inspState[key].push(value); else inspState[key].splice(i, 1);
+                    }
+                    // подсветка: «Все» активно когда ничего не выбрано
+                    list.querySelectorAll('.ui-filter__item').forEach(function (it) {
+                        var v = it.getAttribute('data-value');
+                        it.classList.toggle('is-active', v === '' ? inspState[key].length === 0 : inspState[key].indexOf(v) !== -1);
+                    });
+                    if (valueEl) {
+                        var names = inspState[key].map(function (s) { return maps[key][s]; });
+                        valueEl.textContent = names.length ? names.join(', ') : 'Все';
+                    }
                     inspApply();
                 });
             });

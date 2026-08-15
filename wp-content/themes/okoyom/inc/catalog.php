@@ -70,7 +70,7 @@ function okoyom_catalog_count(): string {
 	return $count . ' ' . $word;
 }
 
-function okoyom_product_slides( int $product_id ): array {
+function okoyom_product_slides( int $product_id, int $limit = 3 ): array {
 	$urls = array();
 
 	$thumb = get_the_post_thumbnail_url( $product_id, 'large' );
@@ -86,11 +86,16 @@ function okoyom_product_slides( int $product_id ): array {
 		}
 	}
 
-	while ( count( $urls ) < 3 && $urls ) {
-		$urls[] = $urls[0];
+	// limit 0 — все изображения (галерея карточки товара);
+	// limit 3 — hover-слайдер в каталоге, добиваем обложкой до трёх кадров.
+	if ( $limit > 0 ) {
+		while ( count( $urls ) < $limit && $urls ) {
+			$urls[] = $urls[0];
+		}
+		$urls = array_slice( $urls, 0, $limit );
 	}
 
-	return array_slice( $urls, 0, 3 );
+	return $urls;
 }
 
 function okoyom_catalog_card( WP_Post $product ): void {
@@ -99,9 +104,8 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		return;
 	}
 
-	$category = get_the_terms( $product->ID, 'product_cat' );
-	$subject  = get_the_terms( $product->ID, 'oko_subject' );
-	$price    = okoyom_product_base_price( $product->ID );
+	$collection = get_the_terms( $product->ID, 'oko_collection' );
+	$price      = okoyom_product_base_price( $product->ID );
 	?>
 	<a href="<?php echo esc_url( get_permalink( $product ) ); ?>" class="blockCardCatalog__card" data-product-id="<?php echo esc_attr( (string) $product->ID ); ?>">
 		<div class="hover-slider">
@@ -128,11 +132,11 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		</div>
 		<div class="text-block-flexTwoTypeInfoMain">
 			<p>
-				<?php echo esc_html( $category && ! is_wp_error( $category ) ? $category[0]->name : '' ); ?>
+				<?php echo esc_html( get_the_title( $product ) ); ?>
 			</p>
 			<div class="flex-text-block-flexTwoTypeInfoMain">
 				<span>
-					<?php echo esc_html( $subject && ! is_wp_error( $subject ) ? mb_strtolower( $subject[0]->name ) : '' ); ?>
+					<?php echo esc_html( $collection && ! is_wp_error( $collection ) ? $collection[0]->name : '' ); ?>
 				</span>
 				<span>
 					<?php echo esc_html( $price ? 'от ' . number_format( $price, 0, ',', ' ' ) . ' ₽/м²' : 'по запросу' ); ?>
