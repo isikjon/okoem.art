@@ -147,9 +147,46 @@ function okoyom_current_scope(): string {
 	return in_array( $tab, array( 'all', 'murals', 'companion' ), true ) ? $tab : 'all';
 }
 
+function okoyom_filters_localize( array $keys ): array {
+	$maps = array();
+	$all  = okoyom_filter_taxonomies_map();
+	foreach ( $keys as $key ) {
+		$taxonomy = $all[ $key ][0] ?? null;
+		if ( ! $taxonomy ) {
+			continue;
+		}
+		$terms = get_terms(
+			array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => true,
+			)
+		);
+		$map = array();
+		if ( ! is_wp_error( $terms ) ) {
+			foreach ( $terms as $term ) {
+				$map[ $term->slug ] = $term->name;
+			}
+		}
+		$maps[ $key ] = $map;
+	}
+	return $maps;
+}
+
 add_action(
 	'wp_enqueue_scripts',
 	function () {
+		// Инлайн-дропдауны каталога заполняются из CMS и ведут на URL-фильтр.
+		if ( is_page( array( 'catalog', 'search' ) ) || is_post_type_archive( 'product' ) ) {
+			wp_localize_script(
+				'okoyom-theme',
+				'okoyomCatFilters',
+				array(
+					'maps'   => okoyom_filters_localize( array( 'collection', 'series', 'subject', 'color' ) ),
+					'active' => okoyom_active_filters(),
+				)
+			);
+		}
+
 		if ( ! is_page( 'inspiration' ) ) {
 			return;
 		}

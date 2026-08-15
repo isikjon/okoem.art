@@ -529,6 +529,69 @@
         window.location.href = '/catalog/';
     });
 
+    function catBuildInlineFilters() {
+        var data = window.okoyomCatFilters;
+        if (!data || !data.maps) return;
+        var keyByLabel = { 'коллекция': 'collection', 'серия': 'series', 'сюжет': 'subject', 'цвет': 'color' };
+        var active = {};
+        ['collection', 'series', 'subject', 'color'].forEach(function (k) {
+            active[k] = (data.active && data.active[k]) ? data.active[k].slice() : [];
+        });
+
+        document.querySelectorAll('.ui-filter').forEach(function (panel) {
+            var labelEl = panel.querySelector('.ui-filter__label');
+            if (!labelEl) return;
+            var key = keyByLabel[labelEl.textContent.trim().toLowerCase().replace(':', '')];
+            if (!key || !data.maps[key]) return;
+
+            var list = panel.querySelector('.ui-filter__list');
+            var valueEl = panel.querySelector('.ui-filter__value');
+            if (!list) return;
+
+            var html = '<button class="ui-filter__item' + (active[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
+            Object.keys(data.maps[key]).forEach(function (slug) {
+                var on = active[key].indexOf(slug) !== -1;
+                html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" data-value="' + slug + '"><span>' + data.maps[key][slug] + '</span><span class="ui-filter__check"></span></button>';
+            });
+            list.innerHTML = html;
+            if (valueEl) {
+                var names = active[key].map(function (s) { return data.maps[key][s]; });
+                valueEl.textContent = names.length ? names.join(', ') : 'Все';
+            }
+
+            list.querySelectorAll('.ui-filter__item').forEach(function (item) {
+                item.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var value = item.getAttribute('data-value');
+                    var state = currentFilters();
+                    if (value === '') {
+                        delete state[key];
+                    } else {
+                        var arr = state[key] || [];
+                        var i = arr.indexOf(value);
+                        if (i === -1) arr.push(value); else arr.splice(i, 1);
+                        state[key] = arr;
+                    }
+                    applyFilters(state);
+                });
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            var trigger = e.target.closest('.ui-filter__trigger');
+            if (trigger) {
+                var panel = trigger.closest('.ui-filter');
+                var open = panel.classList.contains('is-open');
+                document.querySelectorAll('.ui-filter').forEach(function (p) { p.classList.remove('is-open'); });
+                if (!open) panel.classList.add('is-open');
+                return;
+            }
+            if (!e.target.closest('.ui-filter__dropdown')) {
+                document.querySelectorAll('.ui-filter').forEach(function (p) { p.classList.remove('is-open'); });
+            }
+        });
+    }
+
     var inspState = { collection: [], color: [], subject: [] };
 
     function inspApply() {
@@ -623,6 +686,7 @@
         renderFavorites();
         hideDeadMoreButtons();
         inspBuildPanels();
+        catBuildInlineFilters();
 
         
         var params = new URLSearchParams(location.search);
