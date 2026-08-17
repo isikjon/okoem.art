@@ -52,14 +52,27 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		'/(<div class="title-right-flex-cardSectionContent">)(.*?)(<\/div>)/su',
 		function ( array $m ) use ( $title, $collection, $excerpt ) {
 			$block = $m[2];
-			if ( '' !== $collection ) {
-				$block = preg_replace( '/(<span>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/span>)/u', '$1' . esc_html( $collection ) . '$2', $block, 1 );
-			}
+
+			$block = '' !== $collection
+				? preg_replace( '/(<span>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/span>)/u', '$1' . esc_html( $collection ) . '$2', $block, 1 )
+				: preg_replace( '/<span>\s*(?:<\?php[^?]*\?>|[^<]*)\s*<\/span>/u', '', $block, 1 );
+
 			$block = preg_replace( '/(<h1>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/h1>)/u', '$1' . esc_html( $title ) . '$2', $block, 1 );
-			if ( '' !== $excerpt ) {
-				$block = preg_replace( '/(<p>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/p>)/u', '$1' . esc_html( $excerpt ) . '$2', $block, 1 );
-			}
+
+			$block = '' !== $excerpt
+				? preg_replace( '/(<p>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/p>)/u', '$1' . esc_html( $excerpt ) . '$2', $block, 1 )
+				: preg_replace( '/<p>\s*(?:<\?php[^?]*\?>|[^<]*)\s*<\/p>/u', '', $block, 1 );
+
 			return $m[1] . $block . $m[3];
+		},
+		$html,
+		1
+	);
+
+	$html = preg_replace_callback(
+		'/(<p class="text-titleCardSection">)(.*?)(<\/p>)/su',
+		function ( array $m ) use ( $collection ) {
+			return '' !== $collection ? $m[1] . esc_html( $collection ) . $m[3] : $m[1] . $m[3];
 		},
 		$html,
 		1
@@ -250,6 +263,93 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		);
 	} else {
 		$html = okoyom_remove_block( $html, '<div class="flexColorsCards">' );
+	}
+
+	$related = okoyom_related_products( $product->ID );
+	if ( $related ) {
+		ob_start();
+		foreach ( $related as $related_id ) {
+			okoyom_catalog_card( get_post( $related_id ) );
+		}
+		$cards = (string) ob_get_clean();
+		$html  = okoyom_replace_block_inner(
+			$html,
+			'<div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">',
+			$cards
+		);
+		$html = preg_replace(
+			'/(<div class="flex-titleSection">\s*<h2 class="titleSectionTitle">)\s*[^<]*(<\/h2>)/su',
+			'$1' . esc_html( $collection ) . '$2',
+			$html,
+			1
+		);
+	} else {
+		$html = okoyom_remove_block( $html, '<div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">' );
+	}
+
+	return $html;
+}
+
+function okoyom_related_products( int $product_id, int $limit = 4 ): array {
+	$taxonomies = array( 'oko_collection', 'oko_series', 'oko_subject' );
+	$found      = array();
+
+	foreach ( $taxonomies as $taxonomy ) {
+		if ( count( $found ) >= $limit ) {
+			break;
+		}
+		$terms = get_the_terms( $product_id, $taxonomy );
+		if ( ! $terms || is_wp_error( $terms ) ) {
+			continue;
+		}
+		$posts = get_posts(
+			array(
+				'post_type'      => 'product',
+				'post_status'    => 'publish',
+				'posts_per_page' => $limit,
+				'post__not_in'   => array_merge( array( $product_id ), $found ),
+				'fields'         => 'ids',
+				'tax_query'      => array(
+					array(
+						'taxonomy' => $taxonomy,
+						'field'    => 'slug',
+						'terms'    => wp_list_pluck( $terms, 'slug' ),
+					),
+				),
+			)
+		);
+		$found = array_merge( $found, array_map( 'intval', $posts ) );
+	}
+
+	return array_slice( array_values( array_unique( $found ) ), 0, $limit );
+}
+
+function okoyom_replace_block_inner( string $html, string $opening, string $inner ): string {
+	$start = strpos( $html, $opening );
+	if ( false === $start ) {
+		return $html;
+	}
+	$inner_start = $start + strlen( $opening );
+	$depth       = 1;
+	$pos         = $inner_start;
+	$len         = strlen( $html );
+
+	while ( $pos < $len && $depth > 0 ) {
+		$open  = strpos( $html, '<div', $pos );
+		$close = strpos( $html, '</div>', $pos );
+		if ( false === $close ) {
+			return $html;
+		}
+		if ( false !== $open && $open < $close ) {
+			++$depth;
+			$pos = $open + 4;
+		} else {
+			--$depth;
+			if ( 0 === $depth ) {
+				return substr( $html, 0, $inner_start ) . $inner . substr( $html, $close );
+			}
+			$pos = $close + 6;
+		}
 	}
 
 	return $html;
