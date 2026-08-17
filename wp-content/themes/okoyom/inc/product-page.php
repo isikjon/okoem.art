@@ -69,6 +69,20 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		1
 	);
 
+	$hero = get_the_post_thumbnail_url( $product->ID, 'full' );
+	if ( ! $hero ) {
+		$gallery = array_filter( explode( ',', (string) get_post_meta( $product->ID, '_product_image_gallery', true ) ) );
+		$hero    = $gallery ? wp_get_attachment_image_url( (int) reset( $gallery ), 'full' ) : '';
+	}
+	if ( $hero ) {
+		$html = preg_replace(
+			'/(<section class="cardSection" style="background: url\()[^)]+(\))/u',
+			'$1' . esc_url( $hero ) . '$2',
+			$html,
+			1
+		);
+	}
+
 	$html = preg_replace_callback(
 		'/(<p class="text-titleCardSection">)(.*?)(<\/p>)/su',
 		function ( array $m ) use ( $collection ) {
