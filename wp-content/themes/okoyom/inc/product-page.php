@@ -48,17 +48,24 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	$main       = $materials ? $materials[0] : null;
 	$slides     = okoyom_product_slides( $product->ID, 0 );
 
+	$html = preg_replace_callback(
+		'/(<div class="title-right-flex-cardSectionContent">)(.*?)(<\/div>)/su',
+		function ( array $m ) use ( $title, $collection, $excerpt ) {
+			$block = $m[2];
+			if ( '' !== $collection ) {
+				$block = preg_replace( '/(<span>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/span>)/u', '$1' . esc_html( $collection ) . '$2', $block, 1 );
+			}
+			$block = preg_replace( '/(<h1>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/h1>)/u', '$1' . esc_html( $title ) . '$2', $block, 1 );
+			if ( '' !== $excerpt ) {
+				$block = preg_replace( '/(<p>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/p>)/u', '$1' . esc_html( $excerpt ) . '$2', $block, 1 );
+			}
+			return $m[1] . $block . $m[3];
+		},
+		$html,
+		1
+	);
+
 	$html = str_replace( 'Дальние хребты', esc_html( $title ), $html );
-	if ( $collection ) {
-		$html = str_replace( 'Эхо Рериха', esc_html( $collection ), $html );
-	}
-	if ( $excerpt ) {
-		$html = preg_replace(
-			'/Туманные горы[^<]+/u',
-			esc_html( $excerpt ),
-			$html
-		);
-	}
 
 	$input   = '<input type="text" placeholder="300" value="300">';
 	$pos     = strpos( $html, $input );
@@ -76,7 +83,7 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		$html = preg_replace( '/<p>\s*7\.80 м²\s*<\/p>/u', '<p data-calc="area">' . esc_html( $calc['area'] ) . ' м²</p>', $html, 1 );
 		$html = preg_replace( $price_re, '<h2 data-calc="price">' . esc_html( $calc['total'] ) . ' ₽</h2>', $html, 1 );
 	} else {
-		// Материал не выбран — не показываем фейковую цену из вёрстки.
+
 		$html = preg_replace( '/<p>\s*7\.80 м²\s*<\/p>/u', '<p>—</p>', $html, 1 );
 		$html = preg_replace( $price_re, '<h2>По запросу</h2>', $html, 1 );
 		$html = preg_replace( '/(<span style="color: rgba\(22, 20, 18, 0\.65\);">)\s*7\.80 м²\s*(<\/span>)/u', '$1—$2', $html, 1 );
@@ -168,9 +175,6 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		1
 	);
 
-	// Галерея карточки: генерируем слайды по числу реальных изображений
-	// (в макете их было три фиксированных). Оба swiper — миниатюры и
-	// основной — получают одинаковый набор.
 	if ( $slides ) {
 		$make_slides = static function () use ( $slides, $product ): string {
 			$out = '';
@@ -219,9 +223,6 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		}
 	}
 
-	// Блок «Цветовое решение» показываем только когда у товара заданы
-	// альтернативные версии. Нет версий — вырезаем весь блок целиком
-	// (решение заказчика 15.08.2026: без дефолтов, отступы не трогать).
 	$versions = function_exists( 'okoyom_color_versions' ) ? okoyom_color_versions( $product->ID ) : array();
 	if ( count( $versions ) > 1 ) {
 		$dots = '';

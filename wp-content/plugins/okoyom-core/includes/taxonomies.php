@@ -40,8 +40,7 @@ function okoyom_register_taxonomies(): void {
 					'singular_name' => $singular,
 					'menu_name'     => $plural,
 				),
-				// hierarchical=true даёт в товаре чекбоксы со ВСЕМИ значениями
-				// (выбор, а не печать «most used») — просьба заказчика 15.08.2026.
+
 				'hierarchical'      => true,
 				'public'            => true,
 				'show_admin_column' => true,

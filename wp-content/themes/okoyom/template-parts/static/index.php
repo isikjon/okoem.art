@@ -798,7 +798,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="flexSocialsMain">
             <a data-aos="fade-left" data-aos-offset="200" href="https://www.instagram.com/okoem.art" target="_blank" rel="noopener" class="link-flexSocialsMain">
-                <div style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/blockSocialsMain-1.png) center center no-repeat; background-size: cover" class="blockSocialsMain">
+                <div style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/blockSocialsMain-1.webp) center center no-repeat; background-size: cover" class="blockSocialsMain">
                     <div class="topInfo-blockSocialsMain">
                         <div class="icon-topInfo-blockSocialsMain">
                             <?php echo okoyom_t( '46cf74d33e97', 'IG' ); ?>
@@ -823,7 +823,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </a>
             <a data-aos="fade-left" data-aos-offset="300" href="https://ru.pinterest.com/okoemart" target="_blank" rel="noopener" class="link-flexSocialsMain">
-                <div style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/blockSocialsMain-2.png) center center no-repeat; background-size: cover" class="blockSocialsMain">
+                <div style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/blockSocialsMain-2.webp) center center no-repeat; background-size: cover" class="blockSocialsMain">
                     <div class="topInfo-blockSocialsMain">
                         <div class="icon-topInfo-blockSocialsMain">
                             <?php echo okoyom_t( '44c29edb103a', 'P' ); ?>
@@ -848,7 +848,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </a>
             <a data-aos="fade-left" data-aos-offset="400" href="https://vk.com/okoem_art" target="_blank" rel="noopener" class="link-flexSocialsMain">
-                <div style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/blockSocialsMain-3.png) center center no-repeat; background-size: cover" class="blockSocialsMain">
+                <div style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/blockSocialsMain-3.webp) center center no-repeat; background-size: cover" class="blockSocialsMain">
                     <div class="topInfo-blockSocialsMain">
                         <div class="icon-topInfo-blockSocialsMain">
                             <?php echo okoyom_t( 'dd6408c912ed', 'VK' ); ?>
@@ -873,7 +873,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </a>
             <a data-aos="fade-left" data-aos-offset="500" href="https://yandex.ru/rythm/businesses/@okoem.art" target="_blank" rel="noopener" class="link-flexSocialsMain">
-                <div style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/blockSocialsMain-4.png) center center no-repeat; background-size: cover" class="blockSocialsMain">
+                <div style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/blockSocialsMain-4.webp) center center no-repeat; background-size: cover" class="blockSocialsMain">
                     <div class="topInfo-blockSocialsMain">
                         <div class="icon-topInfo-blockSocialsMain">
                             <?php echo okoyom_t( 'feef0975aac3', 'Я' ); ?>

@@ -738,7 +738,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="flexCardLastInfoBlock">
             <div class="photo-left-flexCardLastInfoBlock">
                 <div class="photo-left-flexCardLastInfoBlock__photoBlock">
-                    <img class="photo-left-flexCardLastInfoBlock__photo" src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.png" alt="" width="247" height="317" loading="lazy" decoding="async">
+                    <img class="photo-left-flexCardLastInfoBlock__photo" src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.webp" alt="" width="247" height="317" loading="lazy" decoding="async">
                     <p>
                         <?php echo okoyom_t( 'b069b3d8ff01', 'в тон муралу' ); ?>
                     </p>
@@ -950,15 +950,15 @@ defined( 'ABSPATH' ) || exit;
 <!--            </div>-->
 <!--            <div class="right-flexSectionCardFreeSections">-->
 <!--                <div class="block-right-flexSectionCardFreeSections">-->
-<!--                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.png" alt="" width="247" height="317" loading="lazy" decoding="async">-->
+<!--                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.webp" alt="" width="247" height="317" loading="lazy" decoding="async">-->
 <!--                    <h3><?php echo okoyom_t( 'f89eeab23a79', 'Silentia Fog' ); ?></h3>-->
 <!--                </div>-->
 <!--                <div class="block-right-flexSectionCardFreeSections">-->
-<!--                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.png" alt="" width="247" height="317" loading="lazy" decoding="async">-->
+<!--                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.webp" alt="" width="247" height="317" loading="lazy" decoding="async">-->
 <!--                    <h3><?php echo okoyom_t( 'f89eeab23a79', 'Silentia Fog' ); ?></h3>-->
 <!--                </div>-->
 <!--                <div class="block-right-flexSectionCardFreeSections">-->
-<!--                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.png" alt="" width="247" height="317" loading="lazy" decoding="async">-->
+<!--                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.webp" alt="" width="247" height="317" loading="lazy" decoding="async">-->
 <!--                    <h3><?php echo okoyom_t( 'f89eeab23a79', 'Silentia Fog' ); ?></h3>-->
 <!--                </div>-->
 <!--            </div>-->

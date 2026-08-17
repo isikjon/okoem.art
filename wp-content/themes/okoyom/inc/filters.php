@@ -148,8 +148,11 @@ function okoyom_current_scope(): string {
 }
 
 function okoyom_filters_localize( array $keys ): array {
-	$maps = array();
-	$all  = okoyom_filter_taxonomies_map();
+	$maps    = array();
+	$all     = okoyom_filter_taxonomies_map();
+	$filters = okoyom_active_filters();
+	$scope   = okoyom_current_scope();
+
 	foreach ( $keys as $key ) {
 		$taxonomy = $all[ $key ][0] ?? null;
 		if ( ! $taxonomy ) {
@@ -159,11 +162,16 @@ function okoyom_filters_localize( array $keys ): array {
 			array(
 				'taxonomy'   => $taxonomy,
 				'hide_empty' => true,
+				'orderby'    => 'name',
 			)
 		);
 		$map = array();
 		if ( ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {
+
+				if ( ! okoyom_facet_available( $key, $term->slug, $scope, $filters ) ) {
+					continue;
+				}
 				$map[ $term->slug ] = $term->name;
 			}
 		}
@@ -172,17 +180,40 @@ function okoyom_filters_localize( array $keys ): array {
 	return $maps;
 }
 
+function okoyom_color_swatches(): array {
+	if ( ! function_exists( 'okoyom_color_hex' ) ) {
+		return array();
+	}
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'oko_color',
+			'hide_empty' => true,
+		)
+	);
+	$out = array();
+	if ( ! is_wp_error( $terms ) ) {
+		foreach ( $terms as $term ) {
+			$hex = okoyom_color_hex( $term->term_id );
+			if ( $hex ) {
+				$out[ $term->slug ] = $hex;
+			}
+		}
+	}
+	return $out;
+}
+
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		// Инлайн-дропдауны каталога заполняются из CMS и ведут на URL-фильтр.
+
 		if ( is_page( array( 'catalog', 'search' ) ) || is_post_type_archive( 'product' ) ) {
 			wp_localize_script(
 				'okoyom-theme',
 				'okoyomCatFilters',
 				array(
-					'maps'   => okoyom_filters_localize( array( 'collection', 'series', 'subject', 'color' ) ),
-					'active' => okoyom_active_filters(),
+					'maps'     => okoyom_filters_localize( array( 'collection', 'series', 'subject', 'color' ) ),
+					'active'   => okoyom_active_filters(),
+					'swatches' => okoyom_color_swatches(),
 				)
 			);
 		}

@@ -21,6 +21,7 @@ import argparse
 import hashlib
 import re
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -197,6 +198,7 @@ def rewrite_assets(html: str, wrap: bool = True) -> str:
     html = rewrite_editable(html)
     html = rewrite_page_links(html)
 
+    html = rewrite_to_webp(html)
     html = RE_ASSET.sub(r"\1<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/", html)
     html = RE_ASSET_CSS.sub("url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/", html)
 
@@ -389,6 +391,36 @@ def build_footer(chunk: str) -> str:
         + "\n<?php wp_footer(); ?>\n</body>\n</html>\n"
     )
 
+def make_webp(img_dst: Path) -> None:
+    """ТЗ требует WebP. Рядом с каждым png/jpg кладём webp, favicon не трогаем."""
+    if not shutil.which("cwebp"):
+        print("  ! cwebp не найден, конвертация в webp пропущена", file=sys.stderr)
+        return
+
+    made = 0
+    for path in sorted(img_dst.iterdir()):
+        if path.suffix.lower() not in (".png", ".jpg", ".jpeg") or path.stem == "icon":
+            continue
+        out = path.with_suffix(".webp")
+        if out.exists() and out.stat().st_mtime >= path.stat().st_mtime:
+            continue
+        subprocess.run(
+            ["cwebp", "-quiet", "-q", "82", str(path), "-o", str(out)],
+            check=True,
+        )
+        made += 1
+    print(f"  webp            → assets/img/ ({made} новых)")
+
+def rewrite_to_webp(html: str) -> str:
+    """Ссылки на png/jpg переводим на webp, если такой файл есть в assets."""
+    def repl(m: re.Match) -> str:
+        name, ext = m.group(1), m.group(2)
+        if name == "icon":
+            return m.group(0)
+        return f"{name}.webp" if (ASSETS / "img" / f"{name}.webp").exists() else m.group(0)
+
+    return re.sub(r"([\w\-.]+)\.(png|jpe?g)\b", repl, html)
+
 def copy_assets(src: Path, dry: bool) -> None:
     img_src, img_dst = src / "img", ASSETS / "img"
     if not dry:
@@ -396,6 +428,7 @@ def copy_assets(src: Path, dry: bool) -> None:
         if img_dst.exists():
             shutil.rmtree(img_dst)
         shutil.copytree(img_src, img_dst)
+        make_webp(img_dst)
     print(f"  img/            → assets/img/ ({len(list(img_src.iterdir()))} файлов)")
 
     for name in COPY_FILES:

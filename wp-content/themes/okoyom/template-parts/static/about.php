@@ -44,7 +44,7 @@ defined( 'ABSPATH' ) || exit;
 <section class="sectionMain">
     <div class="container">
         <div class="flexSectionAboutFreeSections">
-            <img alt="" src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.png" class="left-flexSectionAboutFreeSections" width="543" height="677" loading="lazy" decoding="async">
+            <img alt="" src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.webp" class="left-flexSectionAboutFreeSections" width="543" height="677" loading="lazy" decoding="async">
             <div class="right-flexSectionAboutFreeSections">
                 <div data-aos="fade" data-aos-offset="200" class="block-right-flexSectionAboutFreeSections block-right-flexSectionAboutFreeSections-2">
                     <div class="titleSection">
@@ -259,7 +259,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
             <div class="right-flexAlignV2Address">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.png" alt="" width="543" height="677" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.webp" alt="" width="543" height="677" loading="lazy" decoding="async">
                 <p class="textright-flex-cardSectionContent-123">
                     <?php echo okoyom_t( 'e6eb3a7361bf', 'Москва' ); ?>
                 </p>

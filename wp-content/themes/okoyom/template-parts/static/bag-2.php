@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
                 <div class="left-flexBagPageContainer">
                     <div class="card-left-flexBagPageContainer">
                         <div class="left-card-left-flexBagPageContainer">
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-card-left-flexBagPageContainer.png" alt="" class="left-card-left-flexBagPageContainer__img" width="118" height="128" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-card-left-flexBagPageContainer.webp" alt="" class="left-card-left-flexBagPageContainer__img" width="118" height="128" loading="lazy" decoding="async">
                             <div class="text-left-card-left-flexBagPageContainer">
                                 <span class="span-text-left-card-left-flexBagPageContainer">
                                     <?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?>
@@ -45,7 +45,7 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                     <div class="card-left-flexBagPageContainer">
                         <div class="left-card-left-flexBagPageContainer">
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-card-left-flexBagPageContainer.png" alt="" class="left-card-left-flexBagPageContainer__img" width="118" height="128" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-card-left-flexBagPageContainer.webp" alt="" class="left-card-left-flexBagPageContainer__img" width="118" height="128" loading="lazy" decoding="async">
                             <div class="text-left-card-left-flexBagPageContainer">
                                 <span class="span-text-left-card-left-flexBagPageContainer">
                                     <?php echo okoyom_t( '90c715a5c05b', 'Forma' ); ?>

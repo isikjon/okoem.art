@@ -48,7 +48,7 @@ defined( 'ABSPATH' ) || exit;
                 <h2>
                     01
                 </h2>
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.png" alt="" width="450" height="337" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
                 <div class="right-block-flexBuyersFirstSection">
                     <h3>
                         <?php echo okoyom_t( '811c8119f7a7', 'Выбираем настроение' ); ?>
@@ -59,7 +59,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
             <div data-aos="fade" data-aos-offset="200" class="block-flexBuyersFirstSection block-flexBuyersFirstSection-2">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.png" alt="" width="450" height="337" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
                 <div class="right-block-flexBuyersFirstSection">
                     <h3>
                         <?php echo okoyom_t( 'a6cab8a89142', 'Показываем в интерьере' ); ?>
@@ -76,7 +76,7 @@ defined( 'ABSPATH' ) || exit;
                 <h2>
                     03
                 </h2>
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.png" alt="" width="450" height="337" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
                 <div class="right-block-flexBuyersFirstSection">
                     <h3>
                         <?php echo okoyom_t( '28e088714be5', 'Адаптируем под размер' ); ?>
@@ -87,7 +87,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
             <div data-aos="fade" data-aos-offset="200" class="block-flexBuyersFirstSection block-flexBuyersFirstSection-2">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.png" alt="" width="450" height="337" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
                 <div class="right-block-flexBuyersFirstSection">
                     <h3>
                         <?php echo okoyom_t( '99e60e34f28e', 'Печатаем и сопровождаем монтаж' ); ?>
@@ -611,7 +611,7 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="flexAlignV2Address">
             <div class="right-flexAlignV2Address">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.png" alt="" width="543" height="677" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.webp" alt="" width="543" height="677" loading="lazy" decoding="async">
             </div>
             <div class="left-flexAlignV2Address">
                 <div class="titleSection">
@@ -721,7 +721,7 @@ defined( 'ABSPATH' ) || exit;
                     <?php echo okoyom_t( 'ae4d95754ad4', 'Задать вопрос →' ); ?>
                 </a>
             </div>
-            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexSectionInfoBuyersSection.jpg" alt="" class="flexSectionInfoBuyersSection__photo" width="1024" height="1024" loading="lazy" decoding="async">
+            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexSectionInfoBuyersSection.webp" alt="" class="flexSectionInfoBuyersSection__photo" width="1024" height="1024" loading="lazy" decoding="async">
         </div>
 
     </div>

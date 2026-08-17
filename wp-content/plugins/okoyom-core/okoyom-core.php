@@ -24,6 +24,8 @@ require_once OKOYOM_CORE_DIR . 'includes/leads-retry.php';
 require_once OKOYOM_CORE_DIR . 'includes/product-materials.php';
 require_once OKOYOM_CORE_DIR . 'includes/color-versions.php';
 require_once OKOYOM_CORE_DIR . 'includes/page-texts.php';
+require_once OKOYOM_CORE_DIR . 'includes/admin-ui.php';
+require_once OKOYOM_CORE_DIR . 'includes/images-webp.php';
 
 add_action(
 	'admin_notices',

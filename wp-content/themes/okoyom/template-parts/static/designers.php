@@ -589,7 +589,7 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="flexAlignV2Address">
             <div class="right-flexAlignV2Address">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.png" alt="" width="543" height="677" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.webp" alt="" width="543" height="677" loading="lazy" decoding="async">
             </div>
             <div class="left-flexAlignV2Address">
                 <div class="titleSection">
@@ -646,35 +646,35 @@ defined( 'ABSPATH' ) || exit;
 <!--                <div class="swiper-slide">-->
 <!--                    <div class="favWorksSlide">-->
 <!--                        <div class="favWorksSlide__image">-->
-<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.png" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
+<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.webp" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--                <div class="swiper-slide">-->
 <!--                    <div class="favWorksSlide">-->
 <!--                        <div class="favWorksSlide__image">-->
-<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.png" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
+<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.webp" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--                <div class="swiper-slide">-->
 <!--                    <div class="favWorksSlide">-->
 <!--                        <div class="favWorksSlide__image">-->
-<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.png" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
+<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.webp" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--                <div class="swiper-slide">-->
 <!--                    <div class="favWorksSlide">-->
 <!--                        <div class="favWorksSlide__image">-->
-<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.png" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
+<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.webp" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--                <div class="swiper-slide">-->
 <!--                    <div class="favWorksSlide">-->
 <!--                        <div class="favWorksSlide__image">-->
-<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.png" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
+<!--                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/work-1.webp" alt="" width="1170" height="501" loading="lazy" decoding="async">-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->

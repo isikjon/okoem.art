@@ -529,52 +529,81 @@
         window.location.href = '/catalog/';
     });
 
+    var FILTER_HOMOGLYPHS = { 'c': 'с', 'e': 'е', 'o': 'о', 'a': 'а', 'p': 'р', 'y': 'у', 'x': 'х', 'k': 'к', 'm': 'м', 'h': 'н', 't': 'т', 'b': 'в' };
+
+    function normalizeLabel(text) {
+        return text.trim().toLowerCase().replace(':', '').replace(/[a-z]/g, function (ch) {
+            return FILTER_HOMOGLYPHS[ch] || ch;
+        });
+    }
+
     function catBuildInlineFilters() {
         var data = window.okoyomCatFilters;
         if (!data || !data.maps) return;
         var keyByLabel = { 'коллекция': 'collection', 'серия': 'series', 'сюжет': 'subject', 'цвет': 'color' };
-        var active = {};
+
+        var pending = {};
         ['collection', 'series', 'subject', 'color'].forEach(function (k) {
-            active[k] = (data.active && data.active[k]) ? data.active[k].slice() : [];
+            pending[k] = (data.active && data.active[k]) ? data.active[k].slice() : [];
         });
+
+        function refreshLabel(panel, key, valueEl) {
+            if (!valueEl) return;
+            var names = pending[key].map(function (s) { return data.maps[key][s]; });
+            valueEl.textContent = names.length ? names.join(', ') : 'Все';
+        }
 
         document.querySelectorAll('.ui-filter').forEach(function (panel) {
             var labelEl = panel.querySelector('.ui-filter__label');
             if (!labelEl) return;
-            var key = keyByLabel[labelEl.textContent.trim().toLowerCase().replace(':', '')];
+            var key = keyByLabel[normalizeLabel(labelEl.textContent)];
             if (!key || !data.maps[key]) return;
 
             var list = panel.querySelector('.ui-filter__list');
             var valueEl = panel.querySelector('.ui-filter__value');
             if (!list) return;
 
-            var html = '<button class="ui-filter__item' + (active[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
+            var html = '<button class="ui-filter__item' + (pending[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
             Object.keys(data.maps[key]).forEach(function (slug) {
-                var on = active[key].indexOf(slug) !== -1;
-                html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" data-value="' + slug + '"><span>' + data.maps[key][slug] + '</span><span class="ui-filter__check"></span></button>';
+                var on = pending[key].indexOf(slug) !== -1;
+                var hex = (key === 'color' && data.swatches) ? data.swatches[slug] : '';
+                var dot = hex ? '<i class="ui-filter__swatch" style="background:' + hex + '"></i>' : '';
+                html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" data-value="' + slug + '"><span>' + dot + data.maps[key][slug] + '</span><span class="ui-filter__check"></span></button>';
             });
+            html += '<button class="ui-filter__apply" type="button">Применить</button>';
             list.innerHTML = html;
-            if (valueEl) {
-                var names = active[key].map(function (s) { return data.maps[key][s]; });
-                valueEl.textContent = names.length ? names.join(', ') : 'Все';
-            }
+            refreshLabel(panel, key, valueEl);
 
             list.querySelectorAll('.ui-filter__item').forEach(function (item) {
                 item.addEventListener('click', function (e) {
                     e.stopPropagation();
                     var value = item.getAttribute('data-value');
-                    var state = currentFilters();
                     if (value === '') {
-                        delete state[key];
+                        pending[key] = [];
                     } else {
-                        var arr = state[key] || [];
-                        var i = arr.indexOf(value);
-                        if (i === -1) arr.push(value); else arr.splice(i, 1);
-                        state[key] = arr;
+                        var i = pending[key].indexOf(value);
+                        if (i === -1) pending[key].push(value); else pending[key].splice(i, 1);
                     }
-                    applyFilters(state);
+                    list.querySelectorAll('.ui-filter__item').forEach(function (it) {
+                        var v = it.getAttribute('data-value');
+                        if (v === null) return;
+                        it.classList.toggle('is-active', v === '' ? pending[key].length === 0 : pending[key].indexOf(v) !== -1);
+                    });
+                    refreshLabel(panel, key, valueEl);
                 });
             });
+
+            var applyBtn = list.querySelector('.ui-filter__apply');
+            if (applyBtn) {
+                applyBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var state = {};
+                    ['collection', 'series', 'subject', 'color'].forEach(function (k) {
+                        if (pending[k].length) state[k] = pending[k];
+                    });
+                    applyFilters(state);
+                });
+            }
         });
 
         document.addEventListener('click', function (e) {
@@ -625,8 +654,7 @@
         document.querySelectorAll('.ui-filter').forEach(function (panel) {
             var labelEl = panel.querySelector('.ui-filter__label');
             if (!labelEl) return;
-            var label = labelEl.textContent.trim().toLowerCase().replace(':', '');
-            var key = keyByLabel[label];
+            var key = keyByLabel[normalizeLabel(labelEl.textContent)];
             if (!key || !maps[key]) return;
 
             var list = panel.querySelector('.ui-filter__list');
@@ -649,7 +677,6 @@
                         var i = inspState[key].indexOf(value);
                         if (i === -1) inspState[key].push(value); else inspState[key].splice(i, 1);
                     }
-                    // подсветка: «Все» активно когда ничего не выбрано
                     list.querySelectorAll('.ui-filter__item').forEach(function (it) {
                         var v = it.getAttribute('data-value');
                         it.classList.toggle('is-active', v === '' ? inspState[key].length === 0 : inspState[key].indexOf(v) !== -1);
@@ -677,6 +704,18 @@
             }
         });
     }
+
+    document.addEventListener('click', function (event) {
+        var main = event.target.closest('.muralGalleryMain');
+        if (!main || !main.swiper) return;
+        if (event.target.closest('a, button')) return;
+        var rect = main.getBoundingClientRect();
+        if (event.clientX - rect.left < rect.width / 2) {
+            main.swiper.slidePrev();
+        } else {
+            main.swiper.slideNext();
+        }
+    });
 
     document.addEventListener('DOMContentLoaded', function () {
         captureAttribution();

@@ -149,3 +149,15 @@ add_action(
 	},
 	5
 );
+
+add_action(
+	'template_redirect',
+	function () {
+		if ( empty( $_GET['s'] ) || ! empty( $_GET['q'] ) ) {
+			return;
+		}
+		$query = sanitize_text_field( wp_unslash( $_GET['s'] ) );
+		wp_safe_redirect( home_url( '/search/' ) . ( '' !== $query ? '?q=' . rawurlencode( $query ) : '' ), 301 );
+		exit;
+	}
+);

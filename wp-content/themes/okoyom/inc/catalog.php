@@ -86,8 +86,6 @@ function okoyom_product_slides( int $product_id, int $limit = 3 ): array {
 		}
 	}
 
-	// limit 0 — все изображения (галерея карточки товара);
-	// limit 3 — hover-слайдер в каталоге, добиваем обложкой до трёх кадров.
 	if ( $limit > 0 ) {
 		while ( count( $urls ) < $limit && $urls ) {
 			$urls[] = $urls[0];
@@ -105,7 +103,6 @@ function okoyom_catalog_card( WP_Post $product ): void {
 	}
 
 	$collection = get_the_terms( $product->ID, 'oko_collection' );
-	$price      = okoyom_product_base_price( $product->ID );
 	?>
 	<a href="<?php echo esc_url( get_permalink( $product ) ); ?>" class="blockCardCatalog__card" data-product-id="<?php echo esc_attr( (string) $product->ID ); ?>">
 		<div class="hover-slider">
@@ -137,9 +134,6 @@ function okoyom_catalog_card( WP_Post $product ): void {
 			<div class="flex-text-block-flexTwoTypeInfoMain">
 				<span>
 					<?php echo esc_html( $collection && ! is_wp_error( $collection ) ? $collection[0]->name : '' ); ?>
-				</span>
-				<span>
-					<?php echo esc_html( $price ? 'от ' . number_format( $price, 0, ',', ' ' ) . ' ₽/м²' : 'по запросу' ); ?>
 				</span>
 			</div>
 		</div>
