@@ -81,3 +81,29 @@
     margin-right: 6px;
     vertical-align: middle;
 }
+
+.ui-filter-2 .ui-filter__list .ui-filter__item--all,
+.ui-filter-2 .ui-filter__list .ui-filter__apply {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    flex-basis: 100%;
+}
+
+.ui-filter-2 .ui-filter__list .ui-filter__item--all {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 4px;
+    margin: 0;
+}
+
+.ui-filter-2 .ui-filter__list .ui-filter__apply {
+    margin: 4px 0 0;
+}
+
+.ui-filter-2 .ui-filter__list .circleFilter {
+    width: 15px;
+    height: 15px;
+    border-radius: 100px;
+    display: block;
+}

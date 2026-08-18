@@ -452,8 +452,20 @@
         if (!input.matches('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]')) return;
 
         event.preventDefault();
-        var query = input.value.trim();
-        if (query) window.location.href = '/search/?q=' + encodeURIComponent(query);
+        goToSearch(input.value.trim());
+    });
+
+    function goToSearch(query) {
+        if (query) {
+            window.location.href = '/search/?q=' + encodeURIComponent(query);
+            return;
+        }
+        if (location.pathname.indexOf('/search') === 0) window.location.href = '/catalog/';
+    }
+
+    document.addEventListener('search', function (event) {
+        if (!event.target.matches('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]')) return;
+        goToSearch(event.target.value.trim());
     });
 
     function hideDeadMoreButtons() {
@@ -471,11 +483,8 @@
         var panel = lens.closest('.mfilter');
         var input = (panel || document).querySelector('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]');
         if (input) {
-            var query = input.value.trim();
-            if (query) {
-                event.preventDefault();
-                window.location.href = '/search/?q=' + encodeURIComponent(query);
-            }
+            event.preventDefault();
+            goToSearch(input.value.trim());
         }
     });
 
@@ -563,12 +572,21 @@
             var valueEl = panel.querySelector('.ui-filter__value');
             if (!list) return;
 
-            var html = '<button class="ui-filter__item' + (pending[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
-            Object.keys(data.maps[key]).forEach(function (slug) {
+            var isColor = key === 'color' && panel.classList.contains('ui-filter-2');
+
+            var html = '<button class="ui-filter__item ui-filter__item--all' + (pending[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
+            Object.keys(data.maps[key]).forEach(function (slug, index) {
                 var on = pending[key].indexOf(slug) !== -1;
-                var hex = (key === 'color' && data.swatches) ? data.swatches[slug] : '';
-                var dot = hex ? '<i class="ui-filter__swatch" style="background:' + hex + '"></i>' : '';
-                html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" data-value="' + slug + '"><span>' + dot + data.maps[key][slug] + '</span><span class="ui-filter__check"></span></button>';
+                var name = data.maps[key][slug];
+                if (isColor) {
+                    var hex = data.swatches ? data.swatches[slug] : '';
+                    var circle = hex
+                        ? '<span class="circleFilter" style="background:' + hex + ';border:1px solid ' + hex + '"></span>'
+                        : '<span class="circleFilter circleFilter-' + (index % 13 + 1) + '"></span>';
+                    html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" type="button" data-value="' + slug + '" title="' + name + '">' + circle + '<span class="ui-filter__check"></span></button>';
+                } else {
+                    html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" type="button" data-value="' + slug + '"><span>' + name + '</span><span class="ui-filter__check"></span></button>';
+                }
             });
             html += '<button class="ui-filter__apply" type="button">Применить</button>';
             list.innerHTML = html;
@@ -578,12 +596,20 @@
                 item.addEventListener('click', function (e) {
                     e.stopPropagation();
                     var value = item.getAttribute('data-value');
+
                     if (value === '') {
                         pending[key] = [];
-                    } else {
-                        var i = pending[key].indexOf(value);
-                        if (i === -1) pending[key].push(value); else pending[key].splice(i, 1);
+                        var state = {};
+                        ['collection', 'series', 'subject', 'color'].forEach(function (k) {
+                            if (pending[k].length) state[k] = pending[k];
+                        });
+                        applyFilters(state);
+                        return;
                     }
+
+                    var i = pending[key].indexOf(value);
+                    if (i === -1) pending[key].push(value); else pending[key].splice(i, 1);
+
                     list.querySelectorAll('.ui-filter__item').forEach(function (it) {
                         var v = it.getAttribute('data-value');
                         if (v === null) return;
