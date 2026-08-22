@@ -239,6 +239,7 @@ add_action(
 			$maps[ $key ] = $map;
 		}
 
+		$maps['swatches'] = okoyom_color_swatches();
 		wp_localize_script( 'okoyom-theme', 'okoyomInspFilters', $maps );
 	},
 	20

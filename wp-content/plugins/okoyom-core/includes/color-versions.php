@@ -75,10 +75,12 @@ function okoyom_color_versions( int $product_id ): array {
 		if ( '' === $hex ) {
 			continue;
 		}
+		$variant_id = isset( $row['product'] ) ? (int) $row['product'] : 0;
 		$versions[] = array(
 			'title' => $title,
 			'hex'   => $hex,
 			'image' => isset( $row['image'] ) ? (string) $row['image'] : '',
+			'url'   => $variant_id ? (string) get_permalink( $variant_id ) : '',
 		);
 	}
 	return $versions;

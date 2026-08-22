@@ -202,15 +202,55 @@
     }, true);
 
     document.addEventListener('click', function (event) {
+        var popup = document.getElementById('galleryPopup');
+        if (!popup || !popup.classList.contains('active')) return;
+        if (!event.target.closest('#galleryPopup')) return;
+        if (event.target.closest('.gallery-popup__image, .gallery-popup__info, .gallery-popup__close')) return;
+        popup.classList.remove('active');
+        var y = parseInt(document.body.dataset.scrollY || '0', 10) || 0;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, y);
+    });
+
+    document.addEventListener('click', function (event) {
+        var back = event.target.closest('[data-back]');
+        if (!back) return;
+        event.preventDefault();
+        var to = null;
+        try { to = sessionStorage.getItem('okoyom_return_to'); } catch (e) {}
+        if (history.length > 1) { history.back(); }
+        else if (to) { window.location.href = to; }
+        else { window.location.href = '/catalog/'; }
+    });
+
+    document.addEventListener('mouseover', function (event) {
         var dot = event.target.closest('[data-color-version]');
         if (!dot) return;
+        var title = dot.getAttribute('data-color-title');
+        var wrap = dot.closest('.flexColorsCards');
+        var titleEl = wrap ? wrap.querySelector('p') : null;
+        if (titleEl && title) titleEl.textContent = title;
+    });
+
+    document.addEventListener('click', function (event) {
+        var dot = event.target.closest('[data-color-version]');
+        if (!dot) return;
+
+        var url = dot.getAttribute('data-color-url');
+        if (url) {
+            window.location.href = url;
+            return;
+        }
 
         document.querySelectorAll('[data-color-version]').forEach(function (d) {
             d.classList.toggle('block-flexColorsCards__active', d === dot);
         });
 
         var title = dot.getAttribute('data-color-title');
-        var titleEl = dot.closest('.flexColorsCards').querySelector('p');
+        var wrap = dot.closest('.flexColorsCards');
+        var titleEl = wrap ? wrap.querySelector('p') : null;
         if (titleEl && title) titleEl.textContent = title;
 
         var image = dot.getAttribute('data-color-image');
@@ -405,6 +445,7 @@
             body: JSON.stringify(payload)
         }).then(function (r) { return r.json(); }).then(function (data) {
             if (data && data.ok) {
+                try { sessionStorage.setItem('okoyom_return_to', location.pathname + location.search); } catch (e) {}
                 window.location.href = '/thanks/';
                 return;
             }
@@ -687,9 +728,19 @@
             var valueEl = panel.querySelector('.ui-filter__value');
             if (!list) return;
 
-            var html = '<button class="ui-filter__item is-active" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
-            Object.keys(maps[key]).forEach(function (slug) {
-                html += '<button class="ui-filter__item" data-value="' + slug + '"><span>' + maps[key][slug] + '</span><span class="ui-filter__check"></span></button>';
+            var isColor = key === 'color' && panel.classList.contains('ui-filter-2');
+            var html = '<button class="ui-filter__item ui-filter__item--all is-active" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
+            Object.keys(maps[key]).forEach(function (slug, index) {
+                var name = maps[key][slug];
+                if (isColor) {
+                    var hex = maps.swatches ? maps.swatches[slug] : '';
+                    var circle = hex
+                        ? '<span class="circleFilter" style="background:' + hex + ';border:1px solid ' + hex + '"></span>'
+                        : '<span class="circleFilter circleFilter-' + (index % 13 + 1) + '"></span>';
+                    html += '<button class="ui-filter__item" type="button" data-value="' + slug + '" title="' + name + '">' + circle + '<span class="ui-filter__check"></span></button>';
+                } else {
+                    html += '<button class="ui-filter__item" type="button" data-value="' + slug + '"><span>' + name + '</span><span class="ui-filter__check"></span></button>';
+                }
             });
             list.innerHTML = html;
 

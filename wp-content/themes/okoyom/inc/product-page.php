@@ -255,12 +255,13 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		$dots = '';
 		foreach ( $versions as $i => $v ) {
 			$dots .= sprintf(
-				'<div class="block-flexColorsCards%s" style="background: %s;" data-color-version="%d" data-color-image="%s" data-color-title="%s"></div>',
+				'<div class="block-flexColorsCards%s" style="background: %s;" data-color-version="%d" data-color-image="%s" data-color-title="%s" data-color-url="%s"></div>',
 				0 === $i ? ' block-flexColorsCards__active' : '',
 				esc_attr( $v['hex'] ),
 				$i,
 				esc_url( $v['image'] ),
-				esc_attr( $v['title'] )
+				esc_attr( $v['title'] ),
+				esc_url( $v['url'] ?? '' )
 			);
 		}
 		$html = preg_replace(

@@ -126,3 +126,8 @@
 .cardSection .titleCardSectionContent:not(.titleCardSectionContent-22):not(:has(.btnContentBottom)) {
     margin-bottom: 101px;
 }
+
+.page-thanks .page404Content h2 {
+    font-size: 80px;
+    line-height: 90px;
+}
