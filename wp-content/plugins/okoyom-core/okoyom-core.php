@@ -26,6 +26,7 @@ require_once OKOYOM_CORE_DIR . 'includes/color-versions.php';
 require_once OKOYOM_CORE_DIR . 'includes/page-texts.php';
 require_once OKOYOM_CORE_DIR . 'includes/admin-ui.php';
 require_once OKOYOM_CORE_DIR . 'includes/images-webp.php';
+require_once OKOYOM_CORE_DIR . 'includes/featured.php';
 
 add_action(
 	'admin_notices',
