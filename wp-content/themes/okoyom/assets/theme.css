@@ -107,3 +107,22 @@
     border-radius: 100px;
     display: block;
 }
+
+.cardSection .titleCardSectionContent:not(.titleCardSectionContent-22) {
+    padding-left: 40px;
+}
+
+.titleCardSectionContent:not(.titleCardSectionContent-22) .textSecond-titleCardSection {
+    max-width: 680px;
+}
+
+.cardSection .titleCardSectionContent:not(.titleCardSectionContent-22) .btnContentBottom {
+    width: 498px;
+    max-width: 100%;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.cardSection .titleCardSectionContent:not(.titleCardSectionContent-22):not(:has(.btnContentBottom)) {
+    margin-bottom: 101px;
+}

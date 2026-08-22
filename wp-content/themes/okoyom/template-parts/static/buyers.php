@@ -14,11 +14,11 @@ defined( 'ABSPATH' ) || exit;
                 <?php echo okoyom_t( 'f103f5002335', 'Поможем выбрать изображение, покажем его на визуализации в вашем интерьере, адаптируем под размер стены и подготовим к печати.' ); ?>
             </p>
             <div class="btnContentBottom mural-hero__fade-up">
-                <a href="#!" class="btnWhiteTextBtn">
+                <a href="#!" class="btnWhiteTextBtn openModal">
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/messageIcon.svg" alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true">
                     <?php echo okoyom_t( 'a97b07bf1ecf', 'Получить консультацию' ); ?>
                 </a>
-                <a href="/catalog/" class="btnWhiteTextBtn openModal">
+                <a href="/catalog/" class="btnWhiteTextBtn">
                     <?php echo okoyom_t( '48e039e26547', 'Подобрать мурал' ); ?>
                 </a>
             </div>
