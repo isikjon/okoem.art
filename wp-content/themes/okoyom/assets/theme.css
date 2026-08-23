@@ -131,3 +131,16 @@
     font-size: 80px;
     line-height: 90px;
 }
+
+.flexFiltersCatalog {
+    position: sticky;
+    top: 90px;
+    z-index: 50;
+    background: #F6F5F3;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.catFilterAnchor {
+    height: 0;
+}

@@ -529,55 +529,96 @@
         }
     });
 
-    function currentFilters() {
+    var CAT_GROUPS = ['collection', 'series', 'subject', 'color'];
+
+    function catStateFromUrl() {
         var params = new URLSearchParams(location.search);
         var state = {};
-        ['collection', 'series', 'subject', 'color'].forEach(function (p) {
+        CAT_GROUPS.forEach(function (p) {
             var v = params.get(p);
-            if (v) state[p] = v.split(',').filter(Boolean);
+            state[p] = v ? v.split(',').filter(Boolean) : [];
         });
         return state;
     }
 
-    function applyFilters(state) {
-        var params = new URLSearchParams();
-        Object.keys(state).forEach(function (p) {
-            if (state[p] && state[p].length) params.set(p, state[p].join(','));
-        });
-        var qs = params.toString();
-        window.location.href = '/catalog/' + (qs ? '?' + qs : '');
+    var catPending = catStateFromUrl();
+
+    function catGrid() {
+        return document.querySelector('.tab-content__item.active .flexTwoTypeInfoMain-2')
+            || document.querySelector('.flexTwoTypeInfoMain-2');
     }
 
-    document.addEventListener('click', function (event) {
-        var btn = event.target.closest('[data-filter-value]');
-        if (!btn) return;
-        var group = btn.closest('[data-filter-group]');
-        if (!group) return;
-        event.preventDefault();
+    function catFiltersRow() {
+        return document.querySelector('.flexFiltersCatalog');
+    }
 
-        var param = group.getAttribute('data-filter-group');
-        var value = btn.getAttribute('data-filter-value');
-        var state = currentFilters();
+    function catWord(n) {
+        var t2 = n % 100, t1 = n % 10;
+        if (t2 >= 11 && t2 <= 14) return 'работ';
+        if (t1 === 1) return 'работа';
+        if (t1 >= 2 && t1 <= 4) return 'работы';
+        return 'работ';
+    }
 
-        if (value === '') {
-            delete state[param];
-        } else {
-            var list = state[param] || [];
-            var idx = list.indexOf(value);
-            if (idx === -1) list.push(value); else list.splice(idx, 1);
-            state[param] = list;
+    function catRowStuck() {
+        var row = catFiltersRow();
+        if (!row) return false;
+        var top = parseInt(getComputedStyle(row).top, 10) || 0;
+        return row.getBoundingClientRect().top <= top + 1;
+    }
+
+    function catScrollToTop() {
+        var row = catFiltersRow();
+        if (!row) return;
+        var stickyTop = parseInt(getComputedStyle(row).top, 10) || 0;
+        var anchor = document.querySelector('.catFilterAnchor');
+        var docTop = anchor
+            ? anchor.getBoundingClientRect().top + window.scrollY
+            : row.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: Math.max(0, docTop - stickyTop) });
+    }
+
+    function catApply(doScroll) {
+        var grid = catGrid();
+        if (!grid) return;
+        var cards = grid.querySelectorAll('.blockCardCatalog__card');
+        var shown = 0;
+        cards.forEach(function (card) {
+            var ok = CAT_GROUPS.every(function (g) {
+                if (!catPending[g] || !catPending[g].length) return true;
+                var vals = (card.getAttribute('data-' + g) || '').split(',').filter(Boolean);
+                return catPending[g].some(function (v) { return vals.indexOf(v) !== -1; });
+            });
+            card.style.display = ok ? '' : 'none';
+            if (ok) shown++;
+        });
+
+        var countEl = document.querySelector('.textSpanQuantityCatalog');
+        if (countEl) countEl.textContent = shown + ' ' + catWord(shown);
+
+        var empty = grid.querySelector('.catEmpty');
+        if (0 === shown) {
+            if (!empty) {
+                empty = document.createElement('p');
+                empty.className = 'textTitleSection catEmpty';
+                empty.textContent = 'Ничего не найдено. Попробуйте изменить фильтры.';
+                grid.appendChild(empty);
+            }
+            empty.style.display = '';
+        } else if (empty) {
+            empty.style.display = 'none';
         }
-        applyFilters(state);
-    });
 
-    document.addEventListener('click', function (event) {
-        var reset = event.target.closest('.mfilter__reset, [class*="mfilter-reset"]');
-        if (!reset) return;
-        var t = reset.textContent.trim().toLowerCase();
-        if (t.indexOf('сброс') === -1) return;
-        event.preventDefault();
-        window.location.href = '/catalog/';
-    });
+        var params = new URLSearchParams(location.search);
+        CAT_GROUPS.forEach(function (g) {
+            if (catPending[g] && catPending[g].length) params.set(g, catPending[g].join(','));
+            else params.delete(g);
+        });
+        var qs = params.toString();
+        history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+
+        if (doScroll && catRowStuck()) catScrollToTop();
+    }
 
     var FILTER_HOMOGLYPHS = { 'c': 'с', 'e': 'е', 'o': 'о', 'a': 'а', 'p': 'р', 'y': 'у', 'x': 'х', 'k': 'к', 'm': 'м', 'h': 'н', 't': 'т', 'b': 'в' };
 
@@ -592,14 +633,20 @@
         if (!data || !data.maps) return;
         var keyByLabel = { 'коллекция': 'collection', 'серия': 'series', 'сюжет': 'subject', 'цвет': 'color' };
 
-        var pending = {};
-        ['collection', 'series', 'subject', 'color'].forEach(function (k) {
-            pending[k] = (data.active && data.active[k]) ? data.active[k].slice() : [];
+        CAT_GROUPS.forEach(function (k) {
+            if (!catPending[k]) catPending[k] = [];
         });
+
+        var row = catFiltersRow();
+        if (row && !document.querySelector('.catFilterAnchor')) {
+            var anchor = document.createElement('div');
+            anchor.className = 'catFilterAnchor';
+            row.parentNode.insertBefore(anchor, row);
+        }
 
         function refreshLabel(panel, key, valueEl) {
             if (!valueEl) return;
-            var names = pending[key].map(function (s) { return data.maps[key][s]; });
+            var names = catPending[key].map(function (s) { return data.maps[key][s]; });
             valueEl.textContent = names.length ? names.join(', ') : 'Все';
         }
 
@@ -615,9 +662,9 @@
 
             var isColor = key === 'color' && panel.classList.contains('ui-filter-2');
 
-            var html = '<button class="ui-filter__item ui-filter__item--all' + (pending[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
+            var html = '<button class="ui-filter__item ui-filter__item--all' + (catPending[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
             Object.keys(data.maps[key]).forEach(function (slug, index) {
-                var on = pending[key].indexOf(slug) !== -1;
+                var on = catPending[key].indexOf(slug) !== -1;
                 var name = data.maps[key][slug];
                 if (isColor) {
                     var hex = data.swatches ? data.swatches[slug] : '';
@@ -629,7 +676,6 @@
                     html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" type="button" data-value="' + slug + '"><span>' + name + '</span><span class="ui-filter__check"></span></button>';
                 }
             });
-            html += '<button class="ui-filter__apply" type="button">Применить</button>';
             list.innerHTML = html;
             refreshLabel(panel, key, valueEl);
 
@@ -639,38 +685,21 @@
                     var value = item.getAttribute('data-value');
 
                     if (value === '') {
-                        pending[key] = [];
-                        var state = {};
-                        ['collection', 'series', 'subject', 'color'].forEach(function (k) {
-                            if (pending[k].length) state[k] = pending[k];
-                        });
-                        applyFilters(state);
-                        return;
+                        catPending[key] = [];
+                    } else {
+                        var i = catPending[key].indexOf(value);
+                        if (i === -1) catPending[key].push(value); else catPending[key].splice(i, 1);
                     }
-
-                    var i = pending[key].indexOf(value);
-                    if (i === -1) pending[key].push(value); else pending[key].splice(i, 1);
 
                     list.querySelectorAll('.ui-filter__item').forEach(function (it) {
                         var v = it.getAttribute('data-value');
                         if (v === null) return;
-                        it.classList.toggle('is-active', v === '' ? pending[key].length === 0 : pending[key].indexOf(v) !== -1);
+                        it.classList.toggle('is-active', v === '' ? catPending[key].length === 0 : catPending[key].indexOf(v) !== -1);
                     });
                     refreshLabel(panel, key, valueEl);
+                    catApply(true);
                 });
             });
-
-            var applyBtn = list.querySelector('.ui-filter__apply');
-            if (applyBtn) {
-                applyBtn.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    var state = {};
-                    ['collection', 'series', 'subject', 'color'].forEach(function (k) {
-                        if (pending[k].length) state[k] = pending[k];
-                    });
-                    applyFilters(state);
-                });
-            }
         });
 
         document.addEventListener('click', function (e) {
@@ -686,7 +715,48 @@
                 document.querySelectorAll('.ui-filter').forEach(function (p) { p.classList.remove('is-open'); });
             }
         });
+
+        catApply(false);
     }
+
+    document.addEventListener('click', function (event) {
+        var btn = event.target.closest('[data-filter-value]');
+        if (!btn) return;
+        var group = btn.closest('[data-filter-group]');
+        if (!group) return;
+        event.preventDefault();
+
+        var param = group.getAttribute('data-filter-group');
+        var value = btn.getAttribute('data-filter-value');
+        if (!catPending[param]) catPending[param] = [];
+
+        if (value === '') {
+            catPending[param] = [];
+        } else {
+            var idx = catPending[param].indexOf(value);
+            if (idx === -1) catPending[param].push(value); else catPending[param].splice(idx, 1);
+        }
+        group.querySelectorAll('[data-filter-value]').forEach(function (b) {
+            var v = b.getAttribute('data-filter-value');
+            b.classList.toggle('active', v === '' ? catPending[param].length === 0 : catPending[param].indexOf(v) !== -1);
+        });
+        catApply(true);
+    });
+
+    document.addEventListener('click', function (event) {
+        var reset = event.target.closest('.mfilter__reset, [class*="mfilter-reset"]');
+        if (!reset) return;
+        var t = reset.textContent.trim().toLowerCase();
+        if (t.indexOf('сброс') === -1) return;
+        event.preventDefault();
+        CAT_GROUPS.forEach(function (g) { catPending[g] = []; });
+        document.querySelectorAll('.ui-filter__item, [data-filter-value]').forEach(function (b) {
+            b.classList.toggle('is-active', b.getAttribute('data-value') === '');
+            b.classList.toggle('active', b.getAttribute('data-filter-value') === '');
+        });
+        document.querySelectorAll('.ui-filter__value').forEach(function (v) { v.textContent = 'Все'; });
+        catApply(true);
+    });
 
     var inspState = { collection: [], color: [], subject: [] };
 
