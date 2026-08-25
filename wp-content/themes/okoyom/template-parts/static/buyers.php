@@ -173,11 +173,8 @@ defined( 'ABSPATH' ) || exit;
 <section class="sectionMain sectionMainV2">
     <div class="container">
         <div class="titleSection titleSectionMaxWidth titleSectionMaxWidth__buersMob">
-            <span class="titleSectionSpan">
-              <?php echo okoyom_t( '79bfff8c1476', 'Материалы' ); ?>
-            </span>
             <h2 class="titleSectionTitle">
-                <?php echo okoyom_t( '7b0a9607b208', 'Издалека — композиция. Вблизи — детали' ); ?>
+                <?php echo okoyom_t( 'f815f174101d', 'Материалы и печать' ); ?>
             </h2>
             <p class="textTitleSection" style="margin-top: 10px !important;">
                 <?php echo okoyom_t( '63cf83120f88', 'Муралы Окоём создаются для крупного формата — сохраняют живописную структуру и детализацию при близком рассмотрении.' ); ?>
