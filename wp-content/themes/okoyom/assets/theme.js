@@ -215,14 +215,25 @@
     });
 
     document.addEventListener('click', function (event) {
+        if (!event.target.closest('.openModal, .openModal2, [data-lead-type]')) return;
+        try {
+            sessionStorage.setItem('okoyom_return_to', location.pathname + location.search);
+            sessionStorage.setItem('okoyom_return_scroll', String(window.scrollY));
+        } catch (e) {}
+    }, true);
+
+    document.addEventListener('click', function (event) {
         var back = event.target.closest('[data-back]');
         if (!back) return;
         event.preventDefault();
         var to = null;
         try { to = sessionStorage.getItem('okoyom_return_to'); } catch (e) {}
-        if (history.length > 1) { history.back(); }
-        else if (to) { window.location.href = to; }
-        else { window.location.href = '/catalog/'; }
+        if (to) {
+            try { sessionStorage.setItem('okoyom_restore_scroll', '1'); } catch (e) {}
+            window.location.href = to;
+        } else {
+            window.location.href = '/catalog/';
+        }
     });
 
     document.addEventListener('mouseover', function (event) {
@@ -445,7 +456,6 @@
             body: JSON.stringify(payload)
         }).then(function (r) { return r.json(); }).then(function (data) {
             if (data && data.ok) {
-                try { sessionStorage.setItem('okoyom_return_to', location.pathname + location.search); } catch (e) {}
                 window.location.href = '/thanks/';
                 return;
             }
@@ -873,6 +883,14 @@
         hideDeadMoreButtons();
         inspBuildPanels();
         catBuildInlineFilters();
+
+        try {
+            if (sessionStorage.getItem('okoyom_restore_scroll') === '1') {
+                var savedY = parseInt(sessionStorage.getItem('okoyom_return_scroll') || '0', 10);
+                sessionStorage.removeItem('okoyom_restore_scroll');
+                window.scrollTo(0, savedY);
+            }
+        } catch (e) {}
 
         
         var params = new URLSearchParams(location.search);

@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
             <p>
                 <?php echo okoyom_t( '7ff4b8164fbf', 'Добавьте товары из каталога' ); ?>
             </p>
-            <a style="width: fit-content" href="/catalog/" class="material-link openModal">
+            <a style="width: fit-content" href="/catalog/" class="material-link">
                 <?php echo okoyom_t( 'ef15998d4730', 'Перейти в каталог →' ); ?>
             </a>
         </div>

@@ -136,11 +136,46 @@
     position: sticky;
     top: 90px;
     z-index: 50;
-    background: #F6F5F3;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    background: #F2F0ED;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .catFilterAnchor {
     height: 0;
+}
+
+.cardSection .titleCardSectionContent-22 {
+    margin-bottom: 38px;
+}
+
+@keyframes okoKenBurns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.08); }
+}
+
+.mural-hero__bg img {
+    animation: okoKenBurns 18s ease-in-out infinite alternate;
+}
+
+.cardSection:has(.titleCardSectionContent:not(.titleCardSectionContent-22))::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url(img/cardBG.webp) center center / cover no-repeat;
+    animation: okoKenBurns 18s ease-in-out infinite alternate;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.cardSection:has(.titleCardSectionContent:not(.titleCardSectionContent-22)) > .container {
+    position: relative;
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mural-hero__bg img,
+    .cardSection::before {
+        animation: none !important;
+    }
 }

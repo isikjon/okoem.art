@@ -158,9 +158,6 @@ function okoyom_catalog_grid( string $scope = 'all' ): void {
 
 	$search = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
 
-	// Фильтрация каталога — на стороне клиента без перезагрузки (просьба
-	// заказчика 21.08.2026), поэтому сетка отдаёт все карточки, а поиск
-	// по названию и артикулу остаётся серверным.
 	$products = okoyom_catalog_products( $scope, $search );
 
 	if ( ! $products ) {

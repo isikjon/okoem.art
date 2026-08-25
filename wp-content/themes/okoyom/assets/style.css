@@ -1,22 +1,10 @@
-/* okoyom:normalize */
-/* У картинок проставлены width/height, чтобы браузер резервировал под них
-   место и не было скачков раскладки при загрузке (ТЗ п. 13).
 
-   Сами по себе атрибуты ломают эту вёрстку: одни блоки задают картинке
-   только ширину (тогда буквально применялась бы высота из атрибута —
-   photoBig растягивался с 835 до 3340 px), другие только высоту (тогда
-   применялась бы ширина — логотип в шапке расползался с 92 до 122 px и
-   сдвигал меню). Обнуляем оба измерения: атрибуты остаются подсказкой
-   пропорции, а размер по-прежнему диктует CSS.
 
-   Селектор из одного тега перебивается любым правилом с классом, поэтому
-   блоки со своими размерами продолжают работать как раньше. */
 img {
     width: auto;
     height: auto;
 }
 
-/*Дэфолтные настройки*/
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent !important;
@@ -111,7 +99,7 @@ button{
 body{
     padding-top: 0px;
 }
-/*Дэфолтные настройки*/
+
 header{
     width: 100%;
     padding: 32px 0;
@@ -134,7 +122,7 @@ header{
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 133.333% */
+    line-height: 20px; 
     letter-spacing: 4.2px;
     text-transform: uppercase;
 }
@@ -148,7 +136,7 @@ header{
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
-    line-height: 18.7px; /* 170% */
+    line-height: 18.7px; 
     letter-spacing: 1.1px;
 }
 .line-telHeaderFlex{
@@ -185,7 +173,7 @@ header{
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -196,7 +184,7 @@ header{
     position: relative;
     width: 100%;
     height: calc(100vh - 0px);
-    /*min-height: 760px;*/
+    
     overflow: hidden;
 }
 .mural-hero__slider,
@@ -242,7 +230,7 @@ header{
     font-size: 80px;
     font-style: normal;
     font-weight: 400;
-    line-height: 90px; /* 104.651% */
+    line-height: 90px; 
     letter-spacing: -2px;
     margin-bottom: 24px;
 }
@@ -251,7 +239,7 @@ header{
     font-size: 17px;
     font-style: normal;
     font-weight: 300;
-    line-height: 30px; /* 166.667% */
+    line-height: 30px; 
     max-width: 555px;
 }
 .btnContentBottom{
@@ -275,7 +263,7 @@ header{
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
-    line-height: 17px; /* 170% */
+    line-height: 17px; 
     letter-spacing: 1.6px;
     text-transform: uppercase;
     border: 1px solid rgba(255, 255, 255, 0.50);
@@ -359,7 +347,7 @@ header{
     font-size: 11px;
     font-style: normal;
     font-weight: 500;
-    line-height: 18.7px; /* 170% */
+    line-height: 18.7px; 
     letter-spacing: 2.2px;
     text-transform: uppercase;
 }
@@ -368,7 +356,7 @@ header{
     font-size: 44.6px;
     font-style: normal;
     font-weight: 400;
-    line-height: 44px; /* 98.655% */
+    line-height: 44px; 
     letter-spacing: -1.12px;
 }
 .block-flexSectionInfoMain01{
@@ -402,7 +390,7 @@ header{
     font-size: 11px;
     font-style: normal;
     font-weight: 500;
-    line-height: 18.7px; /* 170% */
+    line-height: 18.7px; 
     letter-spacing: 2.2px;
     text-transform: uppercase;
 }
@@ -411,7 +399,7 @@ header{
     font-size: 35.7px;
     font-style: normal;
     font-weight: 400;
-    line-height: 37.8px; /* 105.882% */
+    line-height: 37.8px; 
     letter-spacing: -0.72px;
 }
 .text-flexRow-block-flexSectionInfoMain01 p{
@@ -419,7 +407,7 @@ header{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
     letter-spacing: 0.21px;
 }
 .flexSectionInfoMain01{
@@ -437,7 +425,7 @@ header{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20.4px; /* 170% */
+    line-height: 20.4px; 
     letter-spacing: 1.92px;
     text-transform: uppercase;
 }
@@ -486,7 +474,7 @@ header{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20.4px; /* 170% */
+    line-height: 20.4px; 
     letter-spacing: 1.92px;
     text-transform: uppercase;
 }
@@ -521,7 +509,7 @@ header{
     font-size: 12px;
     font-style: normal;
     font-weight: 300;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     letter-spacing: 2px;
 }
 .title-right-flexGreyInfoBlockRow__block h3{
@@ -529,7 +517,7 @@ header{
     font-size: 42px;
     font-style: normal;
     font-weight: 400;
-    line-height: 42px; /* 100% */
+    line-height: 42px; 
     margin-top: 15px;
     margin-bottom: 10px;
 }
@@ -538,7 +526,7 @@ header{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
 }
 .right-flexGreyInfoBlockRow__block{
     width: 425px;
@@ -561,7 +549,7 @@ header{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
 }
 .flexDotes-right-flexGreyInfoBlockRow__block{
     display: flex;
@@ -579,7 +567,7 @@ header{
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 171.429% */
+    line-height: 24px; 
 }
 .arrow-line-flexDotes-right-flexGreyInfoBlockRow__block{
     width: 24px;
@@ -604,7 +592,7 @@ header{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
 }
 .block-flexBorderTextInfoSection{
     border: 1px solid rgba(22, 20, 18, 0.10);
@@ -642,7 +630,7 @@ header{
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16.8px; /* 105% */
+    line-height: 16.8px; 
     letter-spacing: -0.4px;
 }
 .block-flexTwoTypeInfoMain .text-block-flexTwoTypeInfoMain p{
@@ -663,7 +651,7 @@ header{
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24.5px; /* 175% */
+    line-height: 24.5px; 
     letter-spacing: 0.21px;
 }
 .flexTwoTypeInfoMain{
@@ -680,7 +668,7 @@ header{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20.4px; /* 170% */
+    line-height: 20.4px; 
     letter-spacing: 1.92px;
     text-transform: uppercase;
 }
@@ -719,10 +707,10 @@ header{
 .hover-slider {
     position: relative;
     width: 100%;
-    aspect-ratio: 3 / 4; /* подгони под свои картинки */
+    aspect-ratio: 3 / 4; 
     overflow: hidden;
 }
-/* СЛАЙДЫ */
+
 .hover-slider__slides {
     position: relative;
     width: 100%;
@@ -742,7 +730,7 @@ header{
     height: 100%;
     object-fit: cover;
 }
-/* ЗОНЫ НАВЕДЕНИЯ */
+
 .hover-slider__zones {
     position: absolute;
     inset: 0;
@@ -753,7 +741,7 @@ header{
 .hover-slider__zones div {
     cursor: pointer;
 }
-/* ПАГИНАЦИЯ */
+
 .hover-slider__pagination {
     position: absolute;
     left: 50%;
@@ -808,7 +796,7 @@ header{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -817,14 +805,14 @@ header{
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: 16px; /* 100% */
+    line-height: 16px; 
 }
 .block-flexPlusesMainCards p{
     color: rgba(22, 20, 18, 0.55);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 171.429% */
+    line-height: 24px; 
 }
 .left-flexSectionInfoBottomMain{
     max-width: 515px;
@@ -874,7 +862,7 @@ header{
     font-style: normal;
     margin-top: 25px;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
 }
 .titleSection-2{
     width: 100%;
@@ -925,7 +913,7 @@ header{
     font-size: 10px;
     font-style: normal;
     font-weight: 500;
-    line-height: 17px; /* 170% */
+    line-height: 17px; 
     letter-spacing: 0.5px;
     border-radius: 9999px;
     background: rgba(255, 255, 255, 0.95);
@@ -940,7 +928,7 @@ header{
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
-    line-height: 16.25px; /* 125% */
+    line-height: 16.25px; 
     letter-spacing: 0.21px;
 }
 .right-topInfo-blockSocialsMain span{
@@ -948,7 +936,7 @@ header{
     font-size: 11px;
     font-style: normal;
     font-weight: 300;
-    line-height: 13.75px; /* 125% */
+    line-height: 13.75px; 
     letter-spacing: 0.22px;
 }
 .bottom-blockSocialsMain{
@@ -963,7 +951,7 @@ header{
     font-size: 33.7px;
     font-style: normal;
     font-weight: 400;
-    line-height: 34px; /* 100.89% */
+    line-height: 34px; 
     letter-spacing: -0.68px;
 }
 .bottom-blockSocialsMain span{
@@ -971,7 +959,7 @@ header{
     font-size: 10px;
     font-style: normal;
     font-weight: 300;
-    line-height: 17px; /* 170% */
+    line-height: 17px; 
     letter-spacing: 1.8px;
     text-transform: uppercase;
 }
@@ -1012,7 +1000,7 @@ footer{
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 23.8px; /* 170% */
+    line-height: 23.8px; 
     letter-spacing: 5.6px;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -1022,7 +1010,7 @@ footer{
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
-    line-height: 23.4px; /* 180% */
+    line-height: 23.4px; 
     letter-spacing: 0.13px;
 }
 .col-2__footer{
@@ -1036,7 +1024,7 @@ footer{
     font-size: 12.5px;
     font-style: normal;
     font-weight: 300;
-    line-height: 21.25px; /* 170% */
+    line-height: 21.25px; 
     letter-spacing: 0.5px;
 }
 .col-3__footer{
@@ -1051,7 +1039,7 @@ footer{
     font-size: 12.5px;
     font-style: normal;
     font-weight: 300;
-    line-height: 21.25px; /* 170% */
+    line-height: 21.25px; 
     letter-spacing: 0.5px;
 }
 .col-3__footer form{
@@ -1063,7 +1051,7 @@ footer{
     font-size: 10px;
     font-style: normal;
     font-weight: 300;
-    line-height: 17px; /* 170% */
+    line-height: 17px; 
     letter-spacing: 1.8px;
     text-transform: uppercase;
 }
@@ -1079,7 +1067,7 @@ footer{
     font-size: 12.5px;
     font-style: normal;
     font-weight: 300;
-    line-height: 21.25px; /* 170% */
+    line-height: 21.25px; 
     letter-spacing: 0.5px;
     font-family: "Outfit", sans-serif;
     border: none;
@@ -1110,7 +1098,7 @@ footer{
     font-size: 10px;
     font-style: normal;
     font-weight: 300;
-    line-height: 17px; /* 170% */
+    line-height: 17px; 
     letter-spacing: 1.8px;
     text-transform: uppercase;
 }
@@ -1125,7 +1113,7 @@ footer{
     font-size: 10.5px;
     font-style: normal;
     font-weight: 300;
-    line-height: 17.85px; /* 170% */
+    line-height: 17.85px; 
     letter-spacing: 1.89px;
     text-transform: uppercase;
 }
@@ -1205,7 +1193,7 @@ footer .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
 }
 .formAllProject input::placeholder{
     color: rgba(22, 20, 18, 0.35);
@@ -1213,7 +1201,7 @@ footer .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
 }
 .formAllProject textarea{
     width: 100%;
@@ -1226,7 +1214,7 @@ footer .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
     height: 100px;
     resize: none;
 }
@@ -1236,7 +1224,7 @@ footer .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
 }
 .modalContent .textTitleSection{
     margin-top: 0;
@@ -1255,7 +1243,7 @@ header .logo{
     font-size: 80px;
     font-style: normal;
     font-weight: 400;
-    line-height: 90px; /* 104.651% */
+    line-height: 90px; 
     letter-spacing: -2px;
 }
 .titleCatalog__text{
@@ -1264,7 +1252,7 @@ header .logo{
     font-size: 17px;
     font-style: normal;
     font-weight: 300;
-    line-height: 30px; /* 166.667% */
+    line-height: 30px; 
     margin-top: 20px;
 }
 .tab-header{
@@ -1280,7 +1268,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 18px; /* 150% */
+    line-height: 18px; 
     letter-spacing: 1.5px;
     text-transform: uppercase;
     border-bottom: 1px solid rgba(22, 20, 18, 0);
@@ -1333,7 +1321,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     flex-shrink:0;
 }
 .ui-filter__value{
@@ -1341,7 +1329,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     overflow:hidden;
     white-space:nowrap;
     text-overflow:ellipsis;
@@ -1398,14 +1386,14 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
 }
 .ui-filter__item.is-active{
     color: rgba(22, 20, 18, 0.70);
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
 }
 .ui-filter__check{
     width:18px;
@@ -1430,7 +1418,7 @@ header .logo{
     opacity:1;
 }
 .tab-content{
-    /*margin-top: 25px;*/
+    
 }
 .left-flexFiltersCatalog{
     display: flex;
@@ -1525,7 +1513,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     display: none;
 }
 .flexModalContent-2{
@@ -1544,7 +1532,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
 }
 .filterModalOpen img{
     height: 18px;
@@ -1565,7 +1553,7 @@ header .logo{
     font-size: 80px;
     font-style: normal;
     font-weight: 400;
-    line-height: 90px; /* 104.651% */
+    line-height: 90px; 
     letter-spacing: -2px;
     margin-bottom: 30px;
 }
@@ -1574,7 +1562,7 @@ header .logo{
     font-size: 17px;
     font-style: normal;
     font-weight: 300;
-    line-height: 30px; /* 166.667% */
+    line-height: 30px; 
     max-width: 500px;
 }
 .flexFiltersCatalog-3{
@@ -1616,7 +1604,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -1625,7 +1613,7 @@ header .logo{
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
-    line-height: 24px; /* 100% */
+    line-height: 24px; 
     text-align: center;
 }
 .flexContentInspiration{
@@ -1645,7 +1633,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px; /* 114.286% */
+    line-height: 16px; 
     letter-spacing: 3px;
     text-transform: uppercase;
 }
@@ -1654,7 +1642,7 @@ header .logo{
     font-size: 17px;
     font-style: normal;
     font-weight: 300;
-    line-height: 30px; /* 166.667% */
+    line-height: 30px; 
     margin-top: 24px;
 }
 .title-titleCardSection{
@@ -1663,7 +1651,7 @@ header .logo{
     font-size: 80px;
     font-style: normal;
     font-weight: 400;
-    line-height: 90px; /* 140.625% */
+    line-height: 90px; 
     letter-spacing: -2px;
     margin-top: 10px;
 }
@@ -1678,7 +1666,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 300;
-    line-height: 17px; /* 141.667% */
+    line-height: 17px; 
     letter-spacing: 1.5px;
     text-transform: uppercase;
     gap: 8px;
@@ -1706,7 +1694,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 18px; /* 150% */
+    line-height: 18px; 
     letter-spacing: 0.2px;
 }
 .breadLinks span{
@@ -1714,7 +1702,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 300;
-    line-height: 18px; /* 150% */
+    line-height: 18px; 
     letter-spacing: 0.2px;
 }
 .breadLinks p{
@@ -1722,7 +1710,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 18px; /* 150% */
+    line-height: 18px; 
     letter-spacing: 0.2px;
 }
 .left-flex-cardSectionContent{
@@ -1745,7 +1733,7 @@ header .logo{
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
-    line-height: 14px; /* 166.667% */
+    line-height: 14px; 
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -1754,14 +1742,14 @@ header .logo{
     font-size: 32px;
     font-style: normal;
     font-weight: 400;
-    line-height: 40px; /* 100% */
+    line-height: 40px; 
 }
 .title-right-flex-cardSectionContent p{
     color: rgba(22, 20, 18, 0.55);
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 20px; /* 175% */
+    line-height: 20px; 
 }
 .title-right-flex-cardSectionContent{
     display: flex;
@@ -1794,7 +1782,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 18px; /* 150% */
+    line-height: 18px; 
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: 0.3s;
@@ -1834,7 +1822,7 @@ header .logo{
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px; /* 160% */
+    line-height: 16px; 
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
@@ -1843,7 +1831,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px; 
 }
 .flex-flexColorsCards{
     gap: 12px;
@@ -1864,7 +1852,7 @@ header .logo{
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 200% */
+    line-height: 20px; 
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -1877,7 +1865,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 200% */
+    line-height: 24px; 
 }
 .flexForm-right-flex-cardSectionContent{
     display: flex;
@@ -1897,7 +1885,7 @@ header .logo{
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
-    line-height: 17px; /* 170% */
+    line-height: 17px; 
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -1912,11 +1900,8 @@ header .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 157.143% */
+    line-height: 22px; 
 }
-
-
-
 
 .material-select{
     position:relative;
@@ -1937,14 +1922,14 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
 }
 .material-select__value{
     color: #161412;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
 }
 .material-select__current{
     display:flex;
@@ -2014,7 +1999,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
     transition:.2s ease;
 }
 .material-select__percent{
@@ -2043,21 +2028,21 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
 }
 .line-flexPriceInfo-right-flex-cardSectionContent p{
     color: #161412;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 157.143% */
+    line-height: 22px; 
 }
 .line-flexPriceInfo-right-flex-cardSectionContent h2{
     color: #161412;
     font-size: 22px;
     font-style: normal;
     font-weight: 400;
-    line-height: 28px; /* 127.273% */
+    line-height: 28px; 
 }
 .right-flex-cardSectionContent .btnWhiteTextBtn{
     width: 100%;
@@ -2070,9 +2055,6 @@ header .logo{
     line-height: 20px;
     letter-spacing: 0.21px;
 }
-
-
-
 
 .dtabs{
     width:100%;
@@ -2093,7 +2075,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
     letter-spacing: 2px;
     text-transform: uppercase;
     cursor:pointer;
@@ -2130,7 +2112,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     padding:9px 16px;
     border: 1px solid rgba(22, 20, 18, 0.15);
     display:flex;
@@ -2147,7 +2129,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
 }
 .material-tab__percent{
     opacity:.7;
@@ -2168,7 +2150,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 24px; /* 150% */
+    line-height: 24px; 
     margin-bottom: 30px;
     display: none;
 }
@@ -2190,14 +2172,14 @@ header .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 157.143% */
+    line-height: 22px; 
 }
 .material-row span:last-child{
     color: rgba(22, 20, 18, 0.70);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 157.143% */
+    line-height: 22px; 
 }
 .material-tags{
     display:flex;
@@ -2213,7 +2195,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
 }
 .material-link{
     display: flex;
@@ -2223,7 +2205,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 18.7px; /* 155.833% */
+    line-height: 18.7px; 
     letter-spacing: 1.76px;
     text-transform: uppercase;
 }
@@ -2244,7 +2226,7 @@ header .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 25.5px; /* 182.143% */
+    line-height: 25.5px; 
     letter-spacing: 0.21px;
     display: none;
 }
@@ -2255,7 +2237,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
 }
 .titleSection__mobCard{
     display: none;
@@ -2270,7 +2252,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 24px; /* 150% */
+    line-height: 24px; 
     margin-bottom:30px;
 }
 .print-layout__2Second{
@@ -2287,7 +2269,7 @@ header .logo{
     font-size: 42px;
     font-style: normal;
     font-weight: 400;
-    line-height: 42px; /* 100% */
+    line-height: 42px; 
 }
 .print-stat-label{
     margin-top:8px;
@@ -2295,7 +2277,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22px; /* 183.333% */
+    line-height: 22px; 
     letter-spacing:4px;
     text-transform:uppercase;
 }
@@ -2321,7 +2303,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -2364,7 +2346,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 24px; 
 }
 .block-right-flexSectionCardFreeSections img{
     width: 100%;
@@ -2381,7 +2363,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px; 
     letter-spacing: 3px;
     text-transform: uppercase;
 }
@@ -2407,7 +2389,7 @@ header .logo{
     font-size: 10px;
     font-style: normal;
     font-weight: 300;
-    line-height: 17px; /* 170% */
+    line-height: 17px; 
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -2423,7 +2405,7 @@ header .logo{
     font-size: 47.4px;
     font-style: normal;
     font-weight: 400;
-    line-height: 48px; /* 101.266% */
+    line-height: 48px; 
     letter-spacing: -0.96px;
 }
 .title-blockSectionDesignersTopPluses__block p{
@@ -2431,7 +2413,7 @@ header .logo{
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22.1px; /* 170% */
+    line-height: 22.1px; 
     letter-spacing: 0.21px;
 }
 .flex-blockSectionDesignersTopPluses__block{
@@ -2457,7 +2439,7 @@ header .logo{
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22.1px; /* 170% */
+    line-height: 22.1px; 
     letter-spacing: 0.21px;
 }
 .blockFlex-flexInfoSectionDesigners{
@@ -2484,7 +2466,7 @@ header .logo{
     font-size: 19.8px;
     font-style: normal;
     font-weight: 400;
-    line-height: 23px; /* 116.162% */
+    line-height: 23px; 
     letter-spacing: -0.4px;
 }
 .title-blockFlex-flexInfoSectionDesigners p{
@@ -2492,7 +2474,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
     letter-spacing: 0.21px;
 }
 .block-blockFlex-flexInfoSectionDesigners{
@@ -2519,7 +2501,7 @@ header .logo{
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22.1px; /* 170% */
+    line-height: 22.1px; 
     letter-spacing: 0.21px;
 }
 .title-right-flexGreyInfoBlockRow__block h4{
@@ -2529,7 +2511,7 @@ header .logo{
     margin-bottom: 8px;
     font-style: normal;
     font-weight: 400;
-    line-height: 23px; /* 116.162% */
+    line-height: 23px; 
     letter-spacing: -0.4px;
 }
 .favWorks__top{
@@ -2603,7 +2585,7 @@ header .logo{
     font-size: 24px;
     font-style: normal;
     font-weight: 300;
-    line-height: 32px; /* 133.333% */
+    line-height: 32px; 
     letter-spacing: 0.21px;
     max-width: 600px;
 }
@@ -2627,7 +2609,7 @@ header .logo{
     font-size: 15px;
     font-style: normal;
     font-weight: 300;
-    line-height: 15.75px; /* 105% */
+    line-height: 15.75px; 
     letter-spacing: -0.375px;
 }
 .block-flex-textWorkSlider span{
@@ -2635,7 +2617,7 @@ header .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 24.5px; /* 175% */
+    line-height: 24.5px; 
     letter-spacing: 0.21px;
 }
 .formSectionWrapperDesigners{
@@ -2669,7 +2651,7 @@ header .logo{
     font-size: 11px;
     font-style: normal;
     font-weight: 500;
-    line-height: 18.7px; /* 170% */
+    line-height: 18.7px; 
     letter-spacing: 2.2px;
     text-transform: uppercase;
 }
@@ -2792,7 +2774,7 @@ header .logo{
     margin-top: 30px;
     font-style: normal;
     font-weight: 300;
-    line-height: 19.5px; /* 162.5% */
+    line-height: 19.5px; 
     letter-spacing: 0.21px;
 }
 .titleSectionMaxWidth{
@@ -2821,7 +2803,7 @@ header .logo{
     font-size: 120px;
     font-style: normal;
     font-weight: 400;
-    line-height: 120px; /* 100% */
+    line-height: 120px; 
     letter-spacing: -4.8px;
 }
 .right-block-flexBuyersFirstSection{
@@ -2836,7 +2818,7 @@ header .logo{
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 23px; /* 116.162% */
+    line-height: 23px; 
     letter-spacing: -0.4px;
 }
 .right-block-flexBuyersFirstSection p{
@@ -2844,7 +2826,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
     letter-spacing: 0.21px;
 }
 .flexBuyersSectionNumbers{
@@ -2871,7 +2853,7 @@ header .logo{
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 40.8px; /* 172.881% */
+    line-height: 40.8px; 
     letter-spacing: -0.48px;
 }
 .block-flexBuyersSectionNumbers p{
@@ -2879,7 +2861,7 @@ header .logo{
     font-size: 11px;
     font-style: normal;
     font-weight: 300;
-    line-height: 18.7px; /* 170% */
+    line-height: 18.7px; 
     letter-spacing: 1.32px;
     text-transform: uppercase;
 }
@@ -2898,7 +2880,7 @@ header .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 14.7px; /* 105% */
+    line-height: 14.7px; 
     letter-spacing: -0.35px;
 }
 .block-left-flexSectionInfoBuyersSection{
@@ -2916,8 +2898,6 @@ header .logo{
     align-items: flex-start;
     gap: 32px;
 }
-
-
 
 .muralFaq{
     width: 100%;
@@ -2947,7 +2927,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 24px; /* 150% */
+    line-height: 24px; 
     letter-spacing: -0.35px;
 }
 .muralFaqIcon{
@@ -2966,7 +2946,7 @@ header .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22.75px; /* 162.5% */
+    line-height: 22.75px; 
     letter-spacing: 0.21px;
 }
 .muralFaqItem.active .muralFaqBody{
@@ -2978,7 +2958,7 @@ header .logo{
 .muralFaqItem.active .muralFaqIcon{
     transform: rotate(180deg);
 }
-/* hover */
+
 .muralFaqItem:hover{
     border-color: #CFC8BF;
 }
@@ -2997,7 +2977,7 @@ header .logo{
     font-size: 22px;
     font-style: italic;
     font-weight: 400;
-    line-height: 35.2px; /* 160% */
+    line-height: 35.2px; 
     letter-spacing: 0.21px;
 }
 .aboutTextBottom{
@@ -3010,7 +2990,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
     letter-spacing: 0.21px;
 }
 .flexSectionAboutFreeSections{
@@ -3078,7 +3058,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 24px; 
 }
 .flex-textContactCard{
     display: flex;
@@ -3096,7 +3076,7 @@ header .logo{
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22.1px; /* 170% */
+    line-height: 22.1px; 
     letter-spacing: 0.21px;
 }
 .links-left-flexTopContact{
@@ -3113,7 +3093,7 @@ header .logo{
     font-size: 15px;
     font-style: normal;
     font-weight: 300;
-    line-height: 25.5px; /* 170% */
+    line-height: 25.5px; 
     letter-spacing: 0.21px;
 }
 .left-flexTopContact{
@@ -3153,7 +3133,7 @@ header .logo{
     font-size: 11px;
     font-style: normal;
     font-weight: 500;
-    line-height: 18.7px; /* 170% */
+    line-height: 18.7px; 
     letter-spacing: 2.2px;
     text-transform: uppercase;
 }
@@ -3175,7 +3155,7 @@ header .logo{
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22.1px; /* 170% */
+    line-height: 22.1px; 
     letter-spacing: 0.21px;
 }
 .socials-right-flexTopContact-2{
@@ -3189,7 +3169,7 @@ header .logo{
     font-size: 11px;
     font-style: normal;
     font-weight: 500;
-    line-height: 18.7px; /* 170% */
+    line-height: 18.7px; 
     letter-spacing: 2.2px;
     text-transform: uppercase;
 }
@@ -3203,7 +3183,7 @@ header .logo{
     font-size: 13px;
     font-style: normal;
     font-weight: 300;
-    line-height: 22.1px; /* 170% */
+    line-height: 22.1px; 
     letter-spacing: 0.21px;
 }
 .telIconHeader{
@@ -3229,7 +3209,7 @@ header .logo{
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 24.5px; /* 175% */
+    line-height: 24.5px; 
     letter-spacing: 0.21px;
 }
 .flex-contentText-photo-left-flexCardLastInfoBlock{
@@ -3260,7 +3240,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 300;
-    line-height: 20.4px; /* 170% */
+    line-height: 20.4px; 
     letter-spacing: 1.68px;
     text-transform: uppercase;
 }
@@ -3269,7 +3249,7 @@ header .logo{
     font-size: 12.5px;
     font-style: normal;
     font-weight: 300;
-    line-height: 20px; /* 160% */
+    line-height: 20px; 
     letter-spacing: 0.21px;
 }
 .photo-left-flexCardLastInfoBlock__photoBlock{
@@ -3285,7 +3265,7 @@ header .logo{
     font-size: 10px;
     font-style: normal;
     font-weight: 300;
-    line-height: 17px; /* 170% */
+    line-height: 17px; 
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -3400,7 +3380,6 @@ header .logo{
     transform: translateX(-50%) translateY(0);
 }
 
-
 .gallery-popup{
     position:fixed;
     inset:0;
@@ -3429,7 +3408,7 @@ header .logo{
     display:flex;
     align-items: center;
     justify-content: center;
-    /*grid-template-columns:minmax(300px, 760px)520px;*/
+    
     gap:60px;
     transition:.5s ease;
 }
@@ -3562,7 +3541,7 @@ header .logo{
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 32px; /* 133.333% */
+    line-height: 32px; 
 }
 .likeContentWrapperFlex-1 p{
     color: rgba(22, 20, 18, 0.55);
@@ -3570,7 +3549,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
 }
 .card-left-flexBagPageContainer{
     width: 100%;
@@ -3587,7 +3566,7 @@ header .logo{
     gap: 30px;
 }
 .left-card-left-flexBagPageContainer__img{
-    /*height: 115px;*/
+    
 }
 .text-left-card-left-flexBagPageContainer{
     display: flex;
@@ -3600,7 +3579,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 300;
-    line-height: 12px; /* 166.667% */
+    line-height: 12px; 
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -3609,14 +3588,14 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 16px; /* 100% */
+    line-height: 16px; 
 }
 .text-text-left-card-left-flexBagPageContainer{
     color: rgba(22, 20, 18, 0.55);
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
-    line-height: 24px; /* 171.429% */
+    line-height: 24px; 
 }
 .flexBTNS-text-left-card-left-flexBagPageContainer{
     display: flex;
@@ -3631,7 +3610,7 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 300;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px; 
     gap: 0px;
 }
 .flexBTNS-text-left-card-left-flexBagPageContainer p{
@@ -3639,21 +3618,21 @@ header .logo{
     font-size: 12px;
     font-style: normal;
     font-weight: 300;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px; 
 }
 .price-card-left-flexBagPageContainer{
     color: #161412;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 16px; /* 100% */
+    line-height: 16px; 
 }
 .btn-left-flexBagPageContainer{
     color: rgba(22, 20, 18, 0.60);
     font-size: 12px;
     font-style: normal;
     font-weight: 300;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px; 
     letter-spacing: 2px;
 }
 .left-flexBagPageContainer{
@@ -3685,7 +3664,7 @@ header .logo{
     font-size: 42px;
     font-style: normal;
     font-weight: 400;
-    line-height: 42px; /* 100% */
+    line-height: 42px; 
 }
 .page404{
     min-height: 100vh;
@@ -3705,7 +3684,7 @@ header .logo{
     font-size: 250px;
     font-style: normal;
     font-weight: 400;
-    line-height: 120%; /* 180px */
+    line-height: 120%; 
     letter-spacing: -2px;
 }
 .page404Content p{
@@ -3716,7 +3695,7 @@ header .logo{
     font-weight: 300;
     margin-top: 20px;
     margin-bottom: 40px;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
 }
 .containerPoliteText{
     display: flex;
@@ -3731,7 +3710,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
-    line-height: 28px; /* 175% */
+    line-height: 28px; 
     letter-spacing: 0.21px;
 }
 .containerPoliteText h3{
@@ -3739,7 +3718,7 @@ header .logo{
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 16px; /* 100% */
+    line-height: 16px; 
 }
 .material-mobile-select{
     display:none;
@@ -3863,7 +3842,7 @@ header .logo{
     font-family: "Playfair Display", sans-serif;
     font-style: normal;
     font-weight: 400;
-    line-height: 23px; /* 116.162% */
+    line-height: 23px; 
 }
 .mfilter__close{
     background:none;
@@ -3991,7 +3970,7 @@ header .logo{
     font-size: 10px;
     font-style: normal;
     font-weight: 300;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px; 
     letter-spacing: 3px;
     text-transform: uppercase;
 }
