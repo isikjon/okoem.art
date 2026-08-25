@@ -85,7 +85,10 @@ function okoyom_inspiration_gallery(): void {
 
 		$subtitle = get_post_meta( $item->ID, '_okoyom_subtitle', true );
 
-		$data_attr = '';
+		$product_id  = (int) get_post_meta( $item->ID, '_okoyom_product', true );
+		$product_url = $product_id ? (string) get_permalink( $product_id ) : '';
+
+		$data_attr = '' !== $product_url ? sprintf( ' data-product-url="%s"', esc_url( $product_url ) ) : '';
 		foreach ( array( 'collection' => 'oko_collection', 'color' => 'oko_color', 'subject' => 'oko_subject' ) as $key => $taxonomy ) {
 			$terms = get_the_terms( $item->ID, $taxonomy );
 			$slugs = ( $terms && ! is_wp_error( $terms ) ) ? wp_list_pluck( $terms, 'slug' ) : array();

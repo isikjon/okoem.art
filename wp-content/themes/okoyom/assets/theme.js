@@ -202,6 +202,32 @@
     }, true);
 
     document.addEventListener('click', function (event) {
+        var tile = event.target.closest('.pinterest-item');
+        if (!tile) return;
+        var popup = document.getElementById('galleryPopup');
+        if (!popup) return;
+
+        var title = tile.querySelector('.pinterest-title');
+        var subtitle = tile.querySelector('.pinterest-subtitle');
+        var pTitle = popup.querySelector('.gallery-popup__title');
+        var pSub = popup.querySelector('.gallery-popup__subtitle');
+        var pLink = popup.querySelector('.gallery-popup__link');
+        if (pTitle) pTitle.textContent = title ? title.textContent.trim() : '';
+        if (pSub) pSub.textContent = subtitle ? subtitle.textContent.trim() : '';
+
+        var url = tile.getAttribute('data-product-url');
+        if (pLink) {
+            if (url) {
+                pLink.setAttribute('href', url);
+                pLink.style.display = '';
+                if (!pLink.textContent.trim()) pLink.textContent = 'Перейти к товару';
+            } else {
+                pLink.style.display = 'none';
+            }
+        }
+    });
+
+    document.addEventListener('click', function (event) {
         var popup = document.getElementById('galleryPopup');
         if (!popup || !popup.classList.contains('active')) return;
         if (!event.target.closest('#galleryPopup')) return;

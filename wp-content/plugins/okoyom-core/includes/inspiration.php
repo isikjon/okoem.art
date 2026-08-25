@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 const OKOYOM_INSPIRATION_CPT = 'oko_inspiration';
 
 const OKOYOM_META_SUBTITLE = '_okoyom_subtitle';
+const OKOYOM_META_PRODUCT  = '_okoyom_product';
 
 function okoyom_register_inspiration_cpt(): void {
 	register_post_type(
@@ -56,6 +57,28 @@ add_action(
 					value="<?php echo esc_attr( $subtitle ); ?>"
 					placeholder="Интерьер">
 				<p class="description">Мелкая подпись над названием плитки.</p>
+				<p style="margin-top:12px"><label for="okoyom_product"><strong>Товар</strong></label></p>
+				<?php
+				$sel_product = (int) get_post_meta( $post->ID, OKOYOM_META_PRODUCT, true );
+				$products    = get_posts(
+					array(
+						'post_type'      => 'product',
+						'post_status'    => 'publish',
+						'posts_per_page' => -1,
+						'orderby'        => 'title',
+						'order'          => 'ASC',
+					)
+				);
+				?>
+				<select name="okoyom_product" id="okoyom_product" class="widefat">
+					<option value="0">— не выбрано —</option>
+					<?php foreach ( $products as $prod ) : ?>
+						<option value="<?php echo esc_attr( (string) $prod->ID ); ?>" <?php selected( $sel_product, $prod->ID ); ?>>
+							<?php echo esc_html( get_the_title( $prod ) ); ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+				<p class="description">Карточка товара, на которую ведёт ссылка из просмотра.</p>
 				<?php
 			},
 			OKOYOM_INSPIRATION_CPT,
@@ -84,6 +107,12 @@ add_action(
 			$post_id,
 			OKOYOM_META_SUBTITLE,
 			sanitize_text_field( wp_unslash( $_POST['okoyom_subtitle'] ?? '' ) )
+		);
+
+		update_post_meta(
+			$post_id,
+			OKOYOM_META_PRODUCT,
+			absint( $_POST['okoyom_product'] ?? 0 )
 		);
 	}
 );
