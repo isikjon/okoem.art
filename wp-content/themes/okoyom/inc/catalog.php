@@ -119,6 +119,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		data-subject="<?php echo esc_attr( $slug_csv( $product->ID, 'oko_subject' ) ); ?>"
 		data-color="<?php echo esc_attr( $slug_csv( $product->ID, 'oko_color' ) ); ?>"
 		data-sku="<?php echo esc_attr( (string) get_post_meta( $product->ID, '_sku', true ) ); ?>"
+		data-date="<?php echo esc_attr( (string) get_post_time( 'U', true, $product ) ); ?>"
 		data-title="<?php echo esc_attr( mb_strtolower( get_the_title( $product ) ) ); ?>">
 		<div class="hover-slider">
 			<div class="likeCardCatalog" data-favorite="<?php echo esc_attr( (string) $product->ID ); ?>">

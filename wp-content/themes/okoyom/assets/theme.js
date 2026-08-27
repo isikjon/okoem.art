@@ -608,6 +608,21 @@
 
     var catPending = catStateFromUrl();
     var catSearch = '';
+    var catSort = 'default';
+
+    function catReorder(grid) {
+        var cards = Array.prototype.slice.call(grid.querySelectorAll('.blockCardCatalog__card'));
+        cards.forEach(function (card, i) {
+            if (null === card.getAttribute('data-order')) card.setAttribute('data-order', String(i));
+        });
+        cards.sort(function (a, b) {
+            if ('new' === catSort) {
+                return (parseInt(b.getAttribute('data-date'), 10) || 0) - (parseInt(a.getAttribute('data-date'), 10) || 0);
+            }
+            return (parseInt(a.getAttribute('data-order'), 10) || 0) - (parseInt(b.getAttribute('data-order'), 10) || 0);
+        });
+        cards.forEach(function (card) { grid.appendChild(card); });
+    }
 
     function catGrid() {
         return document.querySelector('.tab-content__item.active .flexTwoTypeInfoMain-2')
@@ -670,6 +685,8 @@
             card.style.display = ok ? '' : 'none';
             if (ok) shown++;
         });
+
+        catReorder(grid);
 
         var countEl = document.querySelector('.textSpanQuantityCatalog');
         if (countEl) countEl.textContent = shown + ' ' + catWord(shown);
@@ -835,6 +852,17 @@
             document.body.style.overflow = '';
             return;
         }
+    });
+
+    document.addEventListener('click', function (event) {
+        var sortBtn = event.target.closest('[data-sort]');
+        if (!sortBtn || !catGrid()) return;
+        event.preventDefault();
+        catSort = sortBtn.getAttribute('data-sort') === 'new' ? 'new' : 'default';
+        document.querySelectorAll('[data-sort]').forEach(function (b) {
+            b.classList.toggle('active', b.getAttribute('data-sort') === catSort);
+        });
+        catApply(false);
     });
 
     document.addEventListener('click', function (event) {

@@ -64,8 +64,11 @@ defined( 'ABSPATH' ) || exit;
                                                 <?php echo okoyom_t( '60466381ada9', 'СОРТИРОВКА' ); ?>
                                             </div>
                                             <div class="mfilter-list">
-                                                <button class="active" data-sort="new">
-                                                    <?php echo okoyom_t( '6df99700f6f7', 'Сначала новое' ); ?>
+                                                <button class="active" data-sort="default">
+                                                    <?php echo okoyom_t( 'd3b9e440144a', 'По умолчанию' ); ?>
+                                                </button>
+                                                <button data-sort="new">
+                                                    <?php echo okoyom_t( '6df99700f6f7', 'Новинки' ); ?>
                                                 </button>
                                             </div>
                                         </div>
