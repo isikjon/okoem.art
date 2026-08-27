@@ -202,9 +202,14 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		1
 	);
 
+	$video = function_exists( 'okoyom_product_video' ) ? okoyom_product_video( $product->ID ) : '';
+
 	if ( $slides ) {
-		$make_slides = static function () use ( $slides, $product ): string {
+		$make_slides = static function ( bool $with_video = true ) use ( $slides, $product, $video ): string {
 			$out = '';
+			if ( $with_video && '' !== $video && function_exists( 'okoyom_video_slide_html' ) ) {
+				$out .= okoyom_video_slide_html( $video, get_the_title( $product ) );
+			}
 			foreach ( $slides as $url ) {
 				$out .= sprintf(
 					'<div class="swiper-slide"><img src="%s" alt="%s" loading="lazy" decoding="async"></div>',
@@ -241,7 +246,7 @@ function okoyom_render_product_page( WP_Post $product ): string {
 				} else {
 					--$depth;
 					if ( 0 === $depth ) {
-						$html = substr( $html, 0, $inner_start ) . $make_slides() . substr( $html, $close );
+						$html = substr( $html, 0, $inner_start ) . $make_slides( 'muralGalleryMain' === $gallery_class ) . substr( $html, $close );
 						break;
 					}
 					$pos = $close + 6;

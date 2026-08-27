@@ -27,6 +27,8 @@ require_once OKOYOM_CORE_DIR . 'includes/page-texts.php';
 require_once OKOYOM_CORE_DIR . 'includes/admin-ui.php';
 require_once OKOYOM_CORE_DIR . 'includes/images-webp.php';
 require_once OKOYOM_CORE_DIR . 'includes/featured.php';
+require_once OKOYOM_CORE_DIR . 'includes/product-video.php';
+require_once OKOYOM_CORE_DIR . 'includes/site-images.php';
 
 add_action(
 	'admin_notices',

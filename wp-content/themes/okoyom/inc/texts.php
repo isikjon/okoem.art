@@ -24,9 +24,13 @@ function okoyom_texts_overrides(): array {
 function okoyom_t( string $key, string $default = '' ): string {
 	$overrides = okoyom_texts_overrides();
 	if ( isset( $overrides[ $key ] ) && '' !== $overrides[ $key ] ) {
-		return esc_html( $overrides[ $key ] );
+		return okoyom_text_breaks( $overrides[ $key ] );
 	}
-	return esc_html( $default );
+	return okoyom_text_breaks( $default );
+}
+
+function okoyom_text_breaks( string $text ): string {
+	return str_replace( array( "\r\n", "\r", "\n" ), '<br>', esc_html( $text ) );
 }
 
 add_action(
@@ -85,7 +89,7 @@ function okoyom_render_texts_page(): void {
 		<p class="description">
 			Все текстовые блоки сайта. Одинаковый текст встречается один раз —
 			меняете его здесь, и он обновляется везде, где повторяется.
-			Пустое поле — остаётся текст из вёрстки (показан серым).
+			Пустое поле — остаётся текст из вёрстки (показан серым). Перенос строки: нажмите Enter внутри поля — на сайте текст перенесётся на новую строку.
 		</p>
 
 		<form method="get" style="margin:15px 0">
