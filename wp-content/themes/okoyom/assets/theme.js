@@ -993,6 +993,18 @@
     }
 
     (function () {
+        var row = document.querySelector('.inspirationTop .flexFiltersCatalog-3');
+        if (row) {
+            var top = row.closest('.inspirationTop');
+            var wrapper = row.closest('.container');
+            if (top && wrapper && wrapper.parentElement === top) {
+                top.insertBefore(row, wrapper.nextSibling);
+                row.classList.add('flexFiltersCatalog--insp');
+            }
+        }
+    })();
+
+    (function () {
         var modal = document.querySelector('.mfilter');
         if (modal && modal.parentElement !== document.body) {
             document.body.appendChild(modal);

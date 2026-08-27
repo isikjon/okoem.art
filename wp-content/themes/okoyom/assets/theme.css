@@ -328,3 +328,46 @@ body.menu-open {
     outline: 2px solid #161412;
     outline-offset: 2px;
 }
+
+@media screen and (max-width: 768px) {
+    .cardSection .titleCardSectionContent:not(.titleCardSectionContent-22) .btnContentBottom {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .cardSection .titleCardSectionContent:not(.titleCardSectionContent-22) .btnContentBottom a {
+        width: 100%;
+    }
+
+    .cardSection .titleCardSectionContent:not(.titleCardSectionContent-22) {
+        padding-left: 0;
+    }
+
+    .cardSection .titleCardSectionContent-22 {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .flexFiltersCatalog {
+        top: 62px;
+        padding-top: 12px;
+    }
+}
+
+.flexFiltersCatalog--insp {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding-left: 135px;
+    padding-right: 135px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    .flexFiltersCatalog--insp {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
