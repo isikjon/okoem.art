@@ -8,6 +8,18 @@ function okoyom_product_base_price( int $product_id ): float {
 	return $material_id ? (float) get_post_meta( $material_id, '_okoyom_price_per_sqm', true ) : 0.0;
 }
 
+function okoyom_archive_tax_term(): ?array {
+	foreach ( array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) as $tax ) {
+		if ( is_tax( $tax ) ) {
+			$term = get_queried_object();
+			if ( $term instanceof WP_Term ) {
+				return array( 'taxonomy' => $tax, 'slug' => $term->slug, 'name' => $term->name );
+			}
+		}
+	}
+	return null;
+}
+
 function okoyom_catalog_products( string $scope = 'all', string $search = '' ): array {
 	$args = array(
 		'post_type'      => 'product',
@@ -24,6 +36,16 @@ function okoyom_catalog_products( string $scope = 'all', string $search = '' ): 
 				'field'    => 'slug',
 				'terms'    => $scope,
 			),
+		);
+	}
+
+	$archive = okoyom_archive_tax_term();
+	if ( $archive ) {
+		$args['tax_query']   = $args['tax_query'] ?? array();
+		$args['tax_query'][] = array(
+			'taxonomy' => $archive['taxonomy'],
+			'field'    => 'slug',
+			'terms'    => $archive['slug'],
 		);
 	}
 

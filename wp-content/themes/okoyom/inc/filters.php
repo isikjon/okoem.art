@@ -223,7 +223,17 @@ add_action(
 	'wp_enqueue_scripts',
 	function () {
 
-		if ( is_page( array( 'catalog', 'search' ) ) || is_post_type_archive( 'product' ) ) {
+		$is_tax_archive = is_tax( array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) );
+
+		if ( is_page( array( 'catalog', 'search' ) ) || is_post_type_archive( 'product' ) || $is_tax_archive ) {
+			$archive     = function_exists( 'okoyom_archive_tax_term' ) ? okoyom_archive_tax_term() : null;
+			$param_by_tax = array(
+				'oko_collection' => 'collection',
+				'oko_series'     => 'series',
+				'oko_subject'    => 'subject',
+				'oko_color'      => 'color',
+			);
+
 			wp_localize_script(
 				'okoyom-theme',
 				'okoyomCatFilters',
@@ -231,6 +241,16 @@ add_action(
 					'maps'     => okoyom_filters_localize( array( 'collection', 'series', 'subject', 'color' ) ),
 					'active'   => okoyom_active_filters(),
 					'swatches' => okoyom_color_swatches(),
+					'archive'  => $archive ? array(
+						'param' => $param_by_tax[ $archive['taxonomy'] ] ?? '',
+						'slug'  => $archive['slug'],
+					) : null,
+					'pretty'   => array(
+						'collection' => 'collection',
+						'series'     => 'series',
+						'subject'    => 'subject',
+						'color'      => 'color',
+					),
 				)
 			);
 		}

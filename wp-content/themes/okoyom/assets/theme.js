@@ -609,6 +609,30 @@
     var catPending = catStateFromUrl();
     var catSearch = '';
     var catSort = 'default';
+    var CAT_ARCHIVE = (window.okoyomCatFilters && window.okoyomCatFilters.archive) || null;
+    var CAT_PRETTY = (window.okoyomCatFilters && window.okoyomCatFilters.pretty) || {};
+    var catInitialPath = location.pathname;
+    var catIsSearch = catInitialPath.indexOf('/search') === 0;
+
+    if (CAT_ARCHIVE && CAT_ARCHIVE.param && CAT_ARCHIVE.slug) {
+        if (!catPending[CAT_ARCHIVE.param]) catPending[CAT_ARCHIVE.param] = [];
+        if (catPending[CAT_ARCHIVE.param].indexOf(CAT_ARCHIVE.slug) === -1) {
+            catPending[CAT_ARCHIVE.param].push(CAT_ARCHIVE.slug);
+        }
+    }
+
+    function catCanonicalUrl(params) {
+        if (catIsSearch) {
+            var sq = params.toString();
+            return catInitialPath + (sq ? '?' + sq : '');
+        }
+        var groups = CAT_GROUPS.filter(function (g) { return catPending[g] && catPending[g].length; });
+        if (!catSearch && groups.length === 1 && catPending[groups[0]].length === 1 && CAT_PRETTY[groups[0]]) {
+            return '/' + CAT_PRETTY[groups[0]] + '/' + catPending[groups[0]][0] + '/';
+        }
+        var qs = params.toString();
+        return '/catalog/' + (qs ? '?' + qs : '');
+    }
 
     function catReorder(grid) {
         var cards = Array.prototype.slice.call(grid.querySelectorAll('.blockCardCatalog__card'));
@@ -704,13 +728,20 @@
             empty.style.display = 'none';
         }
 
-        var params = new URLSearchParams(location.search);
+        var params = new URLSearchParams(catIsSearch ? location.search : '');
         CAT_GROUPS.forEach(function (g) {
             if (catPending[g] && catPending[g].length) params.set(g, catPending[g].join(','));
             else params.delete(g);
         });
-        var qs = params.toString();
-        history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+        var canonical = catCanonicalUrl(params);
+
+        if (CAT_ARCHIVE && CAT_ARCHIVE.param
+            && (!catPending[CAT_ARCHIVE.param] || catPending[CAT_ARCHIVE.param].indexOf(CAT_ARCHIVE.slug) === -1)) {
+            location.href = canonical;
+            return;
+        }
+
+        history.replaceState(null, '', canonical);
 
         catUpdateReset();
 

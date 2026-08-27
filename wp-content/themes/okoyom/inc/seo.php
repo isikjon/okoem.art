@@ -18,6 +18,20 @@ add_filter(
 			}
 		}
 
+		$filter_params = array( 'collection', 'series', 'subject', 'color' );
+		$has_filter    = false;
+		foreach ( $filter_params as $param ) {
+			if ( ! empty( $_GET[ $param ] ) ) {
+				$has_filter = true;
+				break;
+			}
+		}
+		if ( $has_filter && ( is_page( 'catalog' ) || is_post_type_archive( 'product' ) ) ) {
+			$robots['noindex'] = true;
+			$robots['follow']  = true;
+			unset( $robots['nofollow'] );
+		}
+
 		return $robots;
 	}
 );
