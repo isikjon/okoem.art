@@ -133,21 +133,13 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="flexSectionInfoMain01">
             <div data-aos="fade-up" data-aos-offset="200" class="block-flexSectionInfoMain01">
-                <a href="/catalog/" class="photoContainer-photoBig-block-flexSectionInfoMain01">
+                <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoBig-block-flexSectionInfoMain01-1.webp" alt="" class="photoBig-block-flexSectionInfoMain01" width="2672" height="3340" loading="lazy" decoding="async">
-                    <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
-                        <?php echo okoyom_t( '01c035b6fe67', 'СМОТРЕТЬ' ); ?>
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
                     </div>
-                </a>
                 <div class="flexRow-block-flexSectionInfoMain01">
-                    <a href="/catalog/" class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
+                    <div class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexRow-block-flexSectionInfoMain01-1.webp" alt="" class="flexRow-block-flexSectionInfoMain01" width="468" height="624" loading="lazy" decoding="async">
-                        <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
-                            <?php echo okoyom_t( '01c035b6fe67', 'СМОТРЕТЬ' ); ?>
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
                         </div>
-                    </a>
                     <div class="text-flexRow-block-flexSectionInfoMain01">
                         <span>
                             <?php echo okoyom_t( '3d0edfeb130e', 'Атмосферная абстракция' ); ?>
@@ -160,42 +152,15 @@ defined( 'ABSPATH' ) || exit;
                         </p>
                     </div>
                 </div>
-            </div>
-            <div data-aos="fade-up" data-aos-offset="200" class="block-flexSectionInfoMain01">
-                <div class="flexRow-block-flexSectionInfoMain01">
-                    <a href="/catalog/" class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexRow-block-flexSectionInfoMain01-1.webp" alt="" class="flexRow-block-flexSectionInfoMain01" width="468" height="624" loading="lazy" decoding="async">
-                        <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
-                            <?php echo okoyom_t( '01c035b6fe67', 'СМОТРЕТЬ' ); ?>
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
-                        </div>
-                    </a>
-                    <div class="text-flexRow-block-flexSectionInfoMain01">
-                        <span>
-                            <?php echo okoyom_t( '3d0edfeb130e', 'Атмосферная абстракция' ); ?>
-                        </span>
-                        <h3>
-                            <?php echo okoyom_t( '8d4fe69101e9', 'Бархатная дымка' ); ?>
-                        </h3>
-                        <p>
-                            <?php echo okoyom_t( 'a983c4cb334f', 'Мягкие цветовые градиенты и бархатистые текстуры формируют ощущение туманного горизонта. Для спален, гостиных и лаунж-зон, где стена должна дышать. в ритме города.' ); ?>
-                        </p>
-                    </div>
-                </div>
-                <div class="flexRow-block-flexSectionInfoMain02">
-                    <a href="/catalog/" class="photoContainer-photoBig-block-flexSectionInfoMain01">
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoBig-block-flexSectionInfoMain01-1.webp" alt="" class="photoBig-block-flexSectionInfoMain01" width="2672" height="3340" loading="lazy" decoding="async">
-                        <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
-                            <?php echo okoyom_t( '01c035b6fe67', 'СМОТРЕТЬ' ); ?>
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
-                        </div>
-                    </a>
+            
+                <div class="catalogLinkRow">
                     <a href="/catalog/" class="a-flexRow-block-flexSectionInfoMain02">
                         <?php echo okoyom_t( 'eb557c319570', 'Перейти в каталог' ); ?>
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowGrey.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
                     </a>
                 </div>
             </div>
+            
         </div>
     </div>
 </section>
@@ -755,7 +720,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </div>
-                <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">
+                <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2 openModal" data-lead-type="designer_terms">
                     <?php echo okoyom_t( '635216b03422', 'Условия для дизайнеров' ); ?>
                 </a>
             </div>
@@ -777,7 +742,7 @@ defined( 'ABSPATH' ) || exit;
             <a href="/catalog/" class="btnWhiteTextBtn btnWhiteTextBtnV3">
                 <?php echo okoyom_t( '063b292e61f0', 'Смотреть каталог' ); ?>
             </a>
-            <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">
+            <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2 openModal" data-lead-type="visualization">
                 <?php echo okoyom_t( '8ef1c02835c2', 'Запросить визуализацию' ); ?>
             </a>
         </div>

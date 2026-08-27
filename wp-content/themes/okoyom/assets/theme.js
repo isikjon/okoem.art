@@ -202,6 +202,17 @@
     }, true);
 
     document.addEventListener('click', function (event) {
+        if (!event.target.closest('.pinterest-item')) return;
+        var bar = window.innerWidth - document.documentElement.clientWidth;
+        if (bar > 0) document.body.style.paddingRight = bar + 'px';
+    }, true);
+
+    document.addEventListener('click', function (event) {
+        if (!event.target.closest('.gallery-popup__close, .gallery-popup__bg')) return;
+        setTimeout(function () { document.body.style.paddingRight = ''; }, 30);
+    }, true);
+
+    document.addEventListener('click', function (event) {
         var tile = event.target.closest('.pinterest-item');
         if (!tile) return;
         var popup = document.getElementById('galleryPopup');
@@ -529,7 +540,23 @@
         if (!input.matches('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]')) return;
 
         event.preventDefault();
+        if (catIsCatalogPage()) { catRunSearch(input.value, true); return; }
         goToSearch(input.value.trim());
+    });
+
+    function catIsCatalogPage() {
+        return !!document.querySelector('.flexFiltersCatalog') && !!catGrid();
+    }
+
+    function catRunSearch(value, doScroll) {
+        catSearch = (value || '').trim().toLowerCase();
+        catApply(doScroll);
+    }
+
+    document.addEventListener('input', function (event) {
+        if (!catIsCatalogPage()) return;
+        if (!event.target.matches('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]')) return;
+        catRunSearch(event.target.value, false);
     });
 
     function goToSearch(query) {
@@ -542,6 +569,7 @@
 
     document.addEventListener('search', function (event) {
         if (!event.target.matches('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]')) return;
+        if (catIsCatalogPage()) { catRunSearch(event.target.value, true); return; }
         goToSearch(event.target.value.trim());
     });
 
@@ -561,6 +589,7 @@
         var input = (panel || document).querySelector('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]');
         if (input) {
             event.preventDefault();
+            if (catIsCatalogPage()) { catRunSearch(input.value, true); return; }
             goToSearch(input.value.trim());
         }
     });
@@ -578,6 +607,7 @@
     }
 
     var catPending = catStateFromUrl();
+    var catSearch = '';
 
     function catGrid() {
         return document.querySelector('.tab-content__item.active .flexTwoTypeInfoMain-2')
@@ -632,6 +662,11 @@
                 var vals = (card.getAttribute('data-' + g) || '').split(',').filter(Boolean);
                 return catPending[g].some(function (v) { return vals.indexOf(v) !== -1; });
             });
+
+            if (ok && catSearch) {
+                var hay = (card.getAttribute('data-title') || '') + ' ' + (card.getAttribute('data-sku') || '').toLowerCase();
+                ok = hay.indexOf(catSearch) !== -1;
+            }
             card.style.display = ok ? '' : 'none';
             if (ok) shown++;
         });

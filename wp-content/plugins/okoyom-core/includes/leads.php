@@ -16,6 +16,9 @@ const OKOYOM_LEAD_TYPES = array(
 	'product_query'     => 'Задать вопрос по товару',
 	'companion_request' => 'Запрос фоновых обоев',
 	'contact'           => 'Обращение с сайта',
+	'visualization'     => 'Запросить визуализацию',
+	'designer_terms'    => 'Условия для дизайнеров',
+	'consultation'      => 'Получить консультацию',
 );
 
 const OKOYOM_ATTRIBUTION_KEYS = array(

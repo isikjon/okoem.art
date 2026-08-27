@@ -254,3 +254,33 @@
 .catResetFilters.is-visible {
     display: inline-flex;
 }
+
+.catalogLinkRow {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.flexFiltersCatalog input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 12px;
+    width: 12px;
+    cursor: pointer;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 3.5l7 7M10.5 3.5l-7 7' stroke='%236B6B6B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.left-flexFiltersCatalog-1234 .flex-col-3__footer {
+    margin-top: 0;
+    align-items: flex-end;
+}
+
+.left-flexFiltersCatalog-1234 form {
+    display: flex;
+    align-items: flex-end;
+}
+
+html {
+    scrollbar-gutter: stable;
+}
