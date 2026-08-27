@@ -116,25 +116,42 @@ function okoyom_render_filter_group( string $param ): void {
 		return;
 	}
 
-	$filters = okoyom_active_filters();
-	$scope   = okoyom_current_scope();
-	$active  = $filters[ $param ] ?? array();
+	$filters   = okoyom_active_filters();
+	$scope     = okoyom_current_scope();
+	$active    = $filters[ $param ] ?? array();
+	$is_color  = 'color' === $param;
+	$swatches  = $is_color && function_exists( 'okoyom_color_swatches' ) ? okoyom_color_swatches() : array();
 	?>
-	<div class="mfilter-group" data-filter-group="<?php echo esc_attr( $param ); ?>">
+	<div class="mfilter-group<?php echo $is_color ? ' mfilter-group--color' : ''; ?>" data-filter-group="<?php echo esc_attr( $param ); ?>">
 		<div class="mfilter-label"><?php echo esc_html( mb_strtoupper( $label ) ); ?></div>
 		<div class="mfilter-scroll-1">
 			<div class="mfilter-scroll">
 				<button type="button" class="<?php echo empty( $active ) ? 'active' : ''; ?>" data-filter-value="">
 					Все
 				</button>
+				<?php $i = 0; ?>
 				<?php foreach ( $terms as $term ) : ?>
 					<?php $available = okoyom_facet_available( $param, $term->slug, $scope, $filters ); ?>
-					<button type="button"
-						class="<?php echo in_array( $term->slug, $active, true ) ? 'active' : ''; ?>"
-						data-filter-value="<?php echo esc_attr( $term->slug ); ?>"
-						<?php echo $available ? '' : 'style="display:none"'; ?>>
-						<?php echo esc_html( $term->name ); ?>
-					</button>
+					<?php if ( $is_color ) : ?>
+						<button type="button" title="<?php echo esc_attr( $term->name ); ?>"
+							class="mfilter-color<?php echo in_array( $term->slug, $active, true ) ? ' active' : ''; ?>"
+							data-filter-value="<?php echo esc_attr( $term->slug ); ?>"
+							<?php echo $available ? '' : 'style="display:none"'; ?>>
+							<?php if ( ! empty( $swatches[ $term->slug ] ) ) : ?>
+								<span class="circleFilter" style="background:<?php echo esc_attr( $swatches[ $term->slug ] ); ?>;border:1px solid <?php echo esc_attr( $swatches[ $term->slug ] ); ?>"></span>
+							<?php else : ?>
+								<span class="circleFilter circleFilter-<?php echo esc_attr( (string) ( $i % 13 + 1 ) ); ?>"></span>
+							<?php endif; ?>
+						</button>
+					<?php else : ?>
+						<button type="button"
+							class="<?php echo in_array( $term->slug, $active, true ) ? 'active' : ''; ?>"
+							data-filter-value="<?php echo esc_attr( $term->slug ); ?>"
+							<?php echo $available ? '' : 'style="display:none"'; ?>>
+							<?php echo esc_html( $term->name ); ?>
+						</button>
+					<?php endif; ?>
+					<?php ++$i; ?>
 				<?php endforeach; ?>
 			</div>
 		</div>

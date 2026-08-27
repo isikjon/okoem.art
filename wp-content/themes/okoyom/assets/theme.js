@@ -827,6 +827,17 @@
     }
 
     document.addEventListener('click', function (event) {
+        var show = event.target.closest('.mfilter-show');
+        if (show) {
+            event.preventDefault();
+            var modal = show.closest('.mfilter');
+            if (modal) modal.classList.remove('active');
+            document.body.style.overflow = '';
+            return;
+        }
+    });
+
+    document.addEventListener('click', function (event) {
         var btn = event.target.closest('[data-filter-value]');
         if (!btn) return;
         var group = btn.closest('[data-filter-group]');
@@ -980,6 +991,13 @@
             }
         });
     }
+
+    (function () {
+        var modal = document.querySelector('.mfilter');
+        if (modal && modal.parentElement !== document.body) {
+            document.body.appendChild(modal);
+        }
+    })();
 
     (function () {
         var toggle = document.getElementById('menu__toggle');
