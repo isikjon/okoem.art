@@ -179,3 +179,18 @@
         animation: none !important;
     }
 }
+
+.listHeader a:hover {
+    color: #161412;
+}
+
+.single-product .flexTwoTypeInfoMain-2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.single-product .flexTwoTypeInfoMain-2 .blockCardCatalog__card {
+    width: 100%;
+}

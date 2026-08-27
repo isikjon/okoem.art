@@ -124,7 +124,7 @@
         if (note) note.remove();
 
         
-        var area = ((w + 5) / 100) * ((h + 5) / 100);
+        var area = (w / 100) * (h / 100);
         var total = Math.round(area * currentMaterial.price);
 
         var areaEl = document.querySelector('[data-calc="area"]');
@@ -160,7 +160,7 @@
         hInput.style.borderColor = (!isNaN(h) && h >= limits.hMin && h <= limits.hMax) ? '' : '#c0392b';
         if (!ok) return null;
 
-        var area = ((w + 5) / 100) * ((h + 5) / 100);
+        var area = (w / 100) * (h / 100);
         var total = Math.round(area * currentMaterial.price);
 
         var areaEl = document.querySelector('[data-calc-bg="area"]');
@@ -900,6 +900,16 @@
         }
     });
 
+    function catSlowBanners() {
+        document.querySelectorAll('.mural-hero__slider').forEach(function (el) {
+            if (el.swiper && el.swiper.autoplay) {
+                el.swiper.params.autoplay.delay = 3000;
+                el.swiper.autoplay.stop();
+                el.swiper.autoplay.start();
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         captureAttribution();
         updateHeaderCounters();
@@ -909,6 +919,7 @@
         hideDeadMoreButtons();
         inspBuildPanels();
         catBuildInlineFilters();
+        setTimeout(catSlowBanners, 300);
 
         try {
             if (sessionStorage.getItem('okoyom_restore_scroll') === '1') {

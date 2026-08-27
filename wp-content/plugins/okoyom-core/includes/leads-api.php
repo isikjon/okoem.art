@@ -143,9 +143,11 @@ function okoyom_send_lead_email( int $lead_id ): void {
 		$lines[] = 'Итого: ' . get_post_meta( $lead_id, '_okoyom_value', true ) . ' ₽';
 	}
 
-	$subject = sprintf(
-		'%sЗаявка: %s',
+	$type_label = OKOYOM_LEAD_TYPES[ $type ] ?? $type;
+	$subject    = sprintf(
+		'%sЗаявка — %s: %s',
 		'prod' === $env ? '' : '[' . strtoupper( $env ) . '] ',
+		$type_label,
 		get_the_title( $lead_id )
 	);
 

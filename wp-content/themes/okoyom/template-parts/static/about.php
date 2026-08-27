@@ -14,7 +14,6 @@ defined( 'ABSPATH' ) || exit;
     </div>
     <div class="container">
         <div class="downArrowCard">
-            <?php echo okoyom_t( '6e86b009f08d', 'Листайте вниз' ); ?>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="white" stroke-opacity="0.4" stroke-width="1.16667" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
