@@ -284,3 +284,19 @@
 html {
     scrollbar-gutter: stable;
 }
+
+.rightIconHeader a {
+    padding: 8px;
+    margin: -8px;
+}
+
+.menu__box .listHeader a:hover,
+.menu__box .listHeader a:active,
+.menu__box a.is-active,
+.listHeader a.is-active {
+    color: #161412;
+}
+
+body.menu-open {
+    overflow: hidden;
+}

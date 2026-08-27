@@ -981,6 +981,32 @@
         });
     }
 
+    (function () {
+        var toggle = document.getElementById('menu__toggle');
+        var btn = document.querySelector('.menu__btn');
+        if (!toggle || !btn) return;
+
+        var guard = 0;
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            var now = Date.now();
+            if (now - guard < 400) return;
+            guard = now;
+            toggle.checked = !toggle.checked;
+            document.body.classList.toggle('menu-open', toggle.checked);
+        });
+
+        var box = document.querySelector('.menu__box');
+        if (box) {
+            box.addEventListener('click', function (e) {
+                if (e.target.closest('a')) {
+                    toggle.checked = false;
+                    document.body.classList.remove('menu-open');
+                }
+            });
+        }
+    })();
+
     document.addEventListener('DOMContentLoaded', function () {
         captureAttribution();
         updateHeaderCounters();

@@ -37,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
                     </a>
                     <div class="hamburger-menu">
                         <input id="menu__toggle" type="checkbox" />
-                        <label class="menu__btn" for="menu__toggle">
+                        <label class="menu__btn">
                             <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/burger.svg" alt="Открыть меню" class="burgerSvg" width="32" height="32" loading="lazy" decoding="async">
                             <img class="closeBurger" src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/closeBurger.svg" alt="Закрыть меню" width="32" height="32" loading="lazy" decoding="async">
                         </label>
