@@ -614,6 +614,13 @@
         window.scrollTo({ top: Math.max(0, docTop - stickyTop) });
     }
 
+    function catUpdateReset() {
+        var reset = document.querySelector('.catResetFilters');
+        if (!reset) return;
+        var any = CAT_GROUPS.some(function (k) { return catPending[k] && catPending[k].length; });
+        reset.classList.toggle('is-visible', any);
+    }
+
     function catApply(doScroll) {
         var grid = catGrid();
         if (!grid) return;
@@ -652,6 +659,8 @@
         });
         var qs = params.toString();
         history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+
+        catUpdateReset();
 
         if (doScroll && catRowStuck()) catScrollToTop();
     }
@@ -712,8 +721,17 @@
                     html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" type="button" data-value="' + slug + '"><span>' + name + '</span><span class="ui-filter__check"></span></button>';
                 }
             });
+            html += '<button class="ui-filter__collapse" type="button">Свернуть <i></i></button>';
             list.innerHTML = html;
             refreshLabel(panel, key, valueEl);
+
+            var collapseBtn = list.querySelector('.ui-filter__collapse');
+            if (collapseBtn) {
+                collapseBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    panel.classList.remove('is-open');
+                });
+            }
 
             list.querySelectorAll('.ui-filter__item').forEach(function (item) {
                 item.addEventListener('click', function (e) {
@@ -737,6 +755,24 @@
                 });
             });
         });
+
+        var colorPanel = document.querySelector('.ui-filter-2');
+        if (colorPanel && !document.querySelector('.catResetFilters')) {
+            var resetBtn = document.createElement('button');
+            resetBtn.type = 'button';
+            resetBtn.className = 'catResetFilters';
+            resetBtn.innerHTML = '<svg viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="#6B6B6B" stroke-width="1.5" stroke-linecap="round"/></svg> Сбросить фильтрацию';
+            colorPanel.insertAdjacentElement('afterend', resetBtn);
+            resetBtn.addEventListener('click', function () {
+                CAT_GROUPS.forEach(function (k) { catPending[k] = []; });
+                document.querySelectorAll('.ui-filter__item').forEach(function (it) {
+                    var v = it.getAttribute('data-value');
+                    if (v !== null) it.classList.toggle('is-active', v === '');
+                });
+                document.querySelectorAll('.ui-filter__value').forEach(function (v) { v.textContent = 'Все'; });
+                catApply(true);
+            });
+        }
 
         document.addEventListener('click', function (e) {
             var trigger = e.target.closest('.ui-filter__trigger');

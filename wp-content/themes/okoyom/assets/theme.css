@@ -194,3 +194,63 @@
 .single-product .flexTwoTypeInfoMain-2 .blockCardCatalog__card {
     width: 100%;
 }
+
+.flexFiltersCatalog {
+    padding-top: 34px;
+}
+
+.ui-filter__dropdown {
+    background: #fff;
+    border-color: #4A4A4A;
+}
+
+.ui-filter-2 .ui-filter__list .ui-filter__item .ui-filter__check {
+    display: none;
+}
+
+.ui-filter-2 .ui-filter__list .ui-filter__item.is-active .circleFilter {
+    outline: 2px solid #161412;
+    outline-offset: 2px;
+}
+
+.ui-filter__collapse {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: rgba(22, 20, 18, 0.70);
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.ui-filter__collapse i {
+    width: 7px;
+    height: 7px;
+    border-left: 1px solid #B6B6B6;
+    border-top: 1px solid #B6B6B6;
+    transform: rotate(45deg);
+    display: inline-block;
+}
+
+.catResetFilters {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: rgba(22, 20, 18, 0.40);
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.catResetFilters.is-visible {
+    display: inline-flex;
+}
