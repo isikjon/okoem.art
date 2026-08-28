@@ -119,6 +119,11 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="swiper-pagination mural-hero__pagination"></div>
     </div>
+    <span class="mural-hero__scroll" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </span>
 </section>
 <section class="sectionMain">
     <div class="container">
@@ -152,15 +157,15 @@ defined( 'ABSPATH' ) || exit;
                         </p>
                     </div>
                 </div>
-            
-                <div class="catalogLinkRow">
-                    <a href="/catalog/" class="a-flexRow-block-flexSectionInfoMain02">
-                        <?php echo okoyom_t( 'eb557c319570', 'Перейти в каталог' ); ?>
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowGrey.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
-                    </a>
-                </div>
             </div>
-            
+
+            <div class="catalogLinkRow">
+                <a href="/catalog/" class="a-flexRow-block-flexSectionInfoMain02">
+                    <?php echo okoyom_t( 'eb557c319570', 'Перейти в каталог' ); ?>
+                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowGrey.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
+                </a>
+            </div>
+
         </div>
     </div>
 </section>
@@ -279,13 +284,9 @@ defined( 'ABSPATH' ) || exit;
             </h2>
         </div>
         <div class="flexTwoTypeInfoMain">
-            <a data-aos="fade-left" data-aos-offset="200" href="#!" class="block-flexTwoTypeInfoMain">
+            <div data-aos="fade-left" data-aos-offset="200" class="block-flexTwoTypeInfoMain block-flexTwoTypeInfoMain--static">
                 <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
-                    <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
-                        <?php echo okoyom_t( '01c035b6fe67', 'СМОТРЕТЬ' ); ?>
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
-                    </div>
                 </div>
                 <div class="text-block-flexTwoTypeInfoMain">
                     <p>
@@ -295,14 +296,10 @@ defined( 'ABSPATH' ) || exit;
                         <?php echo okoyom_t( '38d4d30c78eb', 'Цельная авторская композиция — главная стена в интерьере. Без швов, без повторений, с высокой детализацией.' ); ?>
                     </span>
                 </div>
-            </a>
-            <a data-aos="fade-left" data-aos-offset="300" href="#!" class="block-flexTwoTypeInfoMain">
+            </div>
+            <div data-aos="fade-left" data-aos-offset="300" class="block-flexTwoTypeInfoMain block-flexTwoTypeInfoMain--static">
                 <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
-                    <div class="btn-photoContainer-photoBig-block-flexSectionInfoMain01">
-                        <?php echo okoyom_t( '01c035b6fe67', 'СМОТРЕТЬ' ); ?>
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/arrowWhite.svg" alt="" width="14" height="14" loading="lazy" decoding="async" aria-hidden="true">
-                    </div>
                 </div>
                 <div class="text-block-flexTwoTypeInfoMain">
                     <p>
@@ -312,7 +309,7 @@ defined( 'ABSPATH' ) || exit;
                         <?php echo okoyom_t( '86d754c6a594', 'Текстуры и паттерны для соседних стен. Оттенки подбираются из палитры мурала — цвета всегда совпадают.' ); ?>
                     </span>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </section>

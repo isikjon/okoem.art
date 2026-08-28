@@ -231,10 +231,12 @@
 .ui-filter__collapse i {
     width: 7px;
     height: 7px;
-    border-left: 1px solid #B6B6B6;
-    border-top: 1px solid #B6B6B6;
+    border-left: 1px solid currentColor;
+    border-top: 1px solid currentColor;
     transform: rotate(45deg);
     display: inline-block;
+    position: relative;
+    top: 3px;
 }
 
 .catResetFilters {
@@ -258,8 +260,9 @@
 .catalogLinkRow {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
-    margin-top: 15px;
+    width: 668px;
+    max-width: 100%;
+    margin-top: 24px;
 }
 
 .flexFiltersCatalog input[type="search"]::-webkit-search-cancel-button,
@@ -293,8 +296,10 @@ html {
 
 .menu__box .listHeader a:hover,
 .menu__box .listHeader a:active,
+.menu__box .listHeader a.active,
 .menu__box a.is-active,
-.listHeader a.is-active {
+.listHeader a.is-active,
+.listHeader a.active {
     color: #161412;
 }
 
@@ -329,6 +334,13 @@ body.menu-open {
     outline-offset: 2px;
 }
 
+/* Цвет: серый квадрат только для «Все», кружки просто обводятся */
+.mfilter-group--color .mfilter-scroll .mfilter-color,
+.mfilter-group--color .mfilter-scroll .mfilter-color.active {
+    padding: 0;
+    background: none;
+}
+
 @media screen and (max-width: 768px) {
     .cardSection .titleCardSectionContent:not(.titleCardSectionContent-22) .btnContentBottom {
         flex-direction: column;
@@ -360,8 +372,8 @@ body.menu-open {
     width: 100%;
     max-width: 1170px;
     margin: 0 auto;
-    padding-left: 135px;
-    padding-right: 135px;
+    padding-left: 0;
+    padding-right: 0;
     box-sizing: border-box;
 }
 
@@ -386,4 +398,122 @@ iframe.mural-video {
     width: 100%;
     height: 100%;
     aspect-ratio: 3 / 4;
+}
+
+/* «Два решения» — статичный блок: без ссылок, ховера и «Смотреть» */
+.block-flexTwoTypeInfoMain--static {
+    cursor: default;
+}
+.block-flexTwoTypeInfoMain--static .photoContainer-photoBig-block-flexSectionInfoMain01:hover .photoBig-block-flexSectionInfoMain01,
+.block-flexTwoTypeInfoMain--static .photoContainer-photoBig-block-flexSectionInfoMain01:hover .flexRow-block-flexSectionInfoMain01 {
+    transform: none;
+}
+.block-flexTwoTypeInfoMain--static .photoContainer-photoBig-block-flexSectionInfoMain01:hover::after {
+    opacity: 0;
+}
+
+/* Избранные работы на главной: десктоп 1 ряд из 3, мобилка 2×2 */
+.home .flexTwoTypeInfoMain-2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+.home .flexTwoTypeInfoMain-2 .blockCardCatalog__card {
+    width: 100%;
+}
+.home .flexTwoTypeInfoMain-2 .blockCardCatalog__card:nth-child(n+4) {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .home .flexTwoTypeInfoMain-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .home .flexTwoTypeInfoMain-2 .blockCardCatalog__card:nth-child(-n+4) {
+        display: block;
+    }
+    .home .flexTwoTypeInfoMain-2 .blockCardCatalog__card:nth-child(n+5) {
+        display: none;
+    }
+}
+
+/* Лупа в поиске — просто пиктограмма, не ссылка/кнопка */
+.flex-col-3__footer button[type="submit"] {
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Поиск в каталоге: слово ближе к линии (зазор меньше на треть) */
+.left-flexFiltersCatalog-1234 input[type="search"] {
+    line-height: 15px;
+    padding-bottom: 1px;
+}
+
+/* Анимированная стрелка вниз в баннере — по центру, крупнее (главная + инфостраницы) */
+@keyframes okoScrollFloat {
+    0%, 100% { transform: translate(-50%, 0); }
+    65%      { transform: translate(-50%, 10px); }
+}
+.mural-hero__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    z-index: 6;
+    color: rgba(255, 255, 255, 0.85);
+    pointer-events: none;
+    animation: okoScrollFloat 3s ease-in-out infinite;
+}
+.mural-hero__scroll svg {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+.cardSection .downArrowCard {
+    left: 50%;
+    animation-name: okoScrollFloat;
+}
+.downArrowCard svg {
+    width: 24px;
+    height: 24px;
+}
+@media screen and (max-width: 768px) {
+    .mural-hero__scroll svg {
+        width: 44px;
+        height: 44px;
+    }
+    .cardSection .downArrowCard svg {
+        width: 40px;
+        height: 40px;
+    }
+    .mural-hero .btnContentBottom {
+        margin-bottom: 18px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .mural-hero__scroll {
+        animation: none;
+    }
+}
+
+/* Низ фильтр-модалки — всегда в один ряд, даже при длинном счётчике */
+.mfilter-bottom {
+    flex-wrap: nowrap;
+}
+.mfilter-reset,
+.mfilter-show {
+    min-width: 0;
+    white-space: nowrap;
+}
+@media screen and (max-width: 400px) {
+    .mfilter-bottom {
+        gap: 10px;
+    }
+    .mfilter-reset,
+    .mfilter-show {
+        letter-spacing: 1.5px;
+        padding: 0 6px;
+    }
 }
