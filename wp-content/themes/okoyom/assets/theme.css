@@ -489,7 +489,10 @@ iframe.mural-video {
         height: 40px;
     }
     .mural-hero .btnContentBottom {
-        margin-bottom: 18px;
+        margin-bottom: 90px;
+    }
+    .mural-hero__scroll {
+        bottom: 40px;
     }
 }
 @media (prefers-reduced-motion: reduce) {

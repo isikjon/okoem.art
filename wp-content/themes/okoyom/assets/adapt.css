@@ -246,11 +246,13 @@
     }
     .mural-hero {
         height: calc(100vh - 0px);
+        height: calc(100svh - 0px);
     }
     .mural-hero__slider,
     .mural-hero .swiper-wrapper,
     .mural-hero .swiper-slide {
         height: calc(100vh - 0px);
+        height: calc(100svh - 0px);
     }
     header{
         padding: 20px 0;
@@ -1217,6 +1219,7 @@
     }
     .mural-hero {
         height: calc(100vh - 40px);
+        height: calc(100svh - 40px);
     }
     .telIconHeader{
         display: flex !important;
@@ -1225,6 +1228,7 @@
     .mural-hero .swiper-wrapper,
     .mural-hero .swiper-slide {
         height: calc(100vh - 40px);
+        height: calc(100svh - 40px);
     }
     footer{
         padding-left: 9px;
