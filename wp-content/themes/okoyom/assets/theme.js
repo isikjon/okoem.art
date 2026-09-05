@@ -737,6 +737,23 @@
         });
     }
 
+    function catWatchStuck() {
+        if (!catIsCatalogPage()) return;
+        var row = catFiltersRow();
+        if (!row) return;
+        var raf = 0;
+        function sync() {
+            raf = 0;
+            row.classList.toggle('is-stuck', catRowStuck());
+        }
+        function onScroll() {
+            if (!raf) raf = requestAnimationFrame(sync);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        sync();
+    }
+
     function catBuildInlineFilters() {
         var data = window.okoyomCatFilters;
         if (!data || !data.maps) return;
@@ -755,8 +772,15 @@
 
         function refreshLabel(panel, key, valueEl) {
             if (!valueEl) return;
-            var names = catPending[key].map(function (s) { return data.maps[key][s]; });
-            valueEl.textContent = names.length ? names.join(', ') : 'Все';
+            var sel = catPending[key] || [];
+            if (!sel.length) {
+                valueEl.textContent = 'Все';
+            } else if (sel.length === 1) {
+                valueEl.textContent = data.maps[key][sel[0]] || 'Все';
+            } else {
+                valueEl.textContent = 'Выбрано: ' + sel.length;
+            }
+            if (panel) panel.classList.toggle('is-multi', sel.length > 1);
         }
 
         document.querySelectorAll('.ui-filter').forEach(function (panel) {
@@ -825,7 +849,7 @@
             var resetBtn = document.createElement('button');
             resetBtn.type = 'button';
             resetBtn.className = 'catResetFilters';
-            resetBtn.innerHTML = '<svg viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="#6B6B6B" stroke-width="1.5" stroke-linecap="round"/></svg> Сбросить фильтрацию';
+            resetBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Сбросить';
             colorPanel.insertAdjacentElement('afterend', resetBtn);
             resetBtn.addEventListener('click', function () {
                 CAT_GROUPS.forEach(function (k) { catPending[k] = []; });
@@ -1086,6 +1110,7 @@
         hideDeadMoreButtons();
         inspBuildPanels();
         catBuildInlineFilters();
+        catWatchStuck();
         setTimeout(catSlowBanners, 300);
 
         try {

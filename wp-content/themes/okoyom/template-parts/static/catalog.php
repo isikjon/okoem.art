@@ -1,13 +1,13 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="sectionCatalogMain" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/catalogMainPhoto.webp) center center no-repeat; background-size: cover;">
+<section class="sectionCatalogMain mural-hero--intro" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/catalogMainPhoto.webp) center center no-repeat; background-size: cover;">
     <div class="container">
         <div class="titleCatalog">
-            <h1 class="titleCatalog__title">
+            <h1 class="titleCatalog__title mural-hero__fade-up">
                 <?php echo okoyom_t( 'ad51225e2ef0', 'Каталог' ); ?>
             </h1>
-            <p class="titleCatalog__text">
+            <p class="titleCatalog__text mural-hero__fade-up">
                 <?php echo okoyom_t( 'e82f69a4400b', 'Архитектурная композиция для вашего пространства' ); ?>
             </p>
         </div>

@@ -1,13 +1,13 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="inspirationTop">
+<section class="inspirationTop mural-hero--intro">
     <div class="container">
         <div class="title-inspirationTop">
-            <h1 class="title-inspirationTop__title">
+            <h1 class="title-inspirationTop__title mural-hero__fade-up">
                 <?php echo okoyom_t( 'c1167872c121', 'Муралы в интерьере' ); ?>
             </h1>
-            <p class="title-inspirationTop__text">
+            <p class="title-inspirationTop__text mural-hero__fade-up">
                 <?php echo okoyom_t( 'd051eaaf020a', 'Погрузитесь в мир архитектурных композиций. Каждый интерьер — отдельная визуальная история.' ); ?>
             </p>
         </div>

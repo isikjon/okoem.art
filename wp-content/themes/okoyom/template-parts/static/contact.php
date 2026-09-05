@@ -1,18 +1,18 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="inspirationTop">
+<section class="inspirationTop mural-hero--intro">
     <div class="container">
         <div class="flexTopContact">
             <div class="left-flexTopContact">
                 <div class="title-inspirationTop">
-            <span class="titleSectionSpan">
+            <span class="titleSectionSpan mural-hero__fade-up">
                <?php echo okoyom_t( '75768c49c246', 'Контакты' ); ?>
             </span>
-                    <h1 class="title-inspirationTop__title">
+                    <h1 class="title-inspirationTop__title mural-hero__fade-up">
                         <?php echo okoyom_t( 'a78259166902', 'Посмотрите вживую' ); ?>
                     </h1>
-                    <p class="title-inspirationTop__text">
+                    <p class="title-inspirationTop__text mural-hero__fade-up">
                         <?php echo okoyom_t( '361da14fa114', 'Приходите в наши шоурумы, чтобы увидеть масштаб, оценить текстуры и получить консультацию специалиста.' ); ?>
                     </p>
                 </div>
@@ -170,47 +170,6 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                     <a style="width: fit-content" href="https://yandex.ru/maps/?text=Санкт-Петербург%2C%20ул.%20Полевая%20Сабировская%2C%2054А%2C%20ТК%20Интерио" target="_blank" rel="noopener" class="material-link">
-                        <?php echo okoyom_t( 'c7555b419429', 'Построить маршрут →' ); ?>
-                    </a>
-                </div>
-            </div>
-            <div data-aos="fade" data-aos-offset="200" class="block-flexTwoTypeInfoMain">
-                <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
-                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
-                </div>
-                <div class="textContactCard">
-                    <h5 class="title-textContactCard">
-                        <?php echo okoyom_t( 'a95ef8c4f2cb', 'Казань' ); ?>
-                    </h5>
-                    <div class="flex-textContactCard">
-                        <div class="line-flex-textContactCard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M11.6663 5.83329C11.6663 8.74588 8.43526 11.7792 7.35026 12.716C7.24918 12.792 7.12614 12.8331 6.99967 12.8331C6.87321 12.8331 6.75017 12.792 6.64909 12.716C5.56409 11.7792 2.33301 8.74588 2.33301 5.83329C2.33301 4.59562 2.82467 3.40863 3.69984 2.53346C4.57501 1.65829 5.762 1.16663 6.99967 1.16663C8.23735 1.16663 9.42434 1.65829 10.2995 2.53346C11.1747 3.40863 11.6663 4.59562 11.6663 5.83329Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M7 7.58337C7.9665 7.58337 8.75 6.79987 8.75 5.83337C8.75 4.86688 7.9665 4.08337 7 4.08337C6.0335 4.08337 5.25 4.86688 5.25 5.83337C5.25 6.79987 6.0335 7.58337 7 7.58337Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <p>
-                                <?php echo okoyom_t( '6e88702b6ea0', 'ул. Баумана, 68 м. Площадь Тукая' ); ?>
-                            </p>
-                        </div>
-                        <div class="line-flex-textContactCard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M7.00033 12.8333C10.222 12.8333 12.8337 10.2216 12.8337 6.99996C12.8337 3.7783 10.222 1.16663 7.00033 1.16663C3.77866 1.16663 1.16699 3.7783 1.16699 6.99996C1.16699 10.2216 3.77866 12.8333 7.00033 12.8333Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M7 3.5V7L9.33333 8.16667" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <p>
-                                <?php echo okoyom_t( '771d04cf612d', 'Пн–Пт: 10:00–19:00' ); ?>
-                            </p>
-                        </div>
-                        <div class="line-flex-textContactCard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M12.8328 9.87002V11.62C12.8335 11.7825 12.8002 11.9433 12.7351 12.0921C12.6701 12.241 12.5746 12.3746 12.4549 12.4844C12.3352 12.5943 12.1938 12.6779 12.04 12.7299C11.8861 12.782 11.723 12.8013 11.5612 12.7867C9.76617 12.5916 8.04193 11.9783 6.52701 10.9958C5.11758 10.1002 3.92263 8.90528 3.02701 7.49585C2.04117 5.97405 1.42766 4.24143 1.23618 2.43835C1.2216 2.27704 1.24077 2.11446 1.29247 1.96096C1.34417 1.80747 1.42726 1.66642 1.53646 1.54679C1.64566 1.42717 1.77857 1.3316 1.92672 1.26615C2.07488 1.20071 2.23505 1.16684 2.39701 1.16668H4.14701C4.43011 1.1639 4.70456 1.26415 4.91921 1.44874C5.13386 1.63334 5.27406 1.88969 5.31368 2.17002C5.38754 2.73005 5.52453 3.27994 5.72201 3.80918C5.8005 4.01797 5.81748 4.24488 5.77096 4.46303C5.72443 4.68118 5.61635 4.88141 5.45951 5.04002L4.71868 5.78085C5.54909 7.24125 6.75828 8.45044 8.21868 9.28085L8.95951 8.54002C9.11812 8.38318 9.31835 8.27509 9.5365 8.22857C9.75465 8.18205 9.98156 8.19903 10.1903 8.27752C10.7196 8.475 11.2695 8.61199 11.8295 8.68585C12.1129 8.72582 12.3717 8.86855 12.5567 9.08689C12.7417 9.30522 12.8399 9.58393 12.8328 9.87002Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <p>
-                                +7 (843) 555-12-34
-                            </p>
-                        </div>
-                    </div>
-                    <a style="width: fit-content" href="#!" class="material-link openModal">
                         <?php echo okoyom_t( 'c7555b419429', 'Построить маршрут →' ); ?>
                     </a>
                 </div>

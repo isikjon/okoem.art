@@ -201,7 +201,7 @@
 
 .ui-filter__dropdown {
     background: #fff;
-    border-color: #4A4A4A;
+    border-color: rgba(22, 20, 18, 0.20);
 }
 
 .ui-filter-2 .ui-filter__list .ui-filter__item .ui-filter__check {
@@ -371,7 +371,8 @@ body.menu-open {
 .flexFiltersCatalog--insp {
     width: 100%;
     max-width: 1170px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 0;
     padding-right: 0;
     box-sizing: border-box;
@@ -518,5 +519,88 @@ iframe.mural-video {
     .mfilter-show {
         letter-spacing: 1.5px;
         padding: 0 6px;
+    }
+}
+
+
+/* Прилипшая строка фильтров: зазор до картинок больше на ~30% */
+.flexFiltersCatalog.is-stuck {
+    padding-bottom: 20px;
+}
+@media screen and (max-width: 1080px) {
+    .flexFiltersCatalog.is-stuck { padding-bottom: 14px; }
+}
+@media screen and (max-width: 600px) {
+    .flexFiltersCatalog.is-stuck { padding-bottom: 17px; }
+}
+
+/* Выбранные пункты фильтра — крестик вместо галочки */
+.ui-filter__item.is-active:not(.ui-filter__item--all) .ui-filter__check::before {
+    width: 9px;
+    height: 1px;
+    border: none;
+    background: rgba(22, 20, 18, 0.55);
+    transform: rotate(45deg);
+    top: 8px;
+    left: 4px;
+}
+.ui-filter__item.is-active:not(.ui-filter__item--all) .ui-filter__check::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 1px;
+    background: rgba(22, 20, 18, 0.55);
+    transform: rotate(-45deg);
+    top: 8px;
+    left: 4px;
+}
+
+/* Лупа поиска — чуть меньше и тоньше линией */
+.left-flexFiltersCatalog-1234 .flex-col-3__footer button[type="submit"] svg,
+.mfilter-group .flex-col-3__footer button[type="submit"] svg {
+    width: 15px;
+    height: 15px;
+}
+.left-flexFiltersCatalog-1234 .flex-col-3__footer button[type="submit"] svg path,
+.mfilter-group .flex-col-3__footer button[type="submit"] svg path {
+    stroke-width: 1.2;
+}
+
+/* Контакты: два адреса — фото шире по горизонтали, высота прежняя */
+.flexTwoTypeInfoMain__about2 .photoContainer-photoBig-block-flexSectionInfoMain01 {
+    height: 454px;
+}
+.flexTwoTypeInfoMain__about2 .photoContainer-photoBig-block-flexSectionInfoMain01 img {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
+}
+@media screen and (max-width: 600px) {
+    .flexTwoTypeInfoMain__about2 .photoContainer-photoBig-block-flexSectionInfoMain01,
+    .flexTwoTypeInfoMain__about2 .photoContainer-photoBig-block-flexSectionInfoMain01 img {
+        height: auto;
+    }
+}
+
+
+/* Баннеры инфостраниц: зум не должен вылезать за пределы баннера (как на главной) */
+.cardSection {
+    overflow: hidden;
+}
+
+/* Текст кнопок баннера — в одну строку на всех страницах */
+.mural-hero .btnContentBottom .btnWhiteTextBtn,
+.cardSection .btnContentBottom .btnWhiteTextBtn {
+    white-space: nowrap;
+}
+
+/* Страховка: при отключённых анимациях текст баннера остаётся видимым */
+@media (prefers-reduced-motion: reduce) {
+    .mural-hero--intro .mural-hero__fade-up {
+        opacity: 1;
+        transform: none;
+        animation: none;
     }
 }

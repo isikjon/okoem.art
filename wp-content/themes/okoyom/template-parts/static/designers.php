@@ -1,25 +1,25 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="cardSection" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/cardBG.webp) center center no-repeat; background-size: cover;">
+<section class="cardSection mural-hero--intro" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/cardBG.webp) center center no-repeat; background-size: cover;">
     <div class="container">
         <div class="titleCardSection titleCardSectionContent">
-            <p class="text-titleCardSection">
+            <p class="text-titleCardSection mural-hero__fade-up">
                 <?php echo okoyom_t( 'a977c435b22e', 'Дизайнерам и архитекторам' ); ?>
             </p>
-            <h1 class="title-titleCardSection">
+            <h1 class="title-titleCardSection mural-hero__fade-up">
                 <?php echo okoyom_t( '06a41bb6c01c', 'Мурал как инструмент дизайнера' ); ?>
             </h1>
-            <p class="textSecond-titleCardSection">
+            <p class="textSecond-titleCardSection mural-hero__fade-up">
                 <?php echo okoyom_t( '1a1a4ec7a316', 'Подбираем муралы под концепцию, делаем визуализации, адаптируем под размер стены и сопровождаем проект от согласования до монтажа.' ); ?>
             </p>
             <div class="btnContentBottom mural-hero__fade-up">
+                <a href="#!" class="btnWhiteTextBtn">
+                    <?php echo okoyom_t( 'd2c9f5737c80', 'Получить каталог' ); ?>
+                </a>
                 <a href="#!" class="btnWhiteTextBtn openModal">
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/messageIcon.svg" alt="" width="16" height="16" loading="lazy" decoding="async" aria-hidden="true">
                     <?php echo okoyom_t( '5f4ad0cef939', 'Запросить условия' ); ?>
-                </a>
-                <a href="#!" class="btnWhiteTextBtn">
-                    <?php echo okoyom_t( 'd2c9f5737c80', 'Получить каталог' ); ?>
                 </a>
             </div>
         </div>

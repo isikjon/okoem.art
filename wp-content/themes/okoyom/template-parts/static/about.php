@@ -1,13 +1,13 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="cardSection" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/cardBG.webp) center center no-repeat; background-size: cover;">
+<section class="cardSection mural-hero--intro" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/cardBG.webp) center center no-repeat; background-size: cover;">
     <div class="container">
         <div class="titleCardSection titleCardSectionContent">
-            <p class="text-titleCardSection">
+            <p class="text-titleCardSection mural-hero__fade-up">
                 <?php echo okoyom_t( 'cae27186d79d', 'О студии' ); ?>
             </p>
-            <h1 class="title-titleCardSection">
+            <h1 class="title-titleCardSection mural-hero__fade-up">
                 <?php echo okoyom_t( '8ba07920c7db', 'На пересечении дизайна интерьера и цифрового искусства' ); ?>
             </h1>
         </div>
