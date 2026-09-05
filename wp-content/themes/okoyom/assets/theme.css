@@ -604,3 +604,23 @@ iframe.mural-video {
         animation: none;
     }
 }
+
+/* Баннеры инфостраниц: положение крупного текста как на главной */
+@media screen and (min-width: 769px) {
+    .cardSection .titleCardSectionContent .btnContentBottom {
+        margin-top: 25px;
+    }
+    .cardSection:has(.btnContentBottom) {
+        padding-bottom: 130px;
+    }
+    .cardSection .titleCardSectionContent:not(.titleCardSectionContent-22):not(:has(.btnContentBottom)) {
+        margin-bottom: 131px;
+    }
+}
+
+/* Мобилка инфостраниц: стрелка не касается кнопок — зазор как на главной */
+@media screen and (max-width: 768px) {
+    .cardSection .titleCardSectionContent .btnContentBottom {
+        margin-bottom: 46px;
+    }
+}
