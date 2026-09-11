@@ -626,3 +626,19 @@ iframe.mural-video {
         margin-bottom: 46px;
     }
 }
+
+@media screen and (min-width: 769px) {
+    .muralGallery {
+        position: relative;
+    }
+    .muralGalleryThumbs {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        height: auto;
+    }
+    .muralGalleryMain {
+        margin-left: 65px;
+    }
+}
