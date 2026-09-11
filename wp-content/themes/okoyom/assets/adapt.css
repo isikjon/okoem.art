@@ -8,6 +8,12 @@
     .listHeader{
         gap: 30px;
     }
+    .wp-singular.page-template-default.page.page-id-5.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
+        margin-top: 100px;
+    }
+    .wp-singular.page-template-default.page.page-id-4.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
+        margin-top: 100px;
+    }
     .listHeader a {
         font-size: 8px;
     }
@@ -436,6 +442,12 @@
         padding-left: 20px;
         padding-right: 20px;
     }
+    .wp-singular.page-template-default.page.page-id-5.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
+        margin-top: 70px;
+    }
+    .wp-singular.page-template-default.page.page-id-4.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
+        margin-top: 70px;
+    }
     .flexBagPageContainer{
         flex-direction: column;
         gap: 20px;
@@ -699,6 +711,12 @@
 @media screen and (max-width: 600px){
     .telHeaderFlex{
         display: none;
+    }
+    .wp-singular.page-template-default.page.page-id-5.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
+        margin-top: 60px;
+    }
+    .wp-singular.page-template-default.page.page-id-4.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
+        margin-top: 60px;
     }
     .block-flexTwoTypeInfoMain .text-block-flexTwoTypeInfoMain p{
         font-size: 20px!important;

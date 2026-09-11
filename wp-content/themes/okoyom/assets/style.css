@@ -235,7 +235,7 @@ header{
     margin-bottom: 24px;
 }
 .mural-hero__content .textTitleBelow{
-    color: rgba(255, 255, 255, 0.70);
+    color: rgba(255, 255, 255, 1);
     font-size: 17px;
     font-style: normal;
     font-weight: 300;
@@ -1638,7 +1638,7 @@ header .logo{
     text-transform: uppercase;
 }
 .textSecond-titleCardSection{
-    color: rgba(255, 255, 255, 0.70);
+    color: rgba(255, 255, 255, 1);
     font-size: 17px;
     font-style: normal;
     font-weight: 300;
@@ -2463,11 +2463,12 @@ header .logo{
 }
 .title-blockFlex-flexInfoSectionDesigners h3{
     color: #161412;
-    font-size: 19.8px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 400;
-    line-height: 23px; 
+    line-height: 26px;
     letter-spacing: -0.4px;
+    font-family: "Playfair Display", sans-serif !important;
 }
 .title-blockFlex-flexInfoSectionDesigners p{
     color: rgba(22, 20, 18, 0.55);
@@ -2506,12 +2507,13 @@ header .logo{
 }
 .title-right-flexGreyInfoBlockRow__block h4{
     color: #161412;
-    font-size: 19.8px;
+    font-size: 22px;
     margin-top: 8px;
     margin-bottom: 8px;
     font-style: normal;
+    font-family: "Playfair Display", sans-serif !important;
     font-weight: 400;
-    line-height: 23px; 
+    line-height: 26px;
     letter-spacing: -0.4px;
 }
 .favWorks__top{
@@ -2815,10 +2817,11 @@ header .logo{
 }
 .right-block-flexBuyersFirstSection h3{
     color: #161412;
-    font-size: 20px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 400;
-    line-height: 23px; 
+    line-height: 26px;
+    font-family: "Playfair Display", sans-serif !important;
     letter-spacing: -0.4px;
 }
 .right-block-flexBuyersFirstSection p{
@@ -4031,6 +4034,12 @@ header .logo{
     width: 100%;
     height: 1px;
     background: rgba(22, 20, 18, 0.08);
+}
+.wp-singular.page-template-default.page.page-id-5.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
+    margin-top: 150px;
+}
+.wp-singular.page-template-default.page.page-id-4.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
+    margin-top: 150px;
 }
 @media(min-width:769px){
     .material-mobile-select{
