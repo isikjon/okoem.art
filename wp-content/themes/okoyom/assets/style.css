@@ -255,7 +255,7 @@ header{
 }
 .btnWhiteTextBtn{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 8px;
     color: rgba(255, 255, 255, 0.95);
@@ -340,7 +340,7 @@ header{
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 .titleSectionSpan{
     color: rgba(22, 20, 18, 0.45);
@@ -414,7 +414,7 @@ header{
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 150px;
+    gap: 30px;
 }
 .a-flexRow-block-flexSectionInfoMain02{
     display: flex;
@@ -494,7 +494,7 @@ header{
 }
 .sectionMainV2{
     background: rgba(233, 230, 226, 0.30);
-    padding: 120px 0;
+    padding: 150px 0;
 }
 .flexGreyInfoBlockRow__big{
     width: 552px;
@@ -4040,6 +4040,9 @@ header .logo{
 }
 .wp-singular.page-template-default.page.page-id-4.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js.has-flush-footer footer.sectionMain{
     margin-top: 150px;
+}
+.wp-singular.page-template-default.page.page-id-13.wp-embed-responsive.wp-theme-okoyom.theme-okoyom.woocommerce-js footer.sectionMain{
+    margin-top: 0px !important;
 }
 @media(min-width:769px){
     .material-mobile-select{

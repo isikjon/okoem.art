@@ -30,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
         </svg>
     </span>
 </section>
-<section class="sectionMain sectionMainV2">
+<section class="sectionMain sectionMainV2" style="margin-top: 0px !important;">
     <div class="container">
         <div class="titleSection">
             <span class="titleSectionSpan">
@@ -109,7 +109,7 @@ defined( 'ABSPATH' ) || exit;
             <h2 class="titleSectionTitle">
                 <?php echo okoyom_t( '0f8569b1d8a9', 'Спокойный процесс от выбора до монтажа' ); ?>
             </h2>
-            <p class="textTitleSection " style="margin-top: 10px !important;">
+            <p class="textTitleSection " style="margin-top: 40px !important;">
                 <?php echo okoyom_t( '8c39267690c5', 'Мурал — заметное решение для интерьера. Поэтому мы не оставляем вас один на один с каталогом: помогаем выбрать, проверить масштаб и цвет до печати.' ); ?>
             </p>
         </div>
@@ -612,7 +612,7 @@ defined( 'ABSPATH' ) || exit;
                     <h2 class="titleSectionTitle">
                         <?php echo okoyom_t( '3f537f41acf6', 'Большой формат без потери качества' ); ?>
                     </h2>
-                    <p class="textTitleSection " style="margin-top: 10px !important;">
+                    <p class="textTitleSection " style="margin-top: 40px !important;">
                         <?php echo okoyom_t( '6de8459c06b1', 'Некоторые муралы Окоём можно печатать длиной до 24 метров как цельное бесшовное изображение — с сохранением детализации и глубины.' ); ?>
                     </p>
                 </div>
@@ -666,7 +666,7 @@ defined( 'ABSPATH' ) || exit;
                         <?php echo okoyom_t( '630d3cdad6e0', 'Доставка и оплата' ); ?>
                     </h2>
                 </div>
-                <div class="block-left-flexSectionInfoBuyersSection">
+                <div style="margin-top: 18px !important;" class="block-left-flexSectionInfoBuyersSection">
                     <p class="textTitle-block-left-flexSectionInfoBuyersSection">
                         <?php echo okoyom_t( 'b973ee869032', 'Доставка' ); ?>
                     </p>

@@ -313,7 +313,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div>
 </section>
-<section class="sectionMain">
+<section class="sectionMain sectionMainV2">
     <div class="container">
         <div class="titleSection">
             <span class="titleSectionSpan">
@@ -745,7 +745,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div>
 </section>
-<section class="sectionMain">
+<section class="sectionMain sectionMainV2">
     <div class="container">
         <div data-aos="fade-up" data-aos-offset="200" class="titleSection titleSection-2">
             <span class="titleSectionSpan">

@@ -215,7 +215,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div>
 </section>
-<section class="sectionMain">
+<section class="sectionMain sectionMainV2">
     <div class="container">
         <div class="titleSection">
             <h2 class="titleSectionTitle">

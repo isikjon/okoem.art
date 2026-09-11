@@ -51,7 +51,7 @@ defined( 'ABSPATH' ) || exit;
                         <h2 class="titleSectionTitle">
                             <?php echo okoyom_t( '401811613574', 'Мы создаём не обои, а визуальную среду' ); ?>
                         </h2>
-                        <p class="textTitleSection " style="margin-top: 10px !important;">
+                        <p class="textTitleSection " style="margin-top: 40px !important;">
                             <?php echo okoyom_t( '8e755f795586', 'Мурал Окоём — это авторское изображение для стены, созданное с расчётом на масштаб, детализацию и реальный интерьер. Оно должно работать на расстоянии, быть точным в композиции и оставаться интересным вблизи.' ); ?>
                         </p>
                     </div>
@@ -82,7 +82,7 @@ defined( 'ABSPATH' ) || exit;
                         <h2 class="titleSectionTitle">
                             <?php echo okoyom_t( '25f44421c215', 'Цифровое искусство, встроенное в интерьер' ); ?>
                         </h2>
-                        <p class="textTitleSection " style="margin-top: 10px !important;">
+                        <p class="textTitleSection " style="margin-top: 40px !important;">
                             <?php echo okoyom_t( 'd9ec1c17f54c', 'Окоём работает с изображением как с цифровым художественным материалом: создаёт сложные, многослойные композиции, которые проходят художественный отбор, доработку и проверку на пригодность к большому формату.' ); ?>
                             <br><br>
                             <?php echo okoyom_t( '1cb2ac900189', 'Важен не только сюжет, но и то, как изображение ведёт себя на стене — держит ли масштаб, не теряет ли глубину, сочетается ли с интерьером.' ); ?>
@@ -97,7 +97,7 @@ defined( 'ABSPATH' ) || exit;
                         <h2 class="titleSectionTitle">
                             <?php echo okoyom_t( '27c93ed4552e', 'Масштаб без потери детализации' ); ?>
                         </h2>
-                        <p class="textTitleSection " style="margin-top: 10px !important;">
+                        <p class="textTitleSection " style="margin-top: 40px !important;">
                             <?php echo okoyom_t( '8d6647dfb5cf', 'Мы не увеличиваем готовое изображение — каждый мурал нарисован сразу в этом масштабе, с сохранением сложной, детализированной живописной структуры. Некоторые работы печатаются длиной до 24 метров как цельное бесшовное полотно.' ); ?>
                         </p>
                     </div>
@@ -186,7 +186,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div>
 </section>
-<section class="sectionMain">
+<section class="sectionMain sectionMainV2">
     <div class="container">
         <div class="flexAlignV2Address flexAlignV2Address__23">
             <div class="left-flexAlignV2Address">
@@ -197,7 +197,7 @@ defined( 'ABSPATH' ) || exit;
                     <h2 class="titleSectionTitle">
                         <?php echo okoyom_t( '4d03663b44f1', 'Лучше один раз увидеть вживую' ); ?>
                     </h2>
-                    <p class="textTitleSection " style="margin-top: 10px !important;">
+                    <p class="textTitleSection " style="margin-top: 40px !important;">
                         <?php echo okoyom_t( 'f8df4221d39f', 'Экран не передаёт главного — глубины цвета, фактуры материала и того, как мурал начинает работать в реальном масштабе. Скоро в Москве откроется шоурум Окоём, где это можно увидеть лично.' ); ?>
                     </p>
                 </div>
@@ -264,7 +264,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div>
 </section>
-<section class="sectionMain sectionMainV2">
+<section class="sectionMain">
     <div class="container">
         <div data-aos="fade-up" data-aos-offset="200" class="titleSection titleSection-2">
             <h2 class="titleSectionTitle">

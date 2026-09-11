@@ -40,7 +40,7 @@ defined( 'ABSPATH' ) || exit;
                 <?php echo okoyom_t( 'e029be42b4d3', 'Партнёрство' ); ?> <br>
                 <?php echo okoyom_t( 'b804bb2ca9df', 'без лишней сложности' ); ?>
             </h2>
-            <p style="margin-top: 15px;" class="title-inspirationTop__text">
+            <p style="margin-top: 35px;" class="title-inspirationTop__text">
                 <?php echo okoyom_t( 'f1a847a319a9', 'Мы понимаем, как устроена проектная работа: клиенту нужно показать решение, дизайнеру — защитить идею, а поставщику — не подвести на реализации. Поэтому мы выстроили процесс так, чтобы с Окоём было удобно работать.' ); ?>
             </p>
         </div>
@@ -582,7 +582,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div>
 </section>
-<section class="sectionMain">
+<section class="sectionMain sectionMainV2">
     <div class="container">
         <div class="flexAlignV2Address">
             <div class="right-flexAlignV2Address">
@@ -596,7 +596,7 @@ defined( 'ABSPATH' ) || exit;
                     <h2 class="titleSectionTitle">
                         <?php echo okoyom_t( '7d583121b700', 'Работаем с жилыми и коммерческими объектами' ); ?>
                     </h2>
-                    <p class="textTitleSection " style="margin-top: 10px !important;">
+                    <p class="textTitleSection " style="margin-top: 40px !important;">
                         <?php echo okoyom_t( '3b034ed452be', 'Муралы подходят для частных интерьеров и коммерческих пространств: спален, гостиных, холлов, ресторанов, отелей, салонов и офисов. Помогаем создать атмосферу, которую запоминают.' ); ?>
                     </p>
                 </div>
@@ -719,7 +719,7 @@ defined( 'ABSPATH' ) || exit;
 <!--        </div>-->
 <!--    </div>-->
 <!--</section>-->
-<section class="sectionMain sectionMainV2">
+<section class="sectionMain">
     <div class="container">
         <div class="formSectionWrapperDesigners">
             <div class="titleSection">
