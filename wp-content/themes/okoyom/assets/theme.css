@@ -201,7 +201,21 @@
 
 .ui-filter__dropdown {
     background: #fff;
-    border-color: rgba(22, 20, 18, 0.20);
+    border-color: #4A4A4A;
+}
+
+.left-flexFiltersCatalog .ui-filter {
+    width: auto;
+    flex-shrink: 0;
+}
+.left-flexFiltersCatalog .ui-filter-1 { min-width: 120px; }
+.left-flexFiltersCatalog .ui-filter-2 { min-width: 83px; }
+.left-flexFiltersCatalog .ui-filter-3 { min-width: 93px; }
+.left-flexFiltersCatalog .ui-filter-4 { min-width: 90px; }
+.left-flexFiltersCatalog .ui-filter__value {
+    overflow: visible;
+    text-overflow: clip;
+    flex: 0 0 auto;
 }
 
 .ui-filter-2 .ui-filter__list .ui-filter__item .ui-filter__check {
@@ -334,7 +348,6 @@ body.menu-open {
     outline-offset: 2px;
 }
 
-/* Цвет: серый квадрат только для «Все», кружки просто обводятся */
 .mfilter-group--color .mfilter-scroll .mfilter-color,
 .mfilter-group--color .mfilter-scroll .mfilter-color.active {
     padding: 0;
@@ -370,18 +383,32 @@ body.menu-open {
 
 .flexFiltersCatalog--insp {
     width: 100%;
-    max-width: 1170px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0;
-    padding-right: 0;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: calc((100% - 1170px) / 2);
+    padding-right: calc((100% - 1170px) / 2);
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 1230px) {
+    .flexFiltersCatalog--insp {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .flexFiltersCatalog--insp {
         padding-left: 20px;
         padding-right: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .flexFiltersCatalog--insp {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
@@ -401,7 +428,6 @@ iframe.mural-video {
     aspect-ratio: 3 / 4;
 }
 
-/* «Два решения» — статичный блок: без ссылок, ховера и «Смотреть» */
 .block-flexTwoTypeInfoMain--static {
     cursor: default;
 }
@@ -413,7 +439,6 @@ iframe.mural-video {
     opacity: 0;
 }
 
-/* Избранные работы на главной: десктоп 1 ряд из 3, мобилка 2×2 */
 .home .flexTwoTypeInfoMain-2 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -440,19 +465,16 @@ iframe.mural-video {
     }
 }
 
-/* Лупа в поиске — просто пиктограмма, не ссылка/кнопка */
 .flex-col-3__footer button[type="submit"] {
     pointer-events: none;
     cursor: default;
 }
 
-/* Поиск в каталоге: слово ближе к линии (зазор меньше на треть) */
 .left-flexFiltersCatalog-1234 input[type="search"] {
     line-height: 15px;
     padding-bottom: 1px;
 }
 
-/* Анимированная стрелка вниз в баннере — по центру, крупнее (главная + инфостраницы) */
 @keyframes okoScrollFloat {
     0%, 100% { transform: translate(-50%, 0); }
     65%      { transform: translate(-50%, 10px); }
@@ -472,22 +494,10 @@ iframe.mural-video {
     width: 30px;
     height: 30px;
 }
-.cardSection .downArrowCard {
-    left: 50%;
-    animation-name: okoScrollFloat;
-}
-.downArrowCard svg {
-    width: 24px;
-    height: 24px;
-}
 @media screen and (max-width: 768px) {
     .mural-hero__scroll svg {
         width: 44px;
         height: 44px;
-    }
-    .cardSection .downArrowCard svg {
-        width: 40px;
-        height: 40px;
     }
     .mural-hero .btnContentBottom {
         margin-bottom: 90px;
@@ -502,7 +512,6 @@ iframe.mural-video {
     }
 }
 
-/* Низ фильтр-модалки — всегда в один ряд, даже при длинном счётчике */
 .mfilter-bottom {
     flex-wrap: nowrap;
 }
@@ -522,8 +531,6 @@ iframe.mural-video {
     }
 }
 
-
-/* Прилипшая строка фильтров: зазор до картинок больше на ~30% */
 .flexFiltersCatalog.is-stuck {
     padding-bottom: 20px;
 }
@@ -534,7 +541,6 @@ iframe.mural-video {
     .flexFiltersCatalog.is-stuck { padding-bottom: 17px; }
 }
 
-/* Выбранные пункты фильтра — крестик вместо галочки */
 .ui-filter__item.is-active:not(.ui-filter__item--all) .ui-filter__check::before {
     width: 9px;
     height: 1px;
@@ -555,7 +561,6 @@ iframe.mural-video {
     left: 4px;
 }
 
-/* Лупа поиска — чуть меньше и тоньше линией */
 .left-flexFiltersCatalog-1234 .flex-col-3__footer button[type="submit"] svg,
 .mfilter-group .flex-col-3__footer button[type="submit"] svg {
     width: 15px;
@@ -566,7 +571,6 @@ iframe.mural-video {
     stroke-width: 1.2;
 }
 
-/* Контакты: два адреса — фото шире по горизонтали, высота прежняя */
 .flexTwoTypeInfoMain__about2 .photoContainer-photoBig-block-flexSectionInfoMain01 {
     height: 454px;
 }
@@ -584,19 +588,16 @@ iframe.mural-video {
     }
 }
 
-
-/* Баннеры инфостраниц: зум не должен вылезать за пределы баннера (как на главной) */
 .cardSection {
+    position: relative;
     overflow: hidden;
 }
 
-/* Текст кнопок баннера — в одну строку на всех страницах */
 .mural-hero .btnContentBottom .btnWhiteTextBtn,
 .cardSection .btnContentBottom .btnWhiteTextBtn {
     white-space: nowrap;
 }
 
-/* Страховка: при отключённых анимациях текст баннера остаётся видимым */
 @media (prefers-reduced-motion: reduce) {
     .mural-hero--intro .mural-hero__fade-up {
         opacity: 1;
@@ -605,7 +606,6 @@ iframe.mural-video {
     }
 }
 
-/* Баннеры инфостраниц: положение крупного текста как на главной */
 @media screen and (min-width: 769px) {
     .cardSection .titleCardSectionContent .btnContentBottom {
         margin-top: 25px;
@@ -618,7 +618,6 @@ iframe.mural-video {
     }
 }
 
-/* Мобилка инфостраниц: стрелка не касается кнопок — зазор как на главной */
 @media screen and (max-width: 768px) {
     .cardSection .titleCardSectionContent .btnContentBottom {
         margin-bottom: 46px;
