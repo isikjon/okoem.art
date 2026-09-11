@@ -200,8 +200,11 @@
 }
 
 .ui-filter__dropdown {
-    background: #fff;
-    border-color: #4A4A4A;
+    background: #F2F0ED;
+    border-color: rgba(22, 20, 18, 0.1);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 
 .left-flexFiltersCatalog .ui-filter {

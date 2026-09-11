@@ -737,14 +737,32 @@
         });
     }
 
+    function catFitDropdown(panel) {
+        var dd = panel && panel.querySelector('.ui-filter__dropdown');
+        if (!dd) return;
+        var top = dd.getBoundingClientRect().top;
+        dd.style.maxHeight = Math.max(160, window.innerHeight - top - 20) + 'px';
+    }
+
+    function catWatchDropdowns() {
+        if (typeof MutationObserver === 'undefined' || !document.querySelector('.ui-filter')) return;
+        var obs = new MutationObserver(function (list) {
+            list.forEach(function (m) {
+                var el = m.target;
+                if (el.classList.contains('ui-filter') && el.classList.contains('is-open')) catFitDropdown(el);
+            });
+        });
+        obs.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+    }
+
     function catWatchStuck() {
-        if (!catIsCatalogPage()) return;
         var row = catFiltersRow();
-        if (!row) return;
+        if (!row || getComputedStyle(row).position !== 'sticky') return;
         var raf = 0;
         function sync() {
             raf = 0;
             row.classList.toggle('is-stuck', catRowStuck());
+            catFitDropdown(document.querySelector('.ui-filter.is-open'));
         }
         function onScroll() {
             if (!raf) raf = requestAnimationFrame(sync);
@@ -1111,6 +1129,7 @@
         inspBuildPanels();
         catBuildInlineFilters();
         catWatchStuck();
+        catWatchDropdowns();
         setTimeout(catSlowBanners, 300);
 
         try {
