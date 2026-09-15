@@ -306,7 +306,7 @@ html {
     scrollbar-gutter: stable;
 }
 
-.rightIconHeader a {
+.rightIconHeader > a {
     padding: 8px;
     margin: -8px;
 }
@@ -325,36 +325,65 @@ body.menu-open {
 }
 
 .mfilter-group--color .mfilter-scroll {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 6px;
+    justify-items: center;
+    align-items: center;
     max-height: none;
+    background: transparent;
 }
 
-.mfilter-color {
+.mfilter-group--color .mfilter-scroll button[data-filter-value=""] {
+    justify-self: start;
+    width: auto;
+    padding: 0 0 0 4px;
+    background: none;
+    color: rgba(22, 20, 18, 0.45);
+    font-size: 15px;
+    line-height: 120%;
+}
+
+.mfilter-group--color .mfilter-scroll button[data-filter-value=""].active {
+    color: #161412;
+    background: none;
+}
+
+.mfilter-group--color .mfilter-scroll button[data-filter-value=""]::after {
+    display: none;
+}
+
+.mfilter-group--color .mfilter-scroll .mfilter-color {
+    width: 52px;
+    height: 52px;
     padding: 0;
     border: none;
     background: transparent;
     cursor: pointer;
     line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.mfilter-color .circleFilter {
-    width: 22px;
-    height: 22px;
+.mfilter-group--color .mfilter-scroll .mfilter-color .circleFilter {
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: block;
 }
 
-.mfilter-color.active .circleFilter {
-    outline: 2px solid #161412;
-    outline-offset: 2px;
+.mfilter-group--color .mfilter-scroll .mfilter-color.active {
+    background: #E7E6E3;
 }
 
-.mfilter-group--color .mfilter-scroll .mfilter-color,
-.mfilter-group--color .mfilter-scroll .mfilter-color.active {
-    padding: 0;
-    background: none;
+.mfilter-group--color .mfilter-scroll .mfilter-color.active::after {
+    display: none;
+}
+
+.mfilter-group--color .mfilter-scroll .mfilter-color.active .circleFilter {
+    outline: 2px solid #161412;
+    outline-offset: 2px;
 }
 
 @media screen and (max-width: 768px) {
@@ -640,5 +669,114 @@ iframe.mural-video {
     }
     .muralGalleryMain {
         margin-left: 65px;
+    }
+}
+
+.btnWhiteTextBtn {
+    align-items: center;
+}
+
+.mfilter__title {
+    text-transform: none;
+    letter-spacing: 0.04em;
+}
+
+.mfilter-list,
+.mfilter-scroll {
+    background: #fff;
+}
+
+.mfilter-list button,
+.mfilter-scroll button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 12px;
+}
+
+.mfilter-scroll button:last-child {
+    padding-bottom: 12px !important;
+}
+
+.mfilter-list button.active,
+.mfilter-scroll button.active {
+    background: #fff;
+    color: #161412;
+}
+
+.mfilter-list button.active::after,
+.mfilter-scroll button.active::after {
+    content: "";
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7.5l3 3 6-7' fill='none' stroke='%23161412' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+@media screen and (max-width: 1080px) {
+    .listBurgerUlContentLi {
+        justify-content: flex-start;
+    }
+    .flexContactBurger {
+        margin-top: 10px;
+    }
+    .flexBtnBurger {
+        gap: 12px;
+        margin-top: 20px;
+    }
+    .flexBtnBurger a {
+        height: 52px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .flexFiltersCatalog {
+        flex-wrap: nowrap;
+    }
+    .left-flexFiltersCatalog-1234 .textSpanQuantityCatalog {
+        display: none;
+    }
+    .left-flexFiltersCatalog-1234 .flex-col-3__footer {
+        width: 130px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .mural-hero,
+    .mural-hero .swiper-slide,
+    .cardSection {
+        height: 100vh;
+        height: 100svh;
+    }
+    .cardSection .btnContentBottom a,
+    .flexBtnBurger a {
+        height: 40px;
+    }
+    .sectionMain {
+        margin-top: 100px;
+    }
+    .sectionMainV2 {
+        padding: 50px 0;
+    }
+    .sectionMain + .sectionMainV2,
+    .sectionMainV2 + .sectionMain {
+        margin-top: 50px;
+    }
+    .home .sectionMainV2:last-of-type {
+        padding-bottom: 100px;
+    }
+    .flexSectionInfoBottomMain__photo {
+        margin-top: 50px;
+    }
+    .blockCardCatalog__card .text-block-flexTwoTypeInfoMain {
+        margin-top: 12px;
+    }
+    .left-flexFiltersCatalog-1234 .flex-col-3__footer {
+        width: 110px;
     }
 }

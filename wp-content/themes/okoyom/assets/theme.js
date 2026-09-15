@@ -608,7 +608,7 @@
 
     var catPending = catStateFromUrl();
     var catSearch = '';
-    var catSort = 'new';
+    var catSort = 'default';
     var catInitialPath = location.pathname;
     var catIsSearch = catInitialPath.indexOf('/search') === 0;
 
@@ -742,6 +742,35 @@
         if (!dd) return;
         var top = dd.getBoundingClientRect().top;
         dd.style.maxHeight = Math.max(160, window.innerHeight - top - 20) + 'px';
+    }
+
+    function catFollowThumbs() {
+        var mainEl = document.querySelector('.muralGalleryMain');
+        var thumbsEl = document.querySelector('.muralGalleryThumbs');
+        if (!mainEl || !thumbsEl) return;
+        var settled = 0;
+        function bind() {
+            var main = mainEl.swiper, thumbs = thumbsEl.swiper;
+            if (!main || !thumbs) return false;
+            thumbs.on('transitionEnd touchEnd', function () { settled = -thumbs.translate; });
+            main.on('activeIndexChange', function () { settled = -thumbs.translate; });
+            main.on('slideChange', function () {
+                var slide = thumbs.slides[main.activeIndex];
+                if (!slide) return;
+                var top = slide.swiperSlideOffset;
+                var bottom = top + slide.swiperSlideSize;
+                var size = thumbs.size;
+                var target = null;
+                if (bottom > settled + size) target = bottom - size;
+                else if (top < settled) target = top;
+                if (null === target) { thumbs.translateTo(-settled, 0); return; }
+                target = Math.max(0, Math.min(target, -thumbs.maxTranslate()));
+                settled = target;
+                thumbs.translateTo(-target, 300);
+            });
+            return true;
+        }
+        if (!bind()) window.addEventListener('load', bind);
     }
 
     function catWatchDropdowns() {
@@ -1130,6 +1159,7 @@
         catBuildInlineFilters();
         catWatchStuck();
         catWatchDropdowns();
+        catFollowThumbs();
         setTimeout(catSlowBanners, 300);
 
         try {

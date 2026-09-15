@@ -34,7 +34,7 @@ defined( 'ABSPATH' ) || exit;
                                 <div class="mfilter__panel">
                                     <div class="mfilter__head">
                                         <div class="mfilter__title">
-                                            <?php echo okoyom_t( '24c79ca27c8f', 'ФИЛЬТРЫ' ); ?>
+                                            <?php echo okoyom_t( '24c79ca27c8f', 'Фильтры' ); ?>
                                         </div>
                                         <button class="mfilter__close">
                                             <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/close.svg" alt="" width="40" height="40" loading="lazy" decoding="async" aria-hidden="true">
@@ -64,7 +64,10 @@ defined( 'ABSPATH' ) || exit;
                                                 <?php echo okoyom_t( '60466381ada9', 'СОРТИРОВКА' ); ?>
                                             </div>
                                             <div class="mfilter-list">
-                                                <button class="active" data-sort="new">
+                                                <button class="active" data-sort="default">
+                                                    <?php echo okoyom_t( '984bf1497dea', 'Все' ); ?>
+                                                </button>
+                                                <button data-sort="new">
                                                     <?php echo okoyom_t( '6df99700f6f7', 'Сначала новое' ); ?>
                                                 </button>
                                             </div>
