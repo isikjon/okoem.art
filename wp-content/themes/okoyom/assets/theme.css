@@ -335,13 +335,17 @@ body.menu-open {
 }
 
 .mfilter-group--color .mfilter-scroll button[data-filter-value=""] {
-    justify-self: start;
-    width: auto;
-    padding: 0 0 0 4px;
+    justify-self: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     color: rgba(22, 20, 18, 0.45);
     font-size: 15px;
-    line-height: 120%;
+    line-height: 1;
 }
 
 .mfilter-group--color .mfilter-scroll button[data-filter-value=""].active {
@@ -373,9 +377,6 @@ body.menu-open {
     display: block;
 }
 
-.mfilter-group--color .mfilter-scroll .mfilter-color.active {
-    background: #E7E6E3;
-}
 
 .mfilter-group--color .mfilter-scroll .mfilter-color.active::after {
     display: none;
@@ -718,8 +719,15 @@ iframe.mural-video {
     .listBurgerUlContentLi {
         justify-content: flex-start;
     }
+    .linksBurger {
+        margin-top: 105px;
+    }
+    .lineBurger {
+        margin-top: 10px;
+    }
     .flexContactBurger {
         margin-top: 10px;
+        margin-left: -5px;
     }
     .flexBtnBurger {
         gap: 12px;
@@ -748,6 +756,8 @@ iframe.mural-video {
         padding-right: 20px;
     }
     .mural-hero,
+    .mural-hero__slider,
+    .mural-hero .swiper-wrapper,
     .mural-hero .swiper-slide,
     .cardSection {
         height: 100vh;
@@ -758,14 +768,28 @@ iframe.mural-video {
         height: 40px;
     }
     .sectionMain {
-        margin-top: 100px;
+        margin-top: 150px;
     }
     .sectionMainV2 {
-        padding: 50px 0;
+        padding: 75px 0 50px;
     }
     .sectionMain + .sectionMainV2,
     .sectionMainV2 + .sectionMain {
-        margin-top: 50px;
+        margin-top: 75px;
+    }
+    .text-flexRow-block-flexSectionInfoMain01 {
+        padding-left: 0;
+    }
+    .blockCardCatalog__card .text-block-flexTwoTypeInfoMain {
+        gap: 4px;
+    }
+    .flexFiltersCatalog {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        margin-bottom: 26px;
+    }
+    .flexFiltersCatalog.is-stuck {
+        padding-bottom: 14px;
     }
     .home .sectionMainV2:last-of-type {
         padding-bottom: 100px;

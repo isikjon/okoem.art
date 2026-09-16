@@ -773,6 +773,14 @@
         if (!bind()) window.addEventListener('load', bind);
     }
 
+    function catEvenSocials() {
+        if (window.innerWidth > 768) return;
+        var cards = document.querySelectorAll('.link-flexSocialsMain[data-aos-offset]');
+        if (!cards.length) return;
+        cards.forEach(function (a) { a.setAttribute('data-aos-offset', '200'); });
+        if (window.AOS && typeof window.AOS.refreshHard === 'function') window.AOS.refreshHard();
+    }
+
     function catWatchDropdowns() {
         if (typeof MutationObserver === 'undefined' || !document.querySelector('.ui-filter')) return;
         var obs = new MutationObserver(function (list) {
@@ -903,6 +911,9 @@
                 document.querySelectorAll('.ui-filter__item').forEach(function (it) {
                     var v = it.getAttribute('data-value');
                     if (v !== null) it.classList.toggle('is-active', v === '');
+                });
+                document.querySelectorAll('[data-filter-value]').forEach(function (b) {
+                    b.classList.toggle('active', b.getAttribute('data-filter-value') === '');
                 });
                 document.querySelectorAll('.ui-filter__value').forEach(function (v) { v.textContent = 'Все'; });
                 catApply(true);
@@ -1160,6 +1171,7 @@
         catWatchStuck();
         catWatchDropdowns();
         catFollowThumbs();
+        catEvenSocials();
         setTimeout(catSlowBanners, 300);
 
         try {
