@@ -30,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
         </svg>
     </span>
 </section>
-<section class="sectionMain sectionMainV2" style="margin-top: 0px !important;">
+<section class="sectionMain sectionMainV2 sectionMainV2--flush">
     <div class="container">
         <div class="titleSection">
             <span class="titleSectionSpan">

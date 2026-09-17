@@ -775,10 +775,20 @@
 
     function catEvenSocials() {
         if (window.innerWidth > 768) return;
-        var cards = document.querySelectorAll('.link-flexSocialsMain[data-aos-offset]');
-        if (!cards.length) return;
-        cards.forEach(function (a) { a.setAttribute('data-aos-offset', '200'); });
-        if (window.AOS && typeof window.AOS.refreshHard === 'function') window.AOS.refreshHard();
+        var changed = false;
+        document.querySelectorAll('.link-flexSocialsMain[data-aos-offset]').forEach(function (a) {
+            a.setAttribute('data-aos-offset', '200');
+            changed = true;
+        });
+        var hero = document.querySelector('.mural-hero, .cardSection');
+        var first = hero && hero.nextElementSibling;
+        if (first) {
+            first.querySelectorAll('[data-aos]').forEach(function (el) {
+                el.setAttribute('data-aos-offset', '40');
+                changed = true;
+            });
+        }
+        if (changed && window.AOS && typeof window.AOS.refreshHard === 'function') window.AOS.refreshHard();
     }
 
     function catWatchDropdowns() {
@@ -961,7 +971,7 @@
 
     document.addEventListener('click', function (event) {
         var btn = event.target.closest('[data-filter-value]');
-        if (!btn) return;
+        if (!btn || btn.closest('.mfilter--insp')) return;
         var group = btn.closest('[data-filter-group]');
         if (!group) return;
         event.preventDefault();
@@ -985,7 +995,7 @@
 
     document.addEventListener('click', function (event) {
         var reset = event.target.closest('.mfilter__reset, [class*="mfilter-reset"]');
-        if (!reset) return;
+        if (!reset || reset.closest('.mfilter--insp')) return;
         var t = reset.textContent.trim().toLowerCase();
         if (t.indexOf('сброс') === -1) return;
         event.preventDefault();
@@ -1021,6 +1031,172 @@
             else word = 'объектов';
             counter.textContent = shown + ' ' + word;
         }
+        var showBtn = document.querySelector('.mfilter--insp .mfilter-show');
+        if (showBtn) showBtn.textContent = 'ПОКАЗАТЬ (' + shown + ')';
+    }
+
+    function inspSyncPanels(maps) {
+        document.querySelectorAll('.ui-filter').forEach(function (panel) {
+            var list = panel.querySelector('.ui-filter__list');
+            if (!list) return;
+            var items = list.querySelectorAll('.ui-filter__item[data-value]');
+            if (!items.length) return;
+            var key = null;
+            ['collection', 'color', 'subject'].forEach(function (k) {
+                if (key) return;
+                var first = items[1] && items[1].getAttribute('data-value');
+                if (first && maps[k] && maps[k][first]) key = k;
+            });
+            if (!key) return;
+            items.forEach(function (it) {
+                var v = it.getAttribute('data-value');
+                it.classList.toggle('is-active', v === '' ? inspState[key].length === 0 : inspState[key].indexOf(v) !== -1);
+            });
+            var valueEl = panel.querySelector('.ui-filter__value');
+            if (valueEl) {
+                var names = inspState[key].map(function (slug) { return maps[key][slug]; });
+                valueEl.textContent = names.length ? names.join(', ') : 'Все';
+            }
+        });
+    }
+
+    function inspBuildMobilePanel() {
+        var maps = window.okoyomInspFilters;
+        var btn = document.querySelector('.inspirationTop .filterModalOpen');
+        if (!maps || !btn || document.querySelector('.mfilter--insp')) return;
+        var labels = { collection: 'КОЛЛЕКЦИЯ', subject: 'СЮЖЕТ', color: 'ЦВЕТ' };
+        var icon = btn.querySelector('img');
+        var closeSrc = icon ? icon.src.replace(/filters\.svg.*$/, 'close.svg') : '';
+
+        var modal = document.createElement('div');
+        modal.className = 'mfilter mfilter--insp';
+        var overlay = document.createElement('div');
+        overlay.className = 'mfilter__overlay';
+        var panel = document.createElement('div');
+        panel.className = 'mfilter__panel';
+        var head = document.createElement('div');
+        head.className = 'mfilter__head';
+        var title = document.createElement('div');
+        title.className = 'mfilter__title';
+        title.textContent = 'Фильтры';
+        var close = document.createElement('button');
+        close.className = 'mfilter__close';
+        close.type = 'button';
+        if (closeSrc) {
+            var closeImg = document.createElement('img');
+            closeImg.src = closeSrc;
+            closeImg.alt = '';
+            closeImg.width = 40;
+            closeImg.height = 40;
+            close.appendChild(closeImg);
+        } else {
+            close.textContent = '×';
+        }
+        head.appendChild(title);
+        head.appendChild(close);
+        var content = document.createElement('div');
+        content.className = 'mfilter__content';
+
+        ['collection', 'subject', 'color'].forEach(function (key) {
+            if (!maps[key] || !Object.keys(maps[key]).length) return;
+            var isColor = key === 'color';
+            var group = document.createElement('div');
+            group.className = 'mfilter-group' + (isColor ? ' mfilter-group--color' : '');
+            group.setAttribute('data-filter-group', key);
+            var label = document.createElement('div');
+            label.className = 'mfilter-label';
+            label.textContent = labels[key];
+            var wrap1 = document.createElement('div');
+            wrap1.className = 'mfilter-scroll-1';
+            var scroll = document.createElement('div');
+            scroll.className = 'mfilter-scroll';
+            var all = document.createElement('button');
+            all.type = 'button';
+            all.className = 'active';
+            all.setAttribute('data-filter-value', '');
+            all.textContent = 'Все';
+            scroll.appendChild(all);
+            Object.keys(maps[key]).forEach(function (slug, i) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.setAttribute('data-filter-value', slug);
+                if (isColor) {
+                    b.className = 'mfilter-color';
+                    b.title = maps[key][slug];
+                    var circle = document.createElement('span');
+                    var hex = maps.swatches && maps.swatches[slug];
+                    circle.className = 'circleFilter' + (hex ? '' : ' circleFilter-' + (i % 13 + 1));
+                    if (hex) { circle.style.background = hex; circle.style.border = '1px solid ' + hex; }
+                    b.appendChild(circle);
+                } else {
+                    b.textContent = maps[key][slug];
+                }
+                scroll.appendChild(b);
+            });
+            wrap1.appendChild(scroll);
+            group.appendChild(label);
+            group.appendChild(wrap1);
+            content.appendChild(group);
+        });
+
+        var bottom = document.createElement('div');
+        bottom.className = 'mfilter-bottom';
+        var reset = document.createElement('button');
+        reset.type = 'button';
+        reset.className = 'mfilter-reset';
+        reset.textContent = 'СБРОСИТЬ';
+        var show = document.createElement('button');
+        show.type = 'button';
+        show.className = 'mfilter-show';
+        show.textContent = 'ПОКАЗАТЬ';
+        bottom.appendChild(reset);
+        bottom.appendChild(show);
+        panel.appendChild(head);
+        panel.appendChild(content);
+        panel.appendChild(bottom);
+        modal.appendChild(overlay);
+        modal.appendChild(panel);
+        document.body.appendChild(modal);
+
+        function openPanel() { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closePanel() { modal.classList.remove('active'); document.body.style.overflow = ''; }
+        btn.classList.remove('openModal2');
+        btn.onclick = null;
+        btn.addEventListener('click', function (e) { e.preventDefault(); openPanel(); });
+        overlay.addEventListener('click', closePanel);
+        close.addEventListener('click', closePanel);
+
+        function repaint() {
+            ['collection', 'subject', 'color'].forEach(function (key) {
+                modal.querySelectorAll('[data-filter-group="' + key + '"] [data-filter-value]').forEach(function (b) {
+                    var v = b.getAttribute('data-filter-value');
+                    b.classList.toggle('active', v === '' ? inspState[key].length === 0 : inspState[key].indexOf(v) !== -1);
+                });
+            });
+            inspSyncPanels(maps);
+            inspApply();
+        }
+
+        modal.addEventListener('click', function (e) {
+            var b = e.target.closest('[data-filter-value]');
+            if (!b) return;
+            e.preventDefault();
+            var key = b.closest('[data-filter-group]').getAttribute('data-filter-group');
+            var v = b.getAttribute('data-filter-value');
+            if (v === '') {
+                inspState[key] = [];
+            } else {
+                var i = inspState[key].indexOf(v);
+                if (i === -1) inspState[key].push(v); else inspState[key].splice(i, 1);
+            }
+            repaint();
+        });
+        reset.addEventListener('click', function (e) {
+            e.preventDefault();
+            ['collection', 'subject', 'color'].forEach(function (key) { inspState[key] = []; });
+            repaint();
+        });
+        inspApply();
     }
 
     function inspBuildPanels() {
@@ -1172,6 +1348,7 @@
         catWatchDropdowns();
         catFollowThumbs();
         catEvenSocials();
+        inspBuildMobilePanel();
         setTimeout(catSlowBanners, 300);
 
         try {

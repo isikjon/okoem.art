@@ -791,6 +791,25 @@ iframe.mural-video {
     .flexFiltersCatalog.is-stuck {
         padding-bottom: 14px;
     }
+    .title-blockFlex-flexInfoSectionDesigners h3,
+    .title-right-flexGreyInfoBlockRow__block h4,
+    .right-block-flexBuyersFirstSection h3 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .cardSectionContent {
+        margin-top: 60px;
+    }
+    .material-mobile-select__value {
+        color: #161412;
+    }
+    .right-flexCardLastInfoBlock {
+        margin-top: 20px;
+    }
+    .gallery-popup__close {
+        top: 60px;
+        right: 20px;
+    }
     .home .sectionMainV2:last-of-type {
         padding-bottom: 100px;
     }
@@ -802,5 +821,23 @@ iframe.mural-video {
     }
     .left-flexFiltersCatalog-1234 .flex-col-3__footer {
         width: 110px;
+    }
+}
+
+.sectionMainV2--flush {
+    margin-top: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .single-product .flexTwoTypeInfoMain-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cardSection + .sectionMainV2,
+    .sectionMainV2--flush {
+        margin-top: 75px !important;
     }
 }
