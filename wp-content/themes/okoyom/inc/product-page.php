@@ -26,7 +26,7 @@ function okoyom_product_materials( int $product_id ): array {
 }
 
 function okoyom_initial_calc( float $price_per_sqm, int $w = 300, int $h = 300 ): array {
-	$area  = ( ( $w + 5 ) / 100 ) * ( ( $h + 5 ) / 100 );
+	$area  = ( $w / 100 ) * ( $h / 100 );
 	$total = round( $area * $price_per_sqm );
 
 	return array(

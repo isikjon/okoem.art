@@ -841,3 +841,13 @@ iframe.mural-video {
         margin-top: 75px !important;
     }
 }
+
+.title-right-flex-cardSectionContent h1,
+.title-right-flex-cardSectionContent p,
+.title-right-flex-cardSectionContent span,
+.text-title2-right-flex-cardSectionContent,
+.pinterest-title,
+.pinterest-subtitle {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}

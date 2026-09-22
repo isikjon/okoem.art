@@ -259,14 +259,20 @@ add_action(
 			return;
 		}
 
+		$insp_ids = get_posts(
+			array(
+				'post_type'      => 'oko_inspiration',
+				'post_status'    => 'publish',
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+			)
+		);
+
 		$maps = array();
 		foreach ( array( 'collection' => 'oko_collection', 'color' => 'oko_color', 'subject' => 'oko_subject' ) as $key => $taxonomy ) {
-			$terms = get_terms(
-				array(
-					'taxonomy'   => $taxonomy,
-					'hide_empty' => true,
-				)
-			);
+			$terms = $insp_ids
+				? wp_get_object_terms( $insp_ids, $taxonomy, array( 'orderby' => 'name' ) )
+				: array();
 			$map = array();
 			if ( ! is_wp_error( $terms ) ) {
 				foreach ( $terms as $term ) {

@@ -58,6 +58,7 @@ add_action(
 					placeholder="Интерьер">
 				<p class="description">Мелкая подпись над названием плитки.</p>
 				<p style="margin-top:12px"><label for="okoyom_product"><strong>Товар</strong></label></p>
+				<p class="description">Коллекция, сюжет и цвета подтянутся из выбранного товара при сохранении — заполнять их вручную не нужно.</p>
 				<?php
 				$sel_product = (int) get_post_meta( $post->ID, OKOYOM_META_PRODUCT, true );
 				$products    = get_posts(
@@ -109,12 +110,49 @@ add_action(
 			sanitize_text_field( wp_unslash( $_POST['okoyom_subtitle'] ?? '' ) )
 		);
 
-		update_post_meta(
-			$post_id,
-			OKOYOM_META_PRODUCT,
-			absint( $_POST['okoyom_product'] ?? 0 )
-		);
+		$product_id = absint( $_POST['okoyom_product'] ?? 0 );
+		update_post_meta( $post_id, OKOYOM_META_PRODUCT, $product_id );
+		okoyom_inspiration_inherit_terms( $post_id, $product_id );
 	}
+);
+
+function okoyom_inspiration_inherit_terms( int $post_id, int $product_id ): void {
+	$taxonomies = array( 'oko_collection', 'oko_subject', 'oko_color' );
+
+	if ( ! $product_id || 'product' !== get_post_type( $product_id ) ) {
+		return;
+	}
+
+	foreach ( $taxonomies as $taxonomy ) {
+		$terms = get_the_terms( $product_id, $taxonomy );
+		$ids   = ( $terms && ! is_wp_error( $terms ) ) ? wp_list_pluck( $terms, 'term_id' ) : array();
+		wp_set_object_terms( $post_id, $ids, $taxonomy );
+	}
+}
+
+add_action(
+	'save_post_product',
+	function ( int $product_id ): void {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		$linked = get_posts(
+			array(
+				'post_type'      => OKOYOM_INSPIRATION_CPT,
+				'post_status'    => 'any',
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+				'meta_key'       => OKOYOM_META_PRODUCT,
+				'meta_value'     => $product_id,
+			)
+		);
+
+		foreach ( $linked as $post_id ) {
+			okoyom_inspiration_inherit_terms( (int) $post_id, $product_id );
+		}
+	},
+	20
 );
 
 add_filter(

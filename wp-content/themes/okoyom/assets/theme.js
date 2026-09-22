@@ -1035,6 +1035,47 @@
         if (showBtn) showBtn.textContent = 'ПОКАЗАТЬ (' + shown + ')';
     }
 
+    function inspRefreshLabel(panel, key, valueEl, maps) {
+        if (!valueEl) return;
+        var sel = inspState[key] || [];
+        if (!sel.length) {
+            valueEl.textContent = 'Все';
+        } else if (sel.length === 1) {
+            valueEl.textContent = maps[key][sel[0]] || 'Все';
+        } else {
+            valueEl.textContent = 'Выбрано: ' + sel.length;
+        }
+        if (panel) panel.classList.toggle('is-multi', sel.length > 1);
+    }
+
+    function inspResetAll(maps) {
+        ['collection', 'color', 'subject'].forEach(function (key) { inspState[key] = []; });
+        document.querySelectorAll('.inspirationTop .ui-filter__item').forEach(function (it) {
+            var v = it.getAttribute('data-value');
+            if (v !== null) it.classList.toggle('is-active', v === '');
+        });
+        document.querySelectorAll('.mfilter--insp [data-filter-value]').forEach(function (b) {
+            b.classList.toggle('active', b.getAttribute('data-filter-value') === '');
+        });
+        inspSyncPanels(maps);
+        inspApply();
+    }
+
+    function inspAddReset(maps) {
+        var row = document.querySelector('.inspirationTop .flexFiltersCatalog');
+        if (!row || row.querySelector('.catResetFilters')) return;
+        var host = row.querySelector('.left-flexFiltersCatalog') || row;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'catResetFilters is-visible';
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Сбросить';
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            inspResetAll(maps);
+        });
+        host.appendChild(btn);
+    }
+
     function inspSyncPanels(maps) {
         document.querySelectorAll('.ui-filter').forEach(function (panel) {
             var list = panel.querySelector('.ui-filter__list');
@@ -1052,11 +1093,7 @@
                 var v = it.getAttribute('data-value');
                 it.classList.toggle('is-active', v === '' ? inspState[key].length === 0 : inspState[key].indexOf(v) !== -1);
             });
-            var valueEl = panel.querySelector('.ui-filter__value');
-            if (valueEl) {
-                var names = inspState[key].map(function (slug) { return maps[key][slug]; });
-                valueEl.textContent = names.length ? names.join(', ') : 'Все';
-            }
+            inspRefreshLabel(panel, key, panel.querySelector('.ui-filter__value'), maps);
         });
     }
 
@@ -1193,8 +1230,7 @@
         });
         reset.addEventListener('click', function (e) {
             e.preventDefault();
-            ['collection', 'subject', 'color'].forEach(function (key) { inspState[key] = []; });
-            repaint();
+            inspResetAll(maps);
         });
         inspApply();
     }
@@ -1228,7 +1264,17 @@
                     html += '<button class="ui-filter__item" type="button" data-value="' + slug + '"><span>' + name + '</span><span class="ui-filter__check"></span></button>';
                 }
             });
+            html += '<button class="ui-filter__collapse" type="button">Свернуть <i></i></button>';
             list.innerHTML = html;
+            inspRefreshLabel(panel, key, valueEl, maps);
+
+            var collapseBtn = list.querySelector('.ui-filter__collapse');
+            if (collapseBtn) {
+                collapseBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    panel.classList.remove('is-open');
+                });
+            }
 
             list.querySelectorAll('.ui-filter__item').forEach(function (item) {
                 item.addEventListener('click', function (e) {
@@ -1244,14 +1290,13 @@
                         var v = it.getAttribute('data-value');
                         it.classList.toggle('is-active', v === '' ? inspState[key].length === 0 : inspState[key].indexOf(v) !== -1);
                     });
-                    if (valueEl) {
-                        var names = inspState[key].map(function (s) { return maps[key][s]; });
-                        valueEl.textContent = names.length ? names.join(', ') : 'Все';
-                    }
+                    inspRefreshLabel(panel, key, valueEl, maps);
                     inspApply();
                 });
             });
         });
+
+        inspAddReset(maps);
 
         document.addEventListener('click', function (e) {
             var trigger = e.target.closest('.ui-filter__trigger');
