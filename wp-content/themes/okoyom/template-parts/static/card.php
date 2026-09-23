@@ -253,9 +253,11 @@ defined( 'ABSPATH' ) || exit;
                         <div class="material-mobile-option" data-material="m2">
                             <?php echo okoyom_t( 'dad90bde7323', 'Текстиль' ); ?>
                         </div>
+                    <!--
                         <div class="material-mobile-option" data-material="m3">
                             <?php echo okoyom_t( '14093e910091', 'Полотно' ); ?>
                         </div>
+                    -->
                         <div class="material-mobile-option" data-material="m4">
                             <?php echo okoyom_t( '70e35568ed46', 'HoReCa' ); ?>
                         </div>
@@ -268,9 +270,11 @@ defined( 'ABSPATH' ) || exit;
                     <button class="material-tab" data-material="m2">
                         <?php echo okoyom_t( 'dad90bde7323', 'Текстиль' ); ?>
                     </button>
+                <!--
                     <button class="material-tab" data-material="m3">
                         <?php echo okoyom_t( '14093e910091', 'Полотно' ); ?>
                     </button>
+                -->
                     <button class="material-tab" data-material="m4">
                         <?php echo okoyom_t( '70e35568ed46', 'HoReCa' ); ?>
                     </button>
