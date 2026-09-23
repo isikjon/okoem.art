@@ -1008,17 +1008,21 @@
         catApply(true);
     });
 
-    var inspState = { collection: [], color: [], subject: [] };
+    var inspState = { collection: [], series: [], subject: [], color: [] };
+    var inspSearch = '';
 
     function inspApply() {
         var tiles = document.querySelectorAll('.pinterest-item');
         var shown = 0;
         tiles.forEach(function (tile) {
-            var ok = ['collection', 'color', 'subject'].every(function (k) {
+            var ok = ['collection', 'series', 'subject', 'color'].every(function (k) {
                 if (!inspState[k].length) return true;
                 var vals = (tile.getAttribute('data-' + k) || '').split(' ');
                 return inspState[k].some(function (v) { return vals.indexOf(v) !== -1; });
             });
+            if (ok && inspSearch) {
+                ok = (tile.getAttribute('data-title') || '').indexOf(inspSearch) !== -1;
+            }
             tile.style.display = ok ? '' : 'none';
             if (ok) shown++;
         });
@@ -1033,6 +1037,24 @@
         }
         var showBtn = document.querySelector('.mfilter--insp .mfilter-show');
         if (showBtn) showBtn.textContent = 'ПОКАЗАТЬ (' + shown + ')';
+
+        var resetBtn = document.querySelector('.inspirationTop .catResetFilters');
+        if (resetBtn) {
+            var any = ['collection', 'series', 'subject', 'color'].some(function (k) { return inspState[k].length; }) || !!inspSearch;
+            resetBtn.classList.toggle('is-visible', any);
+        }
+    }
+
+    function inspBindSearch() {
+        var input = document.querySelector('.inspirationTop input[type="search"]');
+        if (!input || input.dataset.inspBound) return;
+        input.dataset.inspBound = '1';
+        var form = input.closest('form');
+        if (form) form.addEventListener('submit', function (e) { e.preventDefault(); });
+        input.addEventListener('input', function () {
+            inspSearch = input.value.trim().toLowerCase();
+            inspApply();
+        });
     }
 
     function inspRefreshLabel(panel, key, valueEl, maps) {
@@ -1049,7 +1071,9 @@
     }
 
     function inspResetAll(maps) {
-        ['collection', 'color', 'subject'].forEach(function (key) { inspState[key] = []; });
+        ['collection', 'series', 'subject', 'color'].forEach(function (key) { inspState[key] = []; });
+        inspSearch = '';
+        document.querySelectorAll('.inspirationTop input[type="search"]').forEach(function (i) { i.value = ''; });
         document.querySelectorAll('.inspirationTop .ui-filter__item').forEach(function (it) {
             var v = it.getAttribute('data-value');
             if (v !== null) it.classList.toggle('is-active', v === '');
@@ -1067,7 +1091,7 @@
         var host = row.querySelector('.left-flexFiltersCatalog') || row;
         var btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'catResetFilters is-visible';
+        btn.className = 'catResetFilters';
         btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Сбросить';
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -1083,7 +1107,7 @@
             var items = list.querySelectorAll('.ui-filter__item[data-value]');
             if (!items.length) return;
             var key = null;
-            ['collection', 'color', 'subject'].forEach(function (k) {
+            ['collection', 'series', 'subject', 'color'].forEach(function (k) {
                 if (key) return;
                 var first = items[1] && items[1].getAttribute('data-value');
                 if (first && maps[k] && maps[k][first]) key = k;
@@ -1101,7 +1125,7 @@
         var maps = window.okoyomInspFilters;
         var btn = document.querySelector('.inspirationTop .filterModalOpen');
         if (!maps || !btn || document.querySelector('.mfilter--insp')) return;
-        var labels = { collection: 'КОЛЛЕКЦИЯ', subject: 'СЮЖЕТ', color: 'ЦВЕТ' };
+        var labels = { collection: 'КОЛЛЕКЦИЯ', series: 'СЕРИЯ', subject: 'СЮЖЕТ', color: 'ЦВЕТ' };
         var icon = btn.querySelector('img');
         var closeSrc = icon ? icon.src.replace(/filters\.svg.*$/, 'close.svg') : '';
 
@@ -1134,7 +1158,7 @@
         var content = document.createElement('div');
         content.className = 'mfilter__content';
 
-        ['collection', 'subject', 'color'].forEach(function (key) {
+        ['collection', 'series', 'subject', 'color'].forEach(function (key) {
             if (!maps[key] || !Object.keys(maps[key]).length) return;
             var isColor = key === 'color';
             var group = document.createElement('div');
@@ -1204,7 +1228,7 @@
         close.addEventListener('click', closePanel);
 
         function repaint() {
-            ['collection', 'subject', 'color'].forEach(function (key) {
+            ['collection', 'series', 'subject', 'color'].forEach(function (key) {
                 modal.querySelectorAll('[data-filter-group="' + key + '"] [data-filter-value]').forEach(function (b) {
                     var v = b.getAttribute('data-filter-value');
                     b.classList.toggle('active', v === '' ? inspState[key].length === 0 : inspState[key].indexOf(v) !== -1);
@@ -1238,7 +1262,7 @@
     function inspBuildPanels() {
         var maps = window.okoyomInspFilters;
         if (!maps) return;
-        var keyByLabel = { 'коллекция': 'collection', 'цвет': 'color', 'сюжет': 'subject' };
+        var keyByLabel = { 'коллекция': 'collection', 'серия': 'series', 'сюжет': 'subject', 'цвет': 'color' };
 
         document.querySelectorAll('.ui-filter').forEach(function (panel) {
             var labelEl = panel.querySelector('.ui-filter__label');
@@ -1297,6 +1321,7 @@
         });
 
         inspAddReset(maps);
+        inspBindSearch();
 
         document.addEventListener('click', function (e) {
             var trigger = e.target.closest('.ui-filter__trigger');

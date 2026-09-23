@@ -58,7 +58,7 @@ add_action(
 					placeholder="Интерьер">
 				<p class="description">Мелкая подпись над названием плитки.</p>
 				<p style="margin-top:12px"><label for="okoyom_product"><strong>Товар</strong></label></p>
-				<p class="description">Коллекция, сюжет и цвета подтянутся из выбранного товара при сохранении — заполнять их вручную не нужно.</p>
+				<p class="description">Коллекция, серия, сюжет и цвета подтянутся из выбранного товара при сохранении — заполнять их вручную не нужно.</p>
 				<?php
 				$sel_product = (int) get_post_meta( $post->ID, OKOYOM_META_PRODUCT, true );
 				$products    = get_posts(
@@ -117,7 +117,7 @@ add_action(
 );
 
 function okoyom_inspiration_inherit_terms( int $post_id, int $product_id ): void {
-	$taxonomies = array( 'oko_collection', 'oko_subject', 'oko_color' );
+	$taxonomies = array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' );
 
 	if ( ! $product_id || 'product' !== get_post_type( $product_id ) ) {
 		return;

@@ -207,15 +207,15 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	if ( $slides ) {
 		$make_slides = static function ( bool $with_video = true ) use ( $slides, $product, $video ): string {
 			$out = '';
-			if ( $with_video && '' !== $video && function_exists( 'okoyom_video_slide_html' ) ) {
-				$out .= okoyom_video_slide_html( $video, get_the_title( $product ) );
-			}
 			foreach ( $slides as $url ) {
 				$out .= sprintf(
 					'<div class="swiper-slide"><img src="%s" alt="%s" loading="lazy" decoding="async"></div>',
 					esc_url( $url ),
 					esc_attr( get_the_title( $product ) )
 				);
+			}
+			if ( $with_video && '' !== $video && function_exists( 'okoyom_video_slide_html' ) ) {
+				$out .= okoyom_video_slide_html( $video, get_the_title( $product ) );
 			}
 			return $out;
 		};
@@ -256,7 +256,7 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	}
 
 	$versions = function_exists( 'okoyom_color_versions' ) ? okoyom_color_versions( $product->ID ) : array();
-	if ( count( $versions ) > 1 ) {
+	if ( $versions ) {
 		$dots = '';
 		foreach ( $versions as $i => $v ) {
 			$dots .= sprintf(

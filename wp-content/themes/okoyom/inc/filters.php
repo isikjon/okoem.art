@@ -269,7 +269,7 @@ add_action(
 		);
 
 		$maps = array();
-		foreach ( array( 'collection' => 'oko_collection', 'color' => 'oko_color', 'subject' => 'oko_subject' ) as $key => $taxonomy ) {
+		foreach ( array( 'collection' => 'oko_collection', 'series' => 'oko_series', 'subject' => 'oko_subject', 'color' => 'oko_color' ) as $key => $taxonomy ) {
 			$terms = $insp_ids
 				? wp_get_object_terms( $insp_ids, $taxonomy, array( 'orderby' => 'name' ) )
 				: array();
