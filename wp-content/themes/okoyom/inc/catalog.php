@@ -92,11 +92,11 @@ function okoyom_catalog_count(): string {
 	return $count . ' ' . $word;
 }
 
-function okoyom_product_slides( int $product_id, int $limit = 3 ): array {
+function okoyom_product_slides( int $product_id, int $limit = 3, bool $with_thumb = true ): array {
 	$urls = array();
 
 	$thumb = get_the_post_thumbnail_url( $product_id, 'large' );
-	if ( $thumb ) {
+	if ( $with_thumb && $thumb ) {
 		$urls[] = $thumb;
 	}
 
@@ -106,6 +106,10 @@ function okoyom_product_slides( int $product_id, int $limit = 3 ): array {
 		if ( $url ) {
 			$urls[] = $url;
 		}
+	}
+
+	if ( ! $urls && $thumb ) {
+		$urls[] = $thumb;
 	}
 
 	if ( $limit > 0 ) {

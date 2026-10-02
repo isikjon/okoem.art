@@ -46,7 +46,7 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	$collection = $collection && ! is_wp_error( $collection ) ? $collection[0]->name : '';
 	$materials  = okoyom_product_materials( $product->ID );
 	$main       = $materials ? $materials[0] : null;
-	$slides     = okoyom_product_slides( $product->ID, 0 );
+	$slides     = okoyom_product_slides( $product->ID, 0, false );
 
 	$html = preg_replace_callback(
 		'/(<div class="title-right-flex-cardSectionContent">)(.*?)(<\/div>)/su',
