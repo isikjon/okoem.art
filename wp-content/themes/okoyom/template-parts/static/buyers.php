@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="cardSection mural-hero--intro" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/cardBG.webp) center center no-repeat; background-size: cover;">
+<section class="cardSection cardSection2 mural-hero--intro" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/cardBG222.webp) center center no-repeat !important; background-size: cover;">
     <div class="container">
         <div class="titleCardSection titleCardSectionContent">
             <p class="text-titleCardSection mural-hero__fade-up">
@@ -45,7 +45,7 @@ defined( 'ABSPATH' ) || exit;
                 <h2>
                     01
                 </h2>
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection1.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
                 <div class="right-block-flexBuyersFirstSection">
                     <h3>
                         <?php echo okoyom_t( '811c8119f7a7', 'Выбираем настроение' ); ?>
@@ -56,7 +56,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
             <div data-aos="fade" data-aos-offset="200" class="block-flexBuyersFirstSection block-flexBuyersFirstSection-2">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection2.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
                 <div class="right-block-flexBuyersFirstSection">
                     <h3>
                         <?php echo okoyom_t( 'a6cab8a89142', 'Показываем в интерьере' ); ?>
@@ -73,7 +73,7 @@ defined( 'ABSPATH' ) || exit;
                 <h2>
                     03
                 </h2>
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection3.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
                 <div class="right-block-flexBuyersFirstSection">
                     <h3>
                         <?php echo okoyom_t( '28e088714be5', 'Адаптируем под размер' ); ?>
@@ -84,7 +84,7 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
             <div data-aos="fade" data-aos-offset="200" class="block-flexBuyersFirstSection block-flexBuyersFirstSection-2">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexBuyersFirstSection4.webp" alt="" width="450" height="337" loading="lazy" decoding="async">
                 <div class="right-block-flexBuyersFirstSection">
                     <h3>
                         <?php echo okoyom_t( '99e60e34f28e', 'Печатаем и сопровождаем монтаж' ); ?>
@@ -210,9 +210,7 @@ defined( 'ABSPATH' ) || exit;
                         <div class="material-mobile-option" data-material="m2">
                             <?php echo okoyom_t( 'dad90bde7323', 'Текстиль' ); ?>
                         </div>
-                        <div class="material-mobile-option" data-material="m3">
-                            <?php echo okoyom_t( '14093e910091', 'Полотно' ); ?>
-                        </div>
+
                         <div class="material-mobile-option" data-material="m4">
                             <?php echo okoyom_t( '70e35568ed46', 'HoReCa' ); ?>
                         </div>
@@ -225,9 +223,7 @@ defined( 'ABSPATH' ) || exit;
                     <button class="material-tab" data-material="m2">
                         <?php echo okoyom_t( 'dad90bde7323', 'Текстиль' ); ?>
                     </button>
-                    <button class="material-tab" data-material="m3">
-                        <?php echo okoyom_t( '14093e910091', 'Полотно' ); ?>
-                    </button>
+
                     <button class="material-tab" data-material="m4">
                         <?php echo okoyom_t( '70e35568ed46', 'HoReCa' ); ?>
                     </button>
@@ -282,7 +278,7 @@ defined( 'ABSPATH' ) || exit;
                             </div>
                         </div>
                         <div class="material-preview">
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoTabsCard.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/m1.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
                             <div class="material-preview-title">
                                 <?php echo okoyom_t( '83d1904f48c3', 'Флизелин премиум' ); ?>
                             </div>
@@ -341,7 +337,7 @@ defined( 'ABSPATH' ) || exit;
                             </div>
                         </div>
                         <div class="material-preview">
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoTabsCard.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/m2.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
                             <div class="material-preview-title">
                                 <?php echo okoyom_t( '83d1904f48c3', 'Флизелин премиум' ); ?>
                             </div>
@@ -459,7 +455,7 @@ defined( 'ABSPATH' ) || exit;
                             </div>
                         </div>
                         <div class="material-preview">
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoTabsCard.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/m4.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
                             <div class="material-preview-title">
                                 <?php echo okoyom_t( '83d1904f48c3', 'Флизелин премиум' ); ?>
                             </div>
@@ -602,7 +598,7 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="flexAlignV2Address">
             <div class="right-flexAlignV2Address">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.webp" alt="" width="543" height="677" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections222.webp" alt="" width="543" height="677" loading="lazy" decoding="async">
             </div>
             <div class="left-flexAlignV2Address">
                 <div class="titleSection">

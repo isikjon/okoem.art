@@ -511,10 +511,10 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </div>
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-2.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
             </div>
             <div data-aos="fade-up" data-aos-offset="200" class="flexGreyInfoBlockRow__block flexGreyInfoBlockRow__block-1 aos-init aos-animate">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-3.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
                 <div class="right-flexGreyInfoBlockRow__block">
                     <div class="title-right-flexGreyInfoBlockRow__block">
                         <span>
@@ -577,7 +577,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </div>
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-4.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
             </div>
         </div>
     </div>
@@ -586,7 +586,7 @@ defined( 'ABSPATH' ) || exit;
     <div class="container">
         <div class="flexAlignV2Address">
             <div class="right-flexAlignV2Address">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections.webp" alt="" width="543" height="677" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/left-flexSectionAboutFreeSections2.webp" alt="" width="543" height="677" loading="lazy" decoding="async">
             </div>
             <div class="left-flexAlignV2Address">
                 <div class="titleSection">

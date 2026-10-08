@@ -139,11 +139,11 @@ defined( 'ABSPATH' ) || exit;
         <div class="flexSectionInfoMain01">
             <div data-aos="fade-up" data-aos-offset="200" class="block-flexSectionInfoMain01">
                 <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
-                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoBig-block-flexSectionInfoMain01-1.webp" alt="" class="photoBig-block-flexSectionInfoMain01" width="2672" height="3340" loading="lazy" decoding="async">
+                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoBig-block-flexSectionInfoMain01-111.webp" alt="" class="photoBig-block-flexSectionInfoMain01" width="2672" height="3340" loading="lazy" decoding="async">
                     </div>
                 <div class="flexRow-block-flexSectionInfoMain01">
                     <div class="photoContainer-photoBig-block-flexSectionInfoMain01 photoContainer-photoBig-block-flexSectionInfoMain01-2">
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexRow-block-flexSectionInfoMain01-1.webp" alt="" class="flexRow-block-flexSectionInfoMain01" width="468" height="624" loading="lazy" decoding="async">
+                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexRow-block-flexSectionInfoMain01-1123.webp" alt="" class="flexRow-block-flexSectionInfoMain01" width="468" height="624" loading="lazy" decoding="async">
                         </div>
                     <div class="text-flexRow-block-flexSectionInfoMain01">
                         <span>
@@ -181,7 +181,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="flexGreyInfoBlockRow">
             <div data-aos="fade-up" data-aos-offset="200" class="flexGreyInfoBlockRow__block flexGreyInfoBlockRow__block-1">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-11231.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
                 <div class="right-flexGreyInfoBlockRow__block">
                     <div class="title-right-flexGreyInfoBlockRow__block">
                         <span>
@@ -249,10 +249,10 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </div>
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-1345.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
             </div>
             <div data-aos="fade-up" data-aos-offset="200" class="flexGreyInfoBlockRow__block flexGreyInfoBlockRow__block-1">
-                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-1.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
+                <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexGreyInfoBlockRow__big-1654.webp" alt="" class="flexGreyInfoBlockRow__big" width="552" height="690" loading="lazy" decoding="async">
                 <div class="right-flexGreyInfoBlockRow__block">
                     <div class="title-right-flexGreyInfoBlockRow__block">
                         <span>
@@ -286,7 +286,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="flexTwoTypeInfoMain">
             <div data-aos="fade-left" data-aos-offset="200" class="block-flexTwoTypeInfoMain block-flexTwoTypeInfoMain--static">
                 <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
-                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
+                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_1200.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
                 </div>
                 <div class="text-block-flexTwoTypeInfoMain">
                     <p>
@@ -299,7 +299,7 @@ defined( 'ABSPATH' ) || exit;
             </div>
             <div data-aos="fade-left" data-aos-offset="300" class="block-flexTwoTypeInfoMain block-flexTwoTypeInfoMain--static">
                 <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
-                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
+                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_12001.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
                 </div>
                 <div class="text-block-flexTwoTypeInfoMain">
                     <p>
@@ -721,7 +721,7 @@ defined( 'ABSPATH' ) || exit;
                     <?php echo okoyom_t( '635216b03422', 'Условия для дизайнеров' ); ?>
                 </a>
             </div>
-            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexSectionInfoBottomMain-1.webp" alt="" class="flexSectionInfoBottomMain__photo" width="2176" height="2720" loading="lazy" decoding="async">
+            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexSectionInfoBottomMain-10909.webp" alt="" class="flexSectionInfoBottomMain__photo" width="2176" height="2720" loading="lazy" decoding="async">
         </div>
     </div>
 </section>

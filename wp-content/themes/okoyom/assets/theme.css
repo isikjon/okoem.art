@@ -167,6 +167,24 @@
     z-index: 0;
     pointer-events: none;
 }
+.cardSection2:has(.titleCardSectionContent:not(.titleCardSectionContent-22))::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url(img/cardBG222.webp) center center / cover no-repeat;
+    animation: okoKenBurns 18s ease-in-out infinite alternate;
+    z-index: 0;
+    pointer-events: none;
+}
+.cardSection3:has(.titleCardSectionContent:not(.titleCardSectionContent-22))::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url(img/cardBG3333.webp) center center / cover no-repeat;
+    animation: okoKenBurns 18s ease-in-out infinite alternate;
+    z-index: 0;
+    pointer-events: none;
+}
 
 .cardSection:has(.titleCardSectionContent:not(.titleCardSectionContent-22)) > .container {
     position: relative;

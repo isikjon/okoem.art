@@ -329,7 +329,7 @@ defined( 'ABSPATH' ) || exit;
                             </div>
                         </div>
                         <div class="material-preview">
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoTabsCard.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/m1.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
                             <div class="material-preview-title">
                                 <?php echo okoyom_t( '83d1904f48c3', 'Флизелин премиум' ); ?>
                             </div>
@@ -388,7 +388,7 @@ defined( 'ABSPATH' ) || exit;
                             </div>
                         </div>
                         <div class="material-preview">
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoTabsCard.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/m2.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
                             <div class="material-preview-title">
                                 <?php echo okoyom_t( '83d1904f48c3', 'Флизелин премиум' ); ?>
                             </div>
@@ -506,7 +506,7 @@ defined( 'ABSPATH' ) || exit;
                             </div>
                         </div>
                         <div class="material-preview">
-                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/photoTabsCard.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
+                            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/m4.webp" alt="" width="2212" height="1659" loading="lazy" decoding="async">
                             <div class="material-preview-title">
                                 <?php echo okoyom_t( '83d1904f48c3', 'Флизелин премиум' ); ?>
                             </div>
