@@ -42,19 +42,18 @@ function okoyom_render_product_page( WP_Post $product ): string {
 
 	$title      = get_the_title( $product );
 	$excerpt    = get_the_excerpt( $product );
-	$collection = get_the_terms( $product->ID, 'oko_collection' );
-	$collection = $collection && ! is_wp_error( $collection ) ? $collection[0]->name : '';
+	$series     = okoyom_product_series_name( $product->ID );
 	$materials  = okoyom_product_materials( $product->ID );
 	$main       = $materials ? $materials[0] : null;
 	$slides     = okoyom_product_slides( $product->ID, 0, false );
 
 	$html = preg_replace_callback(
 		'/(<div class="title-right-flex-cardSectionContent">)(.*?)(<\/div>)/su',
-		function ( array $m ) use ( $title, $collection, $excerpt ) {
+		function ( array $m ) use ( $title, $series, $excerpt ) {
 			$block = $m[2];
 
-			$block = '' !== $collection
-				? preg_replace( '/(<span>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/span>)/u', '$1' . esc_html( $collection ) . '$2', $block, 1 )
+			$block = '' !== $series
+				? preg_replace( '/(<span>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/span>)/u', '$1' . esc_html( $series ) . '$2', $block, 1 )
 				: preg_replace( '/<span>\s*(?:<\?php[^?]*\?>|[^<]*)\s*<\/span>/u', '', $block, 1 );
 
 			$block = preg_replace( '/(<h1>)\s*(?:<\?php[^?]*\?>|[^<]*)\s*(<\/h1>)/u', '$1' . esc_html( $title ) . '$2', $block, 1 );
@@ -85,8 +84,8 @@ function okoyom_render_product_page( WP_Post $product ): string {
 
 	$html = preg_replace_callback(
 		'/(<p class="text-titleCardSection">)(.*?)(<\/p>)/su',
-		function ( array $m ) use ( $collection ) {
-			return '' !== $collection ? $m[1] . esc_html( $collection ) . $m[3] : $m[1] . $m[3];
+		function ( array $m ) use ( $series ) {
+			return '' !== $series ? $m[1] . esc_html( $series ) . $m[3] : $m[1] . $m[3];
 		},
 		$html,
 		1
@@ -299,7 +298,7 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		);
 		$html = preg_replace(
 			'/(<div class="flex-titleSection">\s*<h2 class="titleSectionTitle">)\s*[^<]*(<\/h2>)/su',
-			'$1' . esc_html( $collection ) . '$2',
+			'$1' . esc_html( $series ) . '$2',
 			$html,
 			1
 		);

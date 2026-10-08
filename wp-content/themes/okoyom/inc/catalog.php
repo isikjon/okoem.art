@@ -122,13 +122,19 @@ function okoyom_product_slides( int $product_id, int $limit = 3, bool $with_thum
 	return $urls;
 }
 
+function okoyom_product_series_name( int $product_id ): string {
+	$terms = get_the_terms( $product_id, 'oko_series' );
+
+	return $terms && ! is_wp_error( $terms ) ? $terms[0]->name : '';
+}
+
 function okoyom_catalog_card( WP_Post $product ): void {
-	$slides = okoyom_product_slides( $product->ID );
+	$slides = okoyom_product_slides( $product->ID, 3, false );
 	if ( ! $slides ) {
 		return;
 	}
 
-	$collection = get_the_terms( $product->ID, 'oko_collection' );
+	$series = okoyom_product_series_name( $product->ID );
 
 	$slug_csv = static function ( int $pid, string $tax ): string {
 		$terms = get_the_terms( $pid, $tax );
@@ -175,7 +181,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 			</p>
 			<div class="flex-text-block-flexTwoTypeInfoMain">
 				<span>
-					<?php echo esc_html( $collection && ! is_wp_error( $collection ) ? $collection[0]->name : '' ); ?>
+					<?php echo esc_html( $series ); ?>
 				</span>
 			</div>
 		</div>
