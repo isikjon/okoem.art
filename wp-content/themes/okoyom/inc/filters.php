@@ -223,7 +223,7 @@ add_action(
 	'wp_enqueue_scripts',
 	function () {
 
-		$is_tax_archive = is_tax( array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) );
+		$is_tax_archive = is_tax( array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color', 'product_cat' ) );
 
 		if ( is_page( array( 'catalog', 'search' ) ) || is_post_type_archive( 'product' ) || $is_tax_archive ) {
 			$archive     = function_exists( 'okoyom_archive_tax_term' ) ? okoyom_archive_tax_term() : null;

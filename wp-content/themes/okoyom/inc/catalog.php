@@ -9,7 +9,7 @@ function okoyom_product_base_price( int $product_id ): float {
 }
 
 function okoyom_archive_tax_term(): ?array {
-	foreach ( array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) as $tax ) {
+	foreach ( array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color', 'product_cat' ) as $tax ) {
 		if ( is_tax( $tax ) ) {
 			$term = get_queried_object();
 			if ( $term instanceof WP_Term ) {
@@ -122,6 +122,67 @@ function okoyom_product_slides( int $product_id, int $limit = 3, bool $with_thum
 	return $urls;
 }
 
+function okoyom_room_tokens_map(): array {
+	return apply_filters(
+		'okoyom_room_tokens_map',
+		array(
+			'v-spalnyu'                => array( 'spalni' ),
+			'v-gostinuyu'              => array( 'gostinoy', 'kukhni-gostinoy' ),
+			'na-kukhnyu-i-v-stolovuyu' => array( 'stolovoy', 'kukhni-gostinoy' ),
+			'dlya-restoranov-i-oteley' => array(
+				'restorana',
+				'kafe',
+				'bara',
+				'launzh-restorana',
+				'launzh-zony',
+				'launzh-bara',
+				'resepshena',
+				'lobbi',
+				'launzh-otelya',
+				'koridora-otelya',
+			),
+		)
+	);
+}
+
+function okoyom_current_room_tokens(): array {
+	if ( ! is_tax( 'product_cat' ) ) {
+		return array();
+	}
+
+	$term = get_queried_object();
+	if ( ! $term instanceof WP_Term ) {
+		return array();
+	}
+
+	return okoyom_room_tokens_map()[ $term->slug ] ?? array();
+}
+
+function okoyom_room_image_id( int $product_id, array $tokens ): int {
+	if ( ! $tokens ) {
+		return 0;
+	}
+
+	$escaped = array_map(
+		static function ( string $token ): string {
+			return preg_quote( $token, '~' );
+		},
+		$tokens
+	);
+
+	$pattern = '~-v-interere-(' . implode( '|', $escaped ) . ')(-\d+)*(-scaled)?\.[a-z0-9]+$~i';
+	$gallery = array_filter( explode( ',', (string) get_post_meta( $product_id, '_product_image_gallery', true ) ) );
+
+	foreach ( $gallery as $attachment_id ) {
+		$file = get_attached_file( (int) $attachment_id );
+		if ( $file && preg_match( $pattern, basename( $file ) ) ) {
+			return (int) $attachment_id;
+		}
+	}
+
+	return 0;
+}
+
 function okoyom_product_series_name( int $product_id ): string {
 	$terms = get_the_terms( $product_id, 'oko_series' );
 
@@ -132,6 +193,20 @@ function okoyom_catalog_card( WP_Post $product ): void {
 	$slides = okoyom_product_slides( $product->ID, 3, false );
 	if ( ! $slides ) {
 		return;
+	}
+
+	$title    = get_the_title( $product );
+	$alts     = array_fill( 0, count( $slides ), $title );
+	$room_id  = okoyom_room_image_id( $product->ID, okoyom_current_room_tokens() );
+	$room_url = $room_id ? (string) wp_get_attachment_image_url( $room_id, 'large' ) : '';
+
+	if ( '' !== $room_url ) {
+		$slides = array_slice( array_values( array_unique( array_merge( array( $room_url ), $slides ) ) ), 0, 3 );
+		$alts   = array_fill( 0, count( $slides ), $title );
+		$room_alt = trim( (string) get_post_meta( $room_id, '_wp_attachment_image_alt', true ) );
+		if ( '' !== $room_alt ) {
+			$alts[0] = $room_alt;
+		}
 	}
 
 	$series = okoyom_product_series_name( $product->ID );
@@ -160,7 +235,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 			<div class="hover-slider__slides">
 				<?php foreach ( $slides as $i => $url ) : ?>
 					<div class="hover-slider__slide<?php echo 0 === $i ? ' active' : ''; ?>">
-						<img src="<?php echo esc_url( $url ); ?>" alt="<?php echo esc_attr( get_the_title( $product ) ); ?>" loading="lazy" decoding="async">
+						<img src="<?php echo esc_url( $url ); ?>" alt="<?php echo esc_attr( $alts[ $i ] ?? $title ); ?>" loading="lazy" decoding="async">
 					</div>
 				<?php endforeach; ?>
 			</div>
