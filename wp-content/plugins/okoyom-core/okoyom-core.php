@@ -30,6 +30,7 @@ require_once OKOYOM_CORE_DIR . 'includes/images-webp.php';
 require_once OKOYOM_CORE_DIR . 'includes/featured.php';
 require_once OKOYOM_CORE_DIR . 'includes/product-video.php';
 require_once OKOYOM_CORE_DIR . 'includes/site-images.php';
+require_once OKOYOM_CORE_DIR . 'includes/seo-robots.php';
 
 add_action(
 	'admin_notices',
