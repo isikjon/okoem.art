@@ -163,20 +163,25 @@ function okoyom_room_image_id( int $product_id, array $tokens ): int {
 		return 0;
 	}
 
-	$escaped = array_map(
-		static function ( string $token ): string {
-			return preg_quote( $token, '~' );
-		},
-		$tokens
-	);
-
-	$pattern = '~-v-interere-(' . implode( '|', $escaped ) . ')(-\d+)*(-scaled)?\.[a-z0-9]+$~i';
 	$gallery = array_filter( explode( ',', (string) get_post_meta( $product_id, '_product_image_gallery', true ) ) );
+	if ( ! $gallery ) {
+		return 0;
+	}
 
+	$names = array();
 	foreach ( $gallery as $attachment_id ) {
 		$file = get_attached_file( (int) $attachment_id );
-		if ( $file && preg_match( $pattern, basename( $file ) ) ) {
-			return (int) $attachment_id;
+		if ( $file ) {
+			$names[ (int) $attachment_id ] = basename( $file );
+		}
+	}
+
+	foreach ( $tokens as $token ) {
+		$pattern = '~-v-interere-' . preg_quote( $token, '~' ) . '(-\d+)*(-scaled)?\.[a-z0-9]+$~i';
+		foreach ( $names as $attachment_id => $name ) {
+			if ( preg_match( $pattern, $name ) ) {
+				return $attachment_id;
+			}
 		}
 	}
 
