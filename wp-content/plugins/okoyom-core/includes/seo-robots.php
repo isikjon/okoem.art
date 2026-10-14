@@ -62,7 +62,8 @@ function okoyom_robots_txt( $output, $public ) {
 
 	$params = okoyom_filter_params();
 	if ( '' !== $params && false === strpos( (string) $output, 'Clean-param:' ) ) {
-		$output = rtrim( (string) $output ) . "\n\nClean-param: " . $params . " /catalog/\n";
+		$output  = rtrim( (string) $output ) . "\n\nClean-param: " . $params . " /catalog/\n";
+		$output .= "Clean-param: room /freski/\n";
 	}
 
 	return $output;

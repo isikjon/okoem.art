@@ -145,17 +145,29 @@ function okoyom_room_tokens_map(): array {
 	);
 }
 
-function okoyom_current_room_tokens(): array {
+function okoyom_current_room_slug(): string {
 	if ( ! is_tax( 'product_cat' ) ) {
-		return array();
+		return '';
 	}
 
 	$term = get_queried_object();
-	if ( ! $term instanceof WP_Term ) {
-		return array();
+	if ( ! $term instanceof WP_Term || ! isset( okoyom_room_tokens_map()[ $term->slug ] ) ) {
+		return '';
 	}
 
-	return okoyom_room_tokens_map()[ $term->slug ] ?? array();
+	return $term->slug;
+}
+
+function okoyom_current_room_tokens(): array {
+	$slug = okoyom_current_room_slug();
+
+	return '' !== $slug ? okoyom_room_tokens_map()[ $slug ] : array();
+}
+
+function okoyom_request_room_tokens(): array {
+	$slug = isset( $_GET['room'] ) ? sanitize_title( wp_unslash( (string) $_GET['room'] ) ) : '';
+
+	return '' !== $slug ? ( okoyom_room_tokens_map()[ $slug ] ?? array() ) : array();
 }
 
 function okoyom_room_image_id( int $product_id, array $tokens ): int {
@@ -214,7 +226,12 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		}
 	}
 
-	$series = okoyom_product_series_name( $product->ID );
+	$series   = okoyom_product_series_name( $product->ID );
+	$room     = okoyom_current_room_slug();
+	$card_url = get_permalink( $product );
+	if ( '' !== $room ) {
+		$card_url = add_query_arg( 'room', $room, $card_url );
+	}
 
 	$slug_csv = static function ( int $pid, string $tax ): string {
 		$terms = get_the_terms( $pid, $tax );
@@ -224,7 +241,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		return implode( ',', wp_list_pluck( $terms, 'slug' ) );
 	};
 	?>
-	<a href="<?php echo esc_url( get_permalink( $product ) ); ?>" class="blockCardCatalog__card"
+	<a href="<?php echo esc_url( $card_url ); ?>" class="blockCardCatalog__card"
 		data-product-id="<?php echo esc_attr( (string) $product->ID ); ?>"
 		data-collection="<?php echo esc_attr( $slug_csv( $product->ID, 'oko_collection' ) ); ?>"
 		data-series="<?php echo esc_attr( $slug_csv( $product->ID, 'oko_series' ) ); ?>"

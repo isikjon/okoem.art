@@ -47,6 +47,14 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	$main       = $materials ? $materials[0] : null;
 	$slides     = okoyom_product_slides( $product->ID, 0, false );
 
+	$room_id = okoyom_room_image_id( $product->ID, okoyom_request_room_tokens() );
+	if ( $room_id ) {
+		$room_url = (string) wp_get_attachment_image_url( $room_id, 'large' );
+		if ( '' !== $room_url ) {
+			$slides = array_values( array_unique( array_merge( array( $room_url ), $slides ) ) );
+		}
+	}
+
 	$html = preg_replace_callback(
 		'/(<div class="title-right-flex-cardSectionContent">)(.*?)(<\/div>)/su',
 		function ( array $m ) use ( $title, $series, $excerpt ) {
