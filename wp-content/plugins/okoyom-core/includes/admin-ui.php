@@ -117,16 +117,21 @@ add_action(
 		}
 		?>
 		<style>
+			#posts-filter { overflow-x: auto; }
+			#posts-filter .wp-list-table { min-width: 1500px; table-layout: auto; }
 			.wp-list-table .column-taxonomy-oko_color,
-			.wp-list-table .column-taxonomy-oko_subject { width: 14%; }
+			.wp-list-table .column-taxonomy-oko_subject { width: auto; min-width: 10em; }
 			.wp-list-table .column-taxonomy-oko_collection,
-			.wp-list-table .column-taxonomy-oko_series { width: 10%; }
-			.wp-list-table .column-sku { width: 8%; }
+			.wp-list-table .column-taxonomy-oko_series,
+			.wp-list-table .column-product_cat { width: auto; min-width: 8em; }
+			.wp-list-table .column-name { min-width: 16em; }
+			.wp-list-table .column-sku,
 			.wp-list-table .column-price,
-			.wp-list-table .column-date { width: 7%; }
+			.wp-list-table .column-date { width: auto; min-width: 6em; white-space: nowrap; }
 			.wp-list-table .column-product_tag,
 			.wp-list-table .column-featured,
-			.wp-list-table .column-is_in_stock { width: 5%; }
+			.wp-list-table .column-is_in_stock { width: auto; min-width: 4em; white-space: nowrap; }
+			.wp-list-table th, .wp-list-table td { word-break: normal; overflow-wrap: anywhere; }
 		</style>
 		<?php
 	}

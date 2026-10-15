@@ -128,11 +128,12 @@ function okoyom_room_tokens_map(): array {
 		array(
 			'v-spalnyu'                => array( 'spalni' ),
 			'v-gostinuyu'              => array( 'gostinoy', 'kukhni-gostinoy' ),
-			'na-kukhnyu-i-v-stolovuyu' => array( 'stolovoy', 'kukhni-gostinoy' ),
+			'na-kukhnyu-i-v-stolovuyu' => array( 'stolovoy', 'kukhni-gostinoy', 'kukhni' ),
 			'dlya-restoranov-i-oteley' => array(
 				'restorana',
 				'kafe',
 				'bara',
+				'spa',
 				'launzh-restorana',
 				'launzh-zony',
 				'launzh-bara',
