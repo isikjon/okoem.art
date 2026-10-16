@@ -101,6 +101,16 @@ function okoyom_render_product_page( WP_Post $product ): string {
 
 	$html = str_replace( 'Дальние хребты', esc_html( $title ), $html );
 
+	if ( function_exists( 'okoyom_breadcrumbs' ) ) {
+		ob_start();
+		okoyom_breadcrumbs();
+		$crumbs = (string) ob_get_clean();
+
+		if ( '' !== $crumbs ) {
+			$html = preg_replace( '~<div class="breadLinks">.*?</div>~su', $crumbs, $html, 1 );
+		}
+	}
+
 	$input   = '<input type="text" placeholder="300" value="300">';
 	$pos     = strpos( $html, $input );
 	if ( false !== $pos ) {

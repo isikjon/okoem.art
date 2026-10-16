@@ -48,6 +48,39 @@ function okoyom_filter_term_value( string $param, WP_Term $term ): string {
 	return 'room' === $param ? okoyom_room_slug_to_value( $term->slug ) : $term->slug;
 }
 
+function okoyom_filter_term_url( string $param, WP_Term $term ): string {
+	$link = get_term_link( $term );
+	if ( is_wp_error( $link ) ) {
+		return '';
+	}
+
+	return (string) wp_parse_url( $link, PHP_URL_PATH );
+}
+
+function okoyom_filter_urls( array $keys ): array {
+	$urls = array();
+
+	foreach ( $keys as $key ) {
+		$map = array();
+		foreach ( okoyom_filter_terms( $key ) as $term ) {
+			$value = okoyom_filter_term_value( $key, $term );
+			$url   = '' !== $value ? okoyom_filter_term_url( $key, $term ) : '';
+			if ( '' === $url ) {
+				continue;
+			}
+
+			if ( function_exists( 'okoyom_term_duplicates_catalog' ) && okoyom_term_duplicates_catalog( $term->taxonomy, $term->term_id ) ) {
+				continue;
+			}
+
+			$map[ $value ] = $url;
+		}
+		$urls[ $key ] = $map;
+	}
+
+	return $urls;
+}
+
 function okoyom_room_urls(): array {
 	$urls = array();
 	foreach ( okoyom_room_param_map() as $value => $slug ) {
@@ -346,6 +379,7 @@ add_action(
 					),
 					'rooms'    => okoyom_room_param_map(),
 					'roomUrls' => okoyom_room_urls(),
+					'urls'     => okoyom_filter_urls( array( 'collection', 'series', 'subject', 'color', 'room' ) ),
 					'full'     => ! $archive && ! okoyom_active_filters() && 'all' === okoyom_current_scope() && okoyom_catalog_max_pages() < 2,
 					'locked'   => (bool) $archive && '' === $archive_param && ! $archive_room,
 				)
@@ -384,3 +418,51 @@ add_action(
 	},
 	20
 );
+
+function okoyom_filter_links_nav(): void {
+	if ( okoyom_active_filters() || okoyom_catalog_paged() > 1 ) {
+		return;
+	}
+
+	$groups = array();
+	foreach ( okoyom_filter_taxonomies_map() as $param => $info ) {
+		$items = array();
+		foreach ( okoyom_filter_terms( $param ) as $term ) {
+			$value = okoyom_filter_term_value( $param, $term );
+			$url   = '' !== $value ? okoyom_filter_term_url( $param, $term ) : '';
+			if ( '' === $url || untrailingslashit( $url ) === untrailingslashit( (string) wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_PATH ) ) ) {
+				continue;
+			}
+
+			if ( function_exists( 'okoyom_term_duplicates_catalog' ) && okoyom_term_duplicates_catalog( $term->taxonomy, $term->term_id ) ) {
+				continue;
+			}
+
+			$items[] = array( 'url' => $url, 'name' => $term->name );
+		}
+
+		if ( $items ) {
+			$groups[] = array( 'label' => $info[1], 'items' => $items );
+		}
+	}
+
+	if ( ! $groups ) {
+		return;
+	}
+	?>
+	<nav class="catalogFilterLinks" aria-label="Подборки каталога">
+		<div class="container">
+			<?php foreach ( $groups as $group ) : ?>
+				<div class="catalogFilterLinks__group">
+					<span class="catalogFilterLinks__label"><?php echo esc_html( $group['label'] ); ?></span>
+					<ul class="catalogFilterLinks__list">
+						<?php foreach ( $group['items'] as $item ) : ?>
+							<li><a href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['name'] ); ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</nav>
+	<?php
+}

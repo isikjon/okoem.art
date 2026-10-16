@@ -1200,18 +1200,25 @@
 
             var isColor = key === 'color' && panel.classList.contains('ui-filter-2');
 
+            var urls = (data.urls && data.urls[key]) || {};
+            var otherActive = CAT_GROUPS.some(function (g) { return g !== key && (catPending[g] || []).length; });
+
             var html = '<button class="ui-filter__item ui-filter__item--all' + (catPending[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
             Object.keys(data.maps[key]).forEach(function (slug, index) {
                 var on = catPending[key].indexOf(slug) !== -1;
                 var name = data.maps[key][slug];
+                var href = urls[slug] || '';
+                var combo = !href || on || otherActive || catPending[key].length > 0;
+                var link = ' href="' + (href || '#') + '"' + (combo ? ' rel="nofollow"' : '');
+
                 if (isColor) {
                     var hex = data.swatches ? data.swatches[slug] : '';
                     var circle = hex
                         ? '<span class="circleFilter" style="background:' + hex + ';border:1px solid ' + hex + '"></span>'
                         : '<span class="circleFilter circleFilter-' + (index % 13 + 1) + '"></span>';
-                    html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" type="button" data-value="' + slug + '" title="' + name + '">' + circle + '<span class="ui-filter__check"></span></button>';
+                    html += '<a class="ui-filter__item' + (on ? ' is-active' : '') + '"' + link + ' data-value="' + slug + '" title="' + name + '">' + circle + '<span class="ui-filter__check"></span></a>';
                 } else {
-                    html += '<button class="ui-filter__item' + (on ? ' is-active' : '') + '" type="button" data-value="' + slug + '"><span>' + name + '</span><span class="ui-filter__check"></span></button>';
+                    html += '<a class="ui-filter__item' + (on ? ' is-active' : '') + '"' + link + ' data-value="' + slug + '"><span>' + name + '</span><span class="ui-filter__check"></span></a>';
                 }
             });
             html += '<button class="ui-filter__collapse" type="button">Свернуть <i></i></button>';
@@ -1228,6 +1235,7 @@
 
             list.querySelectorAll('.ui-filter__item').forEach(function (item) {
                 item.addEventListener('click', function (e) {
+                    e.preventDefault();
                     e.stopPropagation();
                     var value = item.getAttribute('data-value');
 

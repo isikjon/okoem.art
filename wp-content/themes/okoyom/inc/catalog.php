@@ -345,6 +345,12 @@ function okoyom_catalog_apply_banner( string $html ): string {
 			. $heading['text'] . '</div></div></section>';
 	}
 
+	if ( function_exists( 'okoyom_filter_links_nav' ) ) {
+		ob_start();
+		okoyom_filter_links_nav();
+		$html .= (string) ob_get_clean();
+	}
+
 	return $html;
 }
 
@@ -645,3 +651,101 @@ function okoyom_catalog_paged_rel(): void {
 	}
 }
 add_action( 'wp_head', 'okoyom_catalog_paged_rel', 5 );
+
+function okoyom_breadcrumb_trail(): array {
+	$trail = array( array( 'name' => 'Главная', 'url' => '/' ) );
+
+	if ( is_singular( 'product' ) ) {
+		$trail[] = array( 'name' => 'Каталог', 'url' => '/catalog/' );
+
+		$room = okoyom_room_value_to_slug( isset( $_GET['room'] ) ? sanitize_title( wp_unslash( (string) $_GET['room'] ) ) : '' );
+		if ( '' !== $room ) {
+			$term = get_term_by( 'slug', $room, 'product_cat' );
+			if ( $term instanceof WP_Term ) {
+				$link = get_term_link( $term );
+				if ( ! is_wp_error( $link ) ) {
+					$trail[] = array( 'name' => $term->name, 'url' => (string) wp_parse_url( $link, PHP_URL_PATH ) );
+				}
+			}
+		}
+
+		$trail[] = array( 'name' => get_the_title(), 'url' => '' );
+
+		return $trail;
+	}
+
+	$term = is_tax() ? get_queried_object() : null;
+	if ( $term instanceof WP_Term ) {
+		$trail[] = array( 'name' => 'Каталог', 'url' => '/catalog/' );
+		$trail[] = array( 'name' => $term->name, 'url' => '' );
+
+		return $trail;
+	}
+
+	$trail[] = array( 'name' => 'Каталог', 'url' => '' );
+
+	return $trail;
+}
+
+function okoyom_breadcrumbs(): void {
+	if ( ! okoyom_is_catalog_view() && ! is_singular( 'product' ) ) {
+		return;
+	}
+
+	$trail = okoyom_breadcrumb_trail();
+	$paged = okoyom_catalog_paged();
+	if ( $paged > 1 ) {
+		$last  = array_pop( $trail );
+		$last['url'] = '';
+		$trail[] = $last;
+		$trail[] = array( 'name' => 'Страница ' . $paged, 'url' => '' );
+	}
+	?>
+	<div class="breadLinks">
+		<?php foreach ( $trail as $i => $crumb ) : ?>
+			<?php if ( $i > 0 ) : ?>
+				<span>/</span>
+			<?php endif; ?>
+			<?php if ( '' !== $crumb['url'] ) : ?>
+				<a href="<?php echo esc_url( $crumb['url'] ); ?>"><?php echo esc_html( $crumb['name'] ); ?></a>
+			<?php else : ?>
+				<p><?php echo esc_html( $crumb['name'] ); ?></p>
+			<?php endif; ?>
+		<?php endforeach; ?>
+	</div>
+	<?php
+}
+
+function okoyom_breadcrumbs_schema(): void {
+	if ( ! okoyom_is_catalog_view() && ! is_singular( 'product' ) ) {
+		return;
+	}
+
+	$items = array();
+	foreach ( okoyom_breadcrumb_trail() as $i => $crumb ) {
+		$item = array(
+			'@type'    => 'ListItem',
+			'position' => $i + 1,
+			'name'     => $crumb['name'],
+		);
+
+		if ( '' !== $crumb['url'] ) {
+			$item['item'] = home_url( $crumb['url'] );
+		}
+
+		$items[] = $item;
+	}
+
+	printf(
+		'<script type="application/ld+json">%s</script>' . "\n",
+		wp_json_encode(
+			array(
+				'@context'        => 'https://schema.org',
+				'@type'           => 'BreadcrumbList',
+				'itemListElement' => $items,
+			),
+			JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+		)
+	);
+}
+add_action( 'wp_head', 'okoyom_breadcrumbs_schema', 6 );

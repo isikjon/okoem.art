@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit;
 </section>
 <section class="sectionMain sectionMainPaddingMobile">
     <div class="container">
+        <?php okoyom_breadcrumbs(); ?>
         <div class="tabs">
 <!--            <ul class="tab-header">-->
 <!--                <li class="tab-header__item js-tab-trigger active" data-tab="1"><?php echo okoyom_t( '984bf1497dea', 'Все' ); ?></li>-->
