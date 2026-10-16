@@ -237,3 +237,16 @@ add_filter(
 	10,
 	2
 );
+
+add_filter(
+	'rank_math/sitemap/entry',
+	static function ( $url, $type, $object ) {
+		if ( 'post' !== $type || ! $object instanceof WP_Post || 'page' !== $object->post_type ) {
+			return $url;
+		}
+
+		return in_array( $object->post_name, okoyom_closed_pages(), true ) ? array() : $url;
+	},
+	10,
+	3
+);

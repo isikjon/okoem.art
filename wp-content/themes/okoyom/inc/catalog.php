@@ -32,19 +32,29 @@ function okoyom_catalog_paged(): int {
 	return $paged > 0 ? $paged : 1;
 }
 
-function okoyom_catalog_search(): string {
-	$search = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
-	if ( '' !== $search ) {
-		return $search;
+function okoyom_request_value( string $key ): string {
+	if ( ! isset( $_GET[ $key ] ) || ! is_scalar( $_GET[ $key ] ) ) {
+		return '';
 	}
 
-	return isset( $_GET['q'] ) ? sanitize_text_field( wp_unslash( (string) $_GET['q'] ) ) : '';
+	return (string) wp_unslash( $_GET[ $key ] );
+}
+
+function okoyom_search_normalize( string $text ): string {
+	return trim( (string) preg_replace( '~\s+~u', ' ', str_replace( array( '–', '—', '−', '‑', '‐' ), '-', $text ) ) );
+}
+
+function okoyom_catalog_search(): string {
+	$search = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
+	if ( '' === $search ) {
+		$search = okoyom_request_value( 'q' );
+	}
+
+	return sanitize_text_field( $search );
 }
 
 function okoyom_catalog_sort(): string {
-	$sort = isset( $_GET['sort'] ) ? sanitize_key( wp_unslash( (string) $_GET['sort'] ) ) : '';
-
-	return 'new' === $sort ? 'new' : 'default';
+	return 'new' === sanitize_key( okoyom_request_value( 'sort' ) ) ? 'new' : 'default';
 }
 
 function okoyom_catalog_ids( string $scope = 'all', string $search = '' ): array {
@@ -119,14 +129,14 @@ function okoyom_catalog_query_ids( string $scope = 'all', string $search = '' ):
 
 	if ( '' !== $search ) {
 		global $wpdb;
-		$like = '%' . $wpdb->esc_like( $search ) . '%';
+		$like = '%' . $wpdb->esc_like( okoyom_search_normalize( $search ) ) . '%';
 
 		$ids = $wpdb->get_col(
 			$wpdb->prepare(
 				"SELECT DISTINCT p.ID FROM {$wpdb->posts} p
 				 LEFT JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_sku'
 				 WHERE p.post_type = 'product' AND p.post_status = 'publish'
-				   AND (p.post_title LIKE %s OR m.meta_value LIKE %s)",
+				   AND (REPLACE( REPLACE( p.post_title, '–', '-' ), '—', '-' ) LIKE %s OR m.meta_value LIKE %s)",
 				$like,
 				$like
 			)
@@ -528,6 +538,12 @@ function okoyom_catalog_page_url( int $page, bool $own_only = false ): string {
 	if ( $own_only ) {
 		$keep  = array_merge( array_keys( okoyom_filter_taxonomies_map() ), array( 'q', 'sort', 'tab' ) );
 		$query = array_intersect_key( $query, array_flip( $keep ) );
+		$query = array_filter(
+			$query,
+			static function ( $value ) {
+				return is_scalar( $value ) && '' !== (string) $value;
+			}
+		);
 	}
 
 	return $query ? $base . '?' . http_build_query( $query ) : $base;

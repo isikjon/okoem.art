@@ -74,6 +74,26 @@ foreach ( $taxonomies as $taxonomy => $label ) {
 	}
 }
 
+echo "=== СЛУЖЕБНЫЕ СТРАНИЦЫ ===\n";
+foreach ( okoyom_closed_pages() as $slug ) {
+	$page = get_page_by_path( $slug );
+	if ( ! $page instanceof WP_Post ) {
+		printf( "  %-14s страницы нет\n", $slug );
+		continue;
+	}
+
+	$robots = (array) get_post_meta( $page->ID, 'rank_math_robots', true );
+	$closed = in_array( 'noindex', $robots, true );
+
+	printf( "  %-14s %s\n", $slug, $closed ? 'закрыта' : '-> закрыть' );
+
+	if ( $apply && ! $closed ) {
+		update_post_meta( $page->ID, 'rank_math_robots', array( 'noindex' ) );
+	}
+}
+
+echo "\n";
+
 if ( $apply ) {
 	update_option( 'rank-math-options-sitemap', $options );
 	flush_rewrite_rules( true );

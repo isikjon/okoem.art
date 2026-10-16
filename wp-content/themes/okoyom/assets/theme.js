@@ -565,6 +565,10 @@
         catSearchInputs().forEach(function (input) { input.value = ''; });
     }
 
+    function catSearchNormalize(text) {
+        return (text || '').toLowerCase().replace(/[\u2013\u2014\u2212\u2011\u2010]/g, '-').replace(/\s+/g, ' ').trim();
+    }
+
     function catIsCatalogPage() {
         return !!document.querySelector('.flexFiltersCatalog') && !!catGrid();
     }
@@ -575,8 +579,6 @@
         catApply(doScroll, defer);
     }
 
-    var catSearchTimer = 0;
-
     document.addEventListener('input', function (event) {
         if (!catIsCatalogPage()) return;
         if (!event.target.matches('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]')) return;
@@ -584,15 +586,17 @@
         var input = event.target;
         var defer = !!input.closest('.mfilter');
 
+        catFiltersTouched = true;
+        catSearch = (input.value || '').trim().toLowerCase();
+
+        clearTimeout(catSearchTimer);
+
         if (catGridIsFull() && !catIsSearch) {
-            catRunSearch(input.value, false, defer);
+            catApply(false, defer);
             return;
         }
 
-        clearTimeout(catSearchTimer);
-        catSearchTimer = setTimeout(function () {
-            catRunSearch(input.value, false, defer);
-        }, 600);
+        catSearchTimer = setTimeout(function () { catApply(false, defer); }, 600);
     });
 
     function goToSearch(query) {
@@ -834,6 +838,7 @@
     var catSort = 'new' === catInitialParams.get('sort') ? 'new' : 'default';
     var catInited = false;
     var catFiltersTouched = false;
+    var catSearchTimer = 0;
 
     function catGridIsFull() {
         return !!(window.okoyomCatFilters && okoyomCatFilters.full);
@@ -1077,6 +1082,8 @@
     }
 
     function catApply(doScroll, defer) {
+        clearTimeout(catSearchTimer);
+
         var grid = catGrid();
         if (!grid) return;
 
@@ -1111,8 +1118,8 @@
             });
 
             if (ok && catSearch) {
-                var hay = (card.getAttribute('data-title') || '') + ' ' + (card.getAttribute('data-sku') || '').toLowerCase();
-                ok = hay.indexOf(catSearch) !== -1;
+                var hay = catSearchNormalize((card.getAttribute('data-title') || '') + ' ' + (card.getAttribute('data-sku') || ''));
+                ok = hay.indexOf(catSearchNormalize(catSearch)) !== -1;
             }
             card.style.display = ok ? '' : 'none';
             if (ok) {

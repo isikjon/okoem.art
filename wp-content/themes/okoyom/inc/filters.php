@@ -376,7 +376,7 @@ add_action(
 					'rooms'    => okoyom_room_param_map(),
 					'roomUrls' => okoyom_room_urls(),
 					'urls'     => okoyom_filter_urls( array( 'collection', 'series', 'subject', 'color', 'room' ) ),
-					'full'     => ! $archive && ! okoyom_active_filters() && 'all' === okoyom_current_scope() && ! is_page( 'search' ) && okoyom_catalog_max_pages( 'all', okoyom_catalog_search() ) < 2,
+					'full'     => ! $archive && ! okoyom_active_filters() && 'all' === okoyom_current_scope() && ! is_page( 'search' ) && '' === okoyom_catalog_search() && okoyom_catalog_max_pages( 'all', '' ) < 2,
 					'locked'   => (bool) $archive && '' === $archive_param && ! $archive_room,
 				)
 			);
