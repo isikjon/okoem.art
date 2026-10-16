@@ -49,6 +49,21 @@ function okoyom_catalog_products( string $scope = 'all', string $search = '' ): 
 		);
 	}
 
+	foreach ( okoyom_active_filters() as $param => $slugs ) {
+		$taxonomy = okoyom_filter_taxonomies_map()[ $param ][0] ?? '';
+		if ( '' === $taxonomy ) {
+			continue;
+		}
+
+		$args['tax_query']   = $args['tax_query'] ?? array();
+		$args['tax_query'][] = array(
+			'taxonomy' => $taxonomy,
+			'field'    => 'slug',
+			'terms'    => $slugs,
+			'operator' => 'IN',
+		);
+	}
+
 	if ( '' !== $search ) {
 		global $wpdb;
 		$like = '%' . $wpdb->esc_like( $search ) . '%';

@@ -8,7 +8,32 @@ function okoyom_filter_taxonomies_map(): array {
 		'series'     => array( 'oko_series', 'Серия' ),
 		'subject'    => array( 'oko_subject', 'Сюжет' ),
 		'color'      => array( 'oko_color', 'Цвет' ),
+		'room'       => array( 'product_cat', 'Помещение' ),
 	);
+}
+
+function okoyom_room_param_map(): array {
+	return array(
+		'bedroom' => 'v-spalnyu',
+		'living'  => 'v-gostinuyu',
+		'dining'  => 'na-kukhnyu-i-v-stolovuyu',
+		'horeca'  => 'dlya-restoranov-i-oteley',
+	);
+}
+
+function okoyom_room_slug_to_value( string $slug ): string {
+	$key = array_search( $slug, okoyom_room_param_map(), true );
+
+	return false !== $key ? (string) $key : '';
+}
+
+function okoyom_room_value_to_slug( string $value ): string {
+	$map = okoyom_room_param_map();
+	if ( isset( $map[ $value ] ) ) {
+		return $map[ $value ];
+	}
+
+	return in_array( $value, $map, true ) ? $value : '';
 }
 
 function okoyom_active_filters(): array {
@@ -17,12 +42,25 @@ function okoyom_active_filters(): array {
 		if ( empty( $_GET[ $param ] ) ) {
 			continue;
 		}
-		$raw    = is_array( $_GET[ $param ] ) ? $_GET[ $param ] : explode( ',', (string) $_GET[ $param ] );
-		$slugs  = array_filter( array_map( 'sanitize_title', $raw ) );
+		$raw   = is_array( $_GET[ $param ] ) ? $_GET[ $param ] : explode( ',', (string) $_GET[ $param ] );
+		$slugs = array_filter( array_map( 'sanitize_title', $raw ) );
+
+		if ( 'room' === $param ) {
+			$slugs = array_filter( array_map( 'okoyom_room_value_to_slug', $slugs ) );
+		}
+
 		if ( $slugs ) {
 			$active[ $param ] = array_values( array_unique( $slugs ) );
 		}
 	}
+
+	if ( empty( $active['room'] ) && function_exists( 'okoyom_current_room_slug' ) ) {
+		$archive = okoyom_current_room_slug();
+		if ( '' !== $archive ) {
+			$active['room'] = array( $archive );
+		}
+	}
+
 	return $active;
 }
 
