@@ -62,21 +62,26 @@ function okoyom_catalog_query_ids( string $scope = 'all', string $search = '' ):
 		),
 		'fields'         => 'ids',
 		'no_found_rows'  => true,
+		'tax_query'      => array(
+			array(
+				'taxonomy' => 'product_visibility',
+				'field'    => 'name',
+				'terms'    => array( 'exclude-from-catalog' ),
+				'operator' => 'NOT IN',
+			),
+		),
 	);
 
 	if ( 'all' !== $scope ) {
-		$args['tax_query'] = array(
-			array(
-				'taxonomy' => 'product_cat',
-				'field'    => 'slug',
-				'terms'    => $scope,
-			),
+		$args['tax_query'][] = array(
+			'taxonomy' => 'product_cat',
+			'field'    => 'slug',
+			'terms'    => $scope,
 		);
 	}
 
 	$archive = okoyom_archive_tax_term();
 	if ( $archive ) {
-		$args['tax_query']   = $args['tax_query'] ?? array();
 		$args['tax_query'][] = array(
 			'taxonomy' => $archive['taxonomy'],
 			'field'    => 'slug',
@@ -90,7 +95,6 @@ function okoyom_catalog_query_ids( string $scope = 'all', string $search = '' ):
 			continue;
 		}
 
-		$args['tax_query']   = $args['tax_query'] ?? array();
 		$args['tax_query'][] = array(
 			'taxonomy' => $taxonomy,
 			'field'    => 'slug',
@@ -372,7 +376,7 @@ function okoyom_card_room_tokens(): array {
 	return '' !== $slug ? ( okoyom_room_tokens_map()[ $slug ] ?? array() ) : array();
 }
 
-function okoyom_catalog_card( WP_Post $product ): void {
+function okoyom_catalog_card( WP_Post $product, int $order = -1 ): void {
 	$slides = okoyom_product_slides( $product->ID, 3, false );
 	if ( ! $slides ) {
 		return;
@@ -432,6 +436,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		data-slides="<?php echo esc_attr( (string) wp_json_encode( $base ) ); ?>"
 		data-sku="<?php echo esc_attr( (string) get_post_meta( $product->ID, '_sku', true ) ); ?>"
 		data-date="<?php echo esc_attr( (string) get_post_time( 'U', true, $product ) ); ?>"
+		<?php echo $order >= 0 ? 'data-order="' . esc_attr( (string) $order ) . '"' : ''; ?>
 		data-title="<?php echo esc_attr( mb_strtolower( get_the_title( $product ) ) ); ?>">
 		<div class="hover-slider">
 			<div class="likeCardCatalog" data-favorite="<?php echo esc_attr( (string) $product->ID ); ?>">
@@ -469,9 +474,14 @@ function okoyom_catalog_card( WP_Post $product ): void {
 	<?php
 }
 
+function okoyom_catalog_is_paginated(): bool {
+	return ! is_page( 'search' ) && ! is_page( 'favorites' );
+}
+
 function okoyom_catalog_grid( string $scope = 'all', bool $paginate = false ): void {
 
-	$search = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
+	$search   = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
+	$paginate = $paginate && okoyom_catalog_is_paginated();
 
 	$products = okoyom_catalog_products( $scope, $search, $paginate );
 
@@ -483,12 +493,14 @@ function okoyom_catalog_grid( string $scope = 'all', bool $paginate = false ): v
 		return;
 	}
 
-	foreach ( $products as $product ) {
-		okoyom_catalog_card( is_int( $product ) ? get_post( $product ) : $product );
+	$offset = $paginate ? ( okoyom_catalog_paged() - 1 ) * okoyom_catalog_per_page() : 0;
+
+	foreach ( array_values( $products ) as $i => $product ) {
+		okoyom_catalog_card( is_int( $product ) ? get_post( $product ) : $product, $offset + $i );
 	}
 }
 
-function okoyom_catalog_page_url( int $page ): string {
+function okoyom_catalog_page_url( int $page, bool $own_only = false ): string {
 	$base = okoyom_catalog_base_url();
 
 	if ( $page > 1 ) {
@@ -498,6 +510,11 @@ function okoyom_catalog_page_url( int $page ): string {
 	$query = array();
 	parse_str( (string) wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_QUERY ), $query );
 	unset( $query['paged'], $query['page'] );
+
+	if ( $own_only ) {
+		$keep  = array_merge( array_keys( okoyom_filter_taxonomies_map() ), array( 'q', 'sort', 'tab' ) );
+		$query = array_intersect_key( $query, array_flip( $keep ) );
+	}
 
 	return $query ? $base . '?' . http_build_query( $query ) : $base;
 }
@@ -510,6 +527,10 @@ function okoyom_catalog_base_url(): string {
 }
 
 function okoyom_catalog_pager( string $scope = 'all' ): void {
+	if ( ! okoyom_catalog_is_paginated() ) {
+		return;
+	}
+
 	$search = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
 	$max    = okoyom_catalog_max_pages( $scope, $search );
 	if ( $max < 2 ) {
@@ -518,7 +539,7 @@ function okoyom_catalog_pager( string $scope = 'all' ): void {
 
 	$paged = min( okoyom_catalog_paged(), $max );
 	?>
-	<div class="btnsFlexCenter btnsFlexCenter-22 catalogPager" data-pager data-page="<?php echo esc_attr( (string) $paged ); ?>" data-max="<?php echo esc_attr( (string) $max ); ?>">
+	<div class="btnsFlexCenter btnsFlexCenter-22 catalogPager" data-pager data-page="<?php echo esc_attr( (string) $paged ); ?>" data-loaded="<?php echo esc_attr( (string) $paged ); ?>" data-max="<?php echo esc_attr( (string) $max ); ?>">
 		<?php if ( $paged < $max ) : ?>
 			<a href="<?php echo esc_url( okoyom_catalog_page_url( $paged + 1 ) ); ?>" class="btnWhiteTextBtn btnWhiteTextBtnV2" data-pager-more rel="next">Смотреть ещё</a>
 		<?php endif; ?>
@@ -598,8 +619,12 @@ function okoyom_catalog_paged_404(): void {
 		return;
 	}
 
+	if ( ! okoyom_catalog_is_paginated() ) {
+		return;
+	}
+
 	$paged = okoyom_catalog_paged();
-	if ( $paged < 2 || $paged <= okoyom_catalog_max_pages( 'all', (string) ( $GLOBALS['okoyom_search_query'] ?? '' ) ) ) {
+	if ( $paged < 2 || $paged <= okoyom_catalog_max_pages() ) {
 		return;
 	}
 
@@ -630,7 +655,7 @@ function okoyom_catalog_paged_canonical( $canonical ) {
 		return $canonical;
 	}
 
-	return home_url( okoyom_catalog_page_url( min( okoyom_catalog_paged(), okoyom_catalog_max_pages() ) ) );
+	return home_url( okoyom_catalog_page_url( min( okoyom_catalog_paged(), okoyom_catalog_max_pages() ), true ) );
 }
 add_filter( 'rank_math/frontend/canonical', 'okoyom_catalog_paged_canonical', 20 );
 
@@ -639,24 +664,34 @@ function okoyom_catalog_paged_rel(): void {
 		return;
 	}
 
+	if ( ! okoyom_catalog_is_paginated() ) {
+		return;
+	}
+
 	$paged = okoyom_catalog_paged();
 	$max   = okoyom_catalog_max_pages();
 
 	if ( $paged > 1 ) {
-		printf( '<link rel="prev" href="%s">' . "\n", esc_url( home_url( okoyom_catalog_page_url( $paged - 1 ) ) ) );
+		printf( '<link rel="prev" href="%s">' . "\n", esc_url( home_url( okoyom_catalog_page_url( $paged - 1, true ) ) ) );
 	}
 
 	if ( $paged < $max ) {
-		printf( '<link rel="next" href="%s">' . "\n", esc_url( home_url( okoyom_catalog_page_url( $paged + 1 ) ) ) );
+		printf( '<link rel="next" href="%s">' . "\n", esc_url( home_url( okoyom_catalog_page_url( $paged + 1, true ) ) ) );
 	}
 }
 add_action( 'wp_head', 'okoyom_catalog_paged_rel', 5 );
 
+function okoyom_crumb_text( string $text ): string {
+	return trim( html_entity_decode( wp_strip_all_tags( $text ), ENT_QUOTES, 'UTF-8' ) );
+}
+
 function okoyom_breadcrumb_trail(): array {
-	$trail = array( array( 'name' => 'Главная', 'url' => '/' ) );
+	$home    = okoyom_crumb_text( okoyom_t( '047f5653b183', 'Главная' ) );
+	$catalog = okoyom_crumb_text( okoyom_t( 'ad51225e2ef0', 'Каталог' ) );
+	$trail   = array( array( 'name' => $home, 'url' => '/' ) );
 
 	if ( is_singular( 'product' ) ) {
-		$trail[] = array( 'name' => 'Каталог', 'url' => '/catalog/' );
+		$trail[] = array( 'name' => $catalog, 'url' => '/catalog/' );
 
 		$room = okoyom_room_value_to_slug( isset( $_GET['room'] ) ? sanitize_title( wp_unslash( (string) $_GET['room'] ) ) : '' );
 		if ( '' !== $room ) {
@@ -664,25 +699,42 @@ function okoyom_breadcrumb_trail(): array {
 			if ( $term instanceof WP_Term ) {
 				$link = get_term_link( $term );
 				if ( ! is_wp_error( $link ) ) {
-					$trail[] = array( 'name' => $term->name, 'url' => (string) wp_parse_url( $link, PHP_URL_PATH ) );
+					$trail[] = array( 'name' => okoyom_crumb_text( $term->name ), 'url' => (string) wp_parse_url( $link, PHP_URL_PATH ) );
 				}
 			}
 		}
 
-		$trail[] = array( 'name' => get_the_title(), 'url' => '' );
+		$trail[] = array( 'name' => okoyom_crumb_text( get_the_title() ), 'url' => '' );
 
 		return $trail;
 	}
 
-	$term = is_tax() ? get_queried_object() : null;
+	if ( is_page( 'search' ) ) {
+		$trail[] = array( 'name' => $catalog, 'url' => '/catalog/' );
+		$trail[] = array( 'name' => 'Поиск', 'url' => '' );
+
+		return $trail;
+	}
+
+	$paged = okoyom_catalog_paged();
+	$term  = is_tax() ? get_queried_object() : null;
+
 	if ( $term instanceof WP_Term ) {
-		$trail[] = array( 'name' => 'Каталог', 'url' => '/catalog/' );
-		$trail[] = array( 'name' => $term->name, 'url' => '' );
-
-		return $trail;
+		$trail[] = array( 'name' => $catalog, 'url' => '/catalog/' );
+		$trail[] = array(
+			'name' => okoyom_crumb_text( $term->name ),
+			'url'  => $paged > 1 ? okoyom_catalog_page_url( 1, true ) : '',
+		);
+	} else {
+		$trail[] = array(
+			'name' => $catalog,
+			'url'  => $paged > 1 ? okoyom_catalog_page_url( 1, true ) : '',
+		);
 	}
 
-	$trail[] = array( 'name' => 'Каталог', 'url' => '' );
+	if ( $paged > 1 ) {
+		$trail[] = array( 'name' => 'Страница ' . $paged, 'url' => '' );
+	}
 
 	return $trail;
 }
@@ -691,18 +743,9 @@ function okoyom_breadcrumbs(): void {
 	if ( ! okoyom_is_catalog_view() && ! is_singular( 'product' ) ) {
 		return;
 	}
-
-	$trail = okoyom_breadcrumb_trail();
-	$paged = okoyom_catalog_paged();
-	if ( $paged > 1 ) {
-		$last  = array_pop( $trail );
-		$last['url'] = '';
-		$trail[] = $last;
-		$trail[] = array( 'name' => 'Страница ' . $paged, 'url' => '' );
-	}
 	?>
 	<div class="breadLinks">
-		<?php foreach ( $trail as $i => $crumb ) : ?>
+		<?php foreach ( okoyom_breadcrumb_trail() as $i => $crumb ) : ?>
 			<?php if ( $i > 0 ) : ?>
 				<span>/</span>
 			<?php endif; ?>

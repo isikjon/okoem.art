@@ -118,9 +118,9 @@ add_action(
 				array(
 					'@context'    => 'https://schema.org',
 					'@type'       => 'Product',
-					'name'        => get_the_title( $product ),
+					'name'        => okoyom_crumb_text( get_the_title( $product ) ),
 					'sku'         => (string) get_post_meta( $product->ID, '_sku', true ),
-					'description' => get_the_excerpt( $product ),
+					'description' => okoyom_crumb_text( get_the_excerpt( $product ) ),
 					'image'       => get_the_post_thumbnail_url( $product, 'large' ) ?: '',
 					'offers'      => array(
 						'@type'         => 'Offer',
@@ -133,32 +133,6 @@ add_action(
 				)
 			);
 
-			okoyom_jsonld(
-				array(
-					'@context'        => 'https://schema.org',
-					'@type'           => 'BreadcrumbList',
-					'itemListElement' => array(
-						array(
-							'@type'    => 'ListItem',
-							'position' => 1,
-							'name'     => 'Главная',
-							'item'     => home_url( '/' ),
-						),
-						array(
-							'@type'    => 'ListItem',
-							'position' => 2,
-							'name'     => 'Каталог',
-							'item'     => home_url( '/catalog/' ),
-						),
-						array(
-							'@type'    => 'ListItem',
-							'position' => 3,
-							'name'     => get_the_title( $product ),
-							'item'     => get_permalink( $product ),
-						),
-					),
-				)
-			);
 		}
 	},
 	5

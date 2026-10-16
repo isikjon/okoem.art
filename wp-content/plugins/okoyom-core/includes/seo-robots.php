@@ -22,6 +22,10 @@ function okoyom_filter_params(): string {
 }
 
 function okoyom_query_is_filtered(): bool {
+	if ( is_singular() ) {
+		return false;
+	}
+
 	$keys = function_exists( 'okoyom_filter_taxonomies_map' )
 		? array_keys( okoyom_filter_taxonomies_map() )
 		: array( 'collection', 'series', 'subject', 'color' );
@@ -45,33 +49,37 @@ function okoyom_catalog_total(): int {
 	return $total;
 }
 
-function okoyom_term_product_count( string $taxonomy, int $term_id ): int {
+function okoyom_taxonomy_product_counts( string $taxonomy ): array {
 	static $cache = array();
-	$key = $taxonomy . ':' . $term_id;
 
-	if ( ! isset( $cache[ $key ] ) ) {
-		$cache[ $key ] = count(
-			get_posts(
-				array(
-					'post_type'      => 'product',
-					'post_status'    => 'publish',
-					'posts_per_page' => -1,
-					'fields'         => 'ids',
-					'no_found_rows'  => true,
-					'tax_query'      => array(
-						array(
-							'taxonomy'         => $taxonomy,
-							'field'            => 'term_id',
-							'terms'            => $term_id,
-							'include_children' => false,
-						),
-					),
-				)
+	if ( ! isset( $cache[ $taxonomy ] ) ) {
+		global $wpdb;
+
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT tt.term_id AS term_id, COUNT( DISTINCT p.ID ) AS total
+				 FROM {$wpdb->term_relationships} tr
+				 INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
+				 INNER JOIN {$wpdb->posts} p ON p.ID = tr.object_id
+				 WHERE tt.taxonomy = %s AND p.post_type = 'product' AND p.post_status = 'publish'
+				 GROUP BY tt.term_id",
+				$taxonomy
 			)
 		);
+
+		$counts = array();
+		foreach ( (array) $rows as $row ) {
+			$counts[ (int) $row->term_id ] = (int) $row->total;
+		}
+
+		$cache[ $taxonomy ] = $counts;
 	}
 
-	return $cache[ $key ];
+	return $cache[ $taxonomy ];
+}
+
+function okoyom_term_product_count( string $taxonomy, int $term_id ): int {
+	return okoyom_taxonomy_product_counts( $taxonomy )[ $term_id ] ?? 0;
 }
 
 function okoyom_term_duplicates_catalog( string $taxonomy, int $term_id ): bool {

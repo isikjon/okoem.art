@@ -69,10 +69,6 @@ function okoyom_filter_urls( array $keys ): array {
 				continue;
 			}
 
-			if ( function_exists( 'okoyom_term_duplicates_catalog' ) && okoyom_term_duplicates_catalog( $term->taxonomy, $term->term_id ) ) {
-				continue;
-			}
-
 			$map[ $value ] = $url;
 		}
 		$urls[ $key ] = $map;

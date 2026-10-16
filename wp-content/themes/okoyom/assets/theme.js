@@ -570,6 +570,7 @@
     }
 
     function catRunSearch(value, doScroll, defer) {
+        catFiltersTouched = true;
         catSearch = (value || '').trim().toLowerCase();
         catApply(doScroll, defer);
     }
@@ -665,13 +666,20 @@
                     seen[c.getAttribute('data-product-id')] = true;
                 });
 
+                var before = page < Math.min.apply(null, catLoadedPages()) ? grid.querySelector('.blockCardCatalog__card') : null;
+
                 cards.forEach(function (card) {
                     if (seen[card.getAttribute('data-product-id')]) return;
-                    grid.appendChild(document.importNode(card, true));
+
+                    var node = document.importNode(card, true);
+                    if (before) grid.insertBefore(node, before); else grid.appendChild(node);
                 });
 
                 markFavorites();
                 catPagerSync(page);
+                catBindSliders(grid);
+                catMarkLoaded(page);
+                catApply(false);
 
                 return true;
             })
@@ -696,11 +704,30 @@
         });
     });
 
+    function catLoadedPages() {
+        var pager = catPagerEl();
+        if (!pager) return [1];
+
+        var raw = pager.getAttribute('data-loaded');
+        var list = (raw || String(catPagerLoaded())).split(',').map(Number).filter(Boolean);
+
+        return list.length ? list : [catPagerLoaded()];
+    }
+
+    function catMarkLoaded(page) {
+        var pager = catPagerEl();
+        if (!pager) return;
+
+        var list = catLoadedPages();
+        if (list.indexOf(page) === -1) list.push(page);
+        pager.setAttribute('data-loaded', list.join(','));
+    }
+
     function catStoreReturn(card) {
         try {
             sessionStorage.setItem('okoyom_cat_return', JSON.stringify({
                 base: catPagerBase(),
-                pages: catPagerLoaded(),
+                pages: catLoadedPages(),
                 y: window.scrollY,
                 id: card.getAttribute('data-product-id') || '',
                 t: Date.now()
@@ -709,8 +736,12 @@
     }
 
     document.addEventListener('click', function (event) {
+        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || 0 !== event.button) return;
+
         var card = event.target.closest('.blockCardCatalog__card');
-        if (card) catStoreReturn(card);
+        if (!card || event.target.closest('.likeCardCatalog, .hover-slider__zones')) return;
+
+        catStoreReturn(card);
     }, true);
 
     function catRestoreReturn() {
@@ -723,34 +754,34 @@
         if (!state || state.base !== catPagerBase()) return;
         if (!state.t || Date.now() - state.t > 1800000) return;
 
-        var target = parseInt(state.pages, 10) || 1;
-        var step = function (page) {
-            if (page > target) {
+        var have = catLoadedPages();
+        var want = (Array.isArray(state.pages) ? state.pages : [parseInt(state.pages, 10) || 1])
+            .map(Number)
+            .filter(function (n) { return n && have.indexOf(n) === -1; })
+            .sort(function (a, b) { return a - b; });
+
+        var step = function (i) {
+            if (i >= want.length) {
                 catScrollToCard(state);
                 return;
             }
-            catPagerAppend(page).then(function () { step(page + 1); });
+            catPagerAppend(want[i]).then(function () { step(i + 1); });
         };
 
-        if (target > catPagerLoaded()) {
-            step(catPagerLoaded() + 1);
-        } else {
-            catScrollToCard(state);
-        }
+        step(0);
     }
 
     function catScrollToCard(state) {
-        try { sessionStorage.removeItem('okoyom_cat_return'); } catch (e) {}
-
         var card = state.id ? document.querySelector('.blockCardCatalog__card[data-product-id="' + state.id + '"]') : null;
         if (card) {
             var top = card.getBoundingClientRect().top + window.scrollY - 140;
             window.scrollTo(0, Math.max(0, top));
-            return;
+        } else {
+            var y = parseInt(state.y, 10) || 0;
+            if (y) window.scrollTo(0, y);
         }
 
-        var y = parseInt(state.y, 10) || 0;
-        if (y) window.scrollTo(0, y);
+        try { sessionStorage.removeItem('okoyom_cat_return'); } catch (e) {}
     }
 
     document.addEventListener('click', function (event) {
@@ -787,6 +818,7 @@
     var catSearch = (catInitialParams.get('q') || '').trim().toLowerCase();
     var catSort = 'new' === catInitialParams.get('sort') ? 'new' : 'default';
     var catInited = false;
+    var catFiltersTouched = false;
 
     function catGridIsFull() {
         return !!(window.okoyomCatFilters && okoyomCatFilters.full);
@@ -835,27 +867,45 @@
         return urls[value] || '';
     }
 
+    function catPageSegment() {
+        var m = location.pathname.match(/\/page\/(\d+)\/?$/);
+        return m ? m[1] : '';
+    }
+
+    function catKeepPage(url) {
+        var seg = catPageSegment();
+        if (!seg || catFiltersTouched) return url;
+
+        var base = location.pathname.replace(/\/page\/\d+\/?$/, '/');
+        var cut = url.indexOf('?');
+        var path = cut === -1 ? url : url.slice(0, cut);
+        var qs = cut === -1 ? '' : url.slice(cut);
+        if (path.replace(/\/?$/, '/') !== base) return url;
+
+        return base + 'page/' + seg + '/' + qs;
+    }
+
     function catCanonicalUrl(params) {
         var qs = params.toString();
         if (catIsSearch || catGridIsLocked()) {
-            return location.pathname + (qs ? '?' + qs : '');
+            return catKeepPage(location.pathname.replace(/\/page\/\d+\/?$/, '/') + (qs ? '?' + qs : ''));
         }
 
         var keys = catFilterKeys(params);
         var archive = catArchive();
         if (archive && 1 === keys.length && keys[0] === archive.param && params.get(archive.param) === archive.slug) {
-            return location.pathname + catWithout(params, archive.param);
+            return catKeepPage(location.pathname.replace(/\/page\/\d+\/?$/, '/') + catWithout(params, archive.param));
         }
 
         if (1 === keys.length && 'room' === keys[0]) {
             var rooms = (params.get('room') || '').split(',').filter(Boolean);
             if (1 === rooms.length) {
                 var base = catRoomUrl(rooms[0]);
-                if (base) return base + catWithout(params, 'room');
+                if (base) return catKeepPage(base + catWithout(params, 'room'));
             }
         }
 
-        return '/catalog/' + (qs ? '?' + qs : '');
+        return catKeepPage('/catalog/' + (qs ? '?' + qs : ''));
     }
 
     function catCardRooms(card) {
@@ -868,6 +918,26 @@
 
     function catPhotoStem(url) {
         return (url || '').split('/').pop().replace(/-\d+x\d+(\.[a-z0-9]+)$/i, '$1');
+    }
+
+    function catBindSliders(root) {
+        root.querySelectorAll('.hover-slider').forEach(function (slider) {
+            if (slider.dataset.okoBound === '1') return;
+            slider.dataset.okoBound = '1';
+
+            var slides = slider.querySelectorAll('.hover-slider__slide');
+            var bullets = slider.querySelectorAll('.hover-slider__pagination span');
+
+            slider.querySelectorAll('.hover-slider__zones div').forEach(function (zone) {
+                zone.addEventListener('mouseenter', function () {
+                    if (window.innerWidth <= 768) return;
+
+                    var index = parseInt(zone.getAttribute('data-index'), 10) || 0;
+                    slides.forEach(function (s, i) { s.classList.toggle('active', i === index); });
+                    bullets.forEach(function (b, i) { b.classList.toggle('active', i === index); });
+                });
+            });
+        });
     }
 
     function catCardSlides(card) {
@@ -1201,14 +1271,13 @@
             var isColor = key === 'color' && panel.classList.contains('ui-filter-2');
 
             var urls = (data.urls && data.urls[key]) || {};
-            var otherActive = CAT_GROUPS.some(function (g) { return g !== key && (catPending[g] || []).length; });
 
             var html = '<button class="ui-filter__item ui-filter__item--all' + (catPending[key].length ? '' : ' is-active') + '" data-value=""><span>Все</span><span class="ui-filter__check"></span></button>';
             Object.keys(data.maps[key]).forEach(function (slug, index) {
                 var on = catPending[key].indexOf(slug) !== -1;
                 var name = data.maps[key][slug];
                 var href = urls[slug] || '';
-                var combo = !href || on || otherActive || catPending[key].length > 0;
+                var combo = !href || on;
                 var link = ' href="' + (href || '#') + '"' + (combo ? ' rel="nofollow"' : '');
 
                 if (isColor) {
@@ -1235,8 +1304,10 @@
 
             list.querySelectorAll('.ui-filter__item').forEach(function (item) {
                 item.addEventListener('click', function (e) {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || 1 === e.button) return;
                     e.preventDefault();
                     e.stopPropagation();
+                    catFiltersTouched = true;
                     var value = item.getAttribute('data-value');
 
                     if (value === '') {
@@ -1265,6 +1336,7 @@
             resetBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Сбросить';
             colorPanel.insertAdjacentElement('afterend', resetBtn);
             resetBtn.addEventListener('click', function () {
+                catFiltersTouched = true;
                 CAT_GROUPS.forEach(function (k) { catPending[k] = []; });
                 if (!catIsSearch) catResetSearchInputs();
                 document.querySelectorAll('.ui-filter__item').forEach(function (it) {
@@ -1335,6 +1407,7 @@
         if (!group) return;
         event.preventDefault();
 
+        catFiltersTouched = true;
         var param = group.getAttribute('data-filter-group');
         var value = btn.getAttribute('data-filter-value');
         if (!catPending[param]) catPending[param] = [];
@@ -1358,6 +1431,7 @@
         var t = reset.textContent.trim().toLowerCase();
         if (t.indexOf('сброс') === -1) return;
         event.preventDefault();
+        catFiltersTouched = true;
         CAT_GROUPS.forEach(function (g) { catPending[g] = []; });
         if (!catIsSearch) catResetSearchInputs();
         document.querySelectorAll('.ui-filter__item, [data-filter-value]').forEach(function (b) {
