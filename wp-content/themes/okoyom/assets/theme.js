@@ -596,11 +596,161 @@
 
     function hideDeadMoreButtons() {
         document.querySelectorAll('a, button').forEach(function (el) {
+            if (el.hasAttribute('data-pager-more')) return;
             var t = el.textContent.trim().toLowerCase();
             if (t === 'смотреть ещё' || t === 'смотреть еще') {
                 el.style.display = 'none';
             }
         });
+    }
+
+    function catPagerEl() {
+        return document.querySelector('[data-pager]');
+    }
+
+    function catPagerBase() {
+        return location.pathname.replace(/\/page\/\d+\/?$/, '/') + location.search;
+    }
+
+    function catPagerLoaded() {
+        var pager = catPagerEl();
+        return pager ? parseInt(pager.getAttribute('data-page'), 10) || 1 : 1;
+    }
+
+    function catPagerSync(page) {
+        var pager = catPagerEl();
+        if (!pager) return;
+
+        var max = parseInt(pager.getAttribute('data-max'), 10) || 1;
+        pager.setAttribute('data-page', String(page));
+
+        var more = pager.querySelector('[data-pager-more]');
+        if (more) {
+            if (page >= max) {
+                more.style.display = 'none';
+            } else {
+                more.style.display = '';
+                more.setAttribute('href', catPagerUrl(page + 1));
+            }
+        }
+
+        pager.querySelectorAll('.catalogPager__page').forEach(function (el) {
+            var n = parseInt(el.textContent.trim(), 10);
+            el.classList.toggle('is-current', n === page);
+        });
+    }
+
+    function catPagerUrl(page) {
+        var path = location.pathname.replace(/\/page\/\d+\/?$/, '/');
+        if (page > 1) path = path.replace(/\/?$/, '/') + 'page/' + page + '/';
+
+        return path + location.search;
+    }
+
+    function catPagerAppend(page) {
+        var grid = catGrid();
+        if (!grid) return Promise.resolve(false);
+
+        return fetch(catPagerUrl(page), { credentials: 'same-origin' })
+            .then(function (r) { return r.ok ? r.text() : ''; })
+            .then(function (html) {
+                if (!html) return false;
+
+                var doc = new DOMParser().parseFromString(html, 'text/html');
+                var cards = doc.querySelectorAll('.blockCardCatalog__card');
+                if (!cards.length) return false;
+
+                var seen = {};
+                grid.querySelectorAll('.blockCardCatalog__card').forEach(function (c) {
+                    seen[c.getAttribute('data-product-id')] = true;
+                });
+
+                cards.forEach(function (card) {
+                    if (seen[card.getAttribute('data-product-id')]) return;
+                    grid.appendChild(document.importNode(card, true));
+                });
+
+                markFavorites();
+                catPagerSync(page);
+
+                return true;
+            })
+            .catch(function () { return false; });
+    }
+
+    document.addEventListener('click', function (event) {
+        var more = event.target.closest('[data-pager-more]');
+        if (!more) return;
+
+        event.preventDefault();
+        if (more.dataset.busy === '1') return;
+
+        var next = catPagerLoaded() + 1;
+        more.dataset.busy = '1';
+        more.classList.add('is-loading');
+
+        catPagerAppend(next).then(function (ok) {
+            more.dataset.busy = '';
+            more.classList.remove('is-loading');
+            if (ok) history.replaceState(null, '', catPagerUrl(next));
+        });
+    });
+
+    function catStoreReturn(card) {
+        try {
+            sessionStorage.setItem('okoyom_cat_return', JSON.stringify({
+                base: catPagerBase(),
+                pages: catPagerLoaded(),
+                y: window.scrollY,
+                id: card.getAttribute('data-product-id') || '',
+                t: Date.now()
+            }));
+        } catch (e) {}
+    }
+
+    document.addEventListener('click', function (event) {
+        var card = event.target.closest('.blockCardCatalog__card');
+        if (card) catStoreReturn(card);
+    }, true);
+
+    function catRestoreReturn() {
+        var raw = null;
+        try { raw = sessionStorage.getItem('okoyom_cat_return'); } catch (e) {}
+        if (!raw) return;
+
+        var state = null;
+        try { state = JSON.parse(raw); } catch (e) {}
+        if (!state || state.base !== catPagerBase()) return;
+        if (!state.t || Date.now() - state.t > 1800000) return;
+
+        var target = parseInt(state.pages, 10) || 1;
+        var step = function (page) {
+            if (page > target) {
+                catScrollToCard(state);
+                return;
+            }
+            catPagerAppend(page).then(function () { step(page + 1); });
+        };
+
+        if (target > catPagerLoaded()) {
+            step(catPagerLoaded() + 1);
+        } else {
+            catScrollToCard(state);
+        }
+    }
+
+    function catScrollToCard(state) {
+        try { sessionStorage.removeItem('okoyom_cat_return'); } catch (e) {}
+
+        var card = state.id ? document.querySelector('.blockCardCatalog__card[data-product-id="' + state.id + '"]') : null;
+        if (card) {
+            var top = card.getBoundingClientRect().top + window.scrollY - 140;
+            window.scrollTo(0, Math.max(0, top));
+            return;
+        }
+
+        var y = parseInt(state.y, 10) || 0;
+        if (y) window.scrollTo(0, y);
     }
 
     document.addEventListener('click', function (event) {
@@ -890,11 +1040,13 @@
 
         catReorder(grid);
 
+        var exact = catGridIsFull() || catIsSearch;
+
         var countEl = document.querySelector('.textSpanQuantityCatalog');
-        if (countEl) countEl.textContent = shown + ' ' + catWord(shown);
+        if (countEl && exact) countEl.textContent = shown + ' ' + catWord(shown);
 
         var showBtn = document.querySelector('.mfilter-show');
-        if (showBtn) showBtn.textContent = needsNav ? 'ПОКАЗАТЬ' : 'ПОКАЗАТЬ (' + shown + ')';
+        if (showBtn) showBtn.textContent = (needsNav || !exact) ? 'ПОКАЗАТЬ' : 'ПОКАЗАТЬ (' + shown + ')';
 
         var empty = grid.querySelector('.catEmpty');
         if (0 === shown && !grid.querySelector('.textTitleSection:not(.catEmpty)')) {
@@ -1618,6 +1770,7 @@
         catWatchDropdowns();
         catFollowThumbs();
         catEvenSocials();
+        catRestoreReturn();
         inspBuildMobilePanel();
         setTimeout(catSlowBanners, 300);
 

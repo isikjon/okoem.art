@@ -346,7 +346,7 @@ add_action(
 					),
 					'rooms'    => okoyom_room_param_map(),
 					'roomUrls' => okoyom_room_urls(),
-					'full'     => ! $archive && ! okoyom_active_filters() && 'all' === okoyom_current_scope(),
+					'full'     => ! $archive && ! okoyom_active_filters() && 'all' === okoyom_current_scope() && okoyom_catalog_max_pages() < 2,
 					'locked'   => (bool) $archive && '' === $archive_param && ! $archive_room,
 				)
 			);

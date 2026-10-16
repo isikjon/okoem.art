@@ -341,14 +341,10 @@ defined( 'ABSPATH' ) || exit;
                             <span class="textSpanQuantityCatalog"><?php echo esc_html( okoyom_catalog_count() ); ?></span>
                         </div>
                     </div>
-                    <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">
-        <?php okoyom_catalog_grid( 'all' ); ?>
+                    <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2" data-catalog-grid>
+        <?php okoyom_catalog_grid( 'all', true ); ?>
     </div>
-                    <div class="btnsFlexCenter btnsFlexCenter-22">
-                        <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">
-                            <?php echo okoyom_t( '332eb1443782', 'Смотреть ещё' ); ?>
-                        </a>
-                    </div>
+                    <?php okoyom_catalog_pager( 'all' ); ?>
                 </li>
 <!--                <li class="tab-content__item js-tab-content" data-tab="2">-->
 <!--                    <div class="flexFiltersCatalog">-->
@@ -581,7 +577,6 @@ defined( 'ABSPATH' ) || exit;
 
 <!--                    </div>-->
 <!--                    <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">
-        <?php okoyom_catalog_grid( 'murals' ); ?>
     </div>-->
 <!--                    <div class="btnsFlexCenter btnsFlexCenter-22">-->
 <!--                        <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">-->
@@ -820,7 +815,6 @@ defined( 'ABSPATH' ) || exit;
 
 <!--                    </div>-->
 <!--                    <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">
-        <?php okoyom_catalog_grid( 'companion' ); ?>
     </div>-->
 <!--                    <div class="btnsFlexCenter btnsFlexCenter-22">-->
 <!--                        <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2">-->
