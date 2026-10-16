@@ -1031,3 +1031,12 @@ a.ui-filter__item {
         margin-bottom: 16px;
     }
 }
+
+.mfilter-group form .flex-col-3__footer input,
+.mfilter .flex-col-3__footer input {
+    color: #1E1E1E;
+}
+
+.mfilter .flex-col-3__footer input::placeholder {
+    color: rgba(22, 20, 18, 0.45);
+}

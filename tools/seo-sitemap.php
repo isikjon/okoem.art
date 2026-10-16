@@ -75,13 +75,15 @@ foreach ( $taxonomies as $taxonomy => $label ) {
 }
 
 echo "=== СЛУЖЕБНЫЕ СТРАНИЦЫ ===\n";
-foreach ( okoyom_closed_pages() as $slug ) {
-	$page = get_page_by_path( $slug );
-	if ( ! $page instanceof WP_Post ) {
-		printf( "  %-14s страницы нет\n", $slug );
+$pages = get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'posts_per_page' => -1 ) );
+
+foreach ( $pages as $page ) {
+	$slug = okoyom_slug_is_closed( (string) $page->post_name );
+	if ( '' === $slug ) {
 		continue;
 	}
 
+	$slug   = $page->post_name;
 	$robots = (array) get_post_meta( $page->ID, 'rank_math_robots', true );
 	$closed = in_array( 'noindex', $robots, true );
 

@@ -22,7 +22,13 @@ function okoyom_filter_params(): string {
 }
 
 function okoyom_closed_pages(): array {
-	return apply_filters( 'okoyom_closed_pages', array( 'search', 'cart', 'favorites', 'thanks' ) );
+	return apply_filters( 'okoyom_closed_pages', array( 'search', 'cart', 'checkout', 'my-account', 'favorites', 'thanks', 'sample-page' ) );
+}
+
+function okoyom_slug_is_closed( string $slug ): string {
+	$base = (string) preg_replace( '~-\d+$~', '', $slug );
+
+	return in_array( $base, okoyom_closed_pages(), true ) ? $base : '';
 }
 
 function okoyom_page_is_closed(): string {
@@ -30,9 +36,7 @@ function okoyom_page_is_closed(): string {
 		return '';
 	}
 
-	$slug = (string) get_post_field( 'post_name', get_queried_object_id() );
-
-	return in_array( $slug, okoyom_closed_pages(), true ) ? $slug : '';
+	return okoyom_slug_is_closed( (string) get_post_field( 'post_name', get_queried_object_id() ) );
 }
 
 function okoyom_query_is_filtered(): bool {
@@ -245,7 +249,7 @@ add_filter(
 			return $url;
 		}
 
-		return in_array( $object->post_name, okoyom_closed_pages(), true ) ? array() : $url;
+		return '' !== okoyom_slug_is_closed( (string) $object->post_name ) ? array() : $url;
 	},
 	10,
 	3

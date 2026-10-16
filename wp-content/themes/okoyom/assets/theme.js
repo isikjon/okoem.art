@@ -803,16 +803,76 @@
         try { sessionStorage.removeItem('okoyom_cat_return'); } catch (e) {}
     }
 
-    document.addEventListener('click', function (event) {
-        var lens = event.target.closest('.filterModalOpen, [class*="searchIcon"]');
-        if (!lens) return;
-        var panel = lens.closest('.mfilter');
-        var input = (panel || document).querySelector('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]');
-        if (input) {
-            event.preventDefault();
-            if (catIsCatalogPage()) { catRunSearch(input.value, true); return; }
-            goToSearch(input.value.trim());
+    function catSearchSubmit(scope, value) {
+        if (catIsCatalogPage()) {
+            catRunSearch(value, false);
+            return;
         }
+
+        goToSearch((value || '').trim());
+    }
+
+    var catLockY = 0;
+
+    function catLockScroll() {
+        if (document.body.dataset.okoLock === '1') return;
+
+        document.body.dataset.okoLock = '1';
+        document.body.style.position = 'fixed';
+        document.body.style.top = -catLockY + 'px';
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+    }
+
+    function catUnlockScroll() {
+        if (document.body.dataset.okoLock !== '1') return;
+
+        delete document.body.dataset.okoLock;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        window.scrollTo(0, catLockY);
+    }
+
+    document.addEventListener('click', function (event) {
+        var hash = event.target.closest('a[href="#!"], a[href="#"]');
+        if (hash) event.preventDefault();
+
+        if (event.target.closest('.mfilter-open')) setTimeout(catLockScroll, 0);
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target.closest('.mfilter-open')) catLockY = window.scrollY;
+    }, true);
+
+    document.addEventListener('click', function (event) {
+        var lens = event.target.closest('[class*="searchIcon"]');
+        if (!lens || lens.closest('.mfilter--insp')) return;
+
+        var scope = lens.closest('form, .mfilter') || document;
+        var input = scope.querySelector('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]');
+        if (!input) return;
+
+        event.preventDefault();
+        catSearchSubmit(scope, input.value);
+    });
+
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form.matches('form') || form.closest('.mfilter--insp')) return;
+
+        var input = form.querySelector('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]');
+        if (!input) return;
+
+        event.preventDefault();
+        catSearchSubmit(form, input.value);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('input[type="search"][required], input[placeholder*="артикул"][required], input[placeholder="Поиск"][required]').forEach(function (input) {
+            input.removeAttribute('required');
+        });
     });
 
     var CAT_GROUPS = ['collection', 'series', 'subject', 'color', 'room'];
@@ -1397,6 +1457,7 @@
             var modal = show.closest('.mfilter');
             if (modal) modal.classList.remove('active');
             document.body.style.overflow = '';
+            catUnlockScroll();
             if (!show.closest('.mfilter--insp')) catApply(false);
             return;
         }
@@ -1406,6 +1467,7 @@
             var box = closer.closest('.mfilter');
             if (box) box.classList.remove('active');
             document.body.style.overflow = '';
+            catUnlockScroll();
             catApply(false);
         }
     });
