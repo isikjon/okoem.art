@@ -300,6 +300,18 @@ function okoyom_product_series_name( int $product_id ): string {
 	return $terms && ! is_wp_error( $terms ) ? $terms[0]->name : '';
 }
 
+function okoyom_card_room_value(): string {
+	$rooms = okoyom_active_filters()['room'] ?? array();
+
+	return 1 === count( $rooms ) ? (string) reset( $rooms ) : '';
+}
+
+function okoyom_card_room_tokens(): array {
+	$slug = okoyom_room_value_to_slug( okoyom_card_room_value() );
+
+	return '' !== $slug ? ( okoyom_room_tokens_map()[ $slug ] ?? array() ) : array();
+}
+
 function okoyom_catalog_card( WP_Post $product ): void {
 	$slides = okoyom_product_slides( $product->ID, 3, false );
 	if ( ! $slides ) {
@@ -308,7 +320,11 @@ function okoyom_catalog_card( WP_Post $product ): void {
 
 	$title    = get_the_title( $product );
 	$alts     = array_fill( 0, count( $slides ), $title );
-	$room_id  = okoyom_room_image_id( $product->ID, okoyom_current_room_tokens() );
+	$base     = array();
+	foreach ( $slides as $base_url ) {
+		$base[] = array( 'src' => $base_url, 'alt' => $title );
+	}
+	$room_id  = okoyom_room_image_id( $product->ID, okoyom_card_room_tokens() );
 	$room_url = $room_id ? (string) wp_get_attachment_image_url( $room_id, 'large' ) : '';
 
 	if ( '' !== $room_url ) {
@@ -321,7 +337,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 	}
 
 	$series   = okoyom_product_series_name( $product->ID );
-	$room     = okoyom_room_slug_to_value( okoyom_current_room_slug() );
+	$room     = okoyom_card_room_value();
 	$card_url = get_permalink( $product );
 	if ( '' !== $room ) {
 		$card_url = add_query_arg( 'room', $room, $card_url );
@@ -353,6 +369,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		data-color="<?php echo esc_attr( $slug_csv( $product->ID, 'oko_color' ) ); ?>"
 		data-room="<?php echo esc_attr( implode( ',', $card_rooms ) ); ?>"
 		data-rooms="<?php echo esc_attr( (string) wp_json_encode( $room_map ) ); ?>"
+		data-slides="<?php echo esc_attr( (string) wp_json_encode( $base ) ); ?>"
 		data-sku="<?php echo esc_attr( (string) get_post_meta( $product->ID, '_sku', true ) ); ?>"
 		data-date="<?php echo esc_attr( (string) get_post_time( 'U', true, $product ) ); ?>"
 		data-title="<?php echo esc_attr( mb_strtolower( get_the_title( $product ) ) ); ?>">

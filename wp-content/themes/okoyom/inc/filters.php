@@ -224,10 +224,11 @@ function okoyom_render_filter_group( string $param ): void {
 				<?php $i = 0; ?>
 				<?php foreach ( $terms as $term ) : ?>
 					<?php $value = okoyom_filter_term_value( $param, $term ); ?>
-					<?php $available = okoyom_facet_available( $param, $value, $scope, $filters ); ?>
+					<?php $chosen = in_array( $value, $active, true ); ?>
+					<?php $available = $chosen || okoyom_facet_available( $param, $value, $scope, $filters ); ?>
 					<?php if ( $is_color ) : ?>
 						<button type="button" title="<?php echo esc_attr( $term->name ); ?>"
-							class="mfilter-color<?php echo in_array( $value, $active, true ) ? ' active' : ''; ?>"
+							class="mfilter-color<?php echo $chosen ? ' active' : ''; ?>"
 							data-filter-value="<?php echo esc_attr( $value ); ?>"
 							<?php echo $available ? '' : 'style="display:none"'; ?>>
 							<?php if ( ! empty( $swatches[ $term->slug ] ) ) : ?>
@@ -238,7 +239,7 @@ function okoyom_render_filter_group( string $param ): void {
 						</button>
 					<?php else : ?>
 						<button type="button"
-							class="<?php echo in_array( $value, $active, true ) ? 'active' : ''; ?>"
+							class="<?php echo $chosen ? 'active' : ''; ?>"
 							data-filter-value="<?php echo esc_attr( $value ); ?>"
 							<?php echo $available ? '' : 'style="display:none"'; ?>>
 							<?php echo esc_html( $term->name ); ?>
@@ -271,7 +272,12 @@ function okoyom_filters_localize( array $keys ): array {
 		$map = array();
 		foreach ( okoyom_filter_terms( $key ) as $term ) {
 			$value = okoyom_filter_term_value( $key, $term );
-			if ( '' === $value || ! okoyom_facet_available( $key, $value, $scope, $filters ) ) {
+			if ( '' === $value ) {
+				continue;
+			}
+
+			$chosen = in_array( $value, $filters[ $key ] ?? array(), true );
+			if ( ! $chosen && ! okoyom_facet_available( $key, $value, $scope, $filters ) ) {
 				continue;
 			}
 			$map[ $value ] = $term->name;
