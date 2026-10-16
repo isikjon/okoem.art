@@ -594,14 +594,18 @@
         }
     });
 
-    var CAT_GROUPS = ['collection', 'series', 'subject', 'color'];
+    var CAT_GROUPS = ['collection', 'series', 'subject', 'color', 'room'];
 
     function catStateFromUrl() {
         var params = new URLSearchParams(location.search);
+        var active = (window.okoyomCatFilters && okoyomCatFilters.active) || {};
+        var archive = (window.okoyomCatFilters && okoyomCatFilters.archive) || null;
         var state = {};
         CAT_GROUPS.forEach(function (p) {
             var v = params.get(p);
-            state[p] = v ? v.split(',').filter(Boolean) : [];
+            if (v) { state[p] = v.split(',').filter(Boolean); return; }
+            if (Array.isArray(active[p]) && active[p].length) { state[p] = active[p].slice(); return; }
+            state[p] = (archive && archive.param === p && archive.slug) ? [archive.slug] : [];
         });
         return state;
     }
@@ -612,12 +616,86 @@
     var catInitialPath = location.pathname;
     var catIsSearch = catInitialPath.indexOf('/search') === 0;
 
+    function catGridIsFull() {
+        return !!(window.okoyomCatFilters && okoyomCatFilters.full);
+    }
+
+    function catSamePlace(url) {
+        var a = document.createElement('a');
+        a.href = url;
+        if (a.pathname !== location.pathname) return false;
+
+        var pack = function (search) {
+            var out = [];
+            new URLSearchParams(search).forEach(function (v, k) { out.push(k + '=' + v); });
+            return out.sort().join('&');
+        };
+        return pack(a.search) === pack(location.search);
+    }
+
+    function catRoomUrl(value) {
+        var urls = (window.okoyomCatFilters && okoyomCatFilters.roomUrls) || {};
+        return urls[value] || '';
+    }
+
+    function catIsArchivePlace(params) {
+        var archive = (window.okoyomCatFilters && okoyomCatFilters.archive) || null;
+        if (!archive || !archive.param || !archive.slug) return false;
+
+        var keys = [];
+        params.forEach(function (value, key) { if (keys.indexOf(key) === -1) keys.push(key); });
+        if (1 !== keys.length || keys[0] !== archive.param) return false;
+
+        return (params.get(archive.param) || '') === archive.slug;
+    }
+
     function catCanonicalUrl(params) {
         var qs = params.toString();
         if (catIsSearch) {
             return catInitialPath + (qs ? '?' + qs : '');
         }
+
+        if (catIsArchivePlace(params)) return location.pathname;
+
+        var keys = [];
+        params.forEach(function (value, key) { if (keys.indexOf(key) === -1) keys.push(key); });
+        if (1 === keys.length && 'room' === keys[0]) {
+            var rooms = (params.get('room') || '').split(',').filter(Boolean);
+            if (1 === rooms.length) {
+                var url = catRoomUrl(rooms[0]);
+                if (url) return url;
+            }
+        }
+
         return '/catalog/' + (qs ? '?' + qs : '');
+    }
+
+    function catCardRooms(card) {
+        if (!card.okoyomRooms) {
+            var raw = card.getAttribute('data-rooms');
+            try { card.okoyomRooms = raw ? JSON.parse(raw) : {}; } catch (e) { card.okoyomRooms = {}; }
+        }
+        return card.okoyomRooms;
+    }
+
+    function catRoomPhoto(card, rooms) {
+        var img = card.querySelector('.hover-slider__slide img');
+        if (!img) return;
+        if (null === img.getAttribute('data-orig-src')) {
+            img.setAttribute('data-orig-src', img.getAttribute('src') || '');
+            img.setAttribute('data-orig-alt', img.getAttribute('alt') || '');
+        }
+
+        var map = catCardRooms(card);
+        var pick = null;
+        for (var i = 0; i < rooms.length; i++) {
+            if (map[rooms[i]]) { pick = map[rooms[i]]; break; }
+        }
+
+        var src = pick ? pick.src : img.getAttribute('data-orig-src');
+        var alt = pick ? (pick.alt || img.getAttribute('data-orig-alt')) : img.getAttribute('data-orig-alt');
+        if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+        img.setAttribute('alt', alt || '');
     }
 
     function catReorder(grid) {
@@ -676,9 +754,28 @@
         reset.classList.toggle('is-visible', any);
     }
 
-    function catApply(doScroll) {
+    function catApply(doScroll, defer) {
         var grid = catGrid();
         if (!grid) return;
+
+        var params = new URLSearchParams(catIsSearch ? location.search : '');
+        CAT_GROUPS.forEach(function (g) {
+            if (catPending[g] && catPending[g].length) params.set(g, catPending[g].join(','));
+            else params.delete(g);
+        });
+        var url = catCanonicalUrl(params);
+
+        var needsNav = false;
+        if (!catIsSearch && !catSamePlace(url)) {
+            var a = document.createElement('a');
+            a.href = url;
+            needsNav = !catGridIsFull() || a.pathname !== location.pathname;
+        }
+
+        if (needsNav && !defer) {
+            location.assign(url);
+            return;
+        }
         var cards = grid.querySelectorAll('.blockCardCatalog__card');
         var shown = 0;
         cards.forEach(function (card) {
@@ -693,7 +790,10 @@
                 ok = hay.indexOf(catSearch) !== -1;
             }
             card.style.display = ok ? '' : 'none';
-            if (ok) shown++;
+            if (ok) {
+                catRoomPhoto(card, catPending.room || []);
+                shown++;
+            }
         });
 
         catReorder(grid);
@@ -717,12 +817,7 @@
             empty.style.display = 'none';
         }
 
-        var params = new URLSearchParams(catIsSearch ? location.search : '');
-        CAT_GROUPS.forEach(function (g) {
-            if (catPending[g] && catPending[g].length) params.set(g, catPending[g].join(','));
-            else params.delete(g);
-        });
-        history.replaceState(null, '', catCanonicalUrl(params));
+        if (!needsNav) history.replaceState(null, '', url);
 
         catUpdateReset();
 
@@ -822,7 +917,7 @@
     function catBuildInlineFilters() {
         var data = window.okoyomCatFilters;
         if (!data || !data.maps) return;
-        var keyByLabel = { 'коллекция': 'collection', 'серия': 'series', 'сюжет': 'subject', 'цвет': 'color' };
+        var keyByLabel = { 'коллекция': 'collection', 'серия': 'series', 'сюжет': 'subject', 'цвет': 'color', 'помещение': 'room' };
 
         CAT_GROUPS.forEach(function (k) {
             if (!catPending[k]) catPending[k] = [];
@@ -954,6 +1049,7 @@
             var modal = show.closest('.mfilter');
             if (modal) modal.classList.remove('active');
             document.body.style.overflow = '';
+            if (!show.closest('.mfilter--insp')) catApply(false);
             return;
         }
     });
@@ -990,7 +1086,7 @@
             var v = b.getAttribute('data-filter-value');
             b.classList.toggle('active', v === '' ? catPending[param].length === 0 : catPending[param].indexOf(v) !== -1);
         });
-        catApply(true);
+        catApply(true, !!btn.closest('.mfilter'));
     });
 
     document.addEventListener('click', function (event) {
@@ -1005,7 +1101,7 @@
             b.classList.toggle('active', b.getAttribute('data-filter-value') === '');
         });
         document.querySelectorAll('.ui-filter__value').forEach(function (v) { v.textContent = 'Все'; });
-        catApply(true);
+        catApply(true, !!reset.closest('.mfilter'));
     });
 
     var inspState = { collection: [], series: [], subject: [], color: [] };
@@ -1262,7 +1358,7 @@
     function inspBuildPanels() {
         var maps = window.okoyomInspFilters;
         if (!maps) return;
-        var keyByLabel = { 'коллекция': 'collection', 'серия': 'series', 'сюжет': 'subject', 'цвет': 'color' };
+        var keyByLabel = { 'коллекция': 'collection', 'серия': 'series', 'сюжет': 'subject', 'цвет': 'color', 'помещение': 'room' };
 
         document.querySelectorAll('.ui-filter').forEach(function (panel) {
             var labelEl = panel.querySelector('.ui-filter__label');

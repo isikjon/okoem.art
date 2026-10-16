@@ -901,3 +901,8 @@ iframe.mural-video {
     .catalogBottomText .staticContent { font-size: 15px; line-height: 26px; }
     .catalogBottomText .staticContent h2 { font-size: 20px; line-height: 29px; margin-top: 32px; }
 }
+
+@media screen and (max-width: 1080px) {
+    .tab-content .ui-filter-5,
+    .left-flexFiltersCatalog .ui-filter-5 { display: none; }
+}

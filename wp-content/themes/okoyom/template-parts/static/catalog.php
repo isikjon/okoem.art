@@ -80,6 +80,7 @@ defined( 'ABSPATH' ) || exit;
                                         <?php okoyom_render_filter_group( 'subject' ); ?>
                                         <!-- цвета -->
                                         <?php okoyom_render_filter_group( 'color' ); ?>
+                                        <?php okoyom_render_filter_group( 'room' ); ?>
                                     </div>
                                     <div class="mfilter-bottom">
                                         <button class="mfilter-reset">
@@ -272,6 +273,20 @@ defined( 'ABSPATH' ) || exit;
                                             <span class="ui-filter__check"></span>
                                         </button>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="ui-filter ui-filter-5">
+                                <button class="ui-filter__trigger" type="button">
+                                    <span class="ui-filter__label">
+                                        Помещение:
+                                    </span>
+                                    <span class="ui-filter__value">
+                                        Все
+                                    </span>
+                                    <span class="ui-filter__arrow"></span>
+                                </button>
+                                <div class="ui-filter__dropdown">
+                                    <div class="ui-filter__list"></div>
                                 </div>
                             </div>
                         </div>

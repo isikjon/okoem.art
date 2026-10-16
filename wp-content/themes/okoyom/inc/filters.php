@@ -36,6 +36,37 @@ function okoyom_room_value_to_slug( string $value ): string {
 	return in_array( $value, $map, true ) ? $value : '';
 }
 
+function okoyom_filter_query_slugs( string $param, array $values ): array {
+	if ( 'room' !== $param ) {
+		return $values;
+	}
+
+	return array_values( array_filter( array_map( 'okoyom_room_value_to_slug', $values ) ) );
+}
+
+function okoyom_filter_term_value( string $param, WP_Term $term ): string {
+	return 'room' === $param ? okoyom_room_slug_to_value( $term->slug ) : $term->slug;
+}
+
+function okoyom_room_urls(): array {
+	$urls = array();
+	foreach ( okoyom_room_param_map() as $value => $slug ) {
+		$term = get_term_by( 'slug', $slug, 'product_cat' );
+		if ( ! $term instanceof WP_Term ) {
+			continue;
+		}
+
+		$link = get_term_link( $term );
+		if ( is_wp_error( $link ) ) {
+			continue;
+		}
+
+		$urls[ $value ] = (string) wp_parse_url( $link, PHP_URL_PATH );
+	}
+
+	return $urls;
+}
+
 function okoyom_active_filters(): array {
 	$active = array();
 	foreach ( okoyom_filter_taxonomies_map() as $param => $info ) {
@@ -46,7 +77,7 @@ function okoyom_active_filters(): array {
 		$slugs = array_filter( array_map( 'sanitize_title', $raw ) );
 
 		if ( 'room' === $param ) {
-			$slugs = array_filter( array_map( 'okoyom_room_value_to_slug', $slugs ) );
+			$slugs = array_filter( array_map( 'okoyom_room_slug_to_value', array_map( 'okoyom_room_value_to_slug', $slugs ) ) );
 		}
 
 		if ( $slugs ) {
@@ -55,13 +86,42 @@ function okoyom_active_filters(): array {
 	}
 
 	if ( empty( $active['room'] ) && function_exists( 'okoyom_current_room_slug' ) ) {
-		$archive = okoyom_current_room_slug();
+		$archive = okoyom_room_slug_to_value( okoyom_current_room_slug() );
 		if ( '' !== $archive ) {
 			$active['room'] = array( $archive );
 		}
 	}
 
 	return $active;
+}
+
+function okoyom_filter_terms( string $param ): array {
+	$taxonomy = okoyom_filter_taxonomies_map()[ $param ][0] ?? '';
+	if ( '' === $taxonomy ) {
+		return array();
+	}
+
+	if ( 'room' === $param ) {
+		$terms = array();
+		foreach ( okoyom_room_param_map() as $slug ) {
+			$term = get_term_by( 'slug', $slug, 'product_cat' );
+			if ( $term instanceof WP_Term && $term->count > 0 ) {
+				$terms[] = $term;
+			}
+		}
+
+		return $terms;
+	}
+
+	$terms = get_terms(
+		array(
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => true,
+			'orderby'    => 'name',
+		)
+	);
+
+	return is_wp_error( $terms ) ? array() : $terms;
 }
 
 function okoyom_build_tax_query( array $filters, ?string $skip = null ): array {
@@ -77,7 +137,7 @@ function okoyom_build_tax_query( array $filters, ?string $skip = null ): array {
 		$tax_query[] = array(
 			'taxonomy' => $taxonomy,
 			'field'    => 'slug',
-			'terms'    => $slugs,
+			'terms'    => okoyom_filter_query_slugs( $param, $slugs ),
 			'operator' => 'IN',
 		);
 	}
@@ -143,14 +203,8 @@ function okoyom_render_filter_group( string $param ): void {
 	}
 	list( $taxonomy, $label ) = $map[ $param ];
 
-	$terms = get_terms(
-		array(
-			'taxonomy'   => $taxonomy,
-			'hide_empty' => true,
-			'orderby'    => 'name',
-		)
-	);
-	if ( is_wp_error( $terms ) || ! $terms ) {
+	$terms = okoyom_filter_terms( $param );
+	if ( ! $terms ) {
 		return;
 	}
 
@@ -169,11 +223,12 @@ function okoyom_render_filter_group( string $param ): void {
 				</button>
 				<?php $i = 0; ?>
 				<?php foreach ( $terms as $term ) : ?>
-					<?php $available = okoyom_facet_available( $param, $term->slug, $scope, $filters ); ?>
+					<?php $value = okoyom_filter_term_value( $param, $term ); ?>
+					<?php $available = okoyom_facet_available( $param, $value, $scope, $filters ); ?>
 					<?php if ( $is_color ) : ?>
 						<button type="button" title="<?php echo esc_attr( $term->name ); ?>"
-							class="mfilter-color<?php echo in_array( $term->slug, $active, true ) ? ' active' : ''; ?>"
-							data-filter-value="<?php echo esc_attr( $term->slug ); ?>"
+							class="mfilter-color<?php echo in_array( $value, $active, true ) ? ' active' : ''; ?>"
+							data-filter-value="<?php echo esc_attr( $value ); ?>"
 							<?php echo $available ? '' : 'style="display:none"'; ?>>
 							<?php if ( ! empty( $swatches[ $term->slug ] ) ) : ?>
 								<span class="circleFilter" style="background:<?php echo esc_attr( $swatches[ $term->slug ] ); ?>;border:1px solid <?php echo esc_attr( $swatches[ $term->slug ] ); ?>"></span>
@@ -183,8 +238,8 @@ function okoyom_render_filter_group( string $param ): void {
 						</button>
 					<?php else : ?>
 						<button type="button"
-							class="<?php echo in_array( $term->slug, $active, true ) ? 'active' : ''; ?>"
-							data-filter-value="<?php echo esc_attr( $term->slug ); ?>"
+							class="<?php echo in_array( $value, $active, true ) ? 'active' : ''; ?>"
+							data-filter-value="<?php echo esc_attr( $value ); ?>"
 							<?php echo $available ? '' : 'style="display:none"'; ?>>
 							<?php echo esc_html( $term->name ); ?>
 						</button>
@@ -213,22 +268,13 @@ function okoyom_filters_localize( array $keys ): array {
 		if ( ! $taxonomy ) {
 			continue;
 		}
-		$terms = get_terms(
-			array(
-				'taxonomy'   => $taxonomy,
-				'hide_empty' => true,
-				'orderby'    => 'name',
-			)
-		);
 		$map = array();
-		if ( ! is_wp_error( $terms ) ) {
-			foreach ( $terms as $term ) {
-
-				if ( ! okoyom_facet_available( $key, $term->slug, $scope, $filters ) ) {
-					continue;
-				}
-				$map[ $term->slug ] = $term->name;
+		foreach ( okoyom_filter_terms( $key ) as $term ) {
+			$value = okoyom_filter_term_value( $key, $term );
+			if ( '' === $value || ! okoyom_facet_available( $key, $value, $scope, $filters ) ) {
+				continue;
 			}
+			$map[ $value ] = $term->name;
 		}
 		$maps[ $key ] = $map;
 	}
@@ -276,7 +322,7 @@ add_action(
 				'okoyom-theme',
 				'okoyomCatFilters',
 				array(
-					'maps'     => okoyom_filters_localize( array( 'collection', 'series', 'subject', 'color' ) ),
+					'maps'     => okoyom_filters_localize( array( 'collection', 'series', 'subject', 'color', 'room' ) ),
 					'active'   => okoyom_active_filters(),
 					'swatches' => okoyom_color_swatches(),
 					'archive'  => $archive ? array(
@@ -288,7 +334,11 @@ add_action(
 						'series'     => 'series',
 						'subject'    => 'subject',
 						'color'      => 'color',
+						'room'       => 'room',
 					),
+					'rooms'    => okoyom_room_param_map(),
+					'roomUrls' => okoyom_room_urls(),
+					'full'     => ! $archive && ! okoyom_active_filters() && 'all' === okoyom_current_scope(),
 				)
 			);
 		}

@@ -59,7 +59,7 @@ function okoyom_catalog_products( string $scope = 'all', string $search = '' ): 
 		$args['tax_query'][] = array(
 			'taxonomy' => $taxonomy,
 			'field'    => 'slug',
-			'terms'    => $slugs,
+			'terms'    => okoyom_filter_query_slugs( $param, $slugs ),
 			'operator' => 'IN',
 		);
 	}
@@ -181,7 +181,8 @@ function okoyom_current_room_tokens(): array {
 }
 
 function okoyom_request_room_tokens(): array {
-	$slug = isset( $_GET['room'] ) ? sanitize_title( wp_unslash( (string) $_GET['room'] ) ) : '';
+	$value = isset( $_GET['room'] ) ? sanitize_title( wp_unslash( (string) $_GET['room'] ) ) : '';
+	$slug  = '' !== $value ? okoyom_room_value_to_slug( $value ) : '';
 
 	return '' !== $slug ? ( okoyom_room_tokens_map()[ $slug ] ?? array() ) : array();
 }
@@ -191,16 +192,21 @@ function okoyom_room_image_id( int $product_id, array $tokens ): int {
 		return 0;
 	}
 
-	$gallery = array_filter( explode( ',', (string) get_post_meta( $product_id, '_product_image_gallery', true ) ) );
-	if ( ! $gallery ) {
+	$ids   = array_filter( explode( ',', (string) get_post_meta( $product_id, '_product_image_gallery', true ) ) );
+	$thumb = (int) get_post_thumbnail_id( $product_id );
+	if ( $thumb ) {
+		$ids[] = $thumb;
+	}
+
+	if ( ! $ids ) {
 		return 0;
 	}
 
 	$names = array();
-	foreach ( $gallery as $attachment_id ) {
-		$file = get_attached_file( (int) $attachment_id );
+	foreach ( array_unique( array_map( 'intval', $ids ) ) as $attachment_id ) {
+		$file = get_attached_file( $attachment_id );
 		if ( $file ) {
-			$names[ (int) $attachment_id ] = basename( $file );
+			$names[ $attachment_id ] = basename( $file );
 		}
 	}
 
@@ -214,6 +220,31 @@ function okoyom_room_image_id( int $product_id, array $tokens ): int {
 	}
 
 	return 0;
+}
+
+function okoyom_room_image_map( int $product_id ): array {
+	$map = array();
+	foreach ( okoyom_room_tokens_map() as $slug => $tokens ) {
+		$value = okoyom_room_slug_to_value( $slug );
+		if ( '' === $value ) {
+			continue;
+		}
+
+		$id = okoyom_room_image_id( $product_id, $tokens );
+		if ( ! $id ) {
+			continue;
+		}
+
+		$url = (string) wp_get_attachment_image_url( $id, 'large' );
+		if ( '' === $url ) {
+			continue;
+		}
+
+		$alt         = trim( (string) get_post_meta( $id, '_wp_attachment_image_alt', true ) );
+		$map[ $value ] = array( 'src' => $url, 'alt' => $alt );
+	}
+
+	return $map;
 }
 
 function okoyom_catalog_heading(): array {
@@ -290,11 +321,21 @@ function okoyom_catalog_card( WP_Post $product ): void {
 	}
 
 	$series   = okoyom_product_series_name( $product->ID );
-	$room     = okoyom_current_room_slug();
+	$room     = okoyom_room_slug_to_value( okoyom_current_room_slug() );
 	$card_url = get_permalink( $product );
 	if ( '' !== $room ) {
 		$card_url = add_query_arg( 'room', $room, $card_url );
 	}
+
+	$room_map   = okoyom_room_image_map( $product->ID );
+	$card_rooms = array_values(
+		array_filter(
+			array_map(
+				'okoyom_room_slug_to_value',
+				(array) wp_get_object_terms( $product->ID, 'product_cat', array( 'fields' => 'slugs' ) )
+			)
+		)
+	);
 
 	$slug_csv = static function ( int $pid, string $tax ): string {
 		$terms = get_the_terms( $pid, $tax );
@@ -310,6 +351,8 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		data-series="<?php echo esc_attr( $slug_csv( $product->ID, 'oko_series' ) ); ?>"
 		data-subject="<?php echo esc_attr( $slug_csv( $product->ID, 'oko_subject' ) ); ?>"
 		data-color="<?php echo esc_attr( $slug_csv( $product->ID, 'oko_color' ) ); ?>"
+		data-room="<?php echo esc_attr( implode( ',', $card_rooms ) ); ?>"
+		data-rooms="<?php echo esc_attr( (string) wp_json_encode( $room_map ) ); ?>"
 		data-sku="<?php echo esc_attr( (string) get_post_meta( $product->ID, '_sku', true ) ); ?>"
 		data-date="<?php echo esc_attr( (string) get_post_time( 'U', true, $product ) ); ?>"
 		data-title="<?php echo esc_attr( mb_strtolower( get_the_title( $product ) ) ); ?>">
@@ -367,3 +410,43 @@ function okoyom_catalog_grid( string $scope = 'all' ): void {
 		okoyom_catalog_card( is_int( $product ) ? get_post( $product ) : $product );
 	}
 }
+
+function okoyom_catalog_room_redirect(): void {
+	if ( is_admin() || wp_doing_ajax() ) {
+		return;
+	}
+
+	if ( ! is_post_type_archive( 'product' ) && ! is_page( 'catalog' ) ) {
+		return;
+	}
+
+	$query = array();
+	parse_str( (string) wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_QUERY ), $query );
+	if ( array( 'room' ) !== array_keys( $query ) ) {
+		return;
+	}
+
+	$values = array_filter( array_map( 'sanitize_title', explode( ',', (string) $query['room'] ) ) );
+	if ( 1 !== count( $values ) ) {
+		return;
+	}
+
+	$slug = okoyom_room_value_to_slug( (string) reset( $values ) );
+	if ( '' === $slug ) {
+		return;
+	}
+
+	$term = get_term_by( 'slug', $slug, 'product_cat' );
+	if ( ! $term instanceof WP_Term ) {
+		return;
+	}
+
+	$link = get_term_link( $term );
+	if ( is_wp_error( $link ) ) {
+		return;
+	}
+
+	wp_safe_redirect( $link, 301 );
+	exit;
+}
+add_action( 'template_redirect', 'okoyom_catalog_room_redirect' );
