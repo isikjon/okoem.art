@@ -24,6 +24,10 @@ if ( 'cart' === $okoyom_slug ) {
 		$okoyom_html = okoyom_apply_page_texts( $okoyom_html );
 	}
 
+	if ( 'catalog' === $okoyom_slug && function_exists( 'okoyom_catalog_apply_banner' ) ) {
+		$okoyom_html = okoyom_catalog_apply_banner( $okoyom_html );
+	}
+
 	echo $okoyom_html;
 } else {
 	while ( have_posts() ) {

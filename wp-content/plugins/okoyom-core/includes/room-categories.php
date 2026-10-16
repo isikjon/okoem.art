@@ -90,6 +90,47 @@ function okoyom_sync_room_categories_on_save( $post_id, $post = null, $update = 
 }
 add_action( 'save_post_product', 'okoyom_sync_room_categories_on_save', 30, 3 );
 
+function okoyom_room_h1_field_add(): void {
+	?>
+	<div class="form-field">
+		<label for="okoyom_h1">Заголовок H1</label>
+		<input type="text" name="okoyom_h1" id="okoyom_h1" value="">
+		<p>Выводится в баннере под крупной надписью. Если пусто, берётся название рубрики.</p>
+	</div>
+	<?php
+}
+add_action( 'product_cat_add_form_fields', 'okoyom_room_h1_field_add' );
+
+function okoyom_room_h1_field_edit( $term ): void {
+	$value = (string) get_term_meta( $term->term_id, 'okoyom_h1', true );
+	?>
+	<tr class="form-field">
+		<th scope="row"><label for="okoyom_h1">Заголовок H1</label></th>
+		<td>
+			<input type="text" name="okoyom_h1" id="okoyom_h1" value="<?php echo esc_attr( $value ); ?>" style="width:95%">
+			<p class="description">Выводится в баннере под крупной надписью. Если пусто, берётся название рубрики.</p>
+		</td>
+	</tr>
+	<?php
+}
+add_action( 'product_cat_edit_form_fields', 'okoyom_room_h1_field_edit' );
+
+function okoyom_room_h1_save( $term_id ): void {
+	if ( ! isset( $_POST['okoyom_h1'] ) ) {
+		return;
+	}
+
+	$value = sanitize_text_field( wp_unslash( (string) $_POST['okoyom_h1'] ) );
+	if ( '' === $value ) {
+		delete_term_meta( $term_id, 'okoyom_h1' );
+		return;
+	}
+
+	update_term_meta( $term_id, 'okoyom_h1', $value );
+}
+add_action( 'created_product_cat', 'okoyom_room_h1_save' );
+add_action( 'edited_product_cat', 'okoyom_room_h1_save' );
+
 function okoyom_sync_room_categories_on_attachment( $meta, $attachment_id ) {
 	$parent = (int) get_post_field( 'post_parent', $attachment_id );
 	if ( $parent && 'product' === get_post_type( $parent ) ) {

@@ -201,6 +201,53 @@ function okoyom_room_image_id( int $product_id, array $tokens ): int {
 	return 0;
 }
 
+function okoyom_catalog_heading(): array {
+	$term = is_tax( 'product_cat' ) ? get_queried_object() : null;
+
+	if ( $term instanceof WP_Term && isset( okoyom_room_tokens_map()[ $term->slug ] ) ) {
+		$h1 = trim( (string) get_term_meta( $term->term_id, 'okoyom_h1', true ) );
+
+		return array(
+			'big'  => $term->name,
+			'h1'   => '' !== $h1 ? $h1 : $term->name,
+			'text' => trim( (string) term_description( $term->term_id, 'product_cat' ) ),
+		);
+	}
+
+	$text = '';
+	if ( ! okoyom_active_filters() ) {
+		$page = get_page_by_path( 'catalog' );
+		$text = $page ? trim( apply_filters( 'the_content', $page->post_content ) ) : '';
+	}
+
+	return array(
+		'big'  => 'Каталог',
+		'h1'   => 'Интерьерные муралы — фрески на стену',
+		'text' => $text,
+	);
+}
+
+function okoyom_catalog_apply_banner( string $html ): string {
+	$heading = okoyom_catalog_heading();
+
+	$html = preg_replace_callback(
+		'~(<div class="titleCatalog">\s*)<h1(\s+class="titleCatalog__title[^"]*")>.*?</h1>(\s*)<p(\s+class="titleCatalog__text[^"]*")>.*?</p>~su',
+		static function ( array $m ) use ( $heading ): string {
+			return $m[1] . '<div' . $m[2] . '>' . esc_html( $heading['big'] ) . '</div>'
+				. $m[3] . '<h1' . $m[4] . '>' . esc_html( $heading['h1'] ) . '</h1>';
+		},
+		$html,
+		1
+	);
+
+	if ( '' !== $heading['text'] ) {
+		$html .= '<section class="sectionMain catalogBottomText"><div class="container"><div class="staticContent">'
+			. $heading['text'] . '</div></div></section>';
+	}
+
+	return $html;
+}
+
 function okoyom_product_series_name( int $product_id ): string {
 	$terms = get_the_terms( $product_id, 'oko_series' );
 

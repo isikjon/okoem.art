@@ -869,3 +869,35 @@ iframe.mural-video {
     overflow-wrap: anywhere;
     word-break: break-word;
 }
+
+.catalogBottomText { padding-top: 0; }
+.catalogBottomText .staticContent {
+    max-width: 780px;
+    margin: 0 auto;
+    color: rgba(22, 20, 18, 0.65);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 28px;
+}
+.catalogBottomText .staticContent h2 {
+    margin: 40px 0 16px;
+    color: rgba(22, 20, 18, 1);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0.21px;
+}
+.catalogBottomText .staticContent h2:first-child { margin-top: 0; }
+.catalogBottomText .staticContent p { margin: 0 0 16px; }
+.catalogBottomText .staticContent p:last-child { margin-bottom: 0; }
+.catalogBottomText .staticContent ul { margin: 0 0 16px; padding-left: 20px; list-style: disc; }
+.catalogBottomText .staticContent li { margin-bottom: 8px; }
+.catalogBottomText .staticContent a {
+    color: rgba(22, 20, 18, 1);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+@media screen and (max-width: 768px) {
+    .catalogBottomText .staticContent { font-size: 15px; line-height: 26px; }
+    .catalogBottomText .staticContent h2 { font-size: 20px; line-height: 29px; margin-top: 32px; }
+}
