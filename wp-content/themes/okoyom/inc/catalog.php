@@ -32,9 +32,24 @@ function okoyom_catalog_paged(): int {
 	return $paged > 0 ? $paged : 1;
 }
 
+function okoyom_catalog_search(): string {
+	$search = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
+	if ( '' !== $search ) {
+		return $search;
+	}
+
+	return isset( $_GET['q'] ) ? sanitize_text_field( wp_unslash( (string) $_GET['q'] ) ) : '';
+}
+
+function okoyom_catalog_sort(): string {
+	$sort = isset( $_GET['sort'] ) ? sanitize_key( wp_unslash( (string) $_GET['sort'] ) ) : '';
+
+	return 'new' === $sort ? 'new' : 'default';
+}
+
 function okoyom_catalog_ids( string $scope = 'all', string $search = '' ): array {
 	static $cache = array();
-	$key = $scope . '|' . $search . '|' . wp_json_encode( okoyom_active_filters() );
+	$key = $scope . '|' . $search . '|' . okoyom_catalog_sort() . '|' . wp_json_encode( okoyom_active_filters() );
 
 	if ( ! isset( $cache[ $key ] ) ) {
 		$cache[ $key ] = okoyom_catalog_query_ids( $scope, $search );
@@ -56,10 +71,9 @@ function okoyom_catalog_query_ids( string $scope = 'all', string $search = '' ):
 		'post_type'      => 'product',
 		'post_status'    => 'publish',
 		'posts_per_page' => -1,
-		'orderby'        => array(
-			'menu_order' => 'ASC',
-			'ID'         => 'ASC',
-		),
+		'orderby'        => 'new' === okoyom_catalog_sort()
+			? array( 'date' => 'DESC', 'ID' => 'DESC' )
+			: array( 'menu_order' => 'ASC', 'ID' => 'ASC' ),
 		'fields'         => 'ids',
 		'no_found_rows'  => true,
 		'tax_query'      => array(
@@ -147,7 +161,7 @@ function okoyom_catalog_products( string $scope = 'all', string $search = '', bo
 }
 
 function okoyom_catalog_count(): string {
-	$count = okoyom_catalog_found();
+	$count = okoyom_catalog_found( 'all', okoyom_catalog_search() );
 
 	$last_two = $count % 100;
 	$last     = $count % 10;
@@ -480,7 +494,7 @@ function okoyom_catalog_is_paginated(): bool {
 
 function okoyom_catalog_grid( string $scope = 'all', bool $paginate = false ): void {
 
-	$search   = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
+	$search   = okoyom_catalog_search();
 	$paginate = $paginate && okoyom_catalog_is_paginated();
 
 	$products = okoyom_catalog_products( $scope, $search, $paginate );
@@ -531,7 +545,7 @@ function okoyom_catalog_pager( string $scope = 'all' ): void {
 		return;
 	}
 
-	$search = (string) ( $GLOBALS['okoyom_search_query'] ?? '' );
+	$search = okoyom_catalog_search();
 	$max    = okoyom_catalog_max_pages( $scope, $search );
 	if ( $max < 2 ) {
 		return;
@@ -624,7 +638,7 @@ function okoyom_catalog_paged_404(): void {
 	}
 
 	$paged = okoyom_catalog_paged();
-	if ( $paged < 2 || $paged <= okoyom_catalog_max_pages() ) {
+	if ( $paged < 2 || $paged <= okoyom_catalog_max_pages( 'all', okoyom_catalog_search() ) ) {
 		return;
 	}
 
@@ -655,31 +669,10 @@ function okoyom_catalog_paged_canonical( $canonical ) {
 		return $canonical;
 	}
 
-	return home_url( okoyom_catalog_page_url( min( okoyom_catalog_paged(), okoyom_catalog_max_pages() ), true ) );
+	return home_url( okoyom_catalog_page_url( min( okoyom_catalog_paged(), okoyom_catalog_max_pages( 'all', okoyom_catalog_search() ) ), true ) );
 }
 add_filter( 'rank_math/frontend/canonical', 'okoyom_catalog_paged_canonical', 20 );
 
-function okoyom_catalog_paged_rel(): void {
-	if ( ! okoyom_is_catalog_view() || is_404() ) {
-		return;
-	}
-
-	if ( ! okoyom_catalog_is_paginated() ) {
-		return;
-	}
-
-	$paged = okoyom_catalog_paged();
-	$max   = okoyom_catalog_max_pages();
-
-	if ( $paged > 1 ) {
-		printf( '<link rel="prev" href="%s">' . "\n", esc_url( home_url( okoyom_catalog_page_url( $paged - 1, true ) ) ) );
-	}
-
-	if ( $paged < $max ) {
-		printf( '<link rel="next" href="%s">' . "\n", esc_url( home_url( okoyom_catalog_page_url( $paged + 1, true ) ) ) );
-	}
-}
-add_action( 'wp_head', 'okoyom_catalog_paged_rel', 5 );
 
 function okoyom_crumb_text( string $text ): string {
 	return trim( html_entity_decode( wp_strip_all_tags( $text ), ENT_QUOTES, 'UTF-8' ) );

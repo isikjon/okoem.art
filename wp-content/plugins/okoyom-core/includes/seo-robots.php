@@ -21,8 +21,22 @@ function okoyom_filter_params(): string {
 	return implode( '&', $params );
 }
 
+function okoyom_closed_pages(): array {
+	return apply_filters( 'okoyom_closed_pages', array( 'search', 'cart', 'favorites', 'thanks' ) );
+}
+
+function okoyom_page_is_closed(): string {
+	if ( ! is_page() ) {
+		return '';
+	}
+
+	$slug = (string) get_post_field( 'post_name', get_queried_object_id() );
+
+	return in_array( $slug, okoyom_closed_pages(), true ) ? $slug : '';
+}
+
 function okoyom_query_is_filtered(): bool {
-	if ( is_singular() ) {
+	if ( is_singular( 'product' ) ) {
 		return false;
 	}
 
@@ -110,10 +124,19 @@ function okoyom_robots_meta( array $robots ): array {
 		return $robots;
 	}
 
-	if ( okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
+	$closed = okoyom_page_is_closed();
+
+	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
 		$robots['noindex'] = true;
-		$robots['follow']  = true;
-		unset( $robots['index'], $robots['nofollow'] );
+		unset( $robots['index'] );
+
+		if ( '' !== $closed && 'search' !== $closed ) {
+			$robots['nofollow'] = true;
+			unset( $robots['follow'] );
+		} else {
+			$robots['follow'] = true;
+			unset( $robots['nofollow'] );
+		}
 	}
 
 	return $robots;
@@ -132,9 +155,11 @@ function okoyom_rank_math_robots( $robots ) {
 		return $robots;
 	}
 
-	if ( okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
+	$closed = okoyom_page_is_closed();
+
+	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
 		$robots['index']  = 'noindex';
-		$robots['follow'] = 'follow';
+		$robots['follow'] = ( '' !== $closed && 'search' !== $closed ) ? 'nofollow' : 'follow';
 	}
 
 	return $robots;
@@ -152,8 +177,11 @@ function okoyom_robots_header(): void {
 		return;
 	}
 
-	if ( okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
-		header( 'X-Robots-Tag: noindex, follow', true );
+	$closed = okoyom_page_is_closed();
+
+	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
+		$follow = ( '' !== $closed && 'search' !== $closed ) ? 'nofollow' : 'follow';
+		header( 'X-Robots-Tag: noindex, ' . $follow, true );
 	}
 }
 add_action( 'send_headers', 'okoyom_robots_header' );

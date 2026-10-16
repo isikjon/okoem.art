@@ -575,10 +575,24 @@
         catApply(doScroll, defer);
     }
 
+    var catSearchTimer = 0;
+
     document.addEventListener('input', function (event) {
         if (!catIsCatalogPage()) return;
         if (!event.target.matches('input[type="search"], input[placeholder*="артикул"], input[placeholder="Поиск"]')) return;
-        catRunSearch(event.target.value, false, !!event.target.closest('.mfilter'));
+
+        var input = event.target;
+        var defer = !!input.closest('.mfilter');
+
+        if (catGridIsFull() && !catIsSearch) {
+            catRunSearch(input.value, false, defer);
+            return;
+        }
+
+        clearTimeout(catSearchTimer);
+        catSearchTimer = setTimeout(function () {
+            catRunSearch(input.value, false, defer);
+        }, 600);
     });
 
     function goToSearch(query) {
@@ -623,6 +637,7 @@
         if (!pager) return;
 
         var max = parseInt(pager.getAttribute('data-max'), 10) || 1;
+        page = Math.max(page, parseInt(pager.getAttribute('data-page'), 10) || 1);
         pager.setAttribute('data-page', String(page));
 
         var more = pager.querySelector('[data-pager-more]');
@@ -854,7 +869,6 @@
         var pack = function (search) {
             var out = [];
             new URLSearchParams(search).forEach(function (v, k) {
-                if ('sort' === k || 'q' === k) return;
                 out.push(k + '=' + v);
             });
             return out.sort().join('&');
@@ -1108,7 +1122,7 @@
             }
         });
 
-        catReorder(grid);
+        if (!needsNav) catReorder(grid);
 
         var exact = catGridIsFull() || catIsSearch;
 
@@ -1393,6 +1407,7 @@
         var sortBtn = event.target.closest('[data-sort]');
         if (!sortBtn || !catGrid()) return;
         event.preventDefault();
+        catFiltersTouched = true;
         catSort = sortBtn.getAttribute('data-sort') === 'new' ? 'new' : 'default';
         document.querySelectorAll('[data-sort]').forEach(function (b) {
             b.classList.toggle('active', b.getAttribute('data-sort') === catSort);
