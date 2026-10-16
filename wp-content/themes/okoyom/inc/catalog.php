@@ -332,7 +332,7 @@ function okoyom_catalog_card( WP_Post $product ): void {
 		array_filter(
 			array_map(
 				'okoyom_room_slug_to_value',
-				(array) wp_get_object_terms( $product->ID, 'product_cat', array( 'fields' => 'slugs' ) )
+				wp_list_pluck( (array) get_the_terms( $product->ID, 'product_cat' ), 'slug' )
 			)
 		)
 	);
@@ -426,15 +426,14 @@ function okoyom_catalog_room_redirect(): void {
 		return;
 	}
 
-	$values = array_filter( array_map( 'sanitize_title', explode( ',', (string) $query['room'] ) ) );
-	if ( 1 !== count( $values ) ) {
+	$raw    = is_array( $query['room'] ) ? $query['room'] : explode( ',', (string) $query['room'] );
+	$values = array_filter( array_map( 'sanitize_title', array_map( 'strval', $raw ) ) );
+	$slugs  = array_unique( array_filter( array_map( 'okoyom_room_value_to_slug', $values ) ) );
+	if ( 1 !== count( $slugs ) ) {
 		return;
 	}
 
-	$slug = okoyom_room_value_to_slug( (string) reset( $values ) );
-	if ( '' === $slug ) {
-		return;
-	}
+	$slug = (string) reset( $slugs );
 
 	$term = get_term_by( 'slug', $slug, 'product_cat' );
 	if ( ! $term instanceof WP_Term ) {

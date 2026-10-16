@@ -310,13 +310,15 @@ add_action(
 		$is_tax_archive = is_tax( array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color', 'product_cat' ) );
 
 		if ( is_page( array( 'catalog', 'search' ) ) || is_post_type_archive( 'product' ) || $is_tax_archive ) {
-			$archive     = function_exists( 'okoyom_archive_tax_term' ) ? okoyom_archive_tax_term() : null;
+			$archive      = function_exists( 'okoyom_archive_tax_term' ) ? okoyom_archive_tax_term() : null;
 			$param_by_tax = array(
 				'oko_collection' => 'collection',
 				'oko_series'     => 'series',
 				'oko_subject'    => 'subject',
 				'oko_color'      => 'color',
 			);
+			$archive_param = $archive ? ( $param_by_tax[ $archive['taxonomy'] ] ?? '' ) : '';
+			$archive_room  = function_exists( 'okoyom_current_room_slug' ) && '' !== okoyom_current_room_slug();
 
 			wp_localize_script(
 				'okoyom-theme',
@@ -326,7 +328,7 @@ add_action(
 					'active'   => okoyom_active_filters(),
 					'swatches' => okoyom_color_swatches(),
 					'archive'  => $archive ? array(
-						'param' => $param_by_tax[ $archive['taxonomy'] ] ?? '',
+						'param' => $archive_param,
 						'slug'  => $archive['slug'],
 					) : null,
 					'pretty'   => array(
@@ -339,6 +341,7 @@ add_action(
 					'rooms'    => okoyom_room_param_map(),
 					'roomUrls' => okoyom_room_urls(),
 					'full'     => ! $archive && ! okoyom_active_filters() && 'all' === okoyom_current_scope(),
+					'locked'   => (bool) $archive && '' === $archive_param && ! $archive_room,
 				)
 			);
 		}
