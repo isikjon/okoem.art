@@ -764,12 +764,21 @@
     }, true);
 
     function catRestoreAnchor() {
-        var jump = null;
+        var raw = null;
         try {
-            jump = sessionStorage.getItem('okoyom_cat_anchor');
+            raw = sessionStorage.getItem('okoyom_cat_anchor');
             sessionStorage.removeItem('okoyom_cat_anchor');
         } catch (e) {}
-        if (!jump) return;
+        if (!raw) return;
+
+        var state = null;
+        try { state = JSON.parse(raw); } catch (e) {}
+
+        if (state && 'keep' === state.mode) {
+            var y = parseInt(state.y, 10) || 0;
+            catScrollWhenReady(function () { return y; });
+            return;
+        }
 
         catScrollWhenReady(catAnchorTop);
     }
@@ -1130,10 +1139,8 @@
 
     function catRowWasStuck() {
         var row = catFiltersRow();
-        if (!row) return false;
-        if (row.classList.contains('is-stuck')) return true;
 
-        return catRowStuck();
+        return !!row && row.classList.contains('is-stuck');
     }
 
     function catRowStuck() {
@@ -1162,7 +1169,16 @@
 
     function catScrollWhenReady(target) {
         var stopped = false;
-        var stop = function () { stopped = true; };
+        var root = document.documentElement;
+        var anchor = root.style.overflowAnchor;
+        root.style.overflowAnchor = 'none';
+
+        var stop = function () {
+            if (stopped) return;
+            stopped = true;
+            root.style.overflowAnchor = anchor;
+        };
+
         ['wheel', 'touchstart', 'keydown'].forEach(function (name) {
             window.addEventListener(name, stop, { once: true, passive: true });
         });
@@ -1172,15 +1188,20 @@
 
             var want = target();
             if (Math.abs(window.scrollY - want) > 2) window.scrollTo(0, want);
-            if (left > 0) setTimeout(function () { attempt(left - 1); }, 150);
+
+            if (left > 0) {
+                setTimeout(function () { attempt(left - 1); }, 200);
+                return;
+            }
+
+            stop();
         };
 
-        if (document.readyState === 'complete') {
-            attempt(4);
-            return;
-        }
+        attempt(2);
 
-        window.addEventListener('load', function () { attempt(4); }, { once: true });
+        if (document.readyState !== 'complete') {
+            window.addEventListener('load', function () { attempt(8); }, { once: true });
+        }
     }
 
     function catUpdateReset() {
@@ -1215,7 +1236,12 @@
 
         if (needsNav && !defer) {
             try {
-                if (catInited && catRowWasStuck()) sessionStorage.setItem('okoyom_cat_anchor', '1');
+                if (catInited) {
+                    sessionStorage.setItem('okoyom_cat_anchor', JSON.stringify({
+                        mode: catRowWasStuck() ? 'anchor' : 'keep',
+                        y: Math.round(window.scrollY)
+                    }));
+                }
             } catch (e) {}
 
             if (catInited) location.assign(url); else location.replace(url);
