@@ -771,7 +771,7 @@
         } catch (e) {}
         if (!jump) return;
 
-        catScrollToTop();
+        catScrollWhenReady(catAnchorTop);
     }
 
     function catRestoreReturn() {
@@ -802,14 +802,15 @@
     }
 
     function catScrollToCard(state) {
-        var card = state.id ? document.querySelector('.blockCardCatalog__card[data-product-id="' + state.id + '"]') : null;
-        if (card) {
-            var top = card.getBoundingClientRect().top + window.scrollY - 140;
-            window.scrollTo(0, Math.max(0, top));
-        } else {
-            var y = parseInt(state.y, 10) || 0;
-            if (y) window.scrollTo(0, y);
-        }
+        var id = state.id;
+        var saved = parseInt(state.y, 10) || 0;
+
+        catScrollWhenReady(function () {
+            var card = id ? document.querySelector('.blockCardCatalog__card[data-product-id="' + id + '"]') : null;
+            if (card) return Math.max(0, card.getBoundingClientRect().top + window.scrollY - 140);
+
+            return saved;
+        });
 
         try { sessionStorage.removeItem('okoyom_cat_return'); } catch (e) {}
     }
@@ -1127,6 +1128,14 @@
         return 'работ';
     }
 
+    function catRowWasStuck() {
+        var row = catFiltersRow();
+        if (!row) return false;
+        if (row.classList.contains('is-stuck')) return true;
+
+        return catRowStuck();
+    }
+
     function catRowStuck() {
         var row = catFiltersRow();
         if (!row) return false;
@@ -1134,15 +1143,44 @@
         return row.getBoundingClientRect().top <= top + 1;
     }
 
-    function catScrollToTop() {
+    function catAnchorTop() {
         var row = catFiltersRow();
-        if (!row) return;
+        if (!row) return 0;
+
         var stickyTop = parseInt(getComputedStyle(row).top, 10) || 0;
         var anchor = document.querySelector('.catFilterAnchor');
         var docTop = anchor
             ? anchor.getBoundingClientRect().top + window.scrollY
             : row.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({ top: Math.max(0, docTop - stickyTop) });
+
+        return Math.max(0, docTop - stickyTop);
+    }
+
+    function catScrollToTop() {
+        window.scrollTo({ top: catAnchorTop() });
+    }
+
+    function catScrollWhenReady(target) {
+        var stopped = false;
+        var stop = function () { stopped = true; };
+        ['wheel', 'touchstart', 'keydown'].forEach(function (name) {
+            window.addEventListener(name, stop, { once: true, passive: true });
+        });
+
+        var attempt = function (left) {
+            if (stopped) return;
+
+            var want = target();
+            if (Math.abs(window.scrollY - want) > 2) window.scrollTo(0, want);
+            if (left > 0) setTimeout(function () { attempt(left - 1); }, 150);
+        };
+
+        if (document.readyState === 'complete') {
+            attempt(4);
+            return;
+        }
+
+        window.addEventListener('load', function () { attempt(4); }, { once: true });
     }
 
     function catUpdateReset() {
@@ -1177,7 +1215,7 @@
 
         if (needsNav && !defer) {
             try {
-                if (catInited && catRowStuck()) sessionStorage.setItem('okoyom_cat_anchor', '1');
+                if (catInited && catRowWasStuck()) sessionStorage.setItem('okoyom_cat_anchor', '1');
             } catch (e) {}
 
             if (catInited) location.assign(url); else location.replace(url);
