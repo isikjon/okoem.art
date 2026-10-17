@@ -1040,3 +1040,21 @@ a.ui-filter__item {
 .mfilter .flex-col-3__footer input::placeholder {
     color: rgba(22, 20, 18, 0.45);
 }
+
+.catalogBottomText .staticContent {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.catalogBottomText .staticContent ul {
+    padding-left: 22px;
+    list-style: disc outside;
+}
+
+.catalogBottomText .staticContent ul li {
+    list-style: disc outside;
+}
+
+.catalogBottomText .staticContent ul li::marker {
+    color: rgba(22, 20, 18, 0.45);
+}
