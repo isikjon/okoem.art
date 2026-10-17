@@ -189,6 +189,46 @@ function okoyom_catalog_count(): string {
 	return $count . ' ' . $word;
 }
 
+function okoyom_attachment_alt( int $attachment_id, string $fallback ): string {
+	$alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+
+	return '' !== $alt ? $alt : $fallback;
+}
+
+function okoyom_product_slide_items( int $product_id, bool $with_thumb = true ): array {
+	$fallback = okoyom_crumb_text( get_the_title( $product_id ) );
+	$items    = array();
+	$ids      = array();
+
+	$thumb = (int) get_post_thumbnail_id( $product_id );
+	if ( $with_thumb && $thumb ) {
+		$ids[] = $thumb;
+	}
+
+	foreach ( array_filter( explode( ',', (string) get_post_meta( $product_id, '_product_image_gallery', true ) ) ) as $attachment_id ) {
+		$ids[] = (int) $attachment_id;
+	}
+
+	if ( ! $ids && $thumb ) {
+		$ids[] = $thumb;
+	}
+
+	foreach ( array_unique( $ids ) as $attachment_id ) {
+		$url = wp_get_attachment_image_url( $attachment_id, 'large' );
+		if ( ! $url ) {
+			continue;
+		}
+
+		$items[] = array(
+			'id'  => $attachment_id,
+			'src' => (string) $url,
+			'alt' => okoyom_attachment_alt( $attachment_id, $fallback ),
+		);
+	}
+
+	return $items;
+}
+
 function okoyom_product_slides( int $product_id, int $limit = 3, bool $with_thumb = true ): array {
 	$urls = array();
 
@@ -406,21 +446,29 @@ function okoyom_catalog_card( WP_Post $product, int $order = -1 ): void {
 		return;
 	}
 
-	$title    = get_the_title( $product );
-	$alts     = array_fill( 0, count( $slides ), $title );
-	$base     = array();
+	$title    = okoyom_crumb_text( get_the_title( $product ) );
+	$by_url   = array();
+	foreach ( okoyom_product_slide_items( $product->ID, false ) as $item ) {
+		$by_url[ $item['src'] ] = $item['alt'];
+	}
+
+	$alts = array();
+	$base = array();
 	foreach ( $slides as $base_url ) {
-		$base[] = array( 'src' => $base_url, 'alt' => $title );
+		$alt    = $by_url[ $base_url ] ?? $title;
+		$alts[] = $alt;
+		$base[] = array( 'src' => $base_url, 'alt' => $alt );
 	}
 	$room_id  = okoyom_room_image_id( $product->ID, okoyom_card_room_tokens() );
 	$room_url = $room_id ? (string) wp_get_attachment_image_url( $room_id, 'large' ) : '';
 
 	if ( '' !== $room_url ) {
 		$slides = array_slice( array_values( array_unique( array_merge( array( $room_url ), $slides ) ) ), 0, 3 );
-		$alts   = array_fill( 0, count( $slides ), $title );
-		$room_alt = trim( (string) get_post_meta( $room_id, '_wp_attachment_image_alt', true ) );
-		if ( '' !== $room_alt ) {
-			$alts[0] = $room_alt;
+		$alts   = array();
+		foreach ( $slides as $slide_url ) {
+			$alts[] = $slide_url === $room_url
+				? okoyom_attachment_alt( $room_id, $title )
+				: ( $by_url[ $slide_url ] ?? $title );
 		}
 	}
 

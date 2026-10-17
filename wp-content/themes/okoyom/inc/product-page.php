@@ -45,14 +45,26 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	$series     = okoyom_product_series_name( $product->ID );
 	$materials  = okoyom_product_materials( $product->ID );
 	$main       = $materials ? $materials[0] : null;
-	$slides     = okoyom_product_slides( $product->ID, 0, false );
+	$slide_items      = okoyom_product_slide_items( $product->ID, false );
+	$slides     = wp_list_pluck( $slide_items, 'src' );
 
 	$room_id = okoyom_room_image_id( $product->ID, okoyom_request_room_tokens() );
 	if ( $room_id ) {
 		$room_url = (string) wp_get_attachment_image_url( $room_id, 'large' );
-		if ( '' !== $room_url ) {
-			$slides = array_values( array_unique( array_merge( array( $room_url ), $slides ) ) );
+		if ( '' !== $room_url && ! in_array( $room_url, $slides, true ) ) {
+			array_unshift( $slide_items, array( 'id' => $room_id, 'src' => $room_url, 'alt' => okoyom_attachment_alt( $room_id, okoyom_crumb_text( $title ) ) ) );
+		} elseif ( '' !== $room_url ) {
+			foreach ( $slide_items as $i => $item ) {
+				if ( $item['src'] === $room_url ) {
+					unset( $slide_items[ $i ] );
+					array_unshift( $slide_items, $item );
+					break;
+				}
+			}
+			$slide_items = array_values( $slide_items );
 		}
+
+		$slides = wp_list_pluck( $slide_items, 'src' );
 	}
 
 	$html = preg_replace_callback(
@@ -100,6 +112,31 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	);
 
 	$html = str_replace( 'Дальние хребты', esc_html( $title ), $html );
+
+	$h1 = function_exists( 'okoyom_product_h1' ) ? okoyom_product_h1( $product->ID ) : $title;
+
+	$html = preg_replace(
+		'~<h1 class="title-titleCardSection">(.*?)</h1>~su',
+		'<div class="title-titleCardSection">$1</div>',
+		$html,
+		1
+	);
+
+	$html = preg_replace(
+		'~(<div class="title-right-flex-cardSectionContent">.*?<h1>)\s*.*?\s*(</h1>)~su',
+		'${1}' . esc_html( $h1 ) . '$2',
+		$html,
+		1
+	);
+
+	$html = preg_replace(
+		'~<h2>\s*([^<]*?₽[^<]*?)\s*</h2>~su',
+		'<div class="priceValue">$1</div>',
+		$html
+	);
+
+	$html = okoyom_product_rooms_block( $product->ID, $html );
+	$html = okoyom_product_specs_block( $html );
 
 	if ( function_exists( 'okoyom_breadcrumbs' ) ) {
 		ob_start();
@@ -222,13 +259,13 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	$video = function_exists( 'okoyom_product_video' ) ? okoyom_product_video( $product->ID ) : '';
 
 	if ( $slides ) {
-		$make_slides = static function ( bool $with_video = true ) use ( $slides, $product, $video ): string {
+		$make_slides = static function ( bool $with_video = true ) use ( $slide_items, $product, $video ): string {
 			$out = '';
-			foreach ( $slides as $url ) {
+			foreach ( $slide_items as $item ) {
 				$out .= sprintf(
 					'<div class="swiper-slide"><img src="%s" alt="%s" loading="lazy" decoding="async"></div>',
-					esc_url( $url ),
-					esc_attr( get_the_title( $product ) )
+					esc_url( $item['src'] ),
+					esc_attr( $item['alt'] )
 				);
 			}
 			if ( $with_video && '' !== $video && function_exists( 'okoyom_video_slide_html' ) ) {
@@ -451,3 +488,48 @@ add_action(
 	},
 	20
 );
+
+function okoyom_product_rooms_block( int $product_id, string $html ): string {
+	if ( ! function_exists( 'okoyom_room_tokens_map' ) ) {
+		return $html;
+	}
+
+	$rooms = array();
+	foreach ( (array) get_the_terms( $product_id, 'product_cat' ) as $term ) {
+		if ( ! $term instanceof WP_Term || ! isset( okoyom_room_tokens_map()[ $term->slug ] ) ) {
+			continue;
+		}
+
+		$link = get_term_link( $term );
+		if ( is_wp_error( $link ) ) {
+			continue;
+		}
+
+		$rooms[] = sprintf(
+			'<div class="block-flexBorderTextInfoSection"><p><a href="%s">%s</a></p></div>',
+			esc_url( (string) wp_parse_url( $link, PHP_URL_PATH ) ),
+			esc_html( $term->name )
+		);
+	}
+
+	return preg_replace(
+		'~(<div class="flexBorderTextInfoSection">).*?(</div>\s*</div>\s*</div>)~su',
+		$rooms ? '$1' . implode( '', $rooms ) . '</div></div>' : '$1</div></div>',
+		$html,
+		1
+	);
+}
+
+function okoyom_product_specs_block( string $html ): string {
+	$seam  = (int) apply_filters( 'okoyom_seamless_height_cm', 317 );
+	$width = (int) apply_filters( 'okoyom_max_width_cm', 1285 );
+
+	$html = str_replace( 'Бесшовный до 600 см', 'Бесшовный до ' . $seam . ' см', $html );
+
+	return preg_replace(
+		'~(<span>Макс\. ширина</span>\s*<span>)[^<]*(</span>)~u',
+		'${1}' . $width . ' см$2',
+		$html,
+		1
+	);
+}

@@ -69,24 +69,6 @@ add_action(
 	'wp_head',
 	function () {
 
-		okoyom_jsonld(
-			array(
-				'@context' => 'https://schema.org',
-				'@type'    => 'Organization',
-				'name'     => 'ОКОЁМ',
-				'url'      => home_url( '/' ),
-				'logo'     => OKOYOM_ASSETS_URI . '/img/logoHeader.svg',
-			)
-		);
-		okoyom_jsonld(
-			array(
-				'@context' => 'https://schema.org',
-				'@type'    => 'WebSite',
-				'name'     => get_bloginfo( 'name' ),
-				'url'      => home_url( '/' ),
-			)
-		);
-
 		if ( is_page() && 'contacts' === get_post_field( 'post_name', get_queried_object_id() ) ) {
 			okoyom_jsonld(
 				array(
@@ -109,31 +91,6 @@ add_action(
 				)
 			);
 		}
-
-		if ( is_singular( 'product' ) ) {
-			$product = get_queried_object();
-			$price   = okoyom_product_base_price( $product->ID );
-
-			okoyom_jsonld(
-				array(
-					'@context'    => 'https://schema.org',
-					'@type'       => 'Product',
-					'name'        => okoyom_crumb_text( get_the_title( $product ) ),
-					'sku'         => (string) get_post_meta( $product->ID, '_sku', true ),
-					'description' => okoyom_crumb_text( get_the_excerpt( $product ) ),
-					'image'       => get_the_post_thumbnail_url( $product, 'large' ) ?: '',
-					'offers'      => array(
-						'@type'         => 'Offer',
-						'price'         => $price,
-						'priceCurrency' => 'RUB',
-
-						'availability'  => 'https://schema.org/InStock',
-						'url'           => get_permalink( $product ),
-					),
-				)
-			);
-
-		}
 	},
 	5
 );
@@ -148,4 +105,54 @@ add_action(
 		wp_safe_redirect( home_url( '/search/' ) . ( '' !== $query ? '?q=' . rawurlencode( $query ) : '' ), 301 );
 		exit;
 	}
+);
+
+add_filter(
+	'rank_math/snippet/rich_snippet_product_entity',
+	function ( $entity ) {
+		$product = get_queried_object();
+		if ( ! $product instanceof WP_Post || 'product' !== $product->post_type ) {
+			return $entity;
+		}
+
+		$price  = okoyom_product_base_price( $product->ID );
+		$series = function_exists( 'okoyom_product_series_name' ) ? okoyom_product_series_name( $product->ID ) : '';
+		$images = wp_list_pluck( okoyom_product_slide_items( $product->ID ), 'src' );
+
+		$entity['name']        = function_exists( 'okoyom_product_h1' )
+			? okoyom_crumb_text( okoyom_product_h1( $product->ID ) )
+			: okoyom_crumb_text( get_the_title( $product ) );
+		$entity['sku']         = (string) get_post_meta( $product->ID, '_sku', true );
+		$entity['brand']       = array( '@type' => 'Brand', 'name' => 'ОКОЁМ' );
+		$entity['description'] = okoyom_crumb_text( get_the_excerpt( $product ) );
+
+		if ( $images ) {
+			$entity['image'] = count( $images ) > 1 ? array_values( $images ) : reset( $images );
+		}
+
+		if ( '' !== $series ) {
+			$entity['category'] = okoyom_crumb_text( $series );
+		}
+
+		$entity['offers'] = array(
+			'@type'              => 'Offer',
+			'url'                => get_permalink( $product ),
+			'price'              => (string) $price,
+			'priceCurrency'      => 'RUB',
+			'availability'       => 'https://schema.org/InStock',
+			'priceSpecification' => array(
+				'@type'                 => 'UnitPriceSpecification',
+				'price'                 => (string) $price,
+				'priceCurrency'         => 'RUB',
+				'referenceQuantity'     => array(
+					'@type'    => 'QuantitativeValue',
+					'value'    => '1',
+					'unitCode' => 'MTK',
+				),
+			),
+		);
+
+		return $entity;
+	},
+	20
 );
