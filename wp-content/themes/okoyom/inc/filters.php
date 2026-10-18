@@ -417,6 +417,8 @@ add_action(
 
 function okoyom_filter_links_nav(): void {
 	if ( okoyom_active_filters() || okoyom_catalog_paged() > 1 ) {
+		echo '<nav class="catalogFilterLinks" aria-label="Подборки каталога"></nav>';
+
 		return;
 	}
 
@@ -443,6 +445,8 @@ function okoyom_filter_links_nav(): void {
 	}
 
 	if ( ! $groups ) {
+		echo '<nav class="catalogFilterLinks" aria-label="Подборки каталога"></nav>';
+
 		return;
 	}
 	?>

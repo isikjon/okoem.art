@@ -129,12 +129,6 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		1
 	);
 
-	$html = preg_replace(
-		'~<h2>\s*([^<]*?₽[^<]*?)\s*</h2>~su',
-		'<div class="priceValue">$1</div>',
-		$html
-	);
-
 	$html = okoyom_product_rooms_block( $product->ID, $html );
 	$html = okoyom_product_specs_block( $html );
 
@@ -361,7 +355,21 @@ function okoyom_render_product_page( WP_Post $product ): string {
 		$html = okoyom_remove_block( $html, '<div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">' );
 	}
 
-	return $html;
+	return okoyom_product_price_tags( $html );
+}
+
+function okoyom_product_price_tags( string $html ): string {
+	$html = preg_replace(
+		'~<h2((?:\s[^>]*)?)>\s*([^<]*?₽[^<]*?)\s*</h2>~su',
+		'<div class="priceValue"$1>$2</div>',
+		$html
+	);
+
+	return preg_replace(
+		'~<h2((?:\s[^>]*)?)>\s*(По запросу)\s*</h2>~su',
+		'<div class="priceValue"$1>$2</div>',
+		$html
+	);
 }
 
 function okoyom_related_products( int $product_id, int $limit = 4 ): array {

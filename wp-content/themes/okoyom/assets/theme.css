@@ -1058,3 +1058,40 @@ a.ui-filter__item {
 .catalogBottomText .staticContent ul li::marker {
     color: rgba(22, 20, 18, 0.45);
 }
+
+.title-titleCardSection,
+.priceValue {
+    font-family: "Playfair Display", serif;
+}
+
+.title-titleCardSection {
+    text-wrap: balance;
+}
+
+.cardSection {
+    position: relative;
+}
+
+.cardSection::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.35) 28%, rgba(0, 0, 0, 0.10) 55%, rgba(0, 0, 0, 0) 80%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cardSection > * {
+    position: relative;
+    z-index: 1;
+}
+
+.catalogBottomText:empty,
+.catalogFilterLinks:empty {
+    display: none;
+}
+
+.flexTwoTypeInfoMain-2.is-swapping {
+    opacity: 0.45;
+    transition: opacity 0.15s ease;
+}

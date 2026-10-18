@@ -108,31 +108,29 @@ add_action(
 	}
 );
 
-add_action(
-	'admin_head',
-	function () {
-		$screen = get_current_screen();
-		if ( ! $screen || 'edit-product' !== $screen->id ) {
-			return;
+add_filter(
+	'default_hidden_columns',
+	function ( array $hidden, WP_Screen $screen ): array {
+		if ( 'edit-product' !== $screen->id ) {
+			return $hidden;
 		}
-		?>
-		<style>
-			#posts-filter { overflow-x: auto; }
-			#posts-filter .wp-list-table { min-width: 1500px; table-layout: auto; }
-			.wp-list-table .column-taxonomy-oko_color,
-			.wp-list-table .column-taxonomy-oko_subject { width: auto; min-width: 10em; }
-			.wp-list-table .column-taxonomy-oko_collection,
-			.wp-list-table .column-taxonomy-oko_series,
-			.wp-list-table .column-product_cat { width: auto; min-width: 8em; }
-			.wp-list-table .column-name { min-width: 16em; }
-			.wp-list-table .column-sku,
-			.wp-list-table .column-price,
-			.wp-list-table .column-date { width: auto; min-width: 6em; white-space: nowrap; }
-			.wp-list-table .column-product_tag,
-			.wp-list-table .column-featured,
-			.wp-list-table .column-is_in_stock { width: auto; min-width: 4em; white-space: nowrap; }
-			.wp-list-table th, .wp-list-table td { word-break: normal; overflow-wrap: anywhere; }
-		</style>
-		<?php
-	}
+
+		return array_values(
+			array_unique(
+				array_merge(
+					$hidden,
+					array(
+						'global_unique_id',
+						'product_tag',
+						'taxonomy-oko_collection',
+						'taxonomy-oko_series',
+						'taxonomy-oko_subject',
+						'taxonomy-oko_color',
+					)
+				)
+			)
+		);
+	},
+	10,
+	2
 );

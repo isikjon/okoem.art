@@ -408,10 +408,11 @@ function okoyom_catalog_apply_banner( string $html ): string {
 		1
 	);
 
-	if ( '' !== $heading['text'] ) {
-		$html .= '<section class="sectionMain catalogBottomText"><div class="container"><div class="staticContent">'
-			. $heading['text'] . '</div></div></section>';
-	}
+	$html .= '<section class="sectionMain catalogBottomText">'
+		. ( '' !== $heading['text']
+			? '<div class="container"><div class="staticContent">' . $heading['text'] . '</div></div>'
+			: '' )
+		. '</section>';
 
 	if ( function_exists( 'okoyom_filter_links_nav' ) ) {
 		ob_start();
