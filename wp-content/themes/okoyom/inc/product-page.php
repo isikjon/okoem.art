@@ -512,9 +512,18 @@ function okoyom_product_rooms_block( int $product_id, string $html ): string {
 		);
 	}
 
+	if ( ! $rooms ) {
+		return preg_replace(
+			'~<div class="print-layout__2Second">.*?</div>\s*</div>\s*</div>~su',
+			'',
+			$html,
+			1
+		);
+	}
+
 	return preg_replace(
 		'~(<div class="flexBorderTextInfoSection">).*?(</div>\s*</div>\s*</div>)~su',
-		$rooms ? '$1' . implode( '', $rooms ) . '</div></div>' : '$1</div></div>',
+		'$1' . implode( '', $rooms ) . '</div></div>',
 		$html,
 		1
 	);
