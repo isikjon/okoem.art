@@ -100,7 +100,21 @@ function okoyom_term_product_count( string $taxonomy, int $term_id ): int {
 	return okoyom_taxonomy_product_counts( $taxonomy )[ $term_id ] ?? 0;
 }
 
+function okoyom_term_is_service( string $taxonomy, int $term_id ): bool {
+	if ( 'product_cat' !== $taxonomy ) {
+		return false;
+	}
+
+	$default = (int) get_option( 'default_product_cat' );
+
+	return $default > 0 && $default === $term_id;
+}
+
 function okoyom_term_duplicates_catalog( string $taxonomy, int $term_id ): bool {
+	if ( okoyom_term_is_service( $taxonomy, $term_id ) ) {
+		return true;
+	}
+
 	$total = okoyom_catalog_total();
 	if ( $total < 1 ) {
 		return false;

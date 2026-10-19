@@ -720,6 +720,21 @@ function okoyom_catalog_room_redirect(): void {
 }
 add_action( 'template_redirect', 'okoyom_catalog_room_redirect' );
 
+function okoyom_service_cat_redirect(): void {
+	if ( ! is_tax( 'product_cat' ) || ! function_exists( 'okoyom_term_is_service' ) ) {
+		return;
+	}
+
+	$term = get_queried_object();
+	if ( ! $term instanceof WP_Term || ! okoyom_term_is_service( $term->taxonomy, (int) $term->term_id ) ) {
+		return;
+	}
+
+	wp_safe_redirect( home_url( '/catalog/' ), 301 );
+	exit;
+}
+add_action( 'template_redirect', 'okoyom_service_cat_redirect', 4 );
+
 function okoyom_is_catalog_view(): bool {
 	return is_post_type_archive( 'product' )
 		|| is_tax( array( 'product_cat', 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) )
