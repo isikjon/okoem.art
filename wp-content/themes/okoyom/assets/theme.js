@@ -795,6 +795,7 @@
                 markFavorites();
                 catBindSliders(grid);
                 catApply(false);
+                catSyncStuck();
 
                 if (scrollTop) catScrollToTop();
 
@@ -1235,16 +1236,17 @@
     }
 
     function catRowWasStuck() {
-        var row = catFiltersRow();
-
-        return !!row && row.classList.contains('is-stuck');
+        return catRowStuck();
     }
 
     function catRowStuck() {
         var row = catFiltersRow();
-        if (!row) return false;
+        if (!row || 'sticky' !== getComputedStyle(row).position) return false;
+
         var top = parseInt(getComputedStyle(row).top, 10) || 0;
-        return row.getBoundingClientRect().top <= top + 1;
+        var ref = document.querySelector('.catFilterAnchor') || row;
+
+        return ref.getBoundingClientRect().top <= top + 1;
     }
 
     function catAnchorTop() {
@@ -1476,21 +1478,29 @@
         obs.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
     }
 
-    function catWatchStuck() {
+    function catSyncStuck() {
         var row = catFiltersRow();
-        if (!row || getComputedStyle(row).position !== 'sticky') return;
-        var raf = 0;
-        function sync() {
-            raf = 0;
-            row.classList.toggle('is-stuck', catRowStuck());
-            catFitDropdown(document.querySelector('.ui-filter.is-open'));
+        if (!row) return;
+
+        row.classList.toggle('is-stuck', catRowStuck());
+        catFitDropdown(document.querySelector('.ui-filter.is-open'));
+    }
+
+    function catWatchStuck() {
+        window.addEventListener('scroll', catSyncStuck, { passive: true });
+        window.addEventListener('resize', catSyncStuck);
+        window.addEventListener('load', catSyncStuck);
+        document.addEventListener('visibilitychange', catSyncStuck);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(catSyncStuck);
+
+        var anchor = document.querySelector('.catFilterAnchor');
+        if (anchor && typeof IntersectionObserver !== 'undefined') {
+            var row = catFiltersRow();
+            var top = row ? parseInt(getComputedStyle(row).top, 10) || 0 : 0;
+            new IntersectionObserver(catSyncStuck, { rootMargin: -top + 'px 0px 0px 0px', threshold: [0, 1] }).observe(anchor);
         }
-        function onScroll() {
-            if (!raf) raf = requestAnimationFrame(sync);
-        }
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
-        sync();
+
+        catSyncStuck();
     }
 
     function catBuildInlineFilters() {
