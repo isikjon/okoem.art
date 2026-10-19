@@ -130,6 +130,7 @@ function okoyom_render_product_page( WP_Post $product ): string {
 	);
 
 	$html = okoyom_product_rooms_block( $product->ID, $html );
+	$html = okoyom_product_palette_block( $product->ID, $html );
 	$html = okoyom_product_specs_block( $html );
 
 	if ( function_exists( 'okoyom_breadcrumbs' ) ) {
@@ -496,6 +497,28 @@ add_action(
 	},
 	20
 );
+
+function okoyom_product_palette_block( int $product_id, string $html ): string {
+	$text = trim( (string) get_post_meta( $product_id, '_okoyom_palette_text', true ) );
+	if ( '' === $text ) {
+		return $html;
+	}
+
+	$name  = trim( (string) get_post_meta( $product_id, '_okoyom_palette', true ) );
+	$label = '' !== $name ? 'Палитра ' . $name : 'Палитра';
+
+	$block = '<div class="productPalette">'
+		. '<p class="productPalette__label">' . esc_html( $label ) . '</p>'
+		. '<p class="productPalette__text">' . esc_html( $text ) . '</p>'
+		. '</div>';
+
+	return preg_replace(
+		'~(<div class="print-text">.*?</div>)~su',
+		'$1' . $block,
+		$html,
+		1
+	);
+}
 
 function okoyom_product_rooms_block( int $product_id, string $html ): string {
 	if ( ! function_exists( 'okoyom_room_tokens_map' ) ) {

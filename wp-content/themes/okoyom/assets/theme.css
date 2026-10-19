@@ -1242,3 +1242,24 @@ a.ui-filter__item {
         width: 100%;
     }
 }
+
+.productPalette {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(22, 20, 18, 0.12);
+}
+
+.productPalette__label {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(22, 20, 18, 0.45);
+    margin-bottom: 10px;
+}
+
+.productPalette__text {
+    font-size: 15px;
+    line-height: 26px;
+    color: rgba(22, 20, 18, 0.75);
+}
