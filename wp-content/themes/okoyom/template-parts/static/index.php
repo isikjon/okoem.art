@@ -767,7 +767,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                         <div class="right-topInfo-blockSocialsMain">
                             <p>
-                                <?php echo okoyom_t( '55f015a0c560', 'Instagram' ); ?>
+                                <?php echo okoyom_t( '55f015a0c560', 'IG' ); ?>
                             </p>
                             <span>
                                 <?php echo okoyom_t( '4defa8520174', '@okoem.art' ); ?>
@@ -842,7 +842,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                         <div class="right-topInfo-blockSocialsMain">
                             <p>
-                                <?php echo okoyom_t( 'e117f540dd66', 'Яндекс Дзен' ); ?>
+                                <?php echo okoyom_t( 'e117f540dd66', 'Яндекс Ритм' ); ?>
                             </p>
                             <span>
                                 <?php echo okoyom_t( 'f656d7a676cf', 'ОКОЁМ' ); ?>

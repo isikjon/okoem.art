@@ -6,7 +6,7 @@ function okoyom_static_pages(): array {
 	return array(
 		'about'       => 'about',
 		'designers'   => 'designers',
-		'buyers'      => 'buyers',
+		'customers'   => 'buyers',
 		'inspiration' => 'inspiration',
 		'contacts'    => 'contact',
 		'policy'      => 'polite',

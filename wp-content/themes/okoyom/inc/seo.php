@@ -76,7 +76,7 @@ add_action(
 					'@type'     => 'LocalBusiness',
 					'name'      => 'ОКОЁМ',
 					'url'       => get_permalink(),
-					'telephone' => '+7 (495) 123-45-67',
+					'telephone' => okoyom_option( 'phone' ),
 					'address'   => array(
 						'@type'           => 'PostalAddress',
 						'addressLocality' => 'Санкт-Петербург',

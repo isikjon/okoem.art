@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
                     <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/logoFooter.svg" alt="Окоём" width="122" height="24" loading="lazy" decoding="async">
                 </a>
                 <p>
-                    <?php echo okoyom_t( 'c4b4f38ff5a8', 'Студия авторских настенных муралов' ); ?>
+                    <?php echo okoyom_t( 'c4b4f38ff5a8', 'Студия интерьерных муралов' ); ?>
                 </p>
             </div>
             <?php okoyom_nav( 'footer', 'col-2__footer' ); ?>
@@ -17,8 +17,8 @@ defined( 'ABSPATH' ) || exit;
                 <a href="<?php echo esc_attr( okoyom_phone_href() ); ?>">
                     <?php echo esc_html( okoyom_option( 'phone' ) ); ?>
                 </a>
-                <a href="mailto:hello@okoyom.studio">
-                    <?php echo okoyom_t( 'e063e42015eb', 'hello@okoyom.studio' ); ?>
+                <a href="mailto:<?php echo esc_attr( okoyom_option( 'email' ) ); ?>">
+                    <?php echo esc_html( okoyom_option( 'email' ) ); ?>
                 </a>
                 <form action="" method="post">
                     <span>
@@ -40,8 +40,8 @@ defined( 'ABSPATH' ) || exit;
                     <?php echo okoyom_t( 'df27ea2e7e22', 'Соцсети' ); ?>
                 </p>
                 <div class="flex-col-4__footer">
-                    <a href="https://www.instagram.com/okoem.art" target="_blank" rel="noopener">
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flex-col-4__footer-1.svg" alt="Instagram" width="40" height="40" loading="lazy" decoding="async">
+                    <a href="https://www.instagram.com/okoem.art" target="_blank" rel="noopener" class="socialTextIcon">
+                        <?php echo okoyom_t( '46cf74d33e97', 'IG' ); ?>
                     </a>
                     <a href="https://ru.pinterest.com/okoemart" target="_blank" rel="noopener">
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flex-col-4__footer-2.svg" alt="Pinterest" width="40" height="40" loading="lazy" decoding="async">
@@ -50,7 +50,7 @@ defined( 'ABSPATH' ) || exit;
                         <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flex-col-4__footer-3.svg" alt="ВКонтакте" width="40" height="40" loading="lazy" decoding="async">
                     </a>
                     <a href="https://yandex.ru/rythm/businesses/@okoem.art" target="_blank" rel="noopener">
-                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flex-col-4__footer-4.svg" alt="Яндекс Дзен" width="40" height="40" loading="lazy" decoding="async">
+                        <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flex-col-4__footer-4.svg" alt="Яндекс Ритм" width="40" height="40" loading="lazy" decoding="async">
                     </a>
                 </div>
             </div>
@@ -61,6 +61,24 @@ defined( 'ABSPATH' ) || exit;
         </p>
     </div>
 </footer>
+<div class="cookieBar" data-cookie-bar hidden>
+    <div class="container">
+        <div class="cookieBar__inner">
+            <p class="cookieBar__text">
+                <?php echo okoyom_t( 'd41f8cd98f10', 'Мы используем файлы cookie, чтобы сайт работал и был удобнее. Можно принять все или оставить только необходимые.' ); ?>
+                <a href="/policy/"><?php echo okoyom_t( 'c0ffee1a2b3c', 'Политика конфиденциальности' ); ?></a>
+            </p>
+            <div class="cookieBar__actions">
+                <button type="button" class="cookieBar__btn cookieBar__btn--ghost" data-cookie-choice="necessary">
+                    <?php echo okoyom_t( 'a1b2c3d4e5f0', 'Только необходимые' ); ?>
+                </button>
+                <button type="button" class="cookieBar__btn" data-cookie-choice="all">
+                    <?php echo okoyom_t( 'f0e1d2c3b4a5', 'Принять все' ); ?>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <?php wp_footer(); ?>
 </body>
 </html>

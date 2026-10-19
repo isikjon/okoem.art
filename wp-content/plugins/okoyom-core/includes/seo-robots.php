@@ -22,7 +22,7 @@ function okoyom_filter_params(): string {
 }
 
 function okoyom_closed_pages(): array {
-	return apply_filters( 'okoyom_closed_pages', array( 'search', 'cart', 'checkout', 'my-account', 'favorites', 'thanks', 'sample-page' ) );
+	return apply_filters( 'okoyom_closed_pages', array( 'search', 'cart', 'checkout', 'my-account', 'favorites', 'thanks', 'sample-page', 'inspiration' ) );
 }
 
 function okoyom_slug_is_closed( string $slug ): string {

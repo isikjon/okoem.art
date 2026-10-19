@@ -376,6 +376,80 @@ function okoyom_room_image_map( int $product_id ): array {
 	return $map;
 }
 
+function okoyom_product_id_by_sku( string $sku ): int {
+	global $wpdb;
+
+	$id = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT pm.post_id FROM {$wpdb->postmeta} pm
+			 INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+			 WHERE pm.meta_key = '_sku' AND pm.meta_value = %s
+			   AND p.post_type = 'product' AND p.post_status = 'publish'
+			 LIMIT 1",
+			$sku
+		)
+	);
+
+	return $id;
+}
+
+function okoyom_home_extra_slides(): string {
+	$skus = (array) apply_filters( 'okoyom_home_extra_slides_skus', array( '750', '748', '770' ) );
+	$out  = '';
+
+	foreach ( $skus as $sku ) {
+		$id = okoyom_product_id_by_sku( (string) $sku );
+		if ( ! $id ) {
+			continue;
+		}
+
+		$image = get_the_post_thumbnail_url( $id, 'full' );
+		if ( ! $image ) {
+			continue;
+		}
+
+		$title  = okoyom_crumb_text( get_the_title( $id ) );
+		$series = function_exists( 'okoyom_product_series_name' ) ? okoyom_product_series_name( $id ) : '';
+
+		$out .= '<div class="swiper-slide mural-hero__slide">'
+			. '<div class="mural-hero__bg js-hero-parallax">'
+			. '<img src="' . esc_url( $image ) . '" alt="' . esc_attr( $title ) . '" loading="lazy" decoding="async">'
+			. '</div>'
+			. '<div class="mural-hero__container"><div class="container">'
+			. '<div class="mural-hero__content mural-hero__contentPaddingTopLeft">'
+			. '<h2 class="titleAllForSection mural-hero__fade-up">' . esc_html( $title ) . '</h2>'
+			. ( '' !== $series ? '<p class="textTitleBelow mural-hero__fade-up">' . esc_html( $series ) . '</p>' : '' )
+			. '<div class="btnContentBottom mural-hero__fade-up">'
+			. '<a href="' . esc_url( (string) wp_parse_url( (string) get_permalink( $id ), PHP_URL_PATH ) ) . '" class="btnWhiteTextBtn">'
+			. esc_html( okoyom_t( 'c3b1d2f4a560', 'Смотреть работу' ) ) . '</a>'
+			. '<a href="#!" class="btnWhiteTextBtn openModal">'
+			. esc_html( okoyom_t( 'a97b07bf1ecf', 'Получить консультацию' ) ) . '</a>'
+			. '</div></div></div></div></div>';
+	}
+
+	return $out;
+}
+
+function okoyom_home_apply_slides( string $html ): string {
+	$slides = okoyom_home_extra_slides();
+	if ( '' === $slides ) {
+		return $html;
+	}
+
+	$marker = '<div class="swiper-pagination mural-hero__pagination"></div>';
+	$pos    = strpos( $html, $marker );
+	if ( false === $pos ) {
+		return $html;
+	}
+
+	$cut = strrpos( substr( $html, 0, $pos ), '</div>' );
+	if ( false === $cut ) {
+		return $html;
+	}
+
+	return substr( $html, 0, $cut ) . $slides . substr( $html, $cut );
+}
+
 function okoyom_home_main_heading( string $html ): string {
 	return preg_replace(
 		'~<h2(\s+class="titleAllForSection[^"]*")>(.*?)</h2>~su',
@@ -734,6 +808,37 @@ function okoyom_service_cat_redirect(): void {
 	exit;
 }
 add_action( 'template_redirect', 'okoyom_service_cat_redirect', 4 );
+
+function okoyom_old_page_slug_redirect(): void {
+	if ( ! is_404() ) {
+		return;
+	}
+
+	$slug = trim( (string) wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_PATH ), '/' );
+	if ( '' === $slug || false !== strpos( $slug, '/' ) ) {
+		return;
+	}
+
+	$found = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+			'meta_key'       => '_wp_old_slug',
+			'meta_value'     => $slug,
+		)
+	);
+
+	if ( ! $found ) {
+		return;
+	}
+
+	wp_safe_redirect( get_permalink( (int) $found[0] ), 301 );
+	exit;
+}
+add_action( 'template_redirect', 'okoyom_old_page_slug_redirect', 6 );
 
 function okoyom_is_catalog_view(): bool {
 	return is_post_type_archive( 'product' )

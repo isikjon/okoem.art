@@ -60,7 +60,7 @@ defined( 'ABSPATH' ) || exit;
                                             <div class="flexContactBurger__a">
                                                 <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/messageIcon-2.svg" alt="WhatsApp" width="26" height="26" loading="lazy" decoding="async">
                                                 <a href="<?php echo esc_attr( okoyom_phone_href() ); ?>">
-                                                    <?php echo okoyom_t( '8b777ebcc503', 'WhatsApp' ); ?>
+                                                    <?php echo okoyom_t( '8b777ebcc503', 'Max' ); ?>
                                                 </a>
                                             </div>
                                         </div>

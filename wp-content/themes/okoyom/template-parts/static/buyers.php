@@ -669,19 +669,19 @@ defined( 'ABSPATH' ) || exit;
                     <div class="flexDotes-right-flexGreyInfoBlockRow__block">
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            <?php echo okoyom_t( '58ce4a92f0a9', 'Москва — 1–2 рабочих дня' ); ?>
+                            <?php echo okoyom_t( '58ce4a92f0a9', 'Москва — 4–5 рабочих дней' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            <?php echo okoyom_t( '657adeeccaa4', 'Санкт-Петербург — 2–3 рабочих дня' ); ?>
+                            <?php echo okoyom_t( '657adeeccaa4', 'Санкт-Петербург — 1–2 рабочих дня' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            <?php echo okoyom_t( 'aff8bcc70ae8', 'Регионы России — 3–10 рабочих дней' ); ?>
+                            <?php echo okoyom_t( 'aff8bcc70ae8', 'Регионы России — 4–10 рабочих дней' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            <?php echo okoyom_t( '2b0e5d6d06e8', 'Упаковка в защитный тубус' ); ?>
+                            <?php echo okoyom_t( '2b0e5d6d06e8', 'Надёжная упаковка в защитный тубус' ); ?>
                         </div>
                     </div>
                 </div>
@@ -696,11 +696,11 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            <?php echo okoyom_t( 'f4fcceae6a59', 'Предоплата 50% при заказе' ); ?>
+                            <?php echo okoyom_t( 'f4fcceae6a59', 'Предоплата 100% при заказе' ); ?>
                         </div>
                         <div class="line-flexDotes-right-flexGreyInfoBlockRow__block">
                             <div class="arrow-line-flexDotes-right-flexGreyInfoBlockRow__block"></div>
-                            <?php echo okoyom_t( '856793e472e0', 'Для юрлиц — работаем по счёту с НДС' ); ?>
+                            <?php echo okoyom_t( '856793e472e0', 'Для юрлиц — оплата по счёту' ); ?>
                         </div>
                     </div>
                 </div>
@@ -708,7 +708,6 @@ defined( 'ABSPATH' ) || exit;
                     <?php echo okoyom_t( 'ae4d95754ad4', 'Задать вопрос →' ); ?>
                 </a>
             </div>
-            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexSectionInfoBuyersSection.webp" alt="" class="flexSectionInfoBuyersSection__photo" width="1024" height="1024" loading="lazy" decoding="async">
         </div>
 
     </div>

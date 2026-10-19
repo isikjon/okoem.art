@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="sectionCatalogMain" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/catalogMainPhoto.webp) center center no-repeat; background-size: cover;">
+<section class="sectionCatalogMain" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/catalogMainPhoto-oblaka.webp) center 14% no-repeat; background-size: cover;">
     <div class="container">
         <div class="titleCatalog">
             <h1 class="titleCatalog__title">

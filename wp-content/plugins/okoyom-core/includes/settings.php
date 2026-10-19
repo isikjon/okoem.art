@@ -6,14 +6,15 @@ const OKOYOM_SETTINGS_OPTION = 'okoyom_settings';
 
 function okoyom_settings_fields(): array {
 	return array(
-		'phone'          => array( 'Телефон', '+7 (495) 123-45-67', 'Показывается в шапке, подвале и на контактах.' ),
-		'whatsapp'       => array( 'WhatsApp', '', 'Ссылка вида https://wa.me/79991234567. Пусто — кнопка ведёт на телефон.' ),
-		'telegram'       => array( 'Telegram', '', 'Ссылка вида https://t.me/имя. Пусто — кнопка ведёт на телефон.' ),
+		'phone'          => array( 'Телефон', '+7 (812) 318 18 70', 'Показывается в шапке, подвале и на контактах.' ),
+		'email'          => array( 'Почта', 'hello@okoem.art', 'Показывается в подвале и на контактах.' ),
+		'max'            => array( 'Max', 'https://max.ru/u/f9LHodD0cOI5eu8cfNShviPRBWw7ZgWAaSJwkVmuhMqwRNiaj9hqmESw7dM', 'Ссылка на чат в Max. Пусто — кнопка ведёт на телефон.' ),
+		'telegram'       => array( 'Telegram', 'https://t.me/OkoemArt', 'Ссылка вида https://t.me/имя. Пусто — кнопка ведёт на телефон.' ),
 		'lead_email'     => array( 'Email для заявок', '', 'Пусто — письма не отправляются, заявки копятся в админке (до доменной почты).' ),
 		'subs_instagram' => array( 'Подписчики Instagram', '125K', '' ),
 		'subs_pinterest' => array( 'Подписчики Pinterest', '45K', '' ),
 		'subs_vk'        => array( 'Подписчики ВКонтакте', '89K', '' ),
-		'subs_dzen'      => array( 'Подписчики Яндекс', '32K', '' ),
+		'subs_dzen'      => array( 'Подписчики Яндекс Ритм', '32K', '' ),
 	);
 }
 
@@ -63,7 +64,7 @@ add_action(
 					$clean = array();
 					foreach ( array_keys( okoyom_settings_fields() ) as $key ) {
 						$raw = (string) ( $value[ $key ] ?? '' );
-						$clean[ $key ] = in_array( $key, array( 'whatsapp', 'telegram' ), true )
+						$clean[ $key ] = in_array( $key, array( 'max', 'telegram' ), true )
 							? esc_url_raw( $raw )
 							: sanitize_text_field( $raw );
 					}

@@ -30,12 +30,12 @@ defined( 'ABSPATH' ) || exit;
                         </svg>
                         <?php echo esc_html( okoyom_option( 'phone' ) ); ?>
                     </a>
-                    <a href="mailto:hello@calme.studio" class="links-left-flexTopContact__a">
+                    <a href="mailto:<?php echo esc_attr( okoyom_option( 'email' ) ); ?>" class="links-left-flexTopContact__a">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M13.333 2.66669H2.66634C1.92996 2.66669 1.33301 3.26364 1.33301 4.00002V12C1.33301 12.7364 1.92996 13.3334 2.66634 13.3334H13.333C14.0694 13.3334 14.6663 12.7364 14.6663 12V4.00002C14.6663 3.26364 14.0694 2.66669 13.333 2.66669Z" stroke="#161412" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14.6663 4.66669L8.68634 8.46669C8.48052 8.59564 8.24255 8.66403 7.99967 8.66403C7.7568 8.66403 7.51883 8.59564 7.31301 8.46669L1.33301 4.66669" stroke="#161412" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <?php echo okoyom_t( '35d58a9a5996', 'hello@calme.studio' ); ?>
+                        <?php echo esc_html( okoyom_option( 'email' ) ); ?>
                     </a>
                 </div>
             </div>
@@ -48,13 +48,13 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
                 <div class="socials-right-flexTopContact">
-                    <a href="#!" class="socials-right-flexTopContact__a">
+                    <a href="<?php echo esc_url( okoyom_messenger_href( 'max' ) ); ?>" target="_blank" rel="noopener" class="socials-right-flexTopContact__a">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M5.26634 13.3333C6.53873 13.986 8.0024 14.1628 9.3936 13.8318C10.7848 13.5009 12.012 12.6839 12.8542 11.5281C13.6963 10.3723 14.098 8.9538 13.9867 7.5281C13.8755 6.1024 13.2587 4.7633 12.2475 3.75212C11.2364 2.74093 9.89727 2.12416 8.47157 2.01293C7.04587 1.90171 5.62732 2.30335 4.47155 3.14549C3.31579 3.98762 2.4988 5.21486 2.16782 6.60607C1.83684 7.99727 2.01364 9.46094 2.66634 10.7333L1.33301 14.6667L5.26634 13.3333Z" stroke="#161412" stroke-opacity="0.3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <?php echo okoyom_t( '8b777ebcc503', 'WhatsApp' ); ?>
+                        <?php echo okoyom_t( '8b777ebcc503', 'Max' ); ?>
                     </a>
-                    <a href="#!" class="socials-right-flexTopContact__a">
+                    <a href="<?php echo esc_url( okoyom_messenger_href( 'telegram' ) ); ?>" target="_blank" rel="noopener" class="socials-right-flexTopContact__a">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M5.26634 13.3333C6.53873 13.986 8.0024 14.1628 9.3936 13.8318C10.7848 13.5009 12.012 12.6839 12.8542 11.5281C13.6963 10.3723 14.098 8.9538 13.9867 7.5281C13.8755 6.1024 13.2587 4.7633 12.2475 3.75212C11.2364 2.74093 9.89727 2.12416 8.47157 2.01293C7.04587 1.90171 5.62732 2.30335 4.47155 3.14549C3.31579 3.98762 2.4988 5.21486 2.16782 6.60607C1.83684 7.99727 2.01364 9.46094 2.66634 10.7333L1.33301 14.6667L5.26634 13.3333Z" stroke="#161412" stroke-opacity="0.3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -66,14 +66,17 @@ defined( 'ABSPATH' ) || exit;
                         <?php echo okoyom_t( '0e87f94474f2', 'Социальные сети' ); ?>
                     </p>
                     <div class="wrapper-socials-right-flexTopContact-2">
-                        <a href="#!">
-                            <?php echo okoyom_t( '55f015a0c560', 'Instagram' ); ?>
+                        <a href="https://www.instagram.com/okoem.art" target="_blank" rel="noopener">
+                            <?php echo okoyom_t( '55f015a0c560', 'IG' ); ?>
                         </a>
-                        <a href="#!">
+                        <a href="https://ru.pinterest.com/okoemart" target="_blank" rel="noopener">
                             <?php echo okoyom_t( '86709a608bd9', 'Pinterest' ); ?>
                         </a>
-                        <a href="#!">
+                        <a href="https://vk.com/okoem_art" target="_blank" rel="noopener">
                             <?php echo okoyom_t( 'dd6408c912ed', 'VK' ); ?>
+                        </a>
+                        <a href="https://yandex.ru/rythm/businesses/@okoem.art" target="_blank" rel="noopener">
+                            <?php echo okoyom_t( 'e117f540dd66', 'Яндекс Ритм' ); ?>
                         </a>
                     </div>
                 </div>
@@ -107,7 +110,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M7 7.58337C7.9665 7.58337 8.75 6.79987 8.75 5.83337C8.75 4.86688 7.9665 4.08337 7 4.08337C6.0335 4.08337 5.25 4.86688 5.25 5.83337C5.25 6.79987 6.0335 7.58337 7 7.58337Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                <?php echo okoyom_t( '5ac7bec488e6', 'ул. Большая Никитская, 24/1, стр. 5 м. Арбатская' ); ?>
+                                <?php echo okoyom_t( '5ac7bec488e6', '101000, Москва, Банковский пер., д. 2/5' ); ?>
                             </p>
                         </div>
                         <div class="line-flex-textContactCard">
@@ -116,7 +119,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M7 3.5V7L9.33333 8.16667" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                <?php echo okoyom_t( 'da10e9fc9460', 'Пн–Сб: 10:00–20:00' ); ?>
+                                <?php echo okoyom_t( 'da10e9fc9460', 'Пн–Вс: 10:00–21:00' ); ?>
                             </p>
                         </div>
                         <div class="line-flex-textContactCard">
@@ -124,7 +127,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M12.8328 9.87002V11.62C12.8335 11.7825 12.8002 11.9433 12.7351 12.0921C12.6701 12.241 12.5746 12.3746 12.4549 12.4844C12.3352 12.5943 12.1938 12.6779 12.04 12.7299C11.8861 12.782 11.723 12.8013 11.5612 12.7867C9.76617 12.5916 8.04193 11.9783 6.52701 10.9958C5.11758 10.1002 3.92263 8.90528 3.02701 7.49585C2.04117 5.97405 1.42766 4.24143 1.23618 2.43835C1.2216 2.27704 1.24077 2.11446 1.29247 1.96096C1.34417 1.80747 1.42726 1.66642 1.53646 1.54679C1.64566 1.42717 1.77857 1.3316 1.92672 1.26615C2.07488 1.20071 2.23505 1.16684 2.39701 1.16668H4.14701C4.43011 1.1639 4.70456 1.26415 4.91921 1.44874C5.13386 1.63334 5.27406 1.88969 5.31368 2.17002C5.38754 2.73005 5.52453 3.27994 5.72201 3.80918C5.8005 4.01797 5.81748 4.24488 5.77096 4.46303C5.72443 4.68118 5.61635 4.88141 5.45951 5.04002L4.71868 5.78085C5.54909 7.24125 6.75828 8.45044 8.21868 9.28085L8.95951 8.54002C9.11812 8.38318 9.31835 8.27509 9.5365 8.22857C9.75465 8.18205 9.98156 8.19903 10.1903 8.27752C10.7196 8.475 11.2695 8.61199 11.8295 8.68585C12.1129 8.72582 12.3717 8.86855 12.5567 9.08689C12.7417 9.30522 12.8399 9.58393 12.8328 9.87002Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                <?php echo esc_html( okoyom_option( 'phone' ) ); ?>
+                                <?php echo okoyom_t( 'b7e41c0ad930', '8 (800) 302-96-80' ); ?>
                             </p>
                         </div>
                     </div>
@@ -165,7 +168,7 @@ defined( 'ABSPATH' ) || exit;
                                 <path d="M12.8328 9.87002V11.62C12.8335 11.7825 12.8002 11.9433 12.7351 12.0921C12.6701 12.241 12.5746 12.3746 12.4549 12.4844C12.3352 12.5943 12.1938 12.6779 12.04 12.7299C11.8861 12.782 11.723 12.8013 11.5612 12.7867C9.76617 12.5916 8.04193 11.9783 6.52701 10.9958C5.11758 10.1002 3.92263 8.90528 3.02701 7.49585C2.04117 5.97405 1.42766 4.24143 1.23618 2.43835C1.2216 2.27704 1.24077 2.11446 1.29247 1.96096C1.34417 1.80747 1.42726 1.66642 1.53646 1.54679C1.64566 1.42717 1.77857 1.3316 1.92672 1.26615C2.07488 1.20071 2.23505 1.16684 2.39701 1.16668H4.14701C4.43011 1.1639 4.70456 1.26415 4.91921 1.44874C5.13386 1.63334 5.27406 1.88969 5.31368 2.17002C5.38754 2.73005 5.52453 3.27994 5.72201 3.80918C5.8005 4.01797 5.81748 4.24488 5.77096 4.46303C5.72443 4.68118 5.61635 4.88141 5.45951 5.04002L4.71868 5.78085C5.54909 7.24125 6.75828 8.45044 8.21868 9.28085L8.95951 8.54002C9.11812 8.38318 9.31835 8.27509 9.5365 8.22857C9.75465 8.18205 9.98156 8.19903 10.1903 8.27752C10.7196 8.475 11.2695 8.61199 11.8295 8.68585C12.1129 8.72582 12.3717 8.86855 12.5567 9.08689C12.7417 9.30522 12.8399 9.58393 12.8328 9.87002Z" stroke="#161412" stroke-opacity="0.3" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p>
-                                +7 (812) 987-65-43
+                                <?php echo esc_html( okoyom_option( 'phone' ) ); ?>
                             </p>
                         </div>
                     </div>

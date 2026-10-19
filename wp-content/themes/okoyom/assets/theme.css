@@ -1081,7 +1081,7 @@ a.ui-filter__item {
     z-index: 0;
 }
 
-.cardSection > * {
+.cardSection > *:not(.mural-hero__scroll) {
     position: relative;
     z-index: 1;
 }
@@ -1098,4 +1098,147 @@ a.ui-filter__item {
 
 .title-inspirationTop__title {
     font-family: "Playfair Display", serif;
+}
+
+.flex-col-4__footer .socialTextIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(22, 20, 18, 0.15);
+    border-radius: 50%;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #161412;
+}
+
+.flex-col-4__footer .socialTextIcon:hover {
+    border-color: rgba(22, 20, 18, 0.45);
+}
+
+.sectionCatalogMain {
+    position: relative;
+}
+
+.sectionCatalogMain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.32) 35%, rgba(0, 0, 0, 0.12) 65%, rgba(0, 0, 0, 0) 90%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sectionCatalogMain > * {
+    position: relative;
+    z-index: 1;
+}
+
+.titleCatalog__title {
+    font-family: "Outfit", sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.70);
+    text-shadow: none;
+}
+
+.titleCatalog__text {
+    font-family: "Playfair Display", serif;
+    font-size: 80px;
+    line-height: 90px;
+    letter-spacing: -2px;
+    font-weight: 400;
+    color: #FFF;
+    text-shadow: 0 4px 60px rgba(0, 0, 0, 0.40);
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .titleCatalog__text {
+        font-size: 32px;
+        line-height: 45px;
+    }
+}
+
+.cookieBar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 120;
+    background: #FFFFFF;
+    box-shadow: 0 -8px 40px rgba(22, 20, 18, 0.12);
+    padding: 18px 0;
+}
+
+.cookieBar[hidden] {
+    display: none;
+}
+
+.cookieBar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.cookieBar__text {
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(22, 20, 18, 0.75);
+    max-width: 760px;
+}
+
+.cookieBar__text a {
+    color: #161412;
+    text-decoration: underline;
+}
+
+.cookieBar__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.cookieBar__btn {
+    cursor: pointer;
+    border: 1px solid #161412;
+    background: #161412;
+    color: #FFFFFF;
+    font-family: "Outfit", sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 26px;
+    transition: 0.3s;
+}
+
+.cookieBar__btn:hover {
+    opacity: 0.85;
+}
+
+.cookieBar__btn--ghost {
+    background: transparent;
+    color: #161412;
+    border-color: rgba(22, 20, 18, 0.25);
+}
+
+@media screen and (max-width: 768px) {
+    .cookieBar__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .cookieBar__actions {
+        flex-direction: column;
+    }
+
+    .cookieBar__btn {
+        width: 100%;
+    }
 }

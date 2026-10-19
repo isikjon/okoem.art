@@ -2144,8 +2144,41 @@
         if (size >= Math.round(base * 0.7)) el.style.fontSize = size + 'px';
     }
 
+    var COOKIE_KEY = 'okoyom_cookie_consent';
+
+    function cookieChoice() {
+        try {
+            return localStorage.getItem(COOKIE_KEY) || '';
+        } catch (e) {
+            return '';
+        }
+    }
+
+    function cookieBar() {
+        var bar = document.querySelector('[data-cookie-bar]');
+        if (!bar) return;
+
+        window.okoyomConsent = cookieChoice();
+        if (window.okoyomConsent) return;
+
+        bar.hidden = false;
+
+        bar.addEventListener('click', function (event) {
+            var btn = event.target.closest('[data-cookie-choice]');
+            if (!btn) return;
+
+            var choice = btn.getAttribute('data-cookie-choice');
+            try { localStorage.setItem(COOKIE_KEY, choice); } catch (e) {}
+
+            window.okoyomConsent = choice;
+            bar.hidden = true;
+            document.dispatchEvent(new CustomEvent('okoyom:consent', { detail: { choice: choice } }));
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         captureAttribution();
+        cookieBar();
         updateHeaderCounters();
         markFavorites();
         renderCart();
