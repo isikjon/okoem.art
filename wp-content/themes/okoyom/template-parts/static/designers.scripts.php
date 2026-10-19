@@ -2,86 +2,88 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <script>
-    const heroSection = document.getElementById('muralHero');
-    const sliderEl = heroSection.querySelector('.mural-hero__slider');
-    const parallaxLayers = heroSection.querySelectorAll('.js-hero-parallax');
+    if (document.getElementById('muralHero')) {
+        const heroSection = document.getElementById('muralHero');
+        const sliderEl = heroSection.querySelector('.mural-hero__slider');
+        const parallaxLayers = heroSection.querySelectorAll('.js-hero-parallax');
 
-    const muralHeroSlider = new Swiper('.mural-hero__slider', {
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true
-        },
-        loop: true,
-        speed: 1400,
-        allowTouchMove: true,
-        autoplay: {
-            delay: 4500,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true
-        },
-        pagination: {
-            el: '.mural-hero__pagination',
-            clickable: true
-        }
-    });
-
-    /* Клик по половинам экрана */
-    sliderEl.addEventListener('click', function (event) {
-        const interactive = event.target.closest('a, button, .swiper-pagination-bullet');
-        if (interactive) return;
-
-        const rect = sliderEl.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const isLeftHalf = clickX < rect.width / 2;
-
-        if (isLeftHalf) {
-            muralHeroSlider.slidePrev();
-        } else {
-            muralHeroSlider.slideNext();
-        }
-    });
-
-    /* Убираем intro-класс после первой анимации */
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            heroSection.classList.remove('mural-hero--intro');
-        }, 1700);
-    });
-
-    /* Параллакс фона при скролле */
-    let ticking = false;
-
-    function updateHeroParallax() {
-        const rect = heroSection.getBoundingClientRect();
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-        if (rect.bottom < 0 || rect.top > viewportHeight) {
-            ticking = false;
-            return;
-        }
-
-        const progress = Math.max(-1, Math.min(1, rect.top / viewportHeight));
-        const translateY = progress * -60;
-
-        parallaxLayers.forEach((layer) => {
-            layer.style.transform = `translate3d(0, ${translateY}px, 0) scale(1.04)`;
+        const muralHeroSlider = new Swiper('.mural-hero__slider', {
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            loop: true,
+            speed: 1400,
+            allowTouchMove: true,
+            autoplay: {
+                delay: 4500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+            pagination: {
+                el: '.mural-hero__pagination',
+                clickable: true
+            }
         });
 
-        ticking = false;
-    }
+        /* Клик по половинам экрана */
+        sliderEl.addEventListener('click', function (event) {
+            const interactive = event.target.closest('a, button, .swiper-pagination-bullet');
+            if (interactive) return;
 
-    function requestParallaxUpdate() {
-        if (!ticking) {
-            requestAnimationFrame(updateHeroParallax);
-            ticking = true;
+            const rect = sliderEl.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const isLeftHalf = clickX < rect.width / 2;
+
+            if (isLeftHalf) {
+                muralHeroSlider.slidePrev();
+            } else {
+                muralHeroSlider.slideNext();
+            }
+        });
+
+        /* Убираем intro-класс после первой анимации */
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                heroSection.classList.remove('mural-hero--intro');
+            }, 1700);
+        });
+
+        /* Параллакс фона при скролле */
+        let ticking = false;
+
+        function updateHeroParallax() {
+            const rect = heroSection.getBoundingClientRect();
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+            if (rect.bottom < 0 || rect.top > viewportHeight) {
+                ticking = false;
+                return;
+            }
+
+            const progress = Math.max(-1, Math.min(1, rect.top / viewportHeight));
+            const translateY = progress * -60;
+
+            parallaxLayers.forEach((layer) => {
+                layer.style.transform = `translate3d(0, ${translateY}px, 0) scale(1.04)`;
+            });
+
+            ticking = false;
         }
+
+        function requestParallaxUpdate() {
+            if (!ticking) {
+                requestAnimationFrame(updateHeroParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+        window.addEventListener('resize', requestParallaxUpdate);
+        window.addEventListener('load', requestParallaxUpdate);
+
+        requestParallaxUpdate();
     }
-
-    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
-    window.addEventListener('resize', requestParallaxUpdate);
-    window.addEventListener('load', requestParallaxUpdate);
-
-    requestParallaxUpdate();
 </script>
 <script>
     const favWorksSlider = new Swiper('.favWorksSlider', {
