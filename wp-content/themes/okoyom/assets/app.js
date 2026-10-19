@@ -1,7 +1,11 @@
 AOS.init();
 
 
-document.querySelectorAll('.hover-slider').forEach(slider => {
+window.okoyomInitHoverSlider = function (slider) {
+
+    if (!slider || slider.dataset.okoBound === '1') return;
+    slider.dataset.okoBound = '1';
+
 
     const slides = slider.querySelectorAll('.hover-slider__slide');
     const bullets = slider.querySelectorAll('.hover-slider__pagination span');
@@ -93,7 +97,9 @@ document.querySelectorAll('.hover-slider').forEach(slider => {
 
     });
 
-});
+};
+
+document.querySelectorAll('.hover-slider').forEach(window.okoyomInitHoverSlider);
 
 
 

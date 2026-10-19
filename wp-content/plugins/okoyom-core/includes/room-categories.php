@@ -99,7 +99,9 @@ function okoyom_room_h1_field_add(): void {
 	</div>
 	<?php
 }
-add_action( 'product_cat_add_form_fields', 'okoyom_room_h1_field_add' );
+foreach ( array( 'product_cat', 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) as $okoyom_h1_tax ) {
+	add_action( $okoyom_h1_tax . '_add_form_fields', 'okoyom_room_h1_field_add' );
+}
 
 function okoyom_room_h1_field_edit( $term ): void {
 	$value = (string) get_term_meta( $term->term_id, 'okoyom_h1', true );
@@ -113,7 +115,9 @@ function okoyom_room_h1_field_edit( $term ): void {
 	</tr>
 	<?php
 }
-add_action( 'product_cat_edit_form_fields', 'okoyom_room_h1_field_edit' );
+foreach ( array( 'product_cat', 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) as $okoyom_h1_tax ) {
+	add_action( $okoyom_h1_tax . '_edit_form_fields', 'okoyom_room_h1_field_edit' );
+}
 
 function okoyom_room_h1_save( $term_id ): void {
 	if ( ! isset( $_POST['okoyom_h1'] ) ) {
@@ -128,8 +132,10 @@ function okoyom_room_h1_save( $term_id ): void {
 
 	update_term_meta( $term_id, 'okoyom_h1', $value );
 }
-add_action( 'created_product_cat', 'okoyom_room_h1_save' );
-add_action( 'edited_product_cat', 'okoyom_room_h1_save' );
+foreach ( array( 'product_cat', 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) as $okoyom_h1_tax ) {
+	add_action( 'created_' . $okoyom_h1_tax, 'okoyom_room_h1_save' );
+	add_action( 'edited_' . $okoyom_h1_tax, 'okoyom_room_h1_save' );
+}
 
 function okoyom_sync_room_categories_on_attachment( $meta, $attachment_id ) {
 	$parent = (int) get_post_field( 'post_parent', $attachment_id );

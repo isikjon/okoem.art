@@ -360,14 +360,14 @@ function okoyom_render_product_page( WP_Post $product ): string {
 
 function okoyom_product_price_tags( string $html ): string {
 	$html = preg_replace(
-		'~<h2((?:\s[^>]*)?)>\s*([^<]*?₽[^<]*?)\s*</h2>~su',
+		'~<h2(\s+data-calc(?:-bg)?="[^"]*")>\s*([^<]*?)\s*</h2>~su',
 		'<div class="priceValue"$1>$2</div>',
 		$html
 	);
 
 	return preg_replace(
-		'~<h2((?:\s[^>]*)?)>\s*(По запросу)\s*</h2>~su',
-		'<div class="priceValue"$1>$2</div>',
+		'~<h2>\s*([^<]*?(?:₽|По запросу)[^<]*?)\s*</h2>~su',
+		'<div class="priceValue">$1</div>',
 		$html
 	);
 }

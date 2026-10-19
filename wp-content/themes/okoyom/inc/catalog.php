@@ -265,7 +265,7 @@ function okoyom_room_tokens_map(): array {
 		array(
 			'v-spalnyu'                => array( 'spalni' ),
 			'v-gostinuyu'              => array( 'gostinoy', 'kukhni-gostinoy' ),
-			'na-kukhnyu-i-v-stolovuyu' => array( 'stolovoy', 'kukhni-gostinoy', 'kukhni' ),
+			'na-kukhnyu-i-v-stolovuyu' => array( 'stolovoy', 'kukhni-gostinoy', 'kukhni-stolovoy', 'kukhni' ),
 			'dlya-restoranov-i-oteley' => array(
 				'restorana',
 				'kafe',
@@ -369,6 +369,15 @@ function okoyom_room_image_map( int $product_id ): array {
 	return $map;
 }
 
+function okoyom_home_main_heading( string $html ): string {
+	return preg_replace(
+		'~<h2(\s+class="titleAllForSection[^"]*")>(.*?)</h2>~su',
+		'<h1$1>$2</h1>',
+		$html,
+		1
+	);
+}
+
 function okoyom_catalog_heading(): array {
 	$term = is_tax( 'product_cat' ) ? get_queried_object() : null;
 
@@ -379,6 +388,18 @@ function okoyom_catalog_heading(): array {
 			'big'  => $term->name,
 			'h1'   => '' !== $h1 ? $h1 : $term->name,
 			'text' => trim( (string) term_description( $term->term_id, 'product_cat' ) ),
+		);
+	}
+
+	$selection = is_tax( array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ) ) ? get_queried_object() : null;
+
+	if ( $selection instanceof WP_Term ) {
+		$own = trim( (string) get_term_meta( $selection->term_id, 'okoyom_h1', true ) );
+
+		return array(
+			'big'  => $selection->name,
+			'h1'   => '' !== $own ? $own : okoyom_selection_heading( $selection ),
+			'text' => trim( (string) term_description( $selection->term_id, $selection->taxonomy ) ),
 		);
 	}
 
@@ -393,6 +414,24 @@ function okoyom_catalog_heading(): array {
 		'h1'   => 'Интерьерные муралы — фрески на стену',
 		'text' => $text,
 	);
+}
+
+function okoyom_selection_heading( WP_Term $term ): string {
+	$patterns = array(
+		'oko_collection' => 'Интерьерные муралы — коллекция «%s»',
+		'oko_series'     => 'Интерьерные муралы — серия «%s»',
+		'oko_subject'    => 'Интерьерные муралы — %s',
+		'oko_color'      => 'Интерьерные муралы — %s',
+	);
+
+	$pattern = $patterns[ $term->taxonomy ] ?? 'Интерьерные муралы — %s';
+	$name    = $term->name;
+
+	if ( 'oko_subject' === $term->taxonomy || 'oko_color' === $term->taxonomy ) {
+		$name = function_exists( 'mb_strtolower' ) ? mb_strtolower( $name, 'UTF-8' ) : strtolower( $name );
+	}
+
+	return sprintf( $pattern, $name );
 }
 
 function okoyom_catalog_apply_banner( string $html ): string {

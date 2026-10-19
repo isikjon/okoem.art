@@ -134,23 +134,27 @@ add_filter(
 			$entity['category'] = okoyom_crumb_text( $series );
 		}
 
-		$entity['offers'] = array(
-			'@type'              => 'Offer',
-			'url'                => get_permalink( $product ),
-			'price'              => (string) $price,
-			'priceCurrency'      => 'RUB',
-			'availability'       => 'https://schema.org/InStock',
-			'priceSpecification' => array(
-				'@type'                 => 'UnitPriceSpecification',
-				'price'                 => (string) $price,
-				'priceCurrency'         => 'RUB',
-				'referenceQuantity'     => array(
-					'@type'    => 'QuantitativeValue',
-					'value'    => '1',
-					'unitCode' => 'MTK',
+		if ( $price > 0 ) {
+			$entity['offers'] = array(
+				'@type'              => 'Offer',
+				'url'                => get_permalink( $product ),
+				'price'              => (string) $price,
+				'priceCurrency'      => 'RUB',
+				'availability'       => 'https://schema.org/InStock',
+				'priceSpecification' => array(
+					'@type'                 => 'UnitPriceSpecification',
+					'price'                 => (string) $price,
+					'priceCurrency'         => 'RUB',
+					'referenceQuantity'     => array(
+						'@type'    => 'QuantitativeValue',
+						'value'    => '1',
+						'unitCode' => 'MTK',
+					),
 				),
-			),
-		);
+			);
+		} else {
+			unset( $entity['offers'] );
+		}
 
 		return $entity;
 	},

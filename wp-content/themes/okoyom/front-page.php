@@ -39,7 +39,7 @@ if ( $okoyom_featured ) {
 	}
 }
 
-echo $okoyom_home;
+echo okoyom_home_main_heading( $okoyom_home );
 
 okoyom_static_scripts( 'index' );
 

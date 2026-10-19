@@ -1119,8 +1119,14 @@
     }
 
     function catBindSliders(root) {
-        root.querySelectorAll('.hover-slider').forEach(function (slider) {
+        (root || document).querySelectorAll('.hover-slider').forEach(function (slider) {
             if (slider.dataset.okoBound === '1') return;
+
+            if ('function' === typeof window.okoyomInitHoverSlider) {
+                window.okoyomInitHoverSlider(slider);
+                return;
+            }
+
             slider.dataset.okoBound = '1';
 
             var slides = slider.querySelectorAll('.hover-slider__slide');

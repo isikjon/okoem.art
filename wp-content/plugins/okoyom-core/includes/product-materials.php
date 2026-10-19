@@ -87,8 +87,6 @@ add_action(
 		$extra = array_map( 'absint', (array) ( $_POST['okoyom_extra_materials'] ?? array() ) );
 		$extra = array_values( array_diff( array_unique( $extra ), array( $main, 0 ) ) );
 		update_post_meta( $post_id, '_okoyom_extra_materials', $extra );
-
-		okoyom_sync_product_price( $post_id );
 	}
 );
 
@@ -108,19 +106,45 @@ function okoyom_sync_product_price( int $product_id ): bool {
 
 	$price = okoyom_material_price( (int) get_post_meta( $product_id, '_okoyom_main_material', true ) );
 	$want  = $price > 0 ? wc_format_decimal( $price ) : '';
+	$sale  = (string) $product->get_sale_price( 'edit' );
 
-	if ( (string) $product->get_regular_price( 'edit' ) === (string) $want
-		&& (string) $product->get_price( 'edit' ) === (string) $want ) {
+	$same = (string) $product->get_regular_price( 'edit' ) === (string) $want
+		&& ( '' !== $sale || (string) $product->get_price( 'edit' ) === (string) $want );
+
+	if ( $same ) {
 		return false;
 	}
 
 	$product->set_regular_price( $want );
-	$product->set_sale_price( '' );
-	$product->set_price( $want );
+	if ( '' === $sale ) {
+		$product->set_price( $want );
+	}
 	$product->save();
 
 	return true;
 }
+
+function okoyom_product_sync_after_save( $product_id ): void {
+	static $busy = array();
+
+	$product_id = (int) ( is_object( $product_id ) && method_exists( $product_id, 'get_id' ) ? $product_id->get_id() : $product_id );
+	if ( ! $product_id || isset( $busy[ $product_id ] ) ) {
+		return;
+	}
+
+	$busy[ $product_id ] = true;
+
+	if ( function_exists( 'okoyom_sync_room_categories' ) ) {
+		okoyom_sync_room_categories( $product_id );
+	}
+	okoyom_sync_product_price( $product_id );
+
+	unset( $busy[ $product_id ] );
+}
+
+add_action( 'woocommerce_process_product_meta', 'okoyom_product_sync_after_save', 99 );
+add_action( 'woocommerce_update_product', 'okoyom_product_sync_after_save', 99 );
+add_action( 'woocommerce_new_product', 'okoyom_product_sync_after_save', 99 );
 
 function okoyom_sync_material_products( int $material_id ): int {
 	$ids = get_posts(
