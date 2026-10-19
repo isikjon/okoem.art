@@ -25,6 +25,8 @@ function okoyom_render_favorites_page(): string {
 		1
 	);
 
+	$full = okoyom_demote_page_title( $full );
+
 	$opening = '<div class="flexTwoTypeInfoMain flexTwoTypeInfoMain-2">';
 	$start   = strpos( $full, $opening );
 	if ( false !== $start ) {

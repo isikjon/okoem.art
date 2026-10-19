@@ -1095,3 +1095,7 @@ a.ui-filter__item {
     opacity: 0.45;
     transition: opacity 0.15s ease;
 }
+
+.title-inspirationTop__title {
+    font-family: "Playfair Display", serif;
+}

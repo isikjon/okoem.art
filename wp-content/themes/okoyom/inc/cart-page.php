@@ -2,6 +2,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
+function okoyom_demote_page_title( string $html ): string {
+	return preg_replace(
+		'~<h1(\s+class="title-inspirationTop__title"[^>]*)>(.*?)</h1>~su',
+		'<div$1>$2</div>',
+		$html,
+		1
+	);
+}
+
 function okoyom_render_cart_page(): string {
 	ob_start();
 	okoyom_static_part( 'bag-1' );
@@ -24,6 +33,8 @@ function okoyom_render_cart_page(): string {
 		$full,
 		1
 	);
+
+	$full = okoyom_demote_page_title( $full );
 
 	$opening = '<div class="card-left-flexBagPageContainer">';
 	$cards   = array();
