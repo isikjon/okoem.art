@@ -124,6 +124,27 @@ function okoyom_sync_product_price( int $product_id ): bool {
 	return true;
 }
 
+function okoyom_sync_product_sku( int $product_id ): bool {
+	if ( ! function_exists( 'wc_get_product' ) || ! function_exists( 'okoyom_product_sku_from_title' ) ) {
+		return false;
+	}
+
+	$product = wc_get_product( $product_id );
+	if ( ! $product || '' !== trim( (string) $product->get_sku( 'edit' ) ) ) {
+		return false;
+	}
+
+	$sku = okoyom_product_sku_from_title( get_the_title( $product_id ) );
+	if ( '' === $sku || wc_get_product_id_by_sku( $sku ) ) {
+		return false;
+	}
+
+	$product->set_sku( $sku );
+	$product->save();
+
+	return true;
+}
+
 function okoyom_product_sync_after_save( $product_id ): void {
 	static $busy = array();
 
@@ -137,6 +158,7 @@ function okoyom_product_sync_after_save( $product_id ): void {
 	if ( function_exists( 'okoyom_sync_room_categories' ) ) {
 		okoyom_sync_room_categories( $product_id );
 	}
+	okoyom_sync_product_sku( $product_id );
 	okoyom_sync_product_price( $product_id );
 
 	unset( $busy[ $product_id ] );

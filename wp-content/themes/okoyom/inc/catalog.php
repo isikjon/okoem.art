@@ -129,16 +129,23 @@ function okoyom_catalog_query_ids( string $scope = 'all', string $search = '' ):
 
 	if ( '' !== $search ) {
 		global $wpdb;
-		$like = '%' . $wpdb->esc_like( okoyom_search_normalize( $search ) ) . '%';
+		$normalized = okoyom_search_normalize( $search );
+		$like       = '%' . $wpdb->esc_like( $normalized ) . '%';
+		$tight      = '%' . $wpdb->esc_like( str_replace( ' ', '', $normalized ) ) . '%';
 
 		$ids = $wpdb->get_col(
 			$wpdb->prepare(
 				"SELECT DISTINCT p.ID FROM {$wpdb->posts} p
 				 LEFT JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_sku'
 				 WHERE p.post_type = 'product' AND p.post_status = 'publish'
-				   AND (REPLACE( REPLACE( p.post_title, '–', '-' ), '—', '-' ) LIKE %s OR m.meta_value LIKE %s)",
+				   AND (REPLACE( REPLACE( p.post_title, '–', '-' ), '—', '-' ) LIKE %s
+				        OR REPLACE( REPLACE( REPLACE( p.post_title, '–', '-' ), '—', '-' ), ' ', '' ) LIKE %s
+				        OR m.meta_value LIKE %s
+				        OR REPLACE( m.meta_value, ' ', '' ) LIKE %s)",
 				$like,
-				$like
+				$tight,
+				$like,
+				$tight
 			)
 		);
 
