@@ -1252,3 +1252,12 @@ a.ui-filter__item {
     line-height: 26px;
     color: rgba(22, 20, 18, 0.75);
 }
+
+.mural-hero__slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.35) 28%, rgba(0, 0, 0, 0.10) 55%, rgba(0, 0, 0, 0) 80%);
+    pointer-events: none;
+    z-index: 1;
+}
