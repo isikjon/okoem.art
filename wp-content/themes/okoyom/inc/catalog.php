@@ -393,9 +393,9 @@ function okoyom_product_id_by_sku( string $sku ): int {
 	return $id;
 }
 
-function okoyom_home_extra_slides(): string {
+function okoyom_home_extra_slides(): array {
 	$skus = (array) apply_filters( 'okoyom_home_extra_slides_skus', array( '750', '748', '770' ) );
-	$out  = '';
+	$out  = array();
 
 	foreach ( $skus as $sku ) {
 		$id = okoyom_product_id_by_sku( (string) $sku );
@@ -411,7 +411,7 @@ function okoyom_home_extra_slides(): string {
 		$title  = okoyom_crumb_text( get_the_title( $id ) );
 		$series = function_exists( 'okoyom_product_series_name' ) ? okoyom_product_series_name( $id ) : '';
 
-		$out .= '<div class="swiper-slide mural-hero__slide">'
+		$out[] = '<div class="swiper-slide mural-hero__slide">'
 			. '<div class="mural-hero__bg js-hero-parallax">'
 			. '<img src="' . esc_url( $image ) . '" alt="' . esc_attr( $title ) . '" loading="lazy" decoding="async">'
 			. '</div>'
@@ -431,23 +431,28 @@ function okoyom_home_extra_slides(): string {
 }
 
 function okoyom_home_apply_slides( string $html ): string {
-	$slides = okoyom_home_extra_slides();
-	if ( '' === $slides ) {
+	$extra = okoyom_home_extra_slides();
+	if ( ! $extra ) {
 		return $html;
 	}
 
-	$marker = '<div class="swiper-pagination mural-hero__pagination"></div>';
-	$pos    = strpos( $html, $marker );
-	if ( false === $pos ) {
+	$tag   = '<div class="swiper-slide mural-hero__slide">';
+	$parts = explode( $tag, $html );
+	if ( count( $parts ) < 3 ) {
 		return $html;
 	}
 
-	$cut = strrpos( substr( $html, 0, $pos ), '</div>' );
-	if ( false === $cut ) {
-		return $html;
+	$out  = $parts[0];
+	$last = count( $parts ) - 1;
+
+	foreach ( array_slice( $parts, 1 ) as $i => $part ) {
+		$out .= $tag . $part;
+		if ( $i < $last - 1 && isset( $extra[ $i ] ) ) {
+			$out .= $extra[ $i ];
+		}
 	}
 
-	return substr( $html, 0, $cut ) . $slides . substr( $html, $cut );
+	return $out;
 }
 
 function okoyom_home_main_heading( string $html ): string {

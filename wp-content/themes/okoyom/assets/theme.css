@@ -1106,15 +1106,15 @@ a.ui-filter__item {
     justify-content: center;
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(22, 20, 18, 0.15);
-    border-radius: 50%;
+    border: 1px solid rgba(242, 240, 237, 0.25);
     font-size: 13px;
-    letter-spacing: 0.5px;
-    color: #161412;
+    letter-spacing: 1px;
+    color: rgba(242, 240, 237, 0.85);
 }
 
 .flex-col-4__footer .socialTextIcon:hover {
-    border-color: rgba(22, 20, 18, 0.45);
+    border-color: rgba(242, 240, 237, 0.6);
+    color: #F2F0ED;
 }
 
 .sectionCatalogMain {
@@ -1136,31 +1136,17 @@ a.ui-filter__item {
 }
 
 .titleCatalog__title {
-    font-family: "Outfit", sans-serif;
+    font-family: "Playfair Display", serif;
+}
+
+.titleCatalog__text {
+    font-family: "Outfit", sans-serif !important;
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.70);
-    text-shadow: none;
-}
-
-.titleCatalog__text {
-    font-family: "Playfair Display", serif;
-    font-size: 80px;
-    line-height: 90px;
-    letter-spacing: -2px;
     font-weight: 400;
-    color: #FFF;
-    text-shadow: 0 4px 60px rgba(0, 0, 0, 0.40);
-    margin-top: 10px;
-}
-
-@media screen and (max-width: 768px) {
-    .titleCatalog__text {
-        font-size: 32px;
-        line-height: 45px;
-    }
+    margin-top: 16px;
 }
 
 .cookieBar {
