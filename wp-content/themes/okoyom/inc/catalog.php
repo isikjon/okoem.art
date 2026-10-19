@@ -403,9 +403,15 @@ function okoyom_home_slide_images(): array {
 			continue;
 		}
 
-		$image = get_the_post_thumbnail_url( $id, 'full' );
+		$thumb = (int) get_post_thumbnail_id( $id );
+		$image = $thumb ? wp_get_attachment_image_src( $thumb, 'full' ) : false;
 		if ( $image ) {
-			$out[] = array( 'src' => $image, 'alt' => okoyom_crumb_text( get_the_title( $id ) ) );
+			$out[] = array(
+				'src' => $image[0],
+				'w'   => (int) $image[1],
+				'h'   => (int) $image[2],
+				'alt' => okoyom_crumb_text( get_the_title( $id ) ),
+			);
 		}
 	}
 
@@ -421,7 +427,7 @@ function okoyom_home_apply_slides( string $html ): string {
 	$i = 0;
 
 	return (string) preg_replace_callback(
-		'~(<div class="mural-hero__bg js-hero-parallax">\s*<img )src="[^"]*" alt="[^"]*"~su',
+		'~(<div class="mural-hero__bg js-hero-parallax">\s*<img )src="[^"]*" alt="[^"]*" width="\d+" height="\d+"~su',
 		static function ( array $m ) use ( $images, &$i ): string {
 			if ( ! isset( $images[ $i ] ) ) {
 				++$i;
@@ -431,7 +437,9 @@ function okoyom_home_apply_slides( string $html ): string {
 			$image = $images[ $i ];
 			++$i;
 
-			return $m[1] . 'src="' . esc_url( $image['src'] ) . '" alt="' . esc_attr( $image['alt'] ) . '"';
+			return $m[1] . 'src="' . esc_url( $image['src'] ) . '"'
+				. ' alt="' . esc_attr( $image['alt'] ) . '"'
+				. ' width="' . $image['w'] . '" height="' . $image['h'] . '"';
 		},
 		$html
 	);
