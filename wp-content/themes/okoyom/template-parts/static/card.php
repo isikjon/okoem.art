@@ -739,7 +739,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="flexCardLastInfoBlock">
             <div class="photo-left-flexCardLastInfoBlock">
                 <div class="photo-left-flexCardLastInfoBlock__photoBlock">
-                    <img class="photo-left-flexCardLastInfoBlock__photo" src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCard3BlocksPhoto.webp" alt="" width="247" height="317" loading="lazy" decoding="async">
+                    <img class="photo-left-flexCardLastInfoBlock__photo" src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/flexCardPokrytie.webp" alt="Образцы однотонного фонового покрытия" width="247" height="317" loading="lazy" decoding="async">
                     <p>
                         <?php echo okoyom_t( 'b069b3d8ff01', 'в тон муралу' ); ?>
                     </p>
