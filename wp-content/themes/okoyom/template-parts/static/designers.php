@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
                 <?php echo okoyom_t( '1a1a4ec7a316', 'Подбираем муралы под концепцию, делаем визуализации, адаптируем под размер стены и сопровождаем проект от согласования до монтажа.' ); ?>
             </p>
             <div class="btnContentBottom mural-hero__fade-up">
-                <a href="#!" class="btnWhiteTextBtn">
+                <a href="#!" class="btnWhiteTextBtn openModal">
                     <?php echo okoyom_t( 'd2c9f5737c80', 'Получить каталог' ); ?>
                 </a>
                 <a href="#!" class="btnWhiteTextBtn openModal">

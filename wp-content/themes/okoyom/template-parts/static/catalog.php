@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="sectionCatalogMain mural-hero--intro" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/catalogMainPhoto-oblaka.webp) center 14% no-repeat; background-size: cover;">
+<section class="sectionCatalogMain mural-hero--intro" style="background: url(<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/catalogMainPhoto-fon.webp) center center no-repeat; background-size: cover;">
     <div class="container">
         <div class="titleCatalog">
             <h1 class="titleCatalog__title mural-hero__fade-up">

@@ -96,9 +96,6 @@ defined( 'ABSPATH' ) || exit;
         </div>
         <div class="flexTwoTypeInfoMain flexTwoTypeInfoMain__about2">
             <div data-aos="fade" data-aos-offset="200" class="block-flexTwoTypeInfoMain">
-                <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
-                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
-                </div>
                 <div class="textContactCard">
                     <h5 class="title-textContactCard">
                         <?php echo okoyom_t( 'e6eb3a7361bf', 'Москва' ); ?>
@@ -137,9 +134,6 @@ defined( 'ABSPATH' ) || exit;
                 </div>
             </div>
             <div data-aos="fade" data-aos-offset="200" class="block-flexTwoTypeInfoMain">
-                <div class="photoContainer-photoBig-block-flexSectionInfoMain01">
-                    <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/block-flexTwoTypeInfoMain-1_1.webp" alt="" class="photoBig-block-flexSectionInfoMain01 block-flexTwoTypeInfoMain-1_1" width="2256" height="2820" loading="lazy" decoding="async">
-                </div>
                 <div class="textContactCard">
                     <h5 class="title-textContactCard">
                         <?php echo okoyom_t( '58f29773d778', 'Санкт-Петербург' ); ?>
@@ -249,7 +243,7 @@ defined( 'ABSPATH' ) || exit;
             </p>
         </div>
         <div data-aos="fade-up" data-aos-offset="200" class="btnsFlexCenter">
-            <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV3">
+            <a href="<?php echo esc_attr( okoyom_phone_href() ); ?>" class="btnWhiteTextBtn btnWhiteTextBtnV3">
                 <?php echo okoyom_t( 'ccfa0757c1a2', 'Позвонить' ); ?>
             </a>
             <a href="#!" class="btnWhiteTextBtn btnWhiteTextBtnV2 openModal">

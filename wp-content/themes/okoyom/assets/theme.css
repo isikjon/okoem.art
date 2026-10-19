@@ -1125,7 +1125,7 @@ a.ui-filter__item {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.32) 35%, rgba(0, 0, 0, 0.12) 65%, rgba(0, 0, 0, 0) 90%);
+    background: linear-gradient(to top, rgba(242, 240, 237, 0.55) 0%, rgba(242, 240, 237, 0.25) 45%, rgba(242, 240, 237, 0) 85%);
     pointer-events: none;
     z-index: 0;
 }
@@ -1137,6 +1137,8 @@ a.ui-filter__item {
 
 .titleCatalog__title {
     font-family: "Playfair Display", serif;
+    color: #161412;
+    text-shadow: none;
 }
 
 .titleCatalog__text {
@@ -1146,6 +1148,7 @@ a.ui-filter__item {
     letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: 400;
+    color: rgba(22, 20, 18, 0.55);
     margin-top: 16px;
 }
 

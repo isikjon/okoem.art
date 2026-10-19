@@ -393,8 +393,8 @@ function okoyom_product_id_by_sku( string $sku ): int {
 	return $id;
 }
 
-function okoyom_home_extra_slides(): array {
-	$skus = (array) apply_filters( 'okoyom_home_extra_slides_skus', array( '750', '748', '770' ) );
+function okoyom_home_slide_images(): array {
+	$skus = (array) apply_filters( 'okoyom_home_slide_skus', array( '750', '748', '770' ) );
 	$out  = array();
 
 	foreach ( $skus as $sku ) {
@@ -404,55 +404,37 @@ function okoyom_home_extra_slides(): array {
 		}
 
 		$image = get_the_post_thumbnail_url( $id, 'full' );
-		if ( ! $image ) {
-			continue;
+		if ( $image ) {
+			$out[] = array( 'src' => $image, 'alt' => okoyom_crumb_text( get_the_title( $id ) ) );
 		}
-
-		$title  = okoyom_crumb_text( get_the_title( $id ) );
-		$series = function_exists( 'okoyom_product_series_name' ) ? okoyom_product_series_name( $id ) : '';
-
-		$out[] = '<div class="swiper-slide mural-hero__slide">'
-			. '<div class="mural-hero__bg js-hero-parallax">'
-			. '<img src="' . esc_url( $image ) . '" alt="' . esc_attr( $title ) . '" loading="lazy" decoding="async">'
-			. '</div>'
-			. '<div class="mural-hero__container"><div class="container">'
-			. '<div class="mural-hero__content mural-hero__contentPaddingTopLeft">'
-			. '<h2 class="titleAllForSection mural-hero__fade-up">' . esc_html( $title ) . '</h2>'
-			. ( '' !== $series ? '<p class="textTitleBelow mural-hero__fade-up">' . esc_html( $series ) . '</p>' : '' )
-			. '<div class="btnContentBottom mural-hero__fade-up">'
-			. '<a href="' . esc_url( (string) wp_parse_url( (string) get_permalink( $id ), PHP_URL_PATH ) ) . '" class="btnWhiteTextBtn">'
-			. esc_html( okoyom_t( 'c3b1d2f4a560', 'Смотреть работу' ) ) . '</a>'
-			. '<a href="#!" class="btnWhiteTextBtn openModal">'
-			. esc_html( okoyom_t( 'a97b07bf1ecf', 'Получить консультацию' ) ) . '</a>'
-			. '</div></div></div></div></div>';
 	}
 
 	return $out;
 }
 
 function okoyom_home_apply_slides( string $html ): string {
-	$extra = okoyom_home_extra_slides();
-	if ( ! $extra ) {
+	$images = okoyom_home_slide_images();
+	if ( ! $images ) {
 		return $html;
 	}
 
-	$tag   = '<div class="swiper-slide mural-hero__slide">';
-	$parts = explode( $tag, $html );
-	if ( count( $parts ) < 3 ) {
-		return $html;
-	}
+	$i = 0;
 
-	$out  = $parts[0];
-	$last = count( $parts ) - 1;
+	return (string) preg_replace_callback(
+		'~(<div class="mural-hero__bg js-hero-parallax">\s*<img )src="[^"]*" alt="[^"]*"~su',
+		static function ( array $m ) use ( $images, &$i ): string {
+			if ( ! isset( $images[ $i ] ) ) {
+				++$i;
+				return $m[0];
+			}
 
-	foreach ( array_slice( $parts, 1 ) as $i => $part ) {
-		$out .= $tag . $part;
-		if ( $i < $last - 1 && isset( $extra[ $i ] ) ) {
-			$out .= $extra[ $i ];
-		}
-	}
+			$image = $images[ $i ];
+			++$i;
 
-	return $out;
+			return $m[1] . 'src="' . esc_url( $image['src'] ) . '" alt="' . esc_attr( $image['alt'] ) . '"';
+		},
+		$html
+	);
 }
 
 function okoyom_home_main_heading( string $html ): string {
