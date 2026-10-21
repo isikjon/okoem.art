@@ -11,6 +11,8 @@ function okoyom_settings_fields(): array {
 		'max'            => array( 'Max', 'https://max.ru/u/f9LHodD0cOI5eu8cfNShviPRBWw7ZgWAaSJwkVmuhMqwRNiaj9hqmESw7dM', 'Ссылка на чат в Max. Пусто — кнопка ведёт на телефон.' ),
 		'telegram'       => array( 'Telegram', 'https://t.me/OkoemArt', 'Ссылка вида https://t.me/имя. Пусто — кнопка ведёт на телефон.' ),
 		'lead_email'     => array( 'Email для заявок', '', 'Пусто — письма не отправляются, заявки копятся в админке (до доменной почты).' ),
+		'metrika'        => array( 'Яндекс Метрика', '109946823, 109063657', 'Номера счётчиков через запятую. Пусто — счётчики не выводятся.' ),
+		'metrika_webvisor' => array( 'Вебвизор', '109946823', 'Номера счётчиков из списка выше, для которых включается запись сессий.' ),
 		'subs_instagram' => array( 'Подписчики Instagram', '125K', '' ),
 		'subs_pinterest' => array( 'Подписчики Pinterest', '45K', '' ),
 		'subs_vk'        => array( 'Подписчики ВКонтакте', '89K', '' ),

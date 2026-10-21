@@ -21,6 +21,7 @@ require_once OKOYOM_CORE_DIR . 'includes/materials.php';
 require_once OKOYOM_CORE_DIR . 'includes/leads.php';
 require_once OKOYOM_CORE_DIR . 'includes/inspiration.php';
 require_once OKOYOM_CORE_DIR . 'includes/mail.php';
+require_once OKOYOM_CORE_DIR . 'includes/analytics.php';
 require_once OKOYOM_CORE_DIR . 'includes/leads-api.php';
 require_once OKOYOM_CORE_DIR . 'includes/leads-retry.php';
 require_once OKOYOM_CORE_DIR . 'includes/product-materials.php';
