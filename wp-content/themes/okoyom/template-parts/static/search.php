@@ -88,7 +88,7 @@ defined( 'ABSPATH' ) || exit;
                                             <?php echo okoyom_t( '3cd072605046', 'СБРОСИТЬ' ); ?>
                                         </button>
                                         <button class="mfilter-show">
-                                            <?php echo okoyom_t( '1c985e94eee8', 'ПОКАЗАТЬ (17)' ); ?>
+                                            <?php echo esc_html( okoyom_catalog_show_label() ); ?>
                                         </button>
                                     </div>
                                 </div>

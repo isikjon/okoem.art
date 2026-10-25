@@ -17,6 +17,7 @@ define( 'OKOYOM_CORE_DIR', plugin_dir_path( __FILE__ ) );
 require_once OKOYOM_CORE_DIR . 'includes/translit.php';
 require_once OKOYOM_CORE_DIR . 'includes/settings.php';
 require_once OKOYOM_CORE_DIR . 'includes/taxonomies.php';
+require_once OKOYOM_CORE_DIR . 'includes/term-slugs.php';
 require_once OKOYOM_CORE_DIR . 'includes/materials.php';
 require_once OKOYOM_CORE_DIR . 'includes/leads.php';
 require_once OKOYOM_CORE_DIR . 'includes/inspiration.php';

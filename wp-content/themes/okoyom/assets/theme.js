@@ -1388,7 +1388,15 @@
         if (countEl && exact) countEl.textContent = shown + ' ' + catWord(shown);
 
         var showBtn = document.querySelector('.mfilter-show');
-        if (showBtn) showBtn.textContent = (needsNav || !exact) ? 'ПОКАЗАТЬ' : 'ПОКАЗАТЬ (' + shown + ')';
+        if (showBtn) {
+            if (!showBtn.dataset.okoBase) {
+                showBtn.dataset.okoBase = showBtn.textContent.trim();
+                showBtn.dataset.okoBaseUrl = url;
+            }
+            showBtn.textContent = (!needsNav && exact)
+                ? 'ПОКАЗАТЬ (' + shown + ')'
+                : (url === showBtn.dataset.okoBaseUrl ? showBtn.dataset.okoBase : 'ПОКАЗАТЬ');
+        }
 
         var empty = grid.querySelector('.catEmpty');
         if (0 === shown && !grid.querySelector('.textTitleSection:not(.catEmpty)')) {

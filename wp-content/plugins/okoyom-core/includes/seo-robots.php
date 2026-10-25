@@ -133,6 +133,16 @@ function okoyom_archive_duplicates_catalog(): bool {
 	return $term instanceof WP_Term && okoyom_term_duplicates_catalog( $term->taxonomy, $term->term_id );
 }
 
+function okoyom_closed_taxonomies(): array {
+	return apply_filters( 'okoyom_closed_taxonomies', array( 'oko_color' ) );
+}
+
+function okoyom_archive_is_closed_taxonomy(): bool {
+	$taxonomies = okoyom_closed_taxonomies();
+
+	return array() !== $taxonomies && is_tax( $taxonomies );
+}
+
 function okoyom_robots_meta( array $robots ): array {
 	if ( ! okoyom_is_public_host() ) {
 		$robots['noindex']  = true;
@@ -144,7 +154,7 @@ function okoyom_robots_meta( array $robots ): array {
 
 	$closed = okoyom_page_is_closed();
 
-	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
+	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() || okoyom_archive_is_closed_taxonomy() ) {
 		$robots['noindex'] = true;
 		unset( $robots['index'] );
 
@@ -175,7 +185,7 @@ function okoyom_rank_math_robots( $robots ) {
 
 	$closed = okoyom_page_is_closed();
 
-	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
+	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() || okoyom_archive_is_closed_taxonomy() ) {
 		$robots['index']  = 'noindex';
 		$robots['follow'] = ( '' !== $closed && 'search' !== $closed ) ? 'nofollow' : 'follow';
 	}
@@ -197,7 +207,7 @@ function okoyom_robots_header(): void {
 
 	$closed = okoyom_page_is_closed();
 
-	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() ) {
+	if ( '' !== $closed || okoyom_query_is_filtered() || okoyom_archive_duplicates_catalog() || okoyom_archive_is_closed_taxonomy() ) {
 		$follow = ( '' !== $closed && 'search' !== $closed ) ? 'nofollow' : 'follow';
 		header( 'X-Robots-Tag: noindex, ' . $follow, true );
 	}
@@ -226,6 +236,10 @@ add_filter(
 			return $url;
 		}
 
+		if ( in_array( $object->taxonomy, okoyom_closed_taxonomies(), true ) ) {
+			return array();
+		}
+
 		return okoyom_term_duplicates_catalog( $object->taxonomy, $object->term_id ) ? array() : $url;
 	},
 	10,
@@ -235,6 +249,10 @@ add_filter(
 add_filter(
 	'rank_math/sitemap/exclude_taxonomy',
 	static function ( $exclude, $taxonomy ) {
+		if ( in_array( $taxonomy, okoyom_closed_taxonomies(), true ) ) {
+			return true;
+		}
+
 		if ( $exclude || ! in_array( $taxonomy, array( 'oko_collection', 'oko_series', 'oko_subject', 'oko_color' ), true ) ) {
 			return $exclude;
 		}

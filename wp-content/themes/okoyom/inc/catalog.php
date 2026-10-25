@@ -196,6 +196,15 @@ function okoyom_catalog_count(): string {
 	return $count . ' ' . $word;
 }
 
+function okoyom_catalog_show_label(): string {
+	$label = (string) okoyom_t( '1c985e94eee8', 'ПОКАЗАТЬ (17)' );
+	$count = okoyom_catalog_found( 'all', okoyom_catalog_search() );
+
+	$replaced = (string) preg_replace( '~\(\s*\d+\s*\)~u', '(' . $count . ')', $label, 1, $done );
+
+	return $done ? $replaced : $label . ' (' . $count . ')';
+}
+
 function okoyom_attachment_alt( int $attachment_id, string $fallback ): string {
 	$alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
 
