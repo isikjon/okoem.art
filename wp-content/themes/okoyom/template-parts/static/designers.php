@@ -783,6 +783,8 @@ defined( 'ABSPATH' ) || exit;
                 <button type="submit" class="btnWhiteTextBtn btnWhiteTextBtnV3">
                     <?php echo okoyom_t( '7094b4a52292', 'Отправить заявку' ); ?>
                 </button>
+                <?php echo okoyom_form_consent(); ?>
+
             </form>
         </div>
     </div>

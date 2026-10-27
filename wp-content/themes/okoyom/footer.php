@@ -58,6 +58,9 @@ defined( 'ABSPATH' ) || exit;
         <div class="line-footer"></div>
         <p class="lastTextFooter">
             <?php echo okoyom_t( '38c83ced84bd', '© 2026 ОКОЁМ' ); ?>
+            <a class="lastTextFooter__link" href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>">
+                <?php echo okoyom_t( '7f2b1c4ea93d', 'Политика обработки персональных данных' ); ?>
+            </a>
         </p>
     </div>
 </footer>
@@ -66,7 +69,7 @@ defined( 'ABSPATH' ) || exit;
         <div class="cookieBar__inner">
             <p class="cookieBar__text">
                 <?php echo okoyom_t( 'd41f8cd98f10', 'Мы используем файлы cookie, чтобы сайт работал и был удобнее. Можно принять все или оставить только необходимые.' ); ?>
-                <a href="/policy/"><?php echo okoyom_t( 'c0ffee1a2b3c', 'Политика конфиденциальности' ); ?></a>
+                <a href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>"><?php echo okoyom_t( 'c0ffee1a2b3c', 'Политика конфиденциальности' ); ?></a>
             </p>
             <div class="cookieBar__actions">
                 <button type="button" class="cookieBar__btn cookieBar__btn--ghost" data-cookie-choice="necessary">

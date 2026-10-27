@@ -132,6 +132,8 @@ defined( 'ABSPATH' ) || exit;
                 <button type="submit" class="btnWhiteTextBtn btnWhiteTextBtnV3" style="width: 100%">
                     Отправить
                 </button>
+                <?php echo okoyom_form_consent(); ?>
+
             </form>
         </div>
     </div>

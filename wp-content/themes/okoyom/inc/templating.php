@@ -9,11 +9,28 @@ function okoyom_static_pages(): array {
 		'customers'   => 'buyers',
 		'inspiration' => 'inspiration',
 		'contacts'    => 'contact',
-		'policy'      => 'polite',
+		'privacy'     => 'polite',
+		'consent'     => 'polite',
+		'consent-newsletter' => 'polite',
 		'favorites'   => 'like-1',
 		'cart'        => 'bag-1',
 		'thanks'      => 'thanks',
 	);
+}
+
+function okoyom_form_consent(): string {
+	$text = okoyom_t(
+		'630c9d44d9e5',
+		'Я даю %1$s на сбор и обработку указанных мной в настоящей форме моих персональных данных в соответствии с %2$s'
+	);
+
+	$consent = '<a href="' . esc_url( home_url( '/consent/' ) ) . '" target="_blank" rel="noopener">согласие</a>';
+	$privacy = '<a href="' . esc_url( home_url( '/privacy/' ) ) . '" target="_blank" rel="noopener">Политикой обработки персональных данных</a>';
+
+	return '<label class="formConsent">'
+		. '<input type="checkbox" class="formConsent__box">'
+		. '<span class="formConsent__text">' . sprintf( $text, $consent, $privacy ) . '</span>'
+		. '</label>';
 }
 
 function okoyom_cart_url(): string {
