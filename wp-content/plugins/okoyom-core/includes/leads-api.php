@@ -188,13 +188,19 @@ function okoyom_send_lead_email( int $lead_id ): void {
 		get_the_title( $lead_id )
 	);
 
+	okoyom_mail_error( '' );
+
 	$sent = wp_mail( $to, $subject, implode( "\n", $lines ) );
 
 	if ( $sent ) {
 		wp_update_post( array( 'ID' => $lead_id, 'post_status' => 'oko_sent' ) );
 		update_post_meta( $lead_id, '_okoyom_sent_at', time() );
+		delete_post_meta( $lead_id, '_okoyom_transient' );
 	} else {
+		$error = okoyom_mail_error();
+
 		wp_update_post( array( 'ID' => $lead_id, 'post_status' => 'oko_failed' ) );
-		update_post_meta( $lead_id, '_okoyom_last_error', 'wp_mail вернул false — SMTP недоступен или не настроен' );
+		update_post_meta( $lead_id, '_okoyom_last_error', '' !== trim( $error ) ? $error : 'wp_mail вернул false без объяснения' );
+		update_post_meta( $lead_id, '_okoyom_transient', okoyom_mail_error_is_transient( $error ) ? 1 : 0 );
 	}
 }

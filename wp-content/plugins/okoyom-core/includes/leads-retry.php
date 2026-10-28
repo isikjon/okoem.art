@@ -2,8 +2,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-const OKOYOM_RETRY_HOOK   = 'okoyom_lead_retry';
-const OKOYOM_MAX_ATTEMPTS = 5;
+const OKOYOM_RETRY_HOOK     = 'okoyom_lead_retry';
+const OKOYOM_MAX_ATTEMPTS   = 5;
+const OKOYOM_RETRY_WINDOW   = 14 * DAY_IN_SECONDS;
 
 add_filter(
 	'cron_schedules',
@@ -51,14 +52,24 @@ add_action(
 		);
 
 		foreach ( array_merge( $failed, $stuck ) as $lead_id ) {
-			$attempts = (int) get_post_meta( $lead_id, '_okoyom_attempts', true );
-			if ( $attempts >= OKOYOM_MAX_ATTEMPTS ) {
-				continue;
+			if ( okoyom_lead_should_retry( (int) $lead_id ) ) {
+				okoyom_send_lead_email( (int) $lead_id );
 			}
-			okoyom_send_lead_email( (int) $lead_id );
 		}
 	}
 );
+
+function okoyom_lead_should_retry( int $lead_id ): bool {
+	if ( (int) get_post_meta( $lead_id, '_okoyom_attempts', true ) < OKOYOM_MAX_ATTEMPTS ) {
+		return true;
+	}
+
+	if ( ! get_post_meta( $lead_id, '_okoyom_transient', true ) ) {
+		return false;
+	}
+
+	return ( time() - (int) get_post_time( 'U', true, $lead_id ) ) < OKOYOM_RETRY_WINDOW;
+}
 
 add_filter(
 	'manage_' . OKOYOM_LEAD_CPT . '_posts_columns',

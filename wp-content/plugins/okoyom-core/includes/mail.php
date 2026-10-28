@@ -71,3 +71,64 @@ add_filter(
 	},
 	99
 );
+
+function okoyom_mail_error( ?string $error = null ): string {
+	static $last = '';
+
+	if ( null !== $error ) {
+		$last = $error;
+	}
+
+	return $last;
+}
+
+add_action(
+	'wp_mail_failed',
+	function ( $wp_error ): void {
+		if ( is_wp_error( $wp_error ) ) {
+			okoyom_mail_error( $wp_error->get_error_message() );
+		}
+	}
+);
+
+function okoyom_mail_error_is_transient( string $error ): bool {
+	if ( '' === trim( $error ) ) {
+		return true;
+	}
+
+	$error = function_exists( 'mb_strtolower' ) ? mb_strtolower( $error, 'UTF-8' ) : strtolower( $error );
+
+	$markers = array(
+		'could not connect',
+		'failed to connect',
+		'smtp connect() failed',
+		'connection refused',
+		'connection timed out',
+		'timed out',
+		'network is unreachable',
+		'no route to host',
+		'temporarily',
+		'try again later',
+		'too many connections',
+		'ошибка подключения',
+		'не удалось подключиться',
+		'не удалось соединиться',
+		'время ожидания',
+		'истекло время',
+		'сервер недоступен',
+		'попробуйте позже',
+		'476',
+		'421',
+		'450',
+		'451',
+		'452',
+	);
+
+	foreach ( $markers as $marker ) {
+		if ( false !== strpos( $error, $marker ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
