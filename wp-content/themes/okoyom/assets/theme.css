@@ -521,6 +521,11 @@ iframe.mural-video {
     cursor: default;
 }
 
+form[data-subscribe] .flex-col-3__footer button[type="submit"] {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
 .left-flexFiltersCatalog-1234 input[type="search"] {
     line-height: 15px;
     padding-bottom: 1px;
