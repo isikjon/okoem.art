@@ -29,7 +29,25 @@ function okoyom_rest_create_lead( WP_REST_Request $request ): WP_REST_Response {
 	$email   = sanitize_email( (string) $request->get_param( 'email' ) );
 	$message = sanitize_textarea_field( (string) $request->get_param( 'message' ) );
 
-	if ( '' === $name || ( '' === $phone && '' === $email ) ) {
+	if ( 'subscription' === $type ) {
+		if ( '' === $email ) {
+			return new WP_REST_Response(
+				array( 'ok' => false, 'error' => 'Укажите адрес электронной почты.' ),
+				422
+			);
+		}
+
+		if ( ! $request->get_param( 'consent_data' ) || ! $request->get_param( 'consent_news' ) ) {
+			return new WP_REST_Response(
+				array( 'ok' => false, 'error' => 'Нужно отметить оба согласия.' ),
+				422
+			);
+		}
+
+		if ( '' === $name ) {
+			$name = $email;
+		}
+	} elseif ( '' === $name || ( '' === $phone && '' === $email ) ) {
 		return new WP_REST_Response(
 			array( 'ok' => false, 'error' => 'Нужно имя и хотя бы один контакт: телефон или email.' ),
 			422
@@ -59,6 +77,13 @@ function okoyom_rest_create_lead( WP_REST_Request $request ): WP_REST_Response {
 	update_post_meta( $lead_id, '_okoyom_phone', $phone );
 	update_post_meta( $lead_id, '_okoyom_email', $email );
 	update_post_meta( $lead_id, '_okoyom_message', $message );
+
+	if ( 'subscription' === $type ) {
+		update_post_meta( $lead_id, '_okoyom_consent_data', 1 );
+		update_post_meta( $lead_id, '_okoyom_consent_news', 1 );
+		update_post_meta( $lead_id, '_okoyom_consent_at', time() );
+		update_post_meta( $lead_id, '_okoyom_consent_ip', sanitize_text_field( (string) ( $_SERVER['REMOTE_ADDR'] ?? '' ) ) );
+	}
 
 	$product_id = absint( $request->get_param( 'product_id' ) );
 	if ( $product_id ) {

@@ -506,6 +506,91 @@
 
     
 
+    function subsModal() {
+        var modal = document.querySelector('[data-subs-modal]');
+        var form = document.querySelector('form[data-subscribe]');
+        if (!modal || !form) return;
+
+        var input = form.querySelector('input[type="email"]');
+        var boxes = modal.querySelectorAll('[data-subs-consent]');
+        var submit = modal.querySelector('[data-subs-submit]');
+        var error = modal.querySelector('[data-subs-error]');
+        var label = modal.querySelector('[data-subs-email]');
+        var pending = '';
+
+        function close() {
+            modal.hidden = true;
+            document.body.style.overflow = '';
+        }
+
+        function reset() {
+            boxes.forEach(function (b) { b.checked = false; });
+            submit.disabled = true;
+            error.hidden = true;
+            error.textContent = '';
+        }
+
+        function sync() {
+            var all = true;
+            boxes.forEach(function (b) { if (!b.checked) all = false; });
+            submit.disabled = !all;
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (!input || !input.value || !input.checkValidity()) {
+                if (input) input.reportValidity();
+                return;
+            }
+            pending = input.value.trim();
+            label.textContent = pending;
+            reset();
+            modal.hidden = false;
+            document.body.style.overflow = 'hidden';
+        });
+
+        boxes.forEach(function (b) { b.addEventListener('change', sync); });
+
+        modal.addEventListener('click', function (event) {
+            if (event.target.closest('[data-subs-close]')) close();
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if ('Escape' === event.key && !modal.hidden) close();
+        });
+
+        submit.addEventListener('click', function () {
+            submit.disabled = true;
+            error.hidden = true;
+
+            fetch(apiRoot() + 'lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'subscription',
+                    email: pending,
+                    consent_data: true,
+                    consent_news: true,
+                    attribution: attribution()
+                })
+            }).then(function (r) { return r.json(); }).then(function (data) {
+                if (data && data.ok) {
+                    close();
+                    if (input) input.value = '';
+                    window.location.href = '/thanks/';
+                    return;
+                }
+                submit.disabled = false;
+                error.textContent = (data && data.error) || 'Не удалось подписаться. Попробуйте ещё раз.';
+                error.hidden = false;
+            }).catch(function () {
+                submit.disabled = false;
+                error.textContent = 'Не удалось подписаться. Проверьте соединение.';
+                error.hidden = false;
+            });
+        });
+    }
+
     function renderFavorites() {
         var grid = document.querySelector('[data-fav-grid]');
         if (!grid) return;
@@ -2187,6 +2272,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         captureAttribution();
         cookieBar();
+        subsModal();
         updateHeaderCounters();
         markFavorites();
         renderCart();

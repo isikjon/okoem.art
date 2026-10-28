@@ -19,6 +19,7 @@ const OKOYOM_LEAD_TYPES = array(
 	'visualization'     => 'Запросить визуализацию',
 	'designer_terms'    => 'Условия для дизайнеров',
 	'consultation'      => 'Получить консультацию',
+	'subscription'      => 'Подписка на рассылку',
 );
 
 const OKOYOM_ATTRIBUTION_KEYS = array(

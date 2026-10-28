@@ -20,12 +20,12 @@ defined( 'ABSPATH' ) || exit;
                 <a href="mailto:<?php echo esc_attr( okoyom_option( 'email' ) ); ?>">
                     <?php echo esc_html( okoyom_option( 'email' ) ); ?>
                 </a>
-                <form action="" method="post">
+                <form action="" method="post" data-subscribe>
                     <span>
                         <?php echo okoyom_t( '93418d156c5f', 'Новые коллекции и вдохновение' ); ?>
                     </span>
                     <div class="flex-col-3__footer">
-                        <input type="email" required placeholder="Ваш e-mail">
+                        <input type="email" name="email" required placeholder="Ваш e-mail">
                         <button type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                                 <path d="M3.75 9H14.25" stroke="#63615F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -64,6 +64,30 @@ defined( 'ABSPATH' ) || exit;
         </p>
     </div>
 </footer>
+<div class="subsModal" data-subs-modal hidden>
+    <div class="subsModal__overlay" data-subs-close></div>
+    <div class="subsModal__window" role="dialog" aria-modal="true" aria-labelledby="subsModalTitle">
+        <button type="button" class="subsModal__close" data-subs-close aria-label="Закрыть">
+            <img src="<?php echo esc_url( OKOYOM_ASSETS_URI ); ?>/img/close.svg" alt="" width="40" height="40" loading="lazy" decoding="async" aria-hidden="true">
+        </button>
+        <p class="titleSectionTitle" id="subsModalTitle">
+            <?php echo okoyom_t( '2c7f4b9ad103', 'Подписка на рассылку' ); ?>
+        </p>
+        <p class="subsModal__email" data-subs-email></p>
+        <label class="formConsent">
+            <input type="checkbox" class="formConsent__box" data-subs-consent="data">
+            <span class="formConsent__text"><?php echo okoyom_form_consent_data_text(); ?></span>
+        </label>
+        <label class="formConsent">
+            <input type="checkbox" class="formConsent__box" data-subs-consent="news">
+            <span class="formConsent__text"><?php echo okoyom_form_consent_news_text(); ?></span>
+        </label>
+        <p class="subsModal__error" data-subs-error hidden></p>
+        <button type="button" class="btnWhiteTextBtn btnWhiteTextBtnV3 subsModal__submit" data-subs-submit disabled>
+            <?php echo okoyom_t( 'b6d1e07c5a42', 'Подписаться' ); ?>
+        </button>
+    </div>
+</div>
 <div class="cookieBar" data-cookie-bar hidden>
     <div class="container">
         <div class="cookieBar__inner">

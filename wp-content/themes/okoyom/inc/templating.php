@@ -18,6 +18,28 @@ function okoyom_static_pages(): array {
 	);
 }
 
+function okoyom_form_consent_data_text(): string {
+	$text = okoyom_t(
+		'f63fa31ff6bd',
+		'Даю согласие на обработку персональных данных в соответствии с %s'
+	);
+
+	$privacy = '<a href="' . esc_url( home_url( '/privacy/' ) ) . '" target="_blank" rel="noopener">Политикой обработки персональных данных</a>';
+
+	return sprintf( $text, $privacy );
+}
+
+function okoyom_form_consent_news_text(): string {
+	$text = okoyom_t(
+		'e4353eafe806',
+		'Хочу получать новости и предложения, даю %s'
+	);
+
+	$consent = '<a href="' . esc_url( home_url( '/consent-newsletter/' ) ) . '" target="_blank" rel="noopener">согласие на рассылку</a>';
+
+	return sprintf( $text, $consent );
+}
+
 function okoyom_form_consent(): string {
 	$text = okoyom_t(
 		'630c9d44d9e5',
