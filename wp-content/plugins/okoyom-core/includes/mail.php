@@ -45,6 +45,7 @@ add_action(
 		$mailer->Password   = $config['pass'];
 		$mailer->SMTPSecure = $config['secure'];
 		$mailer->CharSet    = 'UTF-8';
+		$mailer->Timeout    = 12;
 
 		$mailer->setFrom( $config['from'], $config['from_name'], false );
 	},

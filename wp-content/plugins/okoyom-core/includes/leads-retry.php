@@ -38,7 +38,19 @@ add_action(
 			)
 		);
 
-		foreach ( $failed as $lead_id ) {
+		$stuck = get_posts(
+			array(
+				'post_type'      => OKOYOM_LEAD_CPT,
+				'post_status'    => 'oko_new',
+				'posts_per_page' => 20,
+				'fields'         => 'ids',
+				'date_query'     => array(
+					array( 'before' => '10 minutes ago' ),
+				),
+			)
+		);
+
+		foreach ( array_merge( $failed, $stuck ) as $lead_id ) {
 			$attempts = (int) get_post_meta( $lead_id, '_okoyom_attempts', true );
 			if ( $attempts >= OKOYOM_MAX_ATTEMPTS ) {
 				continue;

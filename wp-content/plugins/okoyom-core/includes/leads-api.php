@@ -123,10 +123,22 @@ function okoyom_rest_create_lead( WP_REST_Request $request ): WP_REST_Response {
 		}
 	}
 
-	okoyom_send_lead_email( $lead_id );
+	okoyom_queue_lead_email( $lead_id );
 
 	return new WP_REST_Response( array( 'ok' => true, 'id' => $lead_id ), 201 );
 }
+
+function okoyom_queue_lead_email( int $lead_id ): void {
+	if ( wp_next_scheduled( 'okoyom_lead_send', array( $lead_id ) ) ) {
+		return;
+	}
+
+	if ( ! wp_schedule_single_event( time(), 'okoyom_lead_send', array( $lead_id ) ) ) {
+		okoyom_send_lead_email( $lead_id );
+	}
+}
+
+add_action( 'okoyom_lead_send', 'okoyom_send_lead_email' );
 
 function okoyom_send_lead_email( int $lead_id ): void {
 	$to = function_exists( 'okoyom_option' ) ? okoyom_option( 'lead_email' ) : '';
