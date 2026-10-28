@@ -61,6 +61,12 @@ defined( 'ABSPATH' ) || exit;
             <a class="lastTextFooter__link" href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>">
                 <?php echo okoyom_t( '7f2b1c4ea93d', 'Политика обработки персональных данных' ); ?>
             </a>
+            <a class="lastTextFooter__link" href="<?php echo esc_url( home_url( '/consent/' ) ); ?>">
+                <?php echo okoyom_t( '5a8e3f21bc04', 'Согласие на обработку персональных данных' ); ?>
+            </a>
+            <a class="lastTextFooter__link" href="<?php echo esc_url( home_url( '/consent-newsletter/' ) ); ?>">
+                <?php echo okoyom_t( 'd90c17b4ea6f', 'Согласие на получение рассылки' ); ?>
+            </a>
         </p>
     </div>
 </footer>
